@@ -1,6 +1,6 @@
 import TestimonialsCard from '../../Reusable Components/TestimonialsCard/TestimonialsCard'
 import './Testimonials.css'
-import { icons, TestimonialsData } from '../../../assets/assets'
+import { icons, testimonials } from '@/assets/assets'
 import React, {useRef} from 'react'
 
 const Testimonials = () => {
@@ -25,7 +25,7 @@ const Testimonials = () => {
         </div>
       </div>
       <div className="testimonials-wrapper"  ref={scrollRef}>
-        {TestimonialsData.map((data, index) =>(
+        {testimonials.map((data, index) =>(
           <TestimonialsCard key={index} img={data.img} link={data.link} name={data.name} designation={data.designation} des={data.description}/>
         ))
         }

@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       screens: {
-        mediaXl: "1570px",
+        mediaXl: "1669px",
         media1: "767px",
         media2: "567px"
       }

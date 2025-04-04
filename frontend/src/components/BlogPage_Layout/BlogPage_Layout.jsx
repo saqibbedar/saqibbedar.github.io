@@ -19,7 +19,7 @@ const BlogPage_Layout = () => {
   
   const {blogs} = useContext(BlogContext);
 
-  const All_Blogs = blogs.All_Blogs(category);
+  const allBlogs = blogs.allBlogs(category);
   
   const sectionTitle = category === "All" ? "All Blogs" : `Category: "${category}"`;
 
@@ -36,7 +36,7 @@ const BlogPage_Layout = () => {
           {sectionTitle}
         </h1>
       </div>
-      {All_Blogs.map((item, index)=>{
+      {allBlogs.map((item, index)=>{
         return <Link to={item.link} key={index} className="blog-container">
         <div className="blog-container-img">
           <img src={item.img} alt="" />

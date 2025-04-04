@@ -1,6 +1,6 @@
 import "./Awards.css";
 import { Link } from "react-router-dom";
-import { Awards_data } from "../../../assets/assets";
+import { awards } from "@/assets/assets";
 
 const Awards = () => {
   return (
@@ -9,7 +9,7 @@ const Awards = () => {
         <h1>Honors & awards</h1>
       </div>
       <div className="award-wrapper">
-        {Awards_data.map((data, index) => (
+        {awards.map((data, index) => (
             <div className="Awards-box" key={index}>
                 <div className="Award-date">
                     <h6>{data.date}</h6>

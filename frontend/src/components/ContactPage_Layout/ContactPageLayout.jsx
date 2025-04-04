@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { BaseURL } from "../../assets/assets";
+import { useState } from "react";
 import "./ContactPageLayout.css";
 
 const ContactPageLayout = () => {
@@ -18,7 +17,7 @@ const ContactPageLayout = () => {
     e.preventDefault();
 
     try{
-      const res = await fetch(`${BaseURL}/contact`, {
+      const res = await fetch(`url/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

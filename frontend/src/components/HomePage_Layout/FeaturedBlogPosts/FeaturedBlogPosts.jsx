@@ -2,14 +2,14 @@ import "./FeaturedBlogPosts.css";
 import FeaturedBlogPostCard from "../../Reusable Components/FeaturedBlogPostCard/FeaturedBlogPostCard";
 import { Link } from "react-router-dom";
 import { useContext, useRef } from "react";
-import { BlogContext } from "../../../Context/BlogContext.jsx";
+import { BlogContext } from "@/Context/BlogContext.jsx";
 
 
 const FeaturedBlogPosts = () => {
 
   const {blogs} = useContext(BlogContext);
 
-  const featuredBlogs = blogs.featuredBlogs();
+  const featureBlogs = blogs.featureBlogs();
 
   return (
     <> 
@@ -20,8 +20,9 @@ const FeaturedBlogPosts = () => {
         </div>
 
         <div className="f-blog-content">
-          {featuredBlogs.map((item, index) => {
-            if(index === featuredBlogs.length-1) {
+          {/* add some other algorithm to show view more button */}
+          {featureBlogs.map((item, index) => {
+            if(index === featureBlogs.length) {
               return <div className="f-post-btn" key={index}><Link to={"/Blog"} className="f-post-view-more-btn">VIEW <br/>MORE</Link></div>
             } else{
               return <FeaturedBlogPostCard key={index} link={item.link} description={item.description} img={item.img} title={item.title} />

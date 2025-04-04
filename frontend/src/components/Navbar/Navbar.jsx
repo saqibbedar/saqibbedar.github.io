@@ -1,5 +1,5 @@
 import "./Navbar.css";
-import { brand_name, icons } from "@/assets/assets";
+import { author, icons } from "@/assets/assets";
 import { useState, useEffect } from "react";
 import Search from "@/components/Search/Search";
 import { Link, useLocation } from "react-router-dom";
@@ -89,7 +89,7 @@ const Navbar = () => {
       >
         <div className="logo">
           <h1 translate="no">
-            <Link to={"/"} className="mix-blend-lighten">{brand_name.name + "."}</Link>
+            <Link to={"/"} className="mix-blend-lighten">{author.logo + "."}</Link>
           </h1>
         </div>
 

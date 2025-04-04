@@ -1,41 +1,36 @@
-import React, { createContext, useEffect, useState } from "react";
-import { featuredBlogPostsData } from "../assets/assets";
+import { createContext, useEffect, useState } from "react";
+import { blogPosts } from "@/assets/assets";
 
 export const BlogContext = createContext();
 
-const BlogProvider = ({children}) =>{
+const BlogProvider = ({ children }) => {
+  const [blogData, setBlogData] = useState([]);
 
-    const [blogsData, setBlogsData] = useState([]);
-    
-    useEffect(()=>{
-        setBlogsData(featuredBlogPostsData);
-    }, [])
+  useEffect(() => {
+    setBlogData(blogPosts);
+  }, []);
 
-    const All_Blogs = (category) => {
-        
-        const selectedCategory = category.toLowerCase();
+  const allBlogs = (category) => {
+    const selectedCategory = category.toLowerCase();
 
-        return blogsData.filter(blog =>{
-            if(selectedCategory === 'all') return true;
-            const blogCategory = blog.category.toLowerCase()
-            return blogCategory === selectedCategory;
-        })
-    }
+    return blogData.filter((blog) => {
+      // return all blogs
+      if (selectedCategory === "all") return true;
+      // return blogs based on category
+      const blogCategory = blog.category.toLowerCase();
+      return blogCategory === selectedCategory;
+    });
+  };
 
-    const featuredBlogs = ()=>{
-        return blogsData;
-    }
-    
-    const blogs = {
-        All_Blogs,
-        featuredBlogs,
-    }
+  const featureBlogs = () => {
+    return blogData.filter((blog) => blog.category.toLowerCase() === "feature"); // return feature blogs
+  };
 
-    return (
-        <BlogContext.Provider value={{blogs}}>
-            {children}
-        </BlogContext.Provider>
-    )
-}
+  const blogs = { allBlogs, featureBlogs };
+
+  return (
+    <BlogContext.Provider value={{ blogs }}>{children}</BlogContext.Provider>
+  );
+};
 
 export default BlogProvider;

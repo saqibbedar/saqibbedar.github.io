@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { icons, FAQs } from "../../../assets/assets";
+import { icons, faqs } from "@/assets/assets";
 
 const FAQS = () => {
   const [openIndex, setOpenIndex] = useState(null);
@@ -9,7 +9,7 @@ const FAQS = () => {
       <div className="section-info">
         <h1>FAQs</h1>
       </div>
-      {FAQs.map((item, index) => (
+      {faqs.map((item, index) => (
         <div className="FAQs-box" key={index}>
           <div
             className="FAQs-question-box flex justify-between items-center cursor-pointer"
