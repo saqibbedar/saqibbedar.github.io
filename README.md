@@ -1,11 +1,5 @@
 # saqibbedar.github.io
 
-This repository hosts my personal GitHub Pages site: https://saqibbedar.github.io/. It is primarily used for domain verification and serves content related to my projects.
+This repository hosts my personal portfolio website. Feel free to suggest features or provide feedback. The project is currently a work in progress.
 
-## Purpose
-
-This repository contains files required for verifying site ownership with Google Search Console. It also serves as the root for hosting my personal projects and portfolio on GitHub Pages.
-
-## Important
-
-Please do not contribute to this repository. This repo is specifically for hosting my website and verifying site ownership. Contributions or pull requests are not required.
+This project is protected under a strict proprietary license. All rights reserved. See the [LICENSE](./LICENSE) file for details.

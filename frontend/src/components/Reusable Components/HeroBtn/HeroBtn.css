@@ -1,0 +1,67 @@
+.hero-btn{
+    border: none;
+    background: var(--featured-bg);
+    padding: 9px 12px;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    max-width: 100%;
+    width: fit-content;
+    transition: var(--transition);
+}
+.hero-btn  span{
+    color: var(--white);
+    font-size: 14px;
+    text-transform: uppercase;
+}
+#hero-btn-svg{
+    background: transparent;
+    border-radius: 50px;
+    display: grid;
+    place-items: center;
+    height: 25px;
+    width: 25px;
+    position: relative;
+    overflow: hidden;
+}
+#hero-btn-svg::after{
+    content: "";
+    background: white;
+    height: 10px;
+    width: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    border-radius: 50px;
+    transition: var(--transition);
+}
+.hero-btn:hover #hero-btn-svg::after{
+    height: 100%;
+    width: 100%;
+}
+.hero-btn > span svg{
+    transform: rotate(0deg);
+    opacity: 0;
+    fill: var(--text-color);
+    transition: var(--transition);
+}
+.hero-btn:hover > span svg {
+    opacity: 1;
+    transform: rotate(-45deg);
+    z-index: 2;
+}
+
+@media (width < 667px) {    
+    #hero-btn-svg::after{
+        height: 100%;
+        width: 100%;
+    }
+    .hero-btn > span svg {
+        opacity: 1;
+        z-index: 2;
+    }
+}

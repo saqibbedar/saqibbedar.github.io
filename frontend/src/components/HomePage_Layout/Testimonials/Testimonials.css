@@ -1,0 +1,7 @@
+.testimonials-wrapper{
+    margin-bottom: 3rem;
+    display: flex;
+    gap: 20px;
+    overflow-x: scroll;
+    padding: 6px;
+}

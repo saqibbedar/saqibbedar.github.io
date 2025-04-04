@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: var(--text-color);
+}
+html, body{
+  width: 100%;
+  height: 100%;
+  font-family: "Poppins", sans-serif;
+  transition: .2s ease-out;
+  background: var(--body-bg);
+}
+a {
+  text-decoration: none;
+}
+:root{
+  /* body color */
+  --body-bg: #eeeeee;
+
+  --link-color: #2563eb;
+  --link-hover: #4285f4;
+
+  --black : #000;
+  --white: #fff;
+  --secondary-color: #f5f5f5;
+
+  --text-color: #202124;
+  --text-color-2: white;
+  --max-padding: 0 160px;
+  --min-padding: 0 26px;
+
+  --svg-bg: #202124;
+  --svg-hover: #fff;
+  --svg-clr: #fff;
+
+  --search-input-bg: #fff;
+  --search-input-svg-clr: #818181;
+  
+  --pop-ups-bg-light: rgba(204, 204, 204, 0.788);
+  --pop-ups-bg-dark: #101010; 
+  --pop-up-color: var(--pop-ups-bg-light);
+  
+  /* animations */
+  --rotate-anim: rotate_ 0.3s ease;
+  --fadeIn : fade .5s ease;
+  --transform : transform .35s ease;
+
+  /* Buttons */
+  --btn-txt-clr: #fff;
+  --btn1-bg: #202124;
+  --btn1-hover: "";
+  --btn2-bg: #2563eb;
+  --btn2-hover: #4285f4;
+
+  --featured-btn-bg: var(--featured-bg);
+
+  /* transition */
+  --transition: 0.3s ease;
+
+  /* featured background */
+  --featured-bg: #202124; 
+}
+body{
+  padding-top: 80px;
+}
+
+.skeleton{
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.skeleton::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  padding-block: 20px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #eee, #dedede, #eee);
+  background-size: 200%;
+  animation: skeleton .7s infinite linear reverse;
+}
+
+@keyframes skeleton {
+  0%{
+    background-position: -100% 0;
+  }
+  100%{
+    background-position: 100% 0;
+  }
+}
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f150; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+/* Animations */
+@keyframes rotate_ {
+  from{
+      transform: rotate(0deg);
+  }
+  to{
+      transform: rotate(360deg);
+  }
+}
+
+@keyframes transform {
+  from{
+    transform: translateY(30px);
+    filter: blur(3px);
+    opacity: 0;
+  }
+  to{
+      transform: translateY(0px);
+    filter: blur(0px);
+      opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+/* mix up styles for all */
+
+.author-info h6> a::after, .awarding-institution h6 > a:after{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border-bottom: 2.33px solid var(--link-color);
+  width: 0%;
+  transition: var(--transition);
+}
+.author-info h6:hover > a::after, .awarding-institution h6 > a:hover:after{
+  width: 100%;
+}
+
+
+/* Hide scrollbar for all overflow content */
+:where(.f-blog-content, .testimonials-wrapper, .posts, .categories-box)::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+.rows-handler{
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+:where(.card-content p, .content p, .f-post-left-section p, .categories, .founded-items, .results, .founded-item-box-content-description ){
+  display: -webkit-box;
+  line-clamp: 4;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.animatedHand {
+  animation: 2s ease-in-out infinite animatedHand;
+  transform-origin: 80% 75%;
+  margin-left: 4px;
+  margin-right: 8px;
+}
+
+@keyframes animatedHand {
+  0%, 100%, 60%, 80%, 90% {
+      transform: rotate(20deg);
+  }
+  10% {
+      transform: rotate(45deg);
+  }
+  20% {
+      transform: rotate(10deg);
+  }
+  30% {
+      transform: rotate(40deg);
+  }
+  40% {
+      transform: rotate(15deg);
+  }
+  50% {
+      transform: rotate(35deg);
+  }
+  70% {
+      transform: rotate(30deg);
+  }
+}

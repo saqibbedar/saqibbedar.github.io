@@ -1,0 +1,46 @@
+Method 1:
+
+const [activeButton, setActiveButton] = useState(0); // Initially, set the first button as active
+
+<div className="btn">
+  <button className={activeButton === 0 ? "btn-active" : ""} onClick={() => setActiveButton(0)}>All</button>
+  <button className={activeButton === 1 ? "btn-active" : ""} onClick={() => setActiveButton(1)}>Blog</button>
+  <button className={activeButton === 2 ? "btn-active" : ""} onClick={() => setActiveButton(2)}>Latest Project</button>
+  <button className={activeButton === 3 ? "btn-active" : ""} onClick={() => setActiveButton(3)}>Projects</button>
+</div>
+
+
+Method 2: 
+
+const [activeButton, setActiveButton] = useState("All");
+
+<div className="btn">
+  <button className={activeButton === "All" ? "btn-active" : ""} onClick={() => setActiveButton("All")}>All</button>
+  <button className={activeButton === "Blog" ? "btn-active" : ""} onClick={() => setActiveButton("Blog")}>Blog</button>
+  <button className={activeButton === "Latest Project" ? "btn-active" : ""} onClick={() => setActiveButton("Latest Project")}>Latest Project</button>
+  <button className={activeButton === "Projects" ? "btn-active" : ""} onClick={() => setActiveButton("Projects")}>Projects</button>
+</div>
+
+Method 3:
+
+const [activeButton, setActiveButton] = useState("All");
+
+const buttons = [
+  { label: "All" },
+  { label: "Blog" },
+  { label: "Latest Project" },
+  { label: "Projects" }
+];
+
+<div className="btn">
+  {buttons.map((button, index) => (
+    <button
+      key={index}
+      className={activeButton === button.label ? "btn-active" : ""}
+      onClick={() => setActiveButton(button.label)}
+    >
+      {button.label}
+    </button>
+  ))}
+</div>
+

@@ -1,0 +1,34 @@
+.backToTop{ 
+    background: var(--featured-bg);
+    position: absolute;
+    position: fixed;
+    right: 80px;
+    bottom: 50px;
+    display: grid;
+    place-items: center;
+    padding: 10px;
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 100;
+    transition: var(--transition);
+}
+.backToTop svg{
+    fill: var(--white);
+    width: 20px;
+    height: 20px;
+}
+.backToTop:active{
+    scale: .9;
+}
+.hide-backToTop{
+    visibility: hidden !important;
+    opacity: 0 !important;
+    transition: var(--transition);
+}
+@media (width < 767px) {
+    .backToTop{
+        right: 26px;
+    bottom: 26px;
+
+    }
+}
