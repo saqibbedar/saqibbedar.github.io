@@ -1,4 +1,4 @@
-import "./LayoutInfoTemplate";
+import "./LayoutInfoTemplate.css";
 
 const LayoutInfoTemplate = ({
   layoutHeading,
