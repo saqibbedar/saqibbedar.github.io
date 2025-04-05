@@ -1,14 +1,14 @@
-import "./AboutLayout.css";
 import { useContext, useState } from "react";
 import { author, education } from "@/assets/assets";
+import AboutAwards from './AboutAwards/AboutAwards';
 import { CategoryContext } from "@/context/CategoryContext";
-import AboutSkillSection from "./AboutSkillSection/AboutSkillPage";
+import AboutSkills from "./AboutSkills/AboutSkills";
 import AboutLandingPage from "./AboutLandingPage/AboutLandingPage";
 import { CategoryButtonTemplate } from "@/components/templates/templates";
 import AboutProjectSection from "./AboutProjectsSection/AboutProjectSection";
 import AboutEducationSection from "./AboutEducationSection/AboutEducationSection";
 
-const CategoryButtons = ["Education", "Skills", "Projects"];
+const CategoryButtons = ["Education", "Projects", "Certificates", "Awards", "Skills"];
 
 const AboutPage_Layout = () => {
   const { category } = useContext(CategoryContext);
@@ -19,7 +19,7 @@ const AboutPage_Layout = () => {
   };
 
   return (
-    <div className="about-section-main-wrapper">
+    <div className="animate-[var(--transform)]">
       <AboutLandingPage
         name={author.name}
         description={author.description}
@@ -34,8 +34,10 @@ const AboutPage_Layout = () => {
             isLoading={isLoading}
           />
         )}
-        {category === CategoryButtons[1] && <AboutSkillSection />}
-        {category === CategoryButtons[2] && <AboutProjectSection />}
+        {category === CategoryButtons[1] && <AboutProjectSection />}
+        {category === CategoryButtons[2] && <AboutAwards />} {/* Add certificates here... */}
+        {category === CategoryButtons[3] && <AboutAwards />}
+        {category === CategoryButtons[4] && <AboutSkills />}
       </div>
     </div>
   );
