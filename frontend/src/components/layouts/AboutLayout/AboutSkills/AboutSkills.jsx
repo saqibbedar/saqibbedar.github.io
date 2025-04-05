@@ -1,19 +1,28 @@
-import "./AboutSkillSection.css";
-import { useContext } from "react";
-import { GridContext } from "@/context/GridContext";
-import { Grid, GridToggler } from "@/components/templates/templates";
+import "./AboutSkills.css"
+import { Link } from 'react-router-dom';
+import { aboutSkills } from '@/assets/assets';
 
-const AboutSkillSection = () => {
-  const { isGrid } = useContext(GridContext);
+const AboutSkills = () => {
 
   return (
-    <div className="about-sec-skill-wrapper">
-      <GridToggler section_name={"Skills"} />
-      <Grid isGrid={isGrid} gridTempCol={"1fr 1fr 1fr"}>
-        <h1>Hello from skills</h1>
-      </Grid>
+    <div className="animate-[var(--fadeIn)] mt-8 mb-12 overflow-hidden">
+      <div className="section-info">
+        <h1>Skills</h1>
+      </div>
+      <div className="about-page-skill-box-wrapper">
+        {aboutSkills.map(({ link, name, Icon }) => (
+          <Link
+            key={name}
+            to={link}
+            className="about-page-skill-box"
+          >
+            <h1>{ name }</h1>
+            <Icon /> 
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };
 
-export default AboutSkillSection;
+export default AboutSkills;

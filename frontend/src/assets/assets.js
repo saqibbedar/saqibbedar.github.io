@@ -2,6 +2,7 @@ import faqs from "@/assets/faqs";
 import icons from "@/assets/icons";
 import awards from '@/assets/awards';
 import footer from '@/assets/footer';
+import aboutSkills from './aboutSkills';
 import author from "@/assets/authorInfo";
 import * as skills from "@/assets/skills";
 import blogPosts from "@/assets/blogPosts";
@@ -22,6 +23,7 @@ export {
   author,
   blogPosts,
   education,
+  aboutSkills,
   ErrorImages,
   slideContent,
   certificates,
