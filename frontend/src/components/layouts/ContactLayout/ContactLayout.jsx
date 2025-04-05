@@ -41,7 +41,7 @@ const ContactLayout = () => {
   return (
     <form onSubmit={handleSubmit} className="contact-page-layout">
       <div className="contact-page-inputs">
-        <h1>Get in touch</h1>
+        <h1 className="text-2xl font-medium">Get in touch</h1>
         <div className="contact-us-msg">
           I would love to hear from you! If you have any questions, comments or
           feedback, please use the form below or reach me through my social
