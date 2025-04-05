@@ -1,7 +1,7 @@
 import {
   Home,
   About,
-  Blog,
+  Blogs,
   Contact,
   Courses,
   NotFound,
@@ -17,7 +17,7 @@ const FrontendRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/Home" element={<Home />} />
         <Route path="/About" element={<About />} />
-        <Route path="/Blog" element={<Blog />} />
+        <Route path="/Blogs" element={<Blogs />} />
         <Route path="/Courses" element={<Courses />} />
         <Route path="/Services" element={<Services />} />
         <Route path="/projects" element={<Projects />} />

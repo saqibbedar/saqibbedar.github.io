@@ -3,10 +3,10 @@ import BlogProvider from "@/context/BlogContext";
 import { BlogLayout } from "@/components/layouts/layouts";
 import CategoryProvider from "@/context/CategoryContext";
 
-const Blog = () => {
+const Blogs = () => {
   return (
     <div>
-      <title>Saqib Bedar - Blogs</title>
+      <title>Saqib Bedar | Blogs</title>
       <BlogProvider>
         <CategoryProvider initialCategory={"All"}>
           <GridProvider>
@@ -18,4 +18,4 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+export default Blogs;

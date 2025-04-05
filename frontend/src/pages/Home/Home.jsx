@@ -7,7 +7,7 @@ const Home = () => {
       <meta name="author" content="Saqib Bedar" />
       <meta name="keywords" content="Saqib Bedar, JavaScript, semantic markup, html" />
       <meta name="description" content="Saqib Bedar" />
-      <title>Saqib Bedar - Home</title>
+      <title>Saqib Bedar | Home</title>
       <GridProvider>
         <HomeLayout />
       </GridProvider>

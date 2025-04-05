@@ -7,7 +7,7 @@ import { Link, useLocation } from "react-router-dom";
 const des_nav = [
   "Home",
   "About",
-  "Blog",
+  "Blogs",
   "Projects",
   "Services",
   "Courses",
@@ -16,7 +16,7 @@ const des_nav = [
 const mob_nav = [
   "Home",
   "About",
-  "Blog",
+  "Blogs",
   "Projects",
   "Services",
   "Courses",
