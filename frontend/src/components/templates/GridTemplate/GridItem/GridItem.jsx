@@ -14,10 +14,10 @@ const GridItem = ({ link, title, description, img, isLoading, setIsLoading }) =>
   return (
     <Link
       to={link}
-      className="grid-item"
+      className="grid-item shadow-sm"
       style={{ gap: isLoading ? "25px" : "" }}
     >
-      <div className="flex flex-col gap-1 shadow-[var(--cards-shadow)] projects-title-des-wrapper">
+      <div className="flex flex-col gap-1 projects-title-des-wrapper">
         <p className={`${ isLoading && "skeleton" } text-xl text-[var(--cards-text-title-foreground)] whitespace-nowrap font-normal project-title`}> • {title} </p>
         <p className="line-clamp-2 tracking-[var(--other-text-letter-spacing)] text-[var(--cards-text-description-foreground)] project-description">
           {description || `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure ratione
