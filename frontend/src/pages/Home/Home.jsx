@@ -1,11 +1,11 @@
-import HomePage_Layout from "../../components/HomePage_Layout/HomePage_Layout";
-import GridProvider from "../../Context/GridContext";
+import GridProvider from "@/context/GridContext";
+import { HomeLayout } from "@/components/layouts/layouts";
 
 const Home = () => {
   return (
     <>
       <GridProvider>
-        <HomePage_Layout />
+        <HomeLayout />
       </GridProvider>
     </>
   );

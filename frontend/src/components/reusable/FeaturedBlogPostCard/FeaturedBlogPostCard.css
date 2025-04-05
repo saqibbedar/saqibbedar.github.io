@@ -1,0 +1,44 @@
+.f-post-sm-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+.f-post-sm-card h3 {
+  color: var(--text-color-2);
+}
+.f-post-sm-card-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  max-height: 100%;
+  height: fit-content;
+  gap: 8px;
+  border-radius: 10px;
+  padding: 10px;
+  background: var(--body-bg);
+}
+.f-post-left-section {
+  width: 60%;
+  height: 100%;
+  padding: 6px 1px;
+}
+.f-post-left-section p {
+  -webkit-line-clamp: 6;
+  font-size: 14px;
+  color: var(--text-color);
+}
+.f-post-right-section {
+  width: 40%;
+  height: 100%;
+  background: var(--featured-bg);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.f-post-right-section img {
+  height: 100%;
+  width: 100%;
+  object-position: center;
+  object-fit: cover;
+}

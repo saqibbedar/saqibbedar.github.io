@@ -1,0 +1,18 @@
+.layout-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+.layout-info .layout-heading{
+    color: white;
+    background: var(--featured-bg);
+    padding: 10px 15px;
+    border-radius: 50px;
+}
+.layout-info .layout-description{
+    text-align: center;
+    font-size: 14px;
+    color: #6e6e73;
+}

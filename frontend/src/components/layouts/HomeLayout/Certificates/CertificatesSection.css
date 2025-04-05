@@ -1,0 +1,67 @@
+.CardSection-Wrapper {
+  margin-bottom: 2.8rem;
+}
+.section-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 30px; 
+  border-bottom: 1px solid;
+  margin-bottom: 2rem;
+  padding: 0 0 0.9rem 0;
+}
+.section-info h1 {
+  font-weight: 300;
+  font-size: 35px;
+  color: var(--text-color);
+}
+.section-info-navigation-btns {
+  display: flex;
+  gap: 12px;
+}
+.section-info-navigation-btns button {
+  display: grid;
+  place-items: center;
+  border-radius: 50px;
+  padding: 12px;
+  border: none;
+  background: var(--featured-btn-bg);
+  cursor: pointer;
+  transition: var(--transition);
+  user-select: none;
+}
+.section-info-navigation-btns button:active {
+  scale: 0.8;
+  svg {
+    scale: 0.8;
+  }
+}
+
+.section-info-navigation-btns button > svg {
+  fill: var(--white);
+  height: 14px;
+  width: 14px;
+  transition: var(--transition);
+}
+
+.posts {
+  display: flex;
+  gap: 20px;
+  overflow-x: scroll;
+  --card-radius: 10px;
+  padding: 6px;
+  position: relative;
+}
+
+@media (max-width: 767px) {
+  .section-info h1 {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 567px) {
+  .section-info-navigation-btns {
+    display: none;
+  }
+}

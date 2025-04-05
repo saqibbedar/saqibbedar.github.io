@@ -1,14 +1,13 @@
-import AboutPage_Layout from "../../components/AboutPage_Layout/AboutPage_Layout";
-import CategoryProvider from "../../Context/CategoryContext";
-import GridProvider from "../../Context/GridContext";
-import "./About.css";
+import GridProvider from "@/context/GridContext";
+import CategoryProvider from "@/context/CategoryContext";
+import { AboutLayout } from "@/components/layouts/layouts";
 
 const About = () => {
   return (
     <>
       <CategoryProvider initialCategory={"Education"}>
         <GridProvider>
-          <AboutPage_Layout />
+          <AboutLayout />
         </GridProvider>
       </CategoryProvider>
     </>

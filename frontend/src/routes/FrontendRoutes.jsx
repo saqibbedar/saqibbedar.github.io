@@ -1,4 +1,13 @@
-import { Home, About, Blog, Contact, Courses, NotFound, Projects, Services } from "../pages/pages";
+import {
+  Home,
+  About,
+  Blog,
+  Contact,
+  Courses,
+  NotFound,
+  Projects,
+  Services,
+} from "@/pages/pages";
 import { Route, Routes } from "react-router-dom";
 
 const FrontendRoutes = () => {
@@ -17,6 +26,6 @@ const FrontendRoutes = () => {
       </Routes>
     </>
   );
-}
+};
 
 export default FrontendRoutes;

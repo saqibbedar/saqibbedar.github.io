@@ -1,0 +1,10 @@
+.project-page-layout-wrapper{
+    margin-top: 2rem;
+    animation: var(--transform);
+    margin-bottom: 3rem;
+}
+.no-project-found{
+    display: grid;
+    place-items: center;
+    margin-block: 3.5rem;
+}

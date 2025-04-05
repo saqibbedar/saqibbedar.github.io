@@ -1,0 +1,40 @@
+.about-sec-edu-wrapper{
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    animation: var(--fadeIn);
+}
+.edu-box{
+    border-left: 1px solid #6e6e7333;
+    padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.edu-box .edu-content-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.edu-main-title{
+    position: relative;
+}
+.edu-main-title h3{
+    font-weight: 700;
+    font-size: 18px;
+}
+.edu-main-title p{
+    color: #6e6e73;
+    font-size: 15px;
+}
+.edu-description{
+    font-size: 15px;
+}
+.edu-main-title::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: var(--featured-bg);
+    margin-left: -32.5px;
+}

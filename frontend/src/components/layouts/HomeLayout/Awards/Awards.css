@@ -1,0 +1,41 @@
+.award-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-bottom: 3rem;
+}
+.Awards-box{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 25px 40px;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 9px 9px lightgray;
+    /* margin-bottom: 22px; */
+}
+.Award-des p {
+    color: var(--text-color);
+    font-size: 18px;
+    font-weight: 600;
+    font-style: italic;
+}
+.Award-date, .awarding-institution {
+    width: 100%;
+} 
+.Award-date h6{
+    text-align: left;
+    font-size: 15px;
+    font-weight: 400;
+    color: #6e6e73;
+}
+.awarding-institution h6 {
+    font-size: 18px;
+    text-align: right;
+}
+.awarding-institution h6 > a{
+    position: relative;
+    color: var(--link-color);
+    padding-bottom: 2px;
+    font-weight: 500;
+}

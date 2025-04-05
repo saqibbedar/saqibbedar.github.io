@@ -1,0 +1,64 @@
+.left-project-section, .right-project-section{
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+    cursor: pointer;
+}
+.project-info{
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: .8rem;
+}
+
+.project-info span{
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: black;
+}
+.project-info > h2, .project-info > h2{
+    position: relative;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+.project-img-box{
+    width: 100%;
+    height: 100%;
+    scale: 1;
+    background: transparent;
+    border-radius: 12px;
+    --project-transition: scale .4s ease;
+    transition: var(--project-transition);
+    overflow: hidden;
+}
+.project-img-box img{
+    object-fit: cover;
+    object-position: center;
+    aspect-ratio: 1/1;
+    width: 100%;
+    height: 100%;
+    scale: 1;
+    transition: var(--project-transition);
+    border-radius: 12px;
+}
+.left-project-section:hover .project-img-box, .right-project-section:hover .project-img-box{
+    scale: .9;
+    img{
+        scale: 1.03;
+    }
+}
+
+@media (width <767px) {
+    .left-project-section:hover .project-img-box, .right-project-section:hover .project-img-box{
+        scale: 1;
+        img{
+            scale: 1;
+        }
+    }
+    .f-project-info h1{
+        font-size: 25px;
+    }
+}

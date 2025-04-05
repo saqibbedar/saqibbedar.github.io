@@ -1,12 +1,11 @@
-import "./Services.css";
-import ServicesPage_Layout from "../../components/ServicesPage_Layout/ServicesPage_Layout";
-import GridProvider from "../../Context/GridContext";
+import GridProvider from "@/context/GridContext";
+import { ServiceLayout } from "@/components/layouts/layouts";
 
 const Services = () => {
   return (
     <>
       <GridProvider>
-        <ServicesPage_Layout />
+        <ServiceLayout />
       </GridProvider>
     </>
   );

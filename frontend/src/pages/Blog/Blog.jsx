@@ -1,8 +1,7 @@
-import BlogPage_Layout from "../../components/BlogPage_Layout/BlogPage_Layout";
-import BlogProvider from "../../Context/BlogContext";
-import CategoryProvider from "../../Context/CategoryContext";
-import GridProvider from "../../Context/GridContext";
-import "./Blog.css";
+import GridProvider from "@/Context/GridContext";
+import BlogProvider from "@/context/BlogContext";
+import { BlogLayout } from "@/components/layouts/layouts";
+import CategoryProvider from "@/context/CategoryContext";
 
 const Blog = () => {
   return (
@@ -10,7 +9,7 @@ const Blog = () => {
       <BlogProvider>
         <CategoryProvider initialCategory={"All"}>
           <GridProvider>
-            <BlogPage_Layout />
+            <BlogLayout />
           </GridProvider>
         </CategoryProvider>
       </BlogProvider>

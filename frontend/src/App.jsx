@@ -1,8 +1,7 @@
-// import DarkModeDetection from './components/DarkModeDetection/DarkModeDetection'
 import "./index.css";
-import {Navbar, Footer} from './components/components.js'
-import BackToTop from "./components/Reusable Components/BackToTop/BackToTop";
 import FrontendRoutes from "./routes/FrontendRoutes.jsx";
+import { BackToTop } from "@/components/reusable/reusable";
+import { Navbar, Footer } from '@/components/normal/components.js';
 
 function App() {
   return (

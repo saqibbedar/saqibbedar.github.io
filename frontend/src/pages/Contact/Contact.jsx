@@ -1,12 +1,11 @@
-import ContactPageLayout from "../../components/ContactPage_Layout/ContactPageLayout"
-import "./Contact.css"
+import { ContactLayout } from "@/components/layouts/layouts";
 
 const Contact = () => {
   return (
     <div>
-      <ContactPageLayout/>
+      <ContactLayout />
     </div>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;

@@ -1,13 +1,12 @@
-import ProjectPageLayout from "../../components/ProjectPage_Layout/ProjectPageLayout";
-import CategoryProvider from "../../Context/CategoryContext";
-import GridProvider from "../../Context/GridContext";
-import "./Projects.css";
+import GridProvider from "@/context/GridContext";
+import CategoryProvider from "@/context/CategoryContext";
+import { ProjectLayout } from "@/components/layouts/layouts";
 
 const Projects = () => {
   return (
     <CategoryProvider initialCategory={"All"}>
       <GridProvider>
-        <ProjectPageLayout />
+        <ProjectLayout />
       </GridProvider>
     </CategoryProvider>
   );
