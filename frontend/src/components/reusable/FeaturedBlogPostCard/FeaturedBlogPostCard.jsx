@@ -20,7 +20,7 @@ const FeaturedBlogPostCard = ({
   };
 
   return (
-    <>
+    <div className="flex">
       <Link to={link} className="f-post-sm-card">
         <div
           className="f-post-sm-card-content"
@@ -39,9 +39,9 @@ const FeaturedBlogPostCard = ({
             <img src={img} onLoad={handleImageLoad} />
           </div>
         </div>
-        <h3 className={isLoading && "skeleton"}>{title}</h3>
+        <h3 className={`${isLoading && "skeleton" } line-clamp-1 `}>{title}</h3>
       </Link>
-    </>
+    </div>
   );
 };
 
