@@ -1,5 +1,4 @@
 import FAQS from "./FAQS/FAQS";
-import Awards from "./Awards/Awards";
 import Skills from "./Skills/MySkills";
 import BlogProvider from "@/context/BlogContext";
 import LandingPage from "./LandingPage/LandingPage";
@@ -18,7 +17,6 @@ const HomeLayout = () => {
       </BlogProvider>
       <FeaturedProjects />
       <CertificatesSection />
-      <Awards />
       <Testimonials />
       <FAQS />
     </>

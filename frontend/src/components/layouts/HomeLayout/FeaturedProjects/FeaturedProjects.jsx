@@ -13,7 +13,7 @@ const FeaturedProjects = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div className="flex flex-col mt-[26rem] mb-7 media1:mb-2">
+    <div className="flex flex-col mt-[25.5rem] media2:mt-[26rem] mb-7 media1:mb-2">
 
       <GridToggler section_name={"Featured projects"} isLoading={isLoading}/>
       <Grid isGrid={isGrid} gridTempCol={"1fr 1fr"}>

@@ -9,18 +9,19 @@
   animation: var(--fadeIn);
 }
 .f-blog-sec-info {
-  margin-top: 2.5rem;
+  margin-top: 2rem;
   text-align: center;
   white-space: nowrap;
 }
 .f-blog-sec-info h1 {
   color: white;
+  font-size: 1.6rem;
 }
 .f-blog-content {
-  padding: 40px 30px 40px 80px;
+  padding: 30px 30px 40px 80px;
   overflow-x: scroll;
   display: flex;
-  gap: 20px;
+  gap: 22px;
 }
 .f-post-btn {
   display: flex;
@@ -43,10 +44,7 @@
   .f-post-wrapper {
     margin-top: 50px;
   }
-  .f-blog-sec-info h1{
-    font-size: 1.6rem;
-  }
   .f-blog-content {
-    padding: 30px 20px 40px 26px;
+    padding: 23px 20px 40px 26px;
   }
 }
