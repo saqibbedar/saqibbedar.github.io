@@ -4,9 +4,10 @@ export default {
   theme: {
     extend: {
       screens: {
-        mediaXl: "1669px",
+        media2: "567px",
         media1: "767px",
-        media2: "567px"
+        mediaXl: "1669px",
+        mediaXXl: "1769px",
       }
     },
   },
