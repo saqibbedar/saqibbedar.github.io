@@ -9,11 +9,17 @@
 .grid .grid-item{
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
+    padding: 25px 30px;
+    border-radius: 10px;
+    background: var(--cards-background);
     overflow: hidden;
 }
-.grid-item p{
-    color: var(--text-color);
+.project-title{
+    font-size: var(--cards-text-title-size);
+}
+.project-description{
+    font-size: var(--cards-text-description-size);
 }
 .grid-item .grid-item-img-container{
     width: 100%;
@@ -45,16 +51,28 @@
 }
 @media (width < 767px) {
     .grid{
-        gap: 20px;
+        gap: 17px;
+    }
+    .grid .grid-item{
+        gap: 15px;
+        padding: 15px 16px;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    .projects-title-des-wrapper{
+        gap: 0px;
     }
     .active-landScape-mode {
         grid-template-columns: 1fr !important;
     }
     .grid-item .grid-item-img-container{
-        cursor:default;
+        border-radius: 7px;
     }
     .active-landScape-mode .grid-item-img-container img{
         aspect-ratio: 1/1;
+    }
+    .grid-item .grid-item-img-container img {
+        border-radius: 0;
     }
     .grid-item:hover .grid-item-img-container{
         scale: 1;

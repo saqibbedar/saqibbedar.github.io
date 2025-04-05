@@ -66,6 +66,15 @@ a {
 
   /* featured background */
   --featured-bg: #202124; 
+
+  /* cards colors */
+  --cards-background: #fff;
+  --cards-text-title-foreground: #202124;
+  --cards-text-description-foreground: #646770;
+  --cards-text-title-size: 16px;
+  --cards-text-description-size: 15px;
+  --other-text-letter-spacing: 0.11px;
+  --cards-shadow: 0 0 7px lightgray;
 }
 body{
   padding-top: 80px;
