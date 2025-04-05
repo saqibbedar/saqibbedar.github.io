@@ -83,7 +83,7 @@ const Navbar = () => {
   return (
     <>
       <div
-        className={`px-[26px] media1:px-[80px] mediaXl:px-0 fixed navbar ${
+        className={`w-full fixed navbar px-[26px] media1:px-[80px] mediaXl:px-8 mediaXXl:px-20 ${
           isHidden ? "hidden" : ""
         }`}
       >

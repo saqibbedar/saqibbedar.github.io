@@ -16,8 +16,6 @@
 }
 .content {
   position: absolute;
-  bottom: 10%;
-  left: 10%;
   width: 75%;
   animation: var(--fadeIn);
   z-index: 3;
@@ -62,6 +60,10 @@
   padding-bottom: .2rem;
 }
 @media (width < 467px) {
+  .content{
+    bottom: 6.5%;
+    left: 8%;
+  }
   .slide {
     height: 84dvh;
   }

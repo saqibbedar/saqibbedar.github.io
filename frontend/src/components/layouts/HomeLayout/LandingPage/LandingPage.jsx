@@ -28,7 +28,7 @@ const LandingPage = () => {
             <SwiperSlide key={index}>
               <div className="slide">
                 <img src={item.img} alt="slide" />
-                <div className="content">
+                <div className="content left-[8%] bottom-[10%] media2:left-[5%] media2:bottom-[11%]">
                   <h1>{item.title}</h1>
                   <p>{item.description}</p>
                   <HeroBtn

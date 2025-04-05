@@ -4,11 +4,14 @@ import { ProjectLayout } from "@/components/layouts/layouts";
 
 const Projects = () => {
   return (
+    <>
+      <title>Saqib Bedar - Projects</title>
     <CategoryProvider initialCategory={"All"}>
       <GridProvider>
         <ProjectLayout />
       </GridProvider>
     </CategoryProvider>
+    </>
   );
 };
 
