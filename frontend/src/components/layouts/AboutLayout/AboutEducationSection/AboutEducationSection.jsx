@@ -3,7 +3,7 @@ import "./AboutEducationSection.css";
 const AboutEducationSection = ({ educational_data, isLoading }) => {
 
   return (
-    <div className="about-sec-edu-wrapper">
+    <div className="animate-[var(--fadeIn)] mt-8 mb-12">
       <div className={isLoading ? "section-info skeleton" : "section-info"}>
         <h1>Education</h1>
       </div>

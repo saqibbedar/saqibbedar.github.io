@@ -27,7 +27,7 @@
 }
 .about-right{
     justify-content: center;
-    align-items: center;
+    align-items: end;
 }
 .about-img-container{
     width: 350px;
