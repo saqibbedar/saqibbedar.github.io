@@ -8,7 +8,7 @@ import { Grid, GridToggler, GridItem } from "@/components/templates/templates";
 const AboutProjectSection = () => {
   const { isGrid } = useContext(GridContext);
 
-  const { projects } = useContext(ProjectContext);
+  const { featuredProjects } = useContext(ProjectContext);
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -16,12 +16,12 @@ const AboutProjectSection = () => {
     <div className="about-sec-project-wrapper">
       <GridToggler section_name={"Top Projects"} />
       <Grid isGrid={isGrid} gridTempCol={"1fr 1fr 1fr"}>
-        {projects.featuredProjects.map((project, index) => (
+        {featuredProjects.map((project, index) => (
           <GridItem
             key={index}
-            link={project.project_link}
-            title={project.project_name}
-            img={project.project_img}
+            projectUrl={project.url}
+            projectName={project.name}
+            projectImage={project.image}
             isLoading={isLoading}
             setIsLoading={setIsLoading}
           />

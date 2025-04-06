@@ -21,9 +21,9 @@ const ProjectLayout = () => {
 
   const { category } = useContext(CategoryContext);
 
-  const { projects } = useContext(ProjectContext);
+  const { allProjects } = useContext(ProjectContext);
 
-  const All_Projects = projects.All_Projects(category);
+  const All_Projects = allProjects(category);
 
   const sectionTitle = category === "All" ? "All" : `Category: ${category}`;
 
@@ -57,9 +57,9 @@ const ProjectLayout = () => {
             {All_Projects.map((project, index) => (
               <GridItem
                 key={index}
-                link={project.project_link}
-                title={project.project_name}
-                img={project.project_img}
+                projectUrl={project.url}
+                projectName={project.name}
+                projectImage={project.image}
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
               />

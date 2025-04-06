@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import "./Card.css";
 import { Link } from "react-router-dom";
 
-const Card = ({ img, title, description, profileImg, name, url }) => {
+const Card = ({ image, title, description, providerLogo, providerName, credentialUrl }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setIsLoading(true);
-  }, [img, title, description, profileImg, name]);
+  }, [image, title, description, providerLogo, providerName]);
 
   const handleImageLoad = () => {
     setIsLoading(false);
@@ -17,7 +17,7 @@ const Card = ({ img, title, description, profileImg, name, url }) => {
     <>
       <div className="card">
         <div className={isLoading ? "main-card-img skeleton" : "main-card-img"}>
-          <img src={img} onLoad={handleImageLoad} className="img" />
+          <img src={image} onLoad={handleImageLoad} className="img" />
         </div>
         <div className={isLoading ? "card-content skeleton" : "card-content"}>
           <h3 className="card-title">{title}</h3>
@@ -29,12 +29,12 @@ const Card = ({ img, title, description, profileImg, name, url }) => {
               isLoading ? "card-author-img skeleton" : "card-author-img"
             }
           >
-            <img src={profileImg} alt="" />
+            <img src={providerLogo} alt="" />
           </div>
           <div className={isLoading ? "author-info skeleton" : "author-info"}>
-            <h5>{name}</h5>
+            <h5>{providerName}</h5>
             <h6>
-              <Link to={url} target="_blank">
+              <Link to={credentialUrl} target="_blank">
                 See Credential
               </Link>
             </h6>

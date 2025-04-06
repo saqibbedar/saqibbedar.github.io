@@ -1,4 +1,4 @@
-import { futureProjectsData } from "@/assets/assets";
+import { projects } from "@/assets/assets";
 import { createContext, useEffect, useState } from "react";
 
 export const ProjectContext = createContext();
@@ -7,7 +7,7 @@ const ProjectProvider = ({ children }) => {
   const [projectsData, setProjectsData] = useState([]);
 
   useEffect(() => {
-    setProjectsData(futureProjectsData);
+    setProjectsData(projects);
   }, []);
 
   // Featured Projects for HomePage
@@ -30,7 +30,7 @@ const ProjectProvider = ({ children }) => {
 
   // All Projects : this function will receive a category from projects pages and based on that filter the projects and return them.
 
-  const All_Projects = (category) => {
+  const allProjects = (category) => {
     const selectedCategory = category.toLowerCase();
 
     return projectsData.filter((project) => {
@@ -42,16 +42,8 @@ const ProjectProvider = ({ children }) => {
     });
   };
 
-  const projects = {
-    projectsData,
-    featuredProjects,
-    freeProjects,
-    premiumProjects,
-    All_Projects,
-  };
-
   return (
-    <ProjectContext.Provider value={{ projects }}>
+    <ProjectContext.Provider value={{ featuredProjects, freeProjects, premiumProjects, allProjects }}>
       {children}
     </ProjectContext.Provider>
   );

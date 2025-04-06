@@ -4,6 +4,7 @@ import awards from '@/assets/awards';
 import footer from '@/assets/footer';
 import aboutSkills from './aboutSkills';
 import author from "@/assets/authorInfo";
+import projects from "@/assets/projects";
 import * as skills from "@/assets/skills";
 import blogPosts from "@/assets/blogPosts";
 import education from '@/assets/education';
@@ -12,7 +13,6 @@ import certificates from "@/assets/certificates";
 import slideContent from "@/assets/slideContent";
 import testimonials from '@/assets/testimonials';
 import SearchMaterial from "@/assets/searchMaterial";
-import futureProjectsData from "@/assets/futureProjects";
 
 export {
   faqs,
@@ -21,6 +21,7 @@ export {
   skills,
   footer,
   author,
+  projects,
   blogPosts,
   education,
   aboutSkills,
@@ -29,5 +30,4 @@ export {
   certificates,
   testimonials,
   SearchMaterial,
-  futureProjectsData,
 };

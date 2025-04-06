@@ -8,7 +8,7 @@ const FeaturedProjects = () => {
   
   const {isGrid} = useContext(GridContext);
   
-  const {projects} = useContext(ProjectContext);
+  const { featuredProjects } = useContext(ProjectContext);
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -18,8 +18,8 @@ const FeaturedProjects = () => {
       <GridToggler section_name={"Featured projects"} isLoading={isLoading}/>
       <Grid isGrid={isGrid} gridTempCol={"1fr 1fr"}>
         {
-          projects.featuredProjects.slice(0, 2).map((project, index)=>(
-            <GridItem key={index} link={project.project_link} title={project.project_name} img={project.project_img} isLoading={isLoading} setIsLoading={setIsLoading}/>
+          featuredProjects.slice(0, 2).map((project, index)=>(
+            <GridItem key={index} projectUrl={project.url} projectName={project.name} projectImage={project.image} isLoading={isLoading} setIsLoading={setIsLoading}/>
           ))
         }
       </Grid>

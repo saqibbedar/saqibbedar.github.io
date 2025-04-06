@@ -35,12 +35,12 @@ const CertificatesSection = () => {
         {certificates.map((item, index) => (
           <Card
             key={index}
-            img={item.cer_img}
+            image={item.image}
             title={item.title}
-            description={item.des}
-            profileImg={item.org_logo}
-            name={item.org_name}
-            url={item.verify_link}
+            description={item.description}
+            providerLogo={item.providerLogo}
+            providerName={item.providerName}
+            credentialUrl={item.credentialUrl}
           />
         ))}
       </div>
