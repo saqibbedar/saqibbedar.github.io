@@ -3,29 +3,12 @@ import Search from "../Search/Search";
 import { useState, useEffect } from "react";
 import { author, icons } from "@/assets/assets";
 import { Link, useLocation } from "react-router-dom";
-
-const des_nav = [
-  "Home",
-  "About",
-  "Blogs",
-  "Projects",
-  "Services",
-  "Courses",
-  "Contact",
-];
-const mob_nav = [
-  "Home",
-  "About",
-  "Blogs",
-  "Projects",
-  "Services",
-  "Courses",
-  "Contact",
-];
+import { desktopNavbarElements, mobileNavbarElements } from './navElements';
 
 const Navbar = () => {
-  const location = useLocation();
-  const [menu, setMenu] = useState(location.pathname);
+
+  const location = useLocation(); // for paths 
+  const [menu, setMenu] = useState(location.pathname); 
   const [activeMenu, setActiveMenu] = useState(false);
   const [activeSearch, setActiveSearch] = useState(false);
 
@@ -33,6 +16,7 @@ const Navbar = () => {
   const [isHidden, setIsHidden] = useState(false);
   const [lastScrollTop, setLastScrollTop] = useState(0);
 
+  // Logic: Navbar open and close based on scrolling
   useEffect(() => {
     function handleScroll() {
       const currentScroll =
@@ -71,8 +55,10 @@ const Navbar = () => {
     }
   };
 
+  // variable for search component visibility
   var customClass = "active-search";
 
+  // close the search 
   const handleSearch = () => {
     setActiveSearch(!activeSearch);
     if (!activeSearch) {
@@ -89,29 +75,30 @@ const Navbar = () => {
       >
         <div className="logo">
           <h1 translate="no">
-            <Link to={"/"} className="mix-blend-lighten">
+            <Link to={"/"}>
               {author.logo + "."}
             </Link>
           </h1>
         </div>
 
         <nav className="nav-menu">
-          {des_nav.map((item, index) => {
-            const itemPath = `/${item}`;
+          {desktopNavbarElements.map((element, index) => {
+            // route
+            const elementPath = `/${element}`; 
             const isActive =
-              location.pathname === itemPath ||
-              (location.pathname === "/" && itemPath === "/Home");
+              location.pathname === elementPath ||
+              (location.pathname === "/" && elementPath === "/Home");
             return (
               <Link
-                to={itemPath}
+                to={elementPath}
                 key={index}
                 onClick={() => {
-                  setMenu(itemPath);
+                  setMenu(elementPath);
                 }}
                 className={isActive ? "active-nav-des-menu" : "none"}
                 style={{ color: isActive ? "white" : "" }}
               >
-                {item}
+                {element}
               </Link>
             );
           })}
@@ -138,23 +125,25 @@ const Navbar = () => {
           </div>
         </div>
 
-        {mob_nav.map((item, index) => {
+        {mobileNavbarElements.map((element, index) => {
           return (
             <Link
-              to={`/${item}`}
+              to={`/${element}`}
               key={index}
-              id={item === "Home" ? "mob-home" : null}
-              className={`mb-nav-link`}
+              id={element === "Home" && "mob-home"}
+              className={`mb-nav-link ${(index) === mobileNavbarElements.length-1 && "mobile-menu-last-element"}`}
             >
-              {item}
+              {element}
             </Link>
           );
         })}
+        
         <div className="close-nav" onClick={handleMenu}>
           <icons.close title="close" />
         </div>
       </nav>
 
+      {/* passing Search component a searchHandler and stateVariable to determine if it should be closed and remain open */}
       <Search
         customClass={activeSearch ? customClass : ""}
         handleSearch={handleSearch}

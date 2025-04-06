@@ -1,91 +1,84 @@
-import { useRef, useState, useEffect } from "react";
 import "./Search.css";
-import { FiX } from "react-icons/fi";
-import { Link } from "react-router-dom";
-import JsonData from "@/assets/Search_Data.json";
-import { ErrorImages, icons} from "@/assets/assets"
+import { useState } from "react";
 import ErrorPage from "../ErrorPage/ErrorPage";
+import { ErrorImages, icons } from "@/assets/assets";
+import { SearchResults } from '@/components/reusable/reusable';
+import { useGlobalSearch } from '@/context/GlobalSearchContext';
 
-const buttons = [
-  { label: "All" },
-  { label: "Blog" },
-  { label: "Latest Project" },
-  { label: "Projects" },
-];
+const Search = ({ handleSearch, customClass }) => {
 
-const Search = (props) => {
-  const { handleSearch, customClass } = props;
-  const [search, setSearch] = useState("");
-  const inputRef = useRef(null);
-  
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.ctrlKey && event.key === '/') {
-        event.preventDefault();
-        if(inputRef.current) {
-          inputRef.current.focus();
-        }
-      }
-    };
+  const { searchGlobally, searchResults } = useGlobalSearch();
+  const [query, setQuery] = useState("");
 
-    document.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, []);
-
-  const [activeButton, setActiveButton] = useState("All");
-  const filterData = JsonData.filter(val => val.title.toLocaleLowerCase().includes(search.toLocaleLowerCase()));
+  const handleGlobalSearch = (e) => {
+    e.preventDefault();
+    if (query.trim()) {
+      searchGlobally(query);
+    }
+  }
 
   return (
     <div>
       <div className={`search-box ${customClass}`}>
-        <form className="box" onSubmit={ (e) => e.preventDefault() }>
-          <input type="text" onChange={e => setSearch(e.target.value)} ref={inputRef} placeholder="Search" />
+        <form onSubmit={handleGlobalSearch} className="relative bg-white flex items-center justify-center mt-7 w-[90%] media1:w-[96%] m-auto rounded-full overflow-hidden">
+          <input
+            type="text"
+            title="search input"
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search"
+            className="outline-none text-[17px] w-full py-[16px] media:py-[18px] pl-6"
+          />
+          <button
+            onClick={handleGlobalSearch}
+            title="search button"
+            className="group absolute right-0 bg-zinc-300 w-[53px] h-full rounded-full flex items-center justify-center"
+          >
+            <icons.search className="h-7 w-7 stroke-[.5] group-hover:rotate-90 transition-[var(--transition)]" />
+          </button>
         </form>
-        <div className="results">
-          {/* adjust here... */}
-          <div className="categories" style={{display:"none"}}>
-            <div className="btn">
-              {buttons.map((button, index) => (
-                <button
-                  key={index}
-                  className={activeButton === button.label ? "btn-active" : ""}
-                  onClick={() => setActiveButton(button.label)}
-                >
-                  {button.label}
-                </button>
-              ))}
-            </div>
-          </div>
 
-          <div className="founded-items">
-            {
-              search === '' ? 
-              <ErrorPage img={""} title={<span style={{fontSize: "40px", fontWeight: "800", display: "flex", color: "var(--link-color)"}}>Hello <div className="animatedHand">👋</div></span>} description={"Start searching your favorite"} isButton={false}/> 
-              : (
-                filterData.length > 0 ? (
-                  filterData.map( val =>
-                    (
-                      <Link key={val.id} to={val.link} className="founded-item-box">
-                      <div className="founded-item-box-content">
-                        <div>{val.title}</div>
-                        <div className="founded-item-box-content-description">{val.description}</div>
-                      </div>
-                      <div className="founded-item-box-icon">{<icons.rightArrow/>}</div>
-                    </Link>
-                    ) 
-                  )
-                ) 
-              : 
-                <ErrorPage img={ErrorImages.no_result2} imgContainerHeight={"auto"} imgContainerWidth={"auto"} title={"No result found"} description={"We could'nt find what you searched for. Try searching again."} isButton={false}/>
-              )
-            }
-          </div>
-        </div>
+        <>
+          {
+            // if: searchTerm is empty, show a default message
+            query === "" ? (
+              <ErrorPage
+                img={""}
+                title={
+                  <span
+                    style={{
+                      fontSize: "40px",
+                      fontWeight: "800",
+                      display: "flex",
+                      color: "var(--link-color)",
+                    }}
+                  >
+                    Hello <div className="animatedHand">👋</div>
+                  </span>
+                }
+                description={"Start searching your favorite"}
+                isButton={false}
+              />
+            ) : searchResults.certificates.length === 0 &&
+              searchResults.projects.length === 0 ? ( // If no results
+              <ErrorPage
+                img={ErrorImages.no_result2}
+                imgContainerHeight={"auto"}
+                imgContainerWidth={"auto"}
+                title={"No result found"}
+                description={
+                  "We couldn't find what you searched for. Try searching again."
+                }
+                isButton={false}
+              />
+            ) : (
+              // Show results if data is found
+              <SearchResults results={searchResults} />
+            )
+          }
+        </>
+
         <div onClick={handleSearch} id="close">
-          <FiX title="close" />
+          <icons.close title="close" />
         </div>
       </div>
     </div>

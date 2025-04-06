@@ -6,5 +6,16 @@ import Courses from "./Courses/Courses";
 import NotFound from "./NotFound/NotFound";
 import Projects from "./Projects/Projects";
 import Services from "./Services/Services";
+import GlobalSearchResults from "./GlobalSearchResults/GlobalSearchResults";
 
-export { Home, About, Contact, Courses, NotFound, Projects, Services, Blogs };
+export {
+  Home,
+  About,
+  Contact,
+  Courses,
+  NotFound,
+  Projects,
+  Services,
+  Blogs,
+  GlobalSearchResults,
+};
