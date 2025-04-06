@@ -10,7 +10,7 @@ const Navbar = () => {
   const location = useLocation(); // for paths 
   const [menu, setMenu] = useState(location.pathname); 
   const [activeMenu, setActiveMenu] = useState(false);
-  const [activeSearch, setActiveSearch] = useState(false);
+  const [activeSearchComponent, setActiveSearchComponent] = useState(false);
 
   // for handling navbar
   const [isHidden, setIsHidden] = useState(false);
@@ -58,10 +58,10 @@ const Navbar = () => {
   // variable for search component visibility
   var customClass = "active-search";
 
-  // close the search 
-  const handleSearch = () => {
-    setActiveSearch(!activeSearch);
-    if (!activeSearch) {
+  // handle Search Components visibility
+  const toggleSearchComponentVisibility = () => {
+    setActiveSearchComponent(!activeSearchComponent);
+    if (!activeSearchComponent) {
       customClass = "";
     }
   };
@@ -102,7 +102,7 @@ const Navbar = () => {
               </Link>
             );
           })}
-          <div className="search search-large-screen" onClick={handleSearch}>
+          <div className="search search-large-screen" onClick={toggleSearchComponentVisibility}>
             <icons.search />
           </div>
         </nav>
@@ -120,7 +120,7 @@ const Navbar = () => {
         }`}
       >
         <div className="search-bar-small-screens">
-          <div className="search search-small-screens" onClick={handleSearch}>
+          <div className="search search-small-screens" onClick={toggleSearchComponentVisibility}>
             <icons.search /> <span>Search</span>
           </div>
         </div>
@@ -145,8 +145,9 @@ const Navbar = () => {
 
       {/* passing Search component a searchHandler and stateVariable to determine if it should be closed and remain open */}
       <Search
-        customClass={activeSearch ? customClass : ""}
-        handleSearch={handleSearch}
+        customClass={activeSearchComponent ? customClass : ""}
+        toggleSearchComponentVisibility={toggleSearchComponentVisibility}
+        isSearchComponentActive={activeSearchComponent}
       />
     </>
   );

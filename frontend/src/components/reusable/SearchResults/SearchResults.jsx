@@ -1,11 +1,24 @@
 import { Link } from "react-router-dom";
 import Card from "../Card/Card";
 
-const SearchResults = ({results}) => {
+const categoryButtons = ["All", "Projects", "Certificates"]
+
+const SearchResults = ({ results }) => {
+  
   return (
-    <>
+    <div className="overflow-y-scroll overflow-x-hidden mt-28 w-[90%] media1:w-[96%] m-auto">
+
+      <div className="flex gap-4">
+        {
+          categoryButtons.map((button, index) => (
+
+            <button key={index} className="text-white">{ button }</button>
+          ))
+        }
+      </div>
+
       {results.certificates.length > 0 && (
-        <div>
+        <div className="flex gap-5 overflow-x-scroll">
           {results.certificates.map((certificate, index) => (
             <Card
               key={index}
@@ -22,7 +35,7 @@ const SearchResults = ({results}) => {
 
       {/* Same for projects */}
       {results.projects.length > 0 && (
-        <div>
+        <div className="flex">
           {results.projects.map((project, index) => (
             <Link key={index} to={project.url}>
               <h1>{project.name}</h1>
@@ -33,7 +46,7 @@ const SearchResults = ({results}) => {
           ))}
         </div>
       )}
-    </>
+    </div>
   );
 };
 
