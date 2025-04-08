@@ -179,7 +179,7 @@ body{
 
 
 /* Hide scrollbar for all overflow content */
-:where(.f-blog-content, .testimonials-wrapper, .posts, .categories-box)::-webkit-scrollbar {
+:where(.f-blog-content, .testimonials-wrapper, .posts, .categories-box, .search-results-hide-scroll-class)::-webkit-scrollbar {
   width: 0px;
   height: 0px;
 }
