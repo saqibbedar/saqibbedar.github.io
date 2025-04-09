@@ -17,8 +17,13 @@ const SearchResults = ({ results }) => {
         </div>
       }
 
+      <div className="flex flex-col gap-5">
+        {/* Certificates */}
       {results.certificates.length > 0 && (
-        <div className="flex gap-5 overflow-x-scroll search-results-hide-scroll-class mt-4">
+        <div className="flex flex-col gap-5 overflow-x-scroll search-results-hide-scroll-class mt-4">
+          <div className="flex items-center justify-between w-full mb-1 border-b-[2px] pb-[.9rem]">
+            <h1 className="text-white text-4xl font-light">Certificates</h1>
+          </div>
           {results.certificates.map((certificate, index) => (
             <Card
               key={index}
@@ -33,9 +38,12 @@ const SearchResults = ({ results }) => {
         </div>
       )}
 
-      {/* Same for projects */}
+      {/* projects */}
       {results.projects.length > 0 && (
-        <div className="flex gap-4 overflow-x-scroll search-results-hide-scroll-class mt-4">
+        <div className="flex flex-col gap-4 overflow-x-scroll search-results-hide-scroll-class mt-4">
+          <div className="flex items-center justify-between w-full mb-1 border-b-[2px] pb-[.9rem]">
+            <h1 className="text-white text-4xl font-light">Projects</h1>
+          </div>
           {results.projects.map((project, index) => (
             <Link
               key={index}
@@ -67,6 +75,8 @@ const SearchResults = ({ results }) => {
           ))}
         </div>
       )}
+      </div>
+
     </div>
   );
 };
