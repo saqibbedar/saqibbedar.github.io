@@ -16,8 +16,8 @@ const SearchResults = ({ results }) => {
             <button
               onClick={() => setCategoryButton(button)}
               key={index}
-              className={`text-white rounded-lg px-3 py-1 border hover:bg-white hover:text-black transition-[var(--transition)] ${
-                button === categoryButton && "bg-white text-black"
+              className={`rounded-lg px-3 py-1 border hover:bg-white hover:text-black transition-[var(--transition)] ${
+                button === categoryButton ? "bg-white text-black" : "text-white"
               }`}
             >
               {button}
