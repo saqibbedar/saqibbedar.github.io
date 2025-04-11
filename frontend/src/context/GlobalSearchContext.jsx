@@ -39,7 +39,7 @@ export function GlobalSearchProvider({ children }) {
     const filterProjects = projects.filter((project) =>
       project.name.toLowerCase().includes(lowerCaseKeyword) ||
       project.description.toLowerCase().includes(lowerCaseKeyword) ||
-      project.category.toLowerCase().includes(lowerCaseKeyword)
+      project.tags.toLowerCase().includes(lowerCaseKeyword)
     );
     
     // Preserve the results
