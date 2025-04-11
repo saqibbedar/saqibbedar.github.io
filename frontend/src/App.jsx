@@ -1,7 +1,7 @@
 import "./index.css";
 import FrontendRoutes from "./routes/FrontendRoutes.jsx";
 import { BackToTop } from "@/components/reusable/reusable";
-import { Navbar, Footer } from '@/components/normal/components.js';
+import { Navbar, Footer } from '@/components/common/common';
 
 function App() {
   return (

@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { ErrorImages } from "@/assets/assets";
 import categoryButtons from "./categoryButtons";
 import { GridContext } from "@/context/GridContext";
-import { ErrorPage } from "@/components/normal/components";
+import { ErrorPage } from "@/components/common/common";
 import { ProjectContext } from "@/context/ProjectContext";
 import { CategoryContext } from "@/context/CategoryContext";
 import {

@@ -1,5 +1,5 @@
 import { ErrorImages } from '@/assets/assets';
-import { ErrorPage } from '@/components/normal/components';
+import { ErrorPage } from '@/components/common/common';
 
 const Courses = () => {
   return (
