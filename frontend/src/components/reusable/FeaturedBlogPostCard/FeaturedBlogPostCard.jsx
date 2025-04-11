@@ -3,17 +3,18 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const FeaturedBlogPostCard = ({
-  link,
+  _id,
   description,
-  img,
+  image,
   title,
   containerWidth,
+  category
 }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setIsLoading(true);
-  }, [description, img]);
+  }, [description, image]);
 
   const handleImageLoad = () => {
     setIsLoading(false);
@@ -21,7 +22,7 @@ const FeaturedBlogPostCard = ({
 
   return (
     <div className="flex">
-      <Link to={link} className="f-post-sm-card">
+      <div className="f-post-sm-card">
         <div
           className="f-post-sm-card-content"
           style={{ width: containerWidth && containerWidth }}
@@ -36,11 +37,11 @@ const FeaturedBlogPostCard = ({
                 : "f-post-right-section"
             }
           >
-            <img src={img} onLoad={handleImageLoad} />
+            <img src={image} onLoad={handleImageLoad} />
           </div>
         </div>
         <h3 className={`${isLoading && "skeleton" } line-clamp-1 `}>{title}</h3>
-      </Link>
+      </div>
     </div>
   );
 };

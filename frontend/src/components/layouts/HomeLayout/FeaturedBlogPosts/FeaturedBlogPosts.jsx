@@ -18,7 +18,7 @@ const FeaturedBlogPosts = () => {
 
         <div className="f-blog-content">
           {/* add some other algorithm to show view more button */}
-          {featureBlogs.map((item, index) => {
+          {featureBlogs.map((blog, index) => {
             if (index === featureBlogs.length) {
               return (
                 <div className="f-post-btn" key={index}>
@@ -31,11 +31,12 @@ const FeaturedBlogPosts = () => {
             } else {
               return (
                 <FeaturedBlogPostCard
-                  key={index}
-                  link={item.link}
-                  description={item.description}
-                  img={item.img}
-                  title={item.title}
+                  key={blog._id}
+                  _id={blog._id}
+                  description={blog.description}
+                  image={blog.image}
+                  title={blog.title}
+                  category={blog.category}
                 />
               );
             }
