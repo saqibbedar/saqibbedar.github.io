@@ -7,7 +7,7 @@ import {
   NotFound,
   Projects,
   Services,
-  GlobalSearchResults
+  Search
 } from "@/pages/pages";
 import { Route, Routes } from "react-router-dom";
 
@@ -23,7 +23,8 @@ const FrontendRoutes = () => {
         <Route path="/Services" element={<Services />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/Contact" element={<Contact />} />
-        <Route path="/GlobalSearch" element={<GlobalSearchResults />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/Search:query" element={<Search />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

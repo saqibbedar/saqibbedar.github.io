@@ -1,16 +1,15 @@
 import "./Navbar.css";
-import Search from "../Search/Search";
 import { useState, useEffect } from "react";
 import { author, icons } from "@/assets/assets";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { desktopNavbarElements, mobileNavbarElements } from './navElements';
 
 const Navbar = () => {
 
   const location = useLocation(); // for paths 
+  const navigate = useNavigate(); 
   const [menu, setMenu] = useState(location.pathname); 
   const [activeMenu, setActiveMenu] = useState(false);
-  const [activeSearchComponent, setActiveSearchComponent] = useState(false);
 
   // for handling navbar
   const [isHidden, setIsHidden] = useState(false);
@@ -55,36 +54,19 @@ const Navbar = () => {
     }
   };
 
-  // variable for search component visibility
-  var customClass = "active-search";
-
-  // handle Search Components visibility
-  const toggleSearchComponentVisibility = () => {
-    setActiveSearchComponent(!activeSearchComponent);
-    if (!activeSearchComponent) {
-      customClass = "";
-    }
-  };
-
   return (
     <>
-      <div
-        className={`w-full fixed navbar px-[26px] media1:px-[80px] mediaXl:px-8 mediaXXl:px-20 ${
-          isHidden ? "hidden" : ""
-        }`}
-      >
+      <div className={`w-full fixed navbar px-[26px] media1:px-[80px] mediaXl:px-8 mediaXXl:px-20 ${isHidden ? "hidden" : ""}`}>
+        {/* DESKTOP LOGO */}
         <div className="logo">
           <h1 translate="no">
-            <Link to={"/"}>
-              {author.logo + "."}
-            </Link>
+            <Link to={"/"}>{author.logo + "."}</Link>
           </h1>
         </div>
-
+        {/* NAVBAR ELEMENTS */}
         <nav className="nav-menu">
           {desktopNavbarElements.map((element, index) => {
-            // route
-            const elementPath = `/${element}`; 
+            const elementPath = `/${element}`;
             const isActive =
               location.pathname === elementPath ||
               (location.pathname === "/" && elementPath === "/Home");
@@ -102,11 +84,13 @@ const Navbar = () => {
               </Link>
             );
           })}
-          <div className="search search-large-screen" onClick={toggleSearchComponentVisibility}>
+          {/* DESKTOP SEARCH */}
+          <Link to={"/Search"} className="search search-large-screen">
             <icons.search />
-          </div>
+          </Link>
         </nav>
-
+        
+        {/* HAMBURGER FOR MOBILE */}
         <div className="icons">
           <div className="hamburger" onClick={handleMenu}>
             <icons.hamburger />
@@ -120,9 +104,9 @@ const Navbar = () => {
         }`}
       >
         <div className="search-bar-small-screens">
-          <div className="search search-small-screens" onClick={toggleSearchComponentVisibility}>
+          <Link to={"/Search"} className="search search-small-screens">
             <icons.search /> <span>Search</span>
-          </div>
+          </Link>
         </div>
 
         {mobileNavbarElements.map((element, index) => {
@@ -131,24 +115,21 @@ const Navbar = () => {
               to={`/${element}`}
               key={index}
               id={element === "Home" && "mob-home"}
-              className={`mb-nav-link ${(index) === mobileNavbarElements.length-1 && "mobile-menu-last-element"}`}
+              className={`mb-nav-link ${
+                index === mobileNavbarElements.length - 1 &&
+                "mobile-menu-last-element"
+              }`}
             >
               {element}
             </Link>
           );
         })}
-        
+
         <div className="close-nav" onClick={handleMenu}>
           <icons.close title="close" />
         </div>
       </nav>
 
-      {/* passing Search component a searchHandler and stateVariable to determine if it should be closed and remain open */}
-      <Search
-        customClass={activeSearchComponent ? customClass : ""}
-        toggleSearchComponentVisibility={toggleSearchComponentVisibility}
-        isSearchComponentActive={activeSearchComponent}
-      />
     </>
   );
 };

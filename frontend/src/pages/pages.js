@@ -6,7 +6,7 @@ import Courses from "./Courses/Courses";
 import NotFound from "./NotFound/NotFound";
 import Projects from "./Projects/Projects";
 import Services from "./Services/Services";
-import GlobalSearchResults from "./GlobalSearchResults/GlobalSearchResults";
+import Search from "./Search/Search";
 
 export {
   Home,
@@ -17,5 +17,5 @@ export {
   Projects,
   Services,
   Blogs,
-  GlobalSearchResults,
+  Search
 };
