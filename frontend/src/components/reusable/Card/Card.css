@@ -9,7 +9,6 @@
   background: var(--white);
   box-shadow: 0 0 7px lightgray;
   padding: 17px;
-  border-radius: var(--card-radius);
 }
 .main-card-img {
   height: 160px;
@@ -62,14 +61,20 @@
 .author-info {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  padding-bottom: 6px;
   gap: 2px;
+}
+.author-info h6 {
+  line-height: 7.5px;
 }
 .author-info h6 > a{
   position: relative;
   font-size: 11px;
   color: var(--link-color);
-  padding-bottom: 2px;
   overflow: hidden;
+  
 }
 
 @media (max-width: 950px) {

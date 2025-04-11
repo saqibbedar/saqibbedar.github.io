@@ -15,7 +15,7 @@ const Card = ({ image, title, description, providerLogo, providerName, credentia
 
   return (
     <>
-      <div className="card">
+      <div className="card rounded-lg">
         <div className={isLoading ? "main-card-img skeleton" : "main-card-img"}>
           <img src={image} onLoad={handleImageLoad} className="img" />
         </div>

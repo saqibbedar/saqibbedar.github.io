@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import {Card} from "@/components/reusable/reusable";
+import { Card } from "@/components/reusable/reusable";
 import { useState } from "react";
 import { icons } from "@/assets/assets";
 import { useScrollRefs } from "./useScrollRefs";
+import { ErrorPage } from '@/components/common/common';
 
 const categoryButtons = ["All", "Projects", "Certificates"];
 
@@ -12,9 +13,9 @@ const SearchResults = ({ results }) => {
 
   return (
     <div className="overflow-y-scroll overflow-x-hidden mt-7 w-[90%] media1:w-[90%] m-auto search-results-hide-scroll-class">
-      {/* Categories Button */}
+      {/* 1. Categories Button */}
       {results.certificates.length > 0 && results.projects.length > 0 && (
-        <div className="flex gap-4 mb-2 mt-1">
+        <div className="flex gap-3 mb-2 mt-1">
           {categoryButtons.map((button, index) => (
             <button
               onClick={() => setCategoryButton(button)}
@@ -33,10 +34,22 @@ const SearchResults = ({ results }) => {
 
       {/* Results container */}
       <div className="flex flex-col gap-5 mb-8">
-        {/* 1. Certificates */}
-        {(categoryButton === categoryButtons[0] ||
-          categoryButton === "Certificates") &&
-          results.certificates.length > 0 && (
+
+        {/* 2. Welcome message - show only if no search performed */}
+        {(results.certificates.length === 0 && results.projects.length === 0) &&
+          <ErrorPage
+            containerHeight={"75vh"}
+            img={""}
+            title={ <span style={{fontSize: "40px", fontWeight: "800", display: "flex", color: "var(--link-color)",}}>
+                    Hello <div className="animatedHand">👋</div></span> }
+          description={"Start searching your favorite"}
+          desColor={"black"}
+            isButton={false}
+          />
+        }
+        
+        {/* 3. Certificates */}
+        {(categoryButton === categoryButtons[0] || categoryButton === "Certificates") && results.certificates.length > 0 && (
             <div className="flex flex-col gap-5 overflow-hidden mt-4 animate-[var(--fadeIn)]">
               <div className="flex items-center justify-between w-full mb-1 border-[var(--light-theme-border-primary-border)] border-b pb-2 media1:pb-[.9rem]">
                 {/* Section title */}
@@ -81,12 +94,10 @@ const SearchResults = ({ results }) => {
                 ))}
               </div>
             </div>
-          )}
+        )}
 
-        {/* 2. projects */}
-        {(categoryButton === categoryButtons[0] ||
-          categoryButton === "Projects") &&
-          results.projects.length > 0 && (
+        {/* 4. projects */}
+        {(categoryButton === categoryButtons[0] || categoryButton === "Projects") && results.projects.length > 0 && (
             <div className="flex flex-col gap-5 mt-4 animate-[var(--fadeIn)]">
               <div className="flex items-center justify-between w-full mb-1 border-[var(--light-theme-border-primary-border)] border-b pb-2 media1:pb-[.9rem]">
                 <h1 className="text-[var(--light-theme-primary-foreground)] text-2xl media2:text-4xl font-light">
@@ -124,7 +135,7 @@ const SearchResults = ({ results }) => {
                     <img
                       src={project.image}
                       alt=""
-                      className="aspect-video rounded-md"
+                      className="aspect-video rounded-t-md"
                     />
                     <div className="px-3 mt-5">
                       <h1 className="text-[var(--cards-text-title-size)]">
@@ -161,7 +172,8 @@ const SearchResults = ({ results }) => {
                 ))}
               </div>
             </div>
-          )}
+        )}
+
       </div>
     </div>
   );
