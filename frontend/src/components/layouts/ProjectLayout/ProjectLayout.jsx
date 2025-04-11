@@ -53,13 +53,14 @@ const ProjectLayout = () => {
 
       <div className={All_Projects.length > 0 ? "" : "no-project-found"}>
         {All_Projects.length > 0 ? (
-          <Grid isGrid={isGrid} gridTempCol={"1fr 1fr 1fr 1fr"}>
+          <Grid isGrid={isGrid} gridTempCol={"1fr 1fr 1fr"}>
             {All_Projects.map((project, index) => (
               <GridItem
                 key={index}
                 projectUrl={project.url}
                 projectName={project.name}
                 projectImage={project.image}
+                tags={project.tags}
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
               />
