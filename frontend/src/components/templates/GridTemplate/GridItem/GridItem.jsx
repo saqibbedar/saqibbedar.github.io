@@ -2,7 +2,7 @@ import "../Grid/Grid.css";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const GridItem = ({ projectUrl, projectName, projectDescription, projectImage, tags, isLoading, setIsLoading }) => {
+const GridItem = ({ projectUrl, projectName, projectDescription, projectImage, projectTags, isLoading, setIsLoading }) => {
   useEffect(() => {
     setIsLoading(true);
   }, [projectUrl, projectName, projectImage, setIsLoading]);
@@ -44,7 +44,7 @@ const GridItem = ({ projectUrl, projectName, projectDescription, projectImage, t
       </div>
       <div className="flex gap-[6px] flex-wrap text-xs mb-3 leading-3">
         <span className="text-sm">Tags:</span>
-        {tags.split(" ").map((tag, index) => (
+        {projectTags?.split(" ").map((tag, index) => (
           <Link
             to={`/search/${tag}`}
             key={index}

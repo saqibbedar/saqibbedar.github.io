@@ -22,6 +22,7 @@ const AboutProjectSection = () => {
             projectUrl={project.url}
             projectName={project.name}
             projectImage={project.image}
+            projectTags={project.tags}
             isLoading={isLoading}
             setIsLoading={setIsLoading}
           />

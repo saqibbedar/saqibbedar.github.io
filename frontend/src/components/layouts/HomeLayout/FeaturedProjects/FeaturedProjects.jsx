@@ -19,7 +19,7 @@ const FeaturedProjects = () => {
       <Grid isGrid={isGrid} gridTempCol={"1fr 1fr"}>
         {
           featuredProjects.slice(0, 2).map((project, index)=>(
-            <GridItem key={index} projectUrl={project.url} projectName={project.name} projectImage={project.image} tags={project.tags} isLoading={isLoading} setIsLoading={setIsLoading}/>
+            <GridItem key={index} projectUrl={project.url} projectName={project.name} projectImage={project.image} projectTags={project.tags} isLoading={isLoading} setIsLoading={setIsLoading}/>
           ))
         }
       </Grid>

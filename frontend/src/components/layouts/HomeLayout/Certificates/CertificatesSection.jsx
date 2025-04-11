@@ -32,15 +32,15 @@ const CertificatesSection = () => {
       </div>
 
       <div className="posts" ref={scrollRef}>
-        {certificates.map((item, index) => (
+        {certificates.map((certificate) => (
           <Card
-            key={index}
-            image={item.image}
-            title={item.title}
-            description={item.description}
-            providerLogo={item.providerLogo}
-            providerName={item.providerName}
-            credentialUrl={item.credentialUrl}
+            key={certificate._id}
+            image={certificate.image}
+            title={certificate.title}
+            description={certificate.description}
+            providerLogo={certificate.providerLogo}
+            providerName={certificate.providerName}
+            credentialUrl={certificate.credentialUrl}
           />
         ))}
       </div>

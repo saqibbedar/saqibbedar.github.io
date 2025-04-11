@@ -9,6 +9,7 @@ import programmingHubLogo from "@/assets/Images/programming_hub_logo.webp";
 
 const certificates = [
     {
+        _id: 1,
         image: jsByMetaCertificateImage,
         title: "Programming With JavaScript",
         description: "Earned a distinguished Meta certification through Coursera for mastering Programming With JavaScript.",
@@ -18,6 +19,7 @@ const certificates = [
         tags: "javascript, programming, meta"
     },
     {
+        _id: 2,
         image: fccWebDesignCertificateImage,
         title: "Responsive Web Design",
         description: "Earned a prestigious certification through freeCodeCamp, showcasing mastery in web design & front-end development.",
@@ -27,6 +29,7 @@ const certificates = [
         tags: "html, css, javascript, web development, freeCodeCamp"
     },
     {
+        _id: 3,
         image: htmlCertificateImage,
         title: "HTML Excellence Certificate",
         description: "Honored with the HTML Excellence Certificate from Programming Hub, highlighting proficiency in HTML coding.",
@@ -36,6 +39,7 @@ const certificates = [
         tags: "html, programming hub"
     },
     {
+        _id: 4,
         image: cssCertificateImage,
         title: "CSS Excellence Certificate",
         description: "Attained a CSS Excellence Certificate from Programming Hub, recognizing exceptional skills in CSS styling techniques.",
@@ -45,6 +49,7 @@ const certificates = [
         tags: "css, programming hub"
     },
     {
+        _id: 5,
         image: pythonCertificateImage,
         title: "Python Certification Course",
         description: "Completed the Python Certification Course from Programming Hub, understanding fundamental concepts of Python.",
@@ -54,6 +59,7 @@ const certificates = [
         tags: "python, programming hub"
     },
     {
+        _id: 6,
         image: cclCertificateImage,
         title: "Certificate of Merit",
         description: "Awarded for achieving the 1st position in the college singing competition, showcasing exceptional vocal talent and musical prowess.",

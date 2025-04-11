@@ -68,9 +68,9 @@ const SearchResults = ({ results }) => {
                 className="flex gap-5 overflow-x-scroll search-results-hide-scroll-class"
                 ref={certificatesScrollRef}
               >
-                {results.certificates.map((certificate, index) => (
+                {results.certificates.map((certificate) => (
                   <Card
-                    key={index}
+                    key={certificate._id}
                     image={certificate.image}
                     title={certificate.title}
                     description={certificate.description}

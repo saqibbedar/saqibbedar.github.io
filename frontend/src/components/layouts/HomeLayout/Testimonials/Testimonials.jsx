@@ -33,14 +33,14 @@ const Testimonials = () => {
         className="mb-[3rem] flex gap-[20px] overflow-x-scroll p-[6px]"
         ref={scrollRef}
       >
-        {testimonials.map((data, index) => (
+        {testimonials.map((reviewer) => (
           <TestimonialsCard
-            key={index}
-            img={data.img}
-            link={data.link}
-            name={data.name}
-            designation={data.designation}
-            des={data.description}
+            key={reviewer._id}
+            image={reviewer.image}
+            linkedInUrl={reviewer.linkedInUrl}
+            name={reviewer.name}
+            designation={reviewer.designation}
+            des={reviewer.description}
           />
         ))}
       </div>

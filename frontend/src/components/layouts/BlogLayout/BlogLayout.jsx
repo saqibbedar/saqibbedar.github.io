@@ -1,6 +1,5 @@
 import "./BlogLayout.css";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
 import categoryButtons from "./categoryButtons";
 import { BlogContext } from "@/context/BlogContext";
 import { CategoryContext } from "@/context/CategoryContext";
@@ -32,19 +31,19 @@ const BlogLayout = () => {
       <div className="section-info">
         <h1>{sectionTitle}</h1>
       </div>
-      {allBlogs.map((item, index) => {
+      {allBlogs.map((blog) => {
         return (
-          <Link to={item.link} key={index} className="blog-container">
+          <div key={blog._id} className="blog-container">
             <div className="blog-container-img">
-              <img src={item.img} alt="" />
+              <img src={blog.image} alt="" />
             </div>
             <div className="blog-container-content">
-              <div className="blog-container-title">{item.title}</div>
+              <div className="blog-container-title">{blog.title}</div>
               <div className="blog-container-description">
-                {item.description}
+                {blog.description}
               </div>
             </div>
-          </Link>
+          </div>
         );
       })}
     </div>

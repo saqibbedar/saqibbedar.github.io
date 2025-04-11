@@ -10,15 +10,14 @@ const AboutSkills = () => {
         <h1>Skills</h1>
       </div>
       <div className="about-page-skill-box-wrapper">
-        {aboutSkills.map(({ link, name, Icon }) => (
-          <Link
+        {aboutSkills.map(({ name, Icon }) => (
+          <div
             key={name}
-            to={link}
             className="about-page-skill-box"
           >
             <h1>{ name }</h1>
             <Icon /> 
-          </Link>
+          </div>
         ))}
       </div>
     </div>

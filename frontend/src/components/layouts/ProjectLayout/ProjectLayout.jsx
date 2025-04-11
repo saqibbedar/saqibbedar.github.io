@@ -60,7 +60,7 @@ const ProjectLayout = () => {
                 projectUrl={project.url}
                 projectName={project.name}
                 projectImage={project.image}
-                tags={project.tags}
+                projectTags={project.tags}
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
               />

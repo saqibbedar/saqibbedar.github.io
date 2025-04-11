@@ -3,12 +3,12 @@ import { icons } from "@/assets/assets";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const TestimonialsCard = ({ img, link, name, designation, des }) => {
+const TestimonialsCard = ({ image, linkedInUrl, name, designation, des }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setIsLoading(true);
-  }, [img, link, name, designation, des]);
+  }, [image, linkedInUrl, name, designation, des]);
 
   const handleImageLoad = () => {
     setIsLoading(false);
@@ -16,9 +16,9 @@ const TestimonialsCard = ({ img, link, name, designation, des }) => {
   return (
     <div className="testimonial-card">
       <div className={isLoading ? "t-card-img skeleton" : "t-card-img"}>
-        <img src={img} onLoad={handleImageLoad} alt="" />
+        <img src={image} onLoad={handleImageLoad} alt="" />
       </div>
-      <Link to={link} className={"t-person-info"}>
+      <Link to={linkedInUrl} className={"t-person-info"}>
         <h1
           className="t-person-name"
           style={{ display: isLoading ? "none" : "flex" }}

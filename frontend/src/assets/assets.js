@@ -12,7 +12,6 @@ import ErrorImages from "@/assets/errorImages";
 import certificates from "@/assets/certificates";
 import slideContent from "@/assets/slideContent";
 import testimonials from '@/assets/testimonials';
-import SearchMaterial from "@/assets/searchMaterial";
 
 export {
   faqs,
@@ -28,6 +27,5 @@ export {
   ErrorImages,
   slideContent,
   certificates,
-  testimonials,
-  SearchMaterial,
+  testimonials
 };

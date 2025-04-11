@@ -2,77 +2,63 @@ import icons from "@/assets/icons";
 
 const first_row = [
   {
-    skill_link: "/",
-    skill_name: "HTML",
-    skill_icon: icons.html,
+    name: "HTML",
+    icon: icons.html,
   },
   {
-    skill_link: "/",
-    skill_name: "CSS",
-    skill_icon: icons.css,
+    name: "CSS",
+    icon: icons.css,
   },
   {
-    skill_link: "/",
-    skill_name: "JS",
-    skill_icon: icons.js,
+    name: "JS",
+    icon: icons.js,
   },
   {
-    skill_link: "/",
-    skill_name: "REACT",
-    skill_icon: icons.react,
+    name: "REACT",
+    icon: icons.react,
   },
   {
-    skill_link: "/",
-    skill_name: "NEXTJS",
-    skill_icon: icons.nextjs,
+    name: "NEXTJS",
+    icon: icons.nextjs,
   },
   {
-    skill_link: "/",
-    skill_name: "TAILWIND",
-    skill_icon: icons.tailwind,
+    name: "TAILWIND",
+    icon: icons.tailwind,
   },
   {
-    skill_link: "/",
-    skill_name: "BOOTSTRAP",
-    skill_icon: icons.bootstrap,
+    name: "BOOTSTRAP",
+    icon: icons.bootstrap,
   },
 ];
 
 const second_row = [
   {
-    skill_link: "/",
-    skill_name: "GIT",
-    skill_icon: icons.git,
+    name: "GIT",
+    icon: icons.git,
   },
   {
-    skill_link: "/",
-    skill_name: "GITHUB",
-    skill_icon: icons.github,
+    name: "GITHUB",
+    icon: icons.github,
   },
   {
-    skill_link: "/",
-    skill_name: "C++",
-    skill_icon: icons.cpp,
+    name: "C++",
+    icon: icons.cpp,
   },
   {
-    skill_link: "/",
-    skill_name: "PYTHON",
-    skill_icon: icons.python,
+    name: "PYTHON",
+    icon: icons.python,
   },
   {
-    skill_link: "/",
-    skill_name: "NODEJS",
-    skill_icon: icons.nodejs,
+    name: "NODEJS",
+    icon: icons.nodejs,
   },
   {
-    skill_link: "/",
-    skill_name: "EXPRESS",
-    skill_icon: icons.express,
+    name: "EXPRESS",
+    icon: icons.express,
   },
   {
-    skill_link: "/",
-    skill_name: "MONGODB",
-    skill_icon: icons.mongodb,
+    name: "MONGODB",
+    icon: icons.mongodb,
   },
 ];
 
