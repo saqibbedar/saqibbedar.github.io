@@ -1,8 +1,11 @@
 import "../Grid/Grid.css";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const GridItem = ({ projectUrl, projectName, projectDescription, projectImage, projectTags, isLoading, setIsLoading }) => {
+
+  const navigate = useNavigate();
+
   useEffect(() => {
     setIsLoading(true);
   }, [projectUrl, projectName, projectImage, setIsLoading]);
@@ -45,9 +48,13 @@ const GridItem = ({ projectUrl, projectName, projectDescription, projectImage, p
       <div className="flex gap-[6px] flex-wrap text-xs mb-3 leading-3">
         <span className="text-sm">Tags:</span>
         {projectTags?.split(" ").map((tag, index) => (
-          <Link
-            to={`/search/${tag}`}
+          <div
             key={index}
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              navigate(`/search?q=${encodeURIComponent(tag.trim().toLowerCase())}`);
+            }}
             className={`py-1 px-2 rounded-full ${
               tag.toLowerCase() === "free"
                 ? "bg-green-100 border border-green-600 text-green-600 hover:bg-green-600 hover:text-white"
@@ -61,7 +68,7 @@ const GridItem = ({ projectUrl, projectName, projectDescription, projectImage, p
             }`}
           >
             {tag.toUpperCase()}
-          </Link>
+          </div>
         ))}
       </div>
     </Link>
