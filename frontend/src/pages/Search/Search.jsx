@@ -1,5 +1,3 @@
-// import { SearchResults } from '@/components/reusable/reusable';
-// import { SearchInput } from '@/components/normal/components.js';
 import { useParams, useSearchParams } from "react-router-dom";
 import { SearchInput } from "@/components/templates/templates";
 
@@ -10,7 +8,7 @@ const Search = () => {
   return (
     <div>
       <title>Saqib Bedar "{searchQuery}" | Global Results</title>
-      <SearchInput/>
+      <SearchInput initialQuery={searchQuery} />
     </div>
   );
 }

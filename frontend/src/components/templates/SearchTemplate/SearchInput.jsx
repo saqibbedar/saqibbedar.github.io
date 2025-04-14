@@ -1,21 +1,28 @@
-import { useState, useRef} from "react";
+import { useState, useRef, useEffect} from "react";
 import { useSearchParams } from "react-router-dom";
 import SearchResults from "./SearchResults/SearchResults";
 import { useGlobalSearch } from "@/context/GlobalSearchContext";
 import { icons } from '@/assets/assets';
 
-const SearchInput = () => {
+const SearchInput = ({initialQuery=""}) => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const inputRef = useRef();
 
   const { searchGlobally, searchResults } = useGlobalSearch();
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(initialQuery);
 
-  // Focus input on mount
+  useEffect(() => {
+    const urlQuery = searchParams.get("q") || initialQuery;
+    setQuery(urlQuery);
+
+    if (urlQuery.trim()) {
+      searchGlobally(urlQuery);
+    }
+  }, [searchParams, initialQuery])
 
   // Handle Search Submission
-    const handleSearch = (e) => {
+  const handleSearch = (e) => {
         e?.preventDefault();
         if (!query.trim()) return;
         searchGlobally(query);
