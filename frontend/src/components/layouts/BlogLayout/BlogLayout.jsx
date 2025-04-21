@@ -7,14 +7,14 @@ import {
   LayoutInfoTemplate,
   CategoryButtonTemplate,
 } from "@/components/templates/templates";
+import { useBlogs } from "@/context/BlogContext";
+import { Link } from "react-router-dom";
 
 const BlogLayout = () => {
   const { category } = useContext(CategoryContext);
-
-  const { blogs } = useContext(BlogContext);
-
+  const { blogs } = useBlogs(BlogContext);
   const allBlogs = blogs.allBlogs(category);
-
+  
   const sectionTitle =
     category === "All" ? "All Blogs" : `Category: "${category}"`;
 
@@ -33,7 +33,7 @@ const BlogLayout = () => {
       </div>
       {allBlogs.map((blog) => {
         return (
-          <div key={blog._id} className="blog-container">
+          <Link to={`/blogs/${blog._id}`} key={blog._id} className="blog-container">
             <div className="blog-container-img">
               <img src={blog.image} alt="" />
             </div>
@@ -43,7 +43,7 @@ const BlogLayout = () => {
                 {blog.description}
               </div>
             </div>
-          </div>
+          </Link>
         );
       })}
     </div>

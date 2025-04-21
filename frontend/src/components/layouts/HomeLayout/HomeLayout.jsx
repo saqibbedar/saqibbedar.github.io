@@ -1,6 +1,6 @@
 import FAQS from "./FAQS/FAQS";
 import Skills from "./Skills/MySkills";
-import BlogProvider from "@/context/BlogContext";
+import {BlogProvider} from "@/context/BlogContext";
 import LandingPage from "./LandingPage/LandingPage";
 import Testimonials from "./Testimonials/Testimonials";
 import FeaturedProjects from "./FeaturedProjects/FeaturedProjects";

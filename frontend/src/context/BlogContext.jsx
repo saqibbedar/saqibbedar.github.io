@@ -1,14 +1,23 @@
 import { blogPosts } from "@/assets/assets";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState, use } from "react";
 
-export const BlogContext = createContext();
+// 1. Create the context
+export const BlogContext = createContext(null);
 
-const BlogProvider = ({ children }) => {
-  const [blogData, setBlogData] = useState([]);
+// 2. Create custom hook for consuming context
+export const useBlogs = () => {
+  const context = use(BlogContext);
+  if (!context) {
+    throw new Error("useBlogs must be used within BlogProvider");
+  }
+  return context;
+}
 
-  useEffect(() => {
-    setBlogData(blogPosts);
-  }, []);
+// 3. Create provider
+export function BlogProvider({ children }) {
+
+  // 4. Preserve the data into state directly as it's static for now
+  const [blogData, setBlogData] = useState(blogPosts);
 
   const allBlogs = (category) => {
     const selectedCategory = category.toLowerCase();
@@ -22,15 +31,16 @@ const BlogProvider = ({ children }) => {
     });
   };
 
+  const getBlogById = (_id) => (blogData.find(blog => blog._id === _id));
+
   const featureBlogs = () => {
     return blogData.filter((blog) => blog.category.toLowerCase() === "feature"); // return feature blogs
   };
 
-  const blogs = { allBlogs, featureBlogs };
+  const blogs = { allBlogs, featureBlogs, getBlogById };
 
   return (
     <BlogContext.Provider value={{ blogs }}>{children}</BlogContext.Provider>
   );
 };
 
-export default BlogProvider;
