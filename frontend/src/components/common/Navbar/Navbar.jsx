@@ -2,14 +2,14 @@ import "./Navbar.css";
 import { useState, useEffect } from "react";
 import { author, icons } from "@/assets/assets";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { desktopNavbarElements, mobileNavbarElements } from './navElements';
 
 const Navbar = () => {
 
   const location = useLocation(); // for paths 
-  const navigate = useNavigate(); 
   const [menu, setMenu] = useState(location.pathname); 
   const [activeMenu, setActiveMenu] = useState(false);
+
+  const navigate = useNavigate()
 
   // for handling navbar
   const [isHidden, setIsHidden] = useState(false);
@@ -65,11 +65,11 @@ const Navbar = () => {
         </div>
         {/* NAVBAR ELEMENTS */}
         <nav className="nav-menu">
-          {desktopNavbarElements.map((element, index) => {
+          {["home", "about", "blogs", "projects", "services", "courses", "contact"].map((element, index) => {
             const elementPath = `/${element}`;
             const isActive =
-              location.pathname === elementPath ||
-              (location.pathname === "/" && elementPath === "/Home");
+              location.pathname === elementPath || location.pathname.includes(element) ||
+              (location.pathname === "/" && elementPath === "/home");
             return (
               <Link
                 to={elementPath}
@@ -104,27 +104,28 @@ const Navbar = () => {
         }`}
       >
         <div className="search-bar-small-screens">
-          <Link to={"/Search"} className="search search-small-screens">
+          <div onClick={()=> navigate("/search")} className="search search-small-screens">
             <icons.search /> <span>Search</span>
-          </Link>
+          </div>
         </div>
 
-        {mobileNavbarElements.map((element, index) => {
+        {["home", "about", "blogs", "projects", "services", "courses", "contact"].map((element, index) => {
           return (
             <Link
               to={`/${element}`}
               key={index}
-              id={element === "Home" && "mob-home"}
-              className={`mb-nav-link ${
-                index === mobileNavbarElements.length - 1 &&
+              id={element === "home" && "mob-home"}
+              className={`mb-nav-link 
+                ${
+                index === 6 &&
                 "mobile-menu-last-element"
-              }`}
+                }
+              `}
             >
-              {element}
+              {element.toUpperCase()}
             </Link>
           );
         })}
-
         <div className="close-nav" onClick={handleMenu}>
           <icons.close title="close" />
         </div>
