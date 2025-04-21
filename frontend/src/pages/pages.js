@@ -7,6 +7,7 @@ import NotFound from "./NotFound/NotFound";
 import Projects from "./Projects/Projects";
 import Services from "./Services/Services";
 import Search from "./Search/Search";
+import Error404 from './NotFound/Error404';
 
 export {
   Home,
@@ -14,6 +15,7 @@ export {
   Contact,
   Courses,
   NotFound,
+  Error404,
   Projects,
   Services,
   Blogs,

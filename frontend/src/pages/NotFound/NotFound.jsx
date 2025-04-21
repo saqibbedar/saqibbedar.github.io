@@ -1,22 +1,16 @@
 import { ErrorImages } from "@/assets/assets";
 import { ErrorPage } from "@/components/common/common";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const NotFound = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    navigate("/404");
+  }, [])
   return (
-    <div style={{ marginTop: "-2rem" }}>
-      <ErrorPage
-        img={ErrorImages.error_404}
-        title={"Page not found"}
-        titleColor={"var(--text-color)"}
-        description={
-          "Sorry, the page you are looking for does not exist. Please check the URL or return to the homepage."
-        }
-        isButton={true}
-        btnValue={"Go to Homepage"}
-        btnLink={"/Home"}
-        btnBg={"var(--featured-bg)"}
-        hoverColor={"#323336"}
-      />
+    <div>
+      Redirecting...
     </div>
   );
 };
