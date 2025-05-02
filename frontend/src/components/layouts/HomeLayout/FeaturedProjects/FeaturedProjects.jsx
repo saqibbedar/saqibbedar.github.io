@@ -1,14 +1,15 @@
-import { useContext, useState } from "react";
-import { GridContext } from "@/context/GridContext";
+import { useContext } from "react";
 import { HeroBtn } from "@/components/reusable/reusable";
-import { ProjectContext } from "@/context/ProjectContext";
 import { Grid, GridToggler, GridItem } from "@/components/templates/templates";
+import { useProjects, GridContext } from "@/context/context";
 
 const FeaturedProjects = () => {
   
   const {isGrid} = useContext(GridContext);
   
-  const { featuredProjects, loading, error } = useContext(ProjectContext);
+  const { getProjects, loading, error } = useProjects();
+
+  const featuredProjects = getProjects("featured");
 
   if (error) {
     console.error("Feature projects error: ", error);
@@ -21,7 +22,7 @@ const FeaturedProjects = () => {
       <Grid isGrid={isGrid} gridTempCol={"1fr 1fr"}>
         {
           featuredProjects.slice(0, 2).map((project, index)=>(
-            <GridItem key={index} projectUrl={project.url} projectName={project.name} projectImage={project.image} projectTags={project.tags} />
+            <GridItem key={index} projectId={project._id} projectUrl={project.url} projectName={project.name} projectImage={project.image} projectTags={project.tags} />
           ))
         }
       </Grid>

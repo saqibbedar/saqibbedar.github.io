@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState, use } from "react";
+import { fetchProjects, getProjectsService, getProjectByIdService } from "@/services/services";
 
 // 1. create context
 export const ProjectContext = createContext();
@@ -21,43 +22,36 @@ export default function ProjectProvider({ children }) {
 
   // Effect for fetchProjects
   useEffect(() => {
-    const fetchProjects = async () => {
+    const loadProjects = async () => {
       try {
-        const response = await fetch("/src/assets/json/projects.json");
-        if (!response.ok) {
-          throw new Error("Failed to fetch projects");
-        }
-        const data = await response.json();
-        setProjectsData(data);
+        const data = await fetchProjects();
+        // console.log("Debug context/ProjectContext: useEffect(): ", data);
+        setProjectsData(data); 
       } catch (err) {
         setError(err.message);
       } finally {
         setLoading(false);
       }
     };
-    fetchProjects();
+
+    loadProjects();
   }, []);
 
-  // Featured Projects: these are the top projects to showcase on landing page. Each project have notable tags (like featured, frontend, private, free etc). This function will return project only match with featured keyword.
-  const featuredProjects = projectsData.filter((project) => {
-    // Extract tags from project.tags
-    const projectTagsArray = project.tags.toLowerCase().split(" "); // project.tags is a string, first it gets into lowercase and each tag is split based on space and save to array.
+  // Get all projects based on tag using the service function
+  const getProjects = (tag) => getProjectsService(projectsData, tag);
 
-    // return those projects that includes featured keyword
-    return projectTagsArray.includes("featured");
-  });
-
-  const allProjects = (tag) => {
-    const selectedTag = tag.toLowerCase();
-    return projectsData.filter((project) => {
-      if (selectedTag === "all") return true;
-      const projectTagsArray = project.tags.toLowerCase().split(" ");
-      return projectTagsArray.includes(selectedTag);
-    });
-  };
+  // Get project by ID using the service function
+  const getProjectById = (id) => getProjectByIdService(projectsData, id);
 
   return (
-    <ProjectContext.Provider value={{ featuredProjects, allProjects, loading, error }}>
+    <ProjectContext.Provider
+      value={{
+        getProjects,
+        getProjectById,
+        loading,
+        error
+      }}
+    >
       {children}
     </ProjectContext.Provider>
   );

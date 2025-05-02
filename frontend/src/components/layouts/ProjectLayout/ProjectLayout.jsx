@@ -2,10 +2,7 @@ import "./ProjectLayout.css";
 import { useContext, useState } from "react";
 import { ErrorImages } from "@/assets/assets";
 import categoryButtons from "./categoryButtons";
-import { GridContext } from "@/context/GridContext";
 import { ErrorPage } from "@/components/common/common";
-import { ProjectContext } from "@/context/ProjectContext";
-import { CategoryContext } from "@/context/CategoryContext";
 import {
   Grid,
   GridItem,
@@ -13,18 +10,14 @@ import {
   LayoutInfoTemplate,
   CategoryButtonTemplate,
 } from "@/components/templates/templates";
+import { useProjects, CategoryContext, GridContext } from "@/context/context";
 
 const ProjectLayout = () => {
   const [isLoading, setIsLoading] = useState(true);
-
   const { isGrid } = useContext(GridContext);
-
   const { category } = useContext(CategoryContext);
-
-  const { allProjects } = useContext(ProjectContext);
-
-  const All_Projects = allProjects(category);
-
+  const { getProjects, loading, error } = useProjects();
+  const projects = getProjects(category);
   const sectionTitle = category === "All" ? "All" : `Category: ${category}`;
 
   return (
@@ -45,18 +38,19 @@ const ProjectLayout = () => {
       <GridToggler
         section_name={
           <>
-            {sectionTitle} {<span>{All_Projects.length}</span>}
+            {sectionTitle} {<span>{projects.length}</span>}
           </>
         }
         isLoading={isLoading}
       />
 
-      <div className={All_Projects.length > 0 ? "" : "no-project-found"}>
-        {All_Projects.length > 0 ? (
+      <div className={projects.length > 0 ? "" : "no-project-found"}>
+        {projects.length > 0 ? (
           <Grid isGrid={isGrid} gridTempCol={"1fr 1fr 1fr"}>
-            {All_Projects.map((project, index) => (
+            {projects.map((project, index) => (
               <GridItem
                 key={index}
+                projectId = {project._id}
                 projectUrl={project.url}
                 projectName={project.name}
                 projectImage={project.image}
