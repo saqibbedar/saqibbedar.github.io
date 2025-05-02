@@ -1,5 +1,5 @@
 import { createContext, use, useState } from "react";
-import { certificates, projects } from "../assets/assets";
+import { globalSearchService } from "@/services/services";
 
 // 1. Create the Context
 export const GlobalSearchContext = createContext(null);
@@ -16,43 +16,67 @@ export const useGlobalSearch = () => {
 // 3. Create Provider
 export function GlobalSearchProvider({ children }) {
     
-  // 4. Preserve and Set Search State
+  // 4. Required states
   const [searchResults, setSearchResults] = useState({
-    certificates: [],
-    projects: []
+    blogs: [],
+    projects: [],
+    certificates: []
   });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   // 5. Perform Global Search
-  const searchGlobally = (keyword) => {
-    // lower keyword
-    const lowerCaseKeyword = keyword.toLowerCase();
+  const searchGlobally = async (query) => {
+    // return if empty search
+    if (!query || query.trim() === "") {
+      clearSearch();
+      return;
+    }
+    try {
+      setLoading(true);
+      setError(null);
+      setSearchQuery(query);
 
-    // filter Certificates
-    const filterCertificates = certificates.filter((certificate) =>
-      certificate.title.toLowerCase().includes(lowerCaseKeyword) ||
-      certificate.description.toLowerCase().includes(lowerCaseKeyword) ||
-      certificate.providerName.toLowerCase().includes(lowerCaseKeyword) ||
-      certificate.tags.toLowerCase().includes(lowerCaseKeyword)
-    );
-
-    // filter Projects
-    const filterProjects = projects.filter((project) =>
-      project.name.toLowerCase().includes(lowerCaseKeyword) ||
-      project.description.toLowerCase().includes(lowerCaseKeyword) ||
-      project.tags.toLowerCase().includes(lowerCaseKeyword)
-    );
-    
-    // Preserve the results
+      // Call the service to perform the search
+      const results = await globalSearchService(query);
+      setSearchResults(results);
+    } catch (error) {
+      setError("An error occurred while searching");
+      console.error("Search error: ", error);
+    } finally {
+      setLoading(false);
+    }
+  }
+  
+  // 6. Clear search results
+  const clearSearch = () => {
     setSearchResults({
-      certificates: filterCertificates,
-      projects: filterProjects
+      blogs: [],
+      projects: [],
+      certificates: []
     });
-      
-  };
+    setSearchQuery("");
+  }
+
+  // 7. Check if we have any results
+  const hasResults =
+    searchResults.blogs.length > 0 ||
+    searchResults.projects.length > 0 ||
+    searchResults.certificates.length > 0;
 
   return (
     // 6. pass SearchGlobally function and searchResults state to consumer
-    <GlobalSearchContext.Provider value={{searchGlobally, searchResults}}>
+    <GlobalSearchContext.Provider
+      value={{
+        searchQuery,
+        searchResults,
+        searchGlobally,
+        clearSearch,
+        hasResults,
+        loading,
+        error
+      }}>
       {children}
     </GlobalSearchContext.Provider>
   )
