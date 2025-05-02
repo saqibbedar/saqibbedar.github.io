@@ -8,18 +8,20 @@ const FeaturedProjects = () => {
   
   const {isGrid} = useContext(GridContext);
   
-  const { featuredProjects } = useContext(ProjectContext);
+  const { featuredProjects, loading, error } = useContext(ProjectContext);
 
-  const [isLoading, setIsLoading] = useState(true);
+  if (error) {
+    console.error("Feature projects error: ", error);
+  }
 
   return (
     <div className="flex flex-col mt-[25.5rem] media2:mt-[26rem] mb-7 media1:mb-2">
 
-      <GridToggler section_name={"Featured projects"} isLoading={isLoading}/>
+      <GridToggler section_name={"Featured projects"}/>
       <Grid isGrid={isGrid} gridTempCol={"1fr 1fr"}>
         {
           featuredProjects.slice(0, 2).map((project, index)=>(
-            <GridItem key={index} projectUrl={project.url} projectName={project.name} projectImage={project.image} projectTags={project.tags} isLoading={isLoading} setIsLoading={setIsLoading}/>
+            <GridItem key={index} projectUrl={project.url} projectName={project.name} projectImage={project.image} projectTags={project.tags} />
           ))
         }
       </Grid>
@@ -30,7 +32,6 @@ const FeaturedProjects = () => {
           btnLink={'/Projects'}
           btnBg={"var(--featured-bg)"}
           hoverColor={"#323336"}
-          isLoading={isLoading}
         />
       </div>
     </div>
