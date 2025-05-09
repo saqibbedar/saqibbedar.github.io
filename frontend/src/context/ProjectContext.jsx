@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState, use } from "react";
-import { fetchProjects, getProjectsService, getProjectByIdService } from "@/services/services";
+import { fetchProjects, getProjectsService, getProjectByIdService } from "@/services/index";
 
 // 1. create context
 export const ProjectContext = createContext();

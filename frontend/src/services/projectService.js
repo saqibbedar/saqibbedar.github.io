@@ -1,20 +1,25 @@
+import { fetchProjectsService } from './fetch/index';
+
+/**
+ * Fetches projects data
+ * @returns {Promise<Array>} Array of projects
+ */
 const fetchProjects = async () => {
   try {
-    const response = await fetch("/src/assets/json/projects.json");
-    if (!response.ok) {
-      throw new Error("Failed to fetch projects");
-    }
-    const data = await response.json();
-    // console.log("Debug services/ProjectService: fetchedProjects(): ", data);
-    return data;
+    return await fetchProjectsService();
   } catch (error) {
+    console.error("Error in fetchProjects:", error);
     throw error;
   }
 };
 
+/**
+ * Filters projects by tag
+ * @param {Array} projectsData - Array of project objects
+ * @param {string} tag - Tag to filter by
+ * @returns {Array} Filtered projects
+ */
 const getProjectsService = (projectsData, tag) => {
-  // console.log("Debug services/ProjectService: getProjectsService(): ", { projectsData, tag });
-
   // Check if projectsData exists and is an array
   if (!projectsData || !Array.isArray(projectsData)) {
     return [];
@@ -28,6 +33,12 @@ const getProjectsService = (projectsData, tag) => {
   });
 };
 
+/**
+ * Gets a project by ID
+ * @param {Array} projectsData - Array of project objects
+ * @param {number|string} id - Project ID to find
+ * @returns {Object|undefined} Found project or undefined
+ */
 const getProjectByIdService = (projectsData, id) => {
   return projectsData.find((project) => project._id === Number(id));
 };
