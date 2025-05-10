@@ -9,14 +9,14 @@ const HeroBtn = ({
   btnBg,
   hoverColor,
   isDownloadBtn,
-  isLoading,
+  isLoading=null,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <Link
       to={btnLink && btnLink}
-      className={isLoading ? "hero-btn skeleton" : "hero-btn"}
+      className={"hero-btn"}
       style={{
         background: btnBg && btnBg,
         ...(isHovered && hoverColor && { background: hoverColor }),

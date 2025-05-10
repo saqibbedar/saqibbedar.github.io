@@ -2,29 +2,15 @@ import "../Grid/Grid.css";
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const GridItem = ({ projectUrl, projectName, projectDescription, projectImage, projectTags, isLoading, setIsLoading }) => {
+const GridItem = ({ projectId=null, projectUrl, projectName, projectDescription, projectImage, projectTags, isLoading=null, setIsLoading=null }) => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setIsLoading(true);
-  }, [projectUrl, projectName, projectImage, setIsLoading]);
-
-  const handleImageLoad = () => {
-    setIsLoading(false);
-  };
-
   return (
-    <Link
-      to={projectUrl}
-      className="grid-item shadow-sm"
-      style={{ gap: isLoading ? "25px" : "" }}
-    >
+    <Link to={`/projects/${projectId}`} className="grid-item shadow-sm">
       <div className="flex flex-col gap-1 projects-title-des-wrapper">
         <p
-          className={`${
-            isLoading && "skeleton"
-          } text-xl text-[var(--cards-text-title-foreground)] whitespace-nowrap font-normal project-title`}
+          className={`text-xl text-[var(--cards-text-title-foreground)] whitespace-nowrap font-normal project-title`}
         >
           {" "}
           • {projectName}{" "}
@@ -37,13 +23,9 @@ const GridItem = ({ projectUrl, projectName, projectDescription, projectImage, p
         </p>
       </div>
       <div
-        className={
-          isLoading
-            ? "grid-item-img-container skeleton"
-            : "grid-item-img-container"
-        }
+        className={"grid-item-img-container"}
       >
-        <img src={projectImage} onLoad={handleImageLoad} />
+        <img src={projectImage} />
       </div>
       <div className="flex gap-[6px] flex-wrap text-xs mb-3 leading-3">
         <span className="text-sm">Tags:</span>
