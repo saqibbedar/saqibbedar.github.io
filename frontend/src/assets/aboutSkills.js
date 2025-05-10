@@ -60,3 +60,24 @@ const aboutSkills = [
 ];
 
 export default aboutSkills;
+
+const data = {
+  "HTML": icons.html,
+  "CSS": icons.css,
+  "JS": icons.js,
+  "REACT": icons.react,
+  "NEXTJS": icons.nextjs,
+  "TAILWIND": icons.tailwind,
+  "BOOTSTRAP": icons.bootstrap,
+  "GIT": icons.git,
+  "GITHUB": icons.github,
+  "C++": icons.cpp,
+  "PYTHON": icons.python,
+  "NODEJS": icons.nodejs,
+  "EXPRESS": icons.express,
+  "MONGODB": icons.mongodb,
+};
+
+const skillsMap = new Map();
+Object.entries(data).forEach(([key, value]) => skillsMap.set(key, value));
+export { skillsMap };
