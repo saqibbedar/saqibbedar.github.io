@@ -2,7 +2,7 @@ import "./ProjectLayout.css";
 import { useContext, useState } from "react";
 import { ErrorImages } from "@/assets/assets";
 import categoryButtons from "./categoryButtons";
-import { ErrorPage } from "@/components/common/common";
+import { ResourceStatus } from "@/components/ui";
 import {
   Grid,
   GridItem,
@@ -61,7 +61,7 @@ const ProjectLayout = () => {
             ))}
           </Grid>
         ) : (
-          <ErrorPage
+          <ResourceStatus
             containerHeight={"100%"}
             img={ErrorImages.no_result2}
             imgContainerHeight={"auto"}

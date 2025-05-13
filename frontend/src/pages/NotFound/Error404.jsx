@@ -1,10 +1,10 @@
 import { ErrorImages } from "@/assets/assets";
-import { ErrorPage } from "@/components/common/common";
+import { ResourceStatus } from "@/components/ui";
 
 const Error404 = () => {
   return (
     <div style={{ marginTop: "-2rem" }}>
-      <ErrorPage
+      <ResourceStatus
         img={ErrorImages.error_404}
         title={"Page not found"}
         titleColor={"var(--text-color)"}

@@ -3,7 +3,7 @@ import { CertificateCard } from "@/components/ui";
 import { useState } from "react";
 import { icons } from "@/assets/assets";
 import { useScrollRefs } from "./useScrollRefs";
-import { ErrorPage } from '@/components/common/common';
+import { ResourceStatus } from '@/components/ui';
 
 const categoryButtons = ["All", "Projects", "Certificates"];
 
@@ -37,7 +37,7 @@ const SearchResults = ({ results }) => {
 
         {/* 2. Welcome message - show only if no search performed */}
         {(results.certificates.length === 0 && results.projects.length === 0) &&
-          <ErrorPage
+          <ResourceStatus
             containerHeight={"75vh"}
             img={""}
             title={ <span style={{fontSize: "40px", fontWeight: "800", display: "flex", color: "var(--link-color)",}}>

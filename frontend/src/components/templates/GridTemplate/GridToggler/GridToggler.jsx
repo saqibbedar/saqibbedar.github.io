@@ -1,5 +1,5 @@
 import "./GridToggler.css";
-import React, { useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { icons } from "@/assets/assets";
 import { GridContext } from "@/context/GridContext";
 

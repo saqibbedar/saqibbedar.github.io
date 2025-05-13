@@ -1,7 +1,7 @@
 import "./index.css";
 import AppRoutes from "./routes/AppRoutes.jsx";
 import { BackToTop } from "@/components/ui";
-import { Navbar, Footer } from '@/components/common/common';
+import { Navbar, Footer } from '@/components/common';
 
 function App() {
   return (

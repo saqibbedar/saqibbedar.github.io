@@ -1,7 +1,7 @@
 import "./AboutProjectSection.css";
 import { useContext, useState } from "react";
 import { GridContext } from "@/context/GridContext";
-import { Button } from "@/components/ui/index";
+import { Button } from "@/components/ui";
 import { useProjects } from "@/context/context";
 import { Grid, GridToggler, GridItem } from "@/components/templates/templates";
 

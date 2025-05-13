@@ -1,8 +1,8 @@
-import "./ErrorPage.css";
+import "./ResourceStatus.css";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui";
 
-const ErrorPage = ({
+const ResourceStatus = ({
   containerHeight,
   img,
   imgContainerHeight,
@@ -100,4 +100,4 @@ const ErrorPage = ({
   );
 };
 
-export default ErrorPage;
+export default ResourceStatus;

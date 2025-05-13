@@ -1,5 +1,3 @@
-import { ErrorImages } from "@/assets/assets";
-import { ErrorPage } from "@/components/common/common";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
