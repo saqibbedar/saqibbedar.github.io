@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Card } from "@/components/reusable/reusable";
+import { CertificateCard } from "@/components/ui";
 import { useState } from "react";
 import { icons } from "@/assets/assets";
 import { useScrollRefs } from "./useScrollRefs";
@@ -82,7 +82,7 @@ const SearchResults = ({ results }) => {
                 ref={certificatesScrollRef}
               >
                 {results.certificates.map((certificate) => (
-                  <Card
+                  <CertificateCard
                     key={certificate._id}
                     image={certificate.image}
                     title={certificate.title}

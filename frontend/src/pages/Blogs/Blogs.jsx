@@ -1,6 +1,6 @@
 import GridProvider from "@/context/GridContext";
 import {BlogProvider} from "@/context/BlogContext";
-import { BlogLayout } from "@/components/layouts/layouts";
+import { BlogLayout } from "@/components/layout/index";
 import CategoryProvider from "@/context/CategoryContext";
 
 const Blogs = () => {

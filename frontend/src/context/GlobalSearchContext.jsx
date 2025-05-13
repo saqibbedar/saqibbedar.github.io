@@ -1,38 +1,49 @@
-import { createContext, use, useState } from "react";
-import { globalSearchService } from "@/services/services";
+import { createContext, use, useState, useEffect } from "react";
+import {
+  globalSearchService,
+  preloadSearchData,
+  clearSearchCache,
+} from "../services/search";
 
 // 1. Create the Context
 export const GlobalSearchContext = createContext(null);
 
 // 2. Create custom hook for using the context
 export const useGlobalSearch = () => {
-    const context = use(GlobalSearchContext);
-    if (!context) {
-        throw new Error("useGlobalSearch must be used within GlobalSearchProvider");
-    }
-    return context;
-}
+  const context = use(GlobalSearchContext);
+  if (!context) {
+    throw new Error("useGlobalSearch must be used within GlobalSearchProvider");
+  }
+  return context;
+};
 
 // 3. Create Provider
 export function GlobalSearchProvider({ children }) {
-    
   // 4. Required states
   const [searchResults, setSearchResults] = useState({
     blogs: [],
     projects: [],
-    certificates: []
+    certificates: [],
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Preload search data when component mounts
+  useEffect(() => {
+    preloadSearchData().catch((err) => {
+      console.error("Error preloading search data:", err);
+    });
+  }, []);
+
   // 5. Perform Global Search
   const searchGlobally = async (query) => {
-    // return if empty search
+    // Return if empty search
     if (!query || query.trim() === "") {
       clearSearch();
       return;
     }
+
     try {
       setLoading(true);
       setError(null);
@@ -42,42 +53,44 @@ export function GlobalSearchProvider({ children }) {
       const results = await globalSearchService(query);
       setSearchResults(results);
     } catch (error) {
+      console.error("Search error:", error);
       setError("An error occurred while searching");
-      console.error("Search error: ", error);
     } finally {
       setLoading(false);
     }
-  }
-  
+  };
+
   // 6. Clear search results
   const clearSearch = () => {
     setSearchResults({
       blogs: [],
       projects: [],
-      certificates: []
+      certificates: [],
     });
     setSearchQuery("");
-  }
+    setError(null);
+  };
 
-  // 7. Check if we have any results
-  const hasResults =
-    searchResults.blogs.length > 0 ||
-    searchResults.projects.length > 0 ||
-    searchResults.certificates.length > 0;
+  // 7. Calculate total results
+  const totalResults =
+    (searchResults.blogs?.length || 0) +
+    (searchResults.projects?.length || 0) +
+    (searchResults.certificates?.length || 0);
 
   return (
-    // 6. pass SearchGlobally function and searchResults state to consumer
     <GlobalSearchContext.Provider
       value={{
-        searchQuery,
-        searchResults,
         searchGlobally,
-        clearSearch,
-        hasResults,
+        searchResults,
         loading,
-        error
-      }}>
+        error,
+        searchQuery,
+        clearSearch,
+        totalResults,
+        hasResults: totalResults > 0,
+      }}
+    >
       {children}
     </GlobalSearchContext.Provider>
-  )
+  );
 }

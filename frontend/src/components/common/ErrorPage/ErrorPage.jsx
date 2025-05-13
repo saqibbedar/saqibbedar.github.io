@@ -1,6 +1,6 @@
 import "./ErrorPage.css";
 import { useEffect, useState } from "react";
-import { HeroBtn } from "@/components/reusable/reusable";
+import { Button } from "@/components/ui";
 
 const ErrorPage = ({
   containerHeight,
@@ -88,7 +88,7 @@ const ErrorPage = ({
         className="error-page-btn"
         style={{ display: isButton ? "" : "none" }}
       >
-        <HeroBtn
+        <Button
           btnValue={btnValue}
           btnLink={btnLink}
           btnBg={btnBg}

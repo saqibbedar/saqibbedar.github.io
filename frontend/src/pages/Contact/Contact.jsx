@@ -1,4 +1,4 @@
-import { ContactLayout } from "@/components/layouts/layouts";
+import { ContactLayout } from "@/components/layout/index";
 
 const Contact = () => {
   return (

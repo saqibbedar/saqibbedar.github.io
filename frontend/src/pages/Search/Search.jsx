@@ -7,7 +7,7 @@ const Search = () => {
   const searchQuery = query || searchParams.get("q") || "";
   return (
     <div>
-      <title>Saqib Bedar "{searchQuery}" | Global Results</title>
+      <title>{`Saqib Bedar | Search Results for '${searchQuery}'`}</title>
       <SearchInput initialQuery={searchQuery} />
     </div>
   );

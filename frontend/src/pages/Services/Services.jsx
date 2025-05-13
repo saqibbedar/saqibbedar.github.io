@@ -1,5 +1,5 @@
 import GridProvider from "@/context/GridContext";
-import { ServiceLayout } from "@/components/layouts/layouts";
+import { ServiceLayout } from "@/components/layout/index";
 
 const Services = () => {
   return (

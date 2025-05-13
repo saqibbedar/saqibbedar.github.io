@@ -1,6 +1,6 @@
 import GridProvider from "@/context/GridContext";
 import CategoryProvider from "@/context/CategoryContext";
-import { ProjectLayout } from "@/components/layouts/layouts";
+import { ProjectLayout } from "@/components/layout/index";
 
 const Projects = () => {
   return (

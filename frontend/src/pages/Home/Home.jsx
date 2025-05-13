@@ -1,5 +1,5 @@
 import GridProvider from "@/context/GridContext";
-import { HomeLayout } from "@/components/layouts/layouts";
+import { HomeLayout } from "@/components/layout/index";
 
 const Home = () => {
   return (
