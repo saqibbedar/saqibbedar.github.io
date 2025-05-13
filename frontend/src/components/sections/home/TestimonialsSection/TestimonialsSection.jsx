@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { icons, testimonials } from "@/assets/assets";
 import { TestimonialCard } from "@/components/ui";
 
-const Testimonials = () => {
+const TestimonialsSection = () => {
   const scrollRef = useRef(null);
 
   const scroll = (direction) => {
@@ -48,4 +48,4 @@ const Testimonials = () => {
   );
 };
 
-export default Testimonials;
+export default TestimonialsSection;

@@ -1,5 +1,5 @@
 import GridProvider from "@/context/GridContext";
-import { HomeLayout } from "@/components/layout/index";
+import { HomeView } from "@/components/sections";
 
 const Home = () => {
   return (
@@ -9,7 +9,7 @@ const Home = () => {
       <meta name="description" content="Saqib Bedar" />
       <title>Saqib Bedar | Home</title>
       <GridProvider>
-        <HomeLayout />
+        <HomeView />
       </GridProvider>
     </>
   );

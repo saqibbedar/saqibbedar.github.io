@@ -1,10 +1,10 @@
-import "./FeaturedBlogPosts.css";
+import "./BlogSection.css";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { BlogContext } from "@/context/BlogContext.jsx";
 import { BlogCard } from "@/components/ui";
 
-const FeaturedBlogPosts = () => {
+const BlogSection = () => {
   const { blogs } = useContext(BlogContext);
 
   const featureBlogs = blogs.featureBlogs();
@@ -47,4 +47,4 @@ const FeaturedBlogPosts = () => {
   );
 };
 
-export default FeaturedBlogPosts;
+export default BlogSection;

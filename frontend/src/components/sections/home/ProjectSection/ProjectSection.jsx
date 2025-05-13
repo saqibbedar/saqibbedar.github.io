@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/index";
 import { Grid, GridToggler, GridItem } from "@/components/templates/templates";
 import { useProjects, GridContext } from "@/context/context";
 
-const FeaturedProjects = () => {
+const ProjectSection = () => {
   
   const {isGrid} = useContext(GridContext);
   
@@ -39,4 +39,4 @@ const FeaturedProjects = () => {
   );
 };
 
-export default FeaturedProjects;
+export default ProjectSection;

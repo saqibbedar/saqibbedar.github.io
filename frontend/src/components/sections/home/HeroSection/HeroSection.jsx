@@ -1,5 +1,5 @@
 import "swiper/css";
-import "./LandingPage.css";
+import "./HeroSection.css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Button } from "@/components/ui";
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
 
-const LandingPage = () => {
+const HeroSection = () => {
   return (
     <div className="landing-Page-wrapper">
       <div className="landing-page">
@@ -47,4 +47,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+export default HeroSection;

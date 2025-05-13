@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { icons, faqs } from "@/assets/assets";
 
-const FAQS = () => {
+const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
   return (
@@ -39,4 +39,4 @@ const FAQS = () => {
   );
 };
 
-export default FAQS;
+export default FAQSection;
