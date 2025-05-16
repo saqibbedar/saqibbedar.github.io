@@ -1,9 +1,9 @@
 import { useRef } from "react";
-import "./CertificatesSection.css";
+import "./CertificateSection.css";
 import { CertificateCard } from "@/components/ui";
 import { certificates, icons } from "@/assets/assets";
 
-const CertificatesSection = () => {
+const CertificateSection = () => {
   const scrollRef = useRef(null);
 
   const scroll = (direction) => {
@@ -48,4 +48,4 @@ const CertificatesSection = () => {
   );
 };
 
-export default CertificatesSection;
+export default CertificateSection;

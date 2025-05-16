@@ -1,7 +1,7 @@
-import "./SkillsSection.css";
+import "./SkillSection.css";
 import { skills } from "@/assets/assets";
 
-const SkillsSection = () => {
+const SkillSection = () => {
   return (
     <div className="skill-wrapper">
       <div className="scroll" style={{ "--time": "25s" }}>
@@ -48,4 +48,4 @@ const SkillsSection = () => {
   );
 };
 
-export default SkillsSection;
+export default SkillSection;

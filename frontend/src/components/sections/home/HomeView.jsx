@@ -2,22 +2,22 @@ import FAQSection from "./FAQSection/FAQSection";
 import HeroSection from "./HeroSection/HeroSection";
 import BlogSection from "./BlogSection/BlogSection";
 import { BlogProvider } from "@/context/BlogContext";
-import SkillsSection from "./SkillsSection/SkillsSection";
+import SkillSection from "./SkillSection/SkillSection";
 import ProjectSection from "./ProjectSection/ProjectSection";
-import TestimonialsSection from "./TestimonialsSection/TestimonialsSection";
-import CertificatesSection from "./CertificatesSection/CertificatesSection";
+import TestimonialSection from "./TestimonialSection/TestimonialSection";
+import CertificateSection from "./CertificateSection/CertificateSection";
 
 const HomeView = () => {
   return (
     <>
       <HeroSection />
-      <SkillsSection />
+      <SkillSection />
       <BlogProvider>
         <BlogSection />
       </BlogProvider>
       <ProjectSection />
-      <CertificatesSection />
-      <TestimonialsSection />
+      <CertificateSection />
+      <TestimonialSection />
       <FAQSection />
     </>
   );
