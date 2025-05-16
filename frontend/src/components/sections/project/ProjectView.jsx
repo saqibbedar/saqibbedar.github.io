@@ -1,7 +1,6 @@
-import "./ProjectLayout.css";
+import "./ProjectView.css";
 import { useContext, useState } from "react";
 import { ErrorImages } from "@/assets/assets";
-import categoryButtons from "./categoryButtons";
 import { ResourceStatus } from "@/components/ui";
 import {
   Grid,
@@ -12,7 +11,9 @@ import {
 } from "@/components/templates/templates";
 import { useProjects, CategoryContext, GridContext } from "@/context/context";
 
-const ProjectLayout = () => {
+const categoryButtons = ["All", "Frontend", "HTML", "CSS", "Tailwind", "Bootstrap", "JavaScript", "React", "NextJS", "Backend", "MERN", "C++", "Python", "NodeJS", "Express", "MongoDB"];
+
+const ProjectView = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { isGrid } = useContext(GridContext);
   const { category } = useContext(CategoryContext);
@@ -78,4 +79,4 @@ const ProjectLayout = () => {
   );
 };
 
-export default ProjectLayout;
+export default ProjectView;

@@ -1,6 +1,6 @@
 import GridProvider from "@/context/GridContext";
 import CategoryProvider from "@/context/CategoryContext";
-import { ProjectLayout } from "@/components/layout/index";
+import { ProjectView } from "@/components/sections";
 
 const Projects = () => {
   return (
@@ -8,7 +8,7 @@ const Projects = () => {
       <title>Saqib Bedar | Projects</title>
     <CategoryProvider initialCategory={"All"}>
       <GridProvider>
-        <ProjectLayout />
+        <ProjectView />
       </GridProvider>
     </CategoryProvider>
     </>
