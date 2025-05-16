@@ -1,6 +1,5 @@
-import "./BlogLayout.css";
+import "./BlogView.css";
 import { useContext } from "react";
-import categoryButtons from "./categoryButtons";
 import { BlogContext } from "@/context/BlogContext";
 import { CategoryContext } from "@/context/CategoryContext";
 import {
@@ -10,7 +9,15 @@ import {
 import { useBlogs } from "@/context/BlogContext";
 import { Link } from "react-router-dom";
 
-const BlogLayout = () => {
+const categoryButtons = [
+  "All",
+  "Education",
+  "Technology",
+  "Programming",
+  "Projects",
+];
+
+const BlogView = () => {
   const { category } = useContext(CategoryContext);
   const { blogs } = useBlogs(BlogContext);
   const allBlogs = blogs.allBlogs(category);
@@ -50,4 +57,4 @@ const BlogLayout = () => {
   );
 };
 
-export default BlogLayout;
+export default BlogView;

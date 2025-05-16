@@ -1,6 +1,6 @@
 import GridProvider from "@/context/GridContext";
 import {BlogProvider} from "@/context/BlogContext";
-import { BlogLayout } from "@/components/layout/index";
+import { BlogView } from "@/components/sections";
 import CategoryProvider from "@/context/CategoryContext";
 
 const Blogs = () => {
@@ -10,7 +10,7 @@ const Blogs = () => {
       <BlogProvider>
         <CategoryProvider initialCategory={"All"}>
           <GridProvider>
-            <BlogLayout />
+            <BlogView />
           </GridProvider>
         </CategoryProvider>
       </BlogProvider>
