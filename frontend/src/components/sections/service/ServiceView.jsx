@@ -1,4 +1,3 @@
-import "./ServiceLayout.css";
 import { useContext, useState } from "react";
 import { GridContext } from "@/context/GridContext";
 import {
@@ -8,12 +7,12 @@ import {
   LayoutInfoTemplate,
 } from "@/components/templates/templates";
 
-const ServiceLayout = () => {
+const ServiceView = () => {
   const { isGrid } = useContext(GridContext);
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div className="services-page-layout-wrapper">
+    <div className="mt-[2rem] mb-[3rem] animate-[var(--transform)]">
       <LayoutInfoTemplate
         layoutHeading={"Explore the best services I provide"}
         layoutDescription={
@@ -38,4 +37,4 @@ const ServiceLayout = () => {
   );
 };
 
-export default ServiceLayout;
+export default ServiceView;

@@ -1,10 +1,10 @@
-import { ContactLayout } from "@/components/layout/index";
+import { ContactView } from "@/components/sections";
 
 const Contact = () => {
   return (
     <>
       <title>Saqib Bedar | Contact</title>
-      <ContactLayout />
+      <ContactView />
     </>
   );
 };

@@ -1,7 +1,7 @@
-import "./ContactLayout.css";
+import "./ContactView.css";
 import { useState } from "react";
 
-const ContactLayout = () => {
+const ContactView = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -76,4 +76,4 @@ const ContactLayout = () => {
   );
 };
 
-export default ContactLayout;
+export default ContactView;

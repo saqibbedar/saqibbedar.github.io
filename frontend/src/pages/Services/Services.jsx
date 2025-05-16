@@ -1,12 +1,12 @@
 import GridProvider from "@/context/GridContext";
-import { ServiceLayout } from "@/components/layout/index";
+import { ServiceView } from "@/components/sections";
 
 const Services = () => {
   return (
     <>
       <title>Saqib Bedar | Services</title>
       <GridProvider>
-        <ServiceLayout />
+        <ServiceView />
       </GridProvider>
     </>
   );
