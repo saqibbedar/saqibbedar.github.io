@@ -1,6 +1,6 @@
-import "./AboutEducationSection.css";
+import "./EducationSection.css";
 
-const AboutEducationSection = ({ educational_data, isLoading }) => {
+const EducationSection = ({ educational_data, isLoading }) => {
 
   return (
     <div className="animate-[var(--fadeIn)] mt-8 mb-12">
@@ -27,4 +27,4 @@ const AboutEducationSection = ({ educational_data, isLoading }) => {
   );
 };
 
-export default AboutEducationSection;
+export default EducationSection;

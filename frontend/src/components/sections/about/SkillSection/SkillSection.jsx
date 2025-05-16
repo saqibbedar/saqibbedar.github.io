@@ -1,8 +1,7 @@
-import "./AboutSkills.css"
-import { Link } from 'react-router-dom';
+import "./SkillSection.css"
 import { aboutSkills } from '@/assets/assets';
 
-const AboutSkills = () => {
+const SkillSection = () => {
 
   return (
     <div className="animate-[var(--fadeIn)] mt-8 mb-12 overflow-hidden">
@@ -24,4 +23,4 @@ const AboutSkills = () => {
   );
 };
 
-export default AboutSkills;
+export default SkillSection;

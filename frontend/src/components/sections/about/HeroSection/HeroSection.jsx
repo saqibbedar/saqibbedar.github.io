@@ -1,8 +1,8 @@
-import "./AboutLandingPage.css";
+import "./HeroSection.css";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui";
 
-const AboutLandingPage = ({
+const HeroSection = ({
   name,
   description,
   cv_url,
@@ -53,4 +53,4 @@ const AboutLandingPage = ({
   );
 };
 
-export default AboutLandingPage;
+export default HeroSection;

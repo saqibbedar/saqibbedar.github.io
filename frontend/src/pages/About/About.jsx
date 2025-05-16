@@ -1,6 +1,6 @@
 import GridProvider from "@/context/GridContext";
 import CategoryProvider from "@/context/CategoryContext";
-import { AboutLayout } from "@/components/layout/index";
+import { AboutView } from "@/components/sections";
 
 const About = () => {
   return (
@@ -8,7 +8,7 @@ const About = () => {
       <title>Saqib Bedar | About</title>
       <CategoryProvider initialCategory={"Education"}>
         <GridProvider>
-          <AboutLayout />
+          <AboutView />
         </GridProvider>
       </CategoryProvider>
     </>

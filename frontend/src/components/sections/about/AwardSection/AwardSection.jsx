@@ -1,8 +1,8 @@
-import "./AboutAwards.css";
+import "./AwardSection.css";
 import { Link } from "react-router-dom";
 import { awards } from "@/assets/assets";
 
-const AboutAwards = () => {
+const AwardSection = () => {
   return (
     <div className="animate-[var(--fadeIn)] mt-8 mb-12">
       <div className="section-info">
@@ -31,4 +31,4 @@ const AboutAwards = () => {
   );
 };
 
-export default AboutAwards;
+export default AwardSection;

@@ -1,11 +1,11 @@
-import "./AboutProjectSection.css";
+import "./ProjectSection.css";
 import { useContext, useState } from "react";
 import { GridContext } from "@/context/GridContext";
 import { Button } from "@/components/ui";
 import { useProjects } from "@/context/context";
 import { Grid, GridToggler, GridItem } from "@/components/templates/templates";
 
-const AboutProjectSection = () => {
+const ProjectSection = () => {
   const { isGrid } = useContext(GridContext);
 
   const { getProjects } = useProjects();
@@ -40,4 +40,4 @@ const AboutProjectSection = () => {
   );
 };
 
-export default AboutProjectSection;
+export default ProjectSection;
