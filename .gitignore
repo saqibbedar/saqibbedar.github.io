@@ -1,2 +1,5 @@
 JS*
 expo-app
+.vscode
+*.py
+*.cpp
