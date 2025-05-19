@@ -1,15 +1,23 @@
-import './CategoryButtonTemplate.css'
-import { useContext, memo} from 'react';
-import { CategoryContext } from '@/context/CategoryContext';
+import './CategoryTabs.css'
+import { memo} from 'react';
+import { useCategory } from '@/context';
 
-const CategoryButtonTemplate = ({Buttons, isCenter, isLoading}) => { 
+/**
+ * 
+ * @param {Object} props - component props
+ * @param {Array} props.categories - Array of category names
+ * @param {string} props.align - Alignment of tabs ("start" or "center")
+ * @param {string} props.className - Additional CSS classes
+ */
 
-  const {category, setCategory} = useContext(CategoryContext);
+const CategoryTabs = ({ categories, align="start", className="", ...props }) => { 
+
+  const {category, setCategory} = useCategory();
 
   return (
-    <div className='categories-box' style={{justifyContent: isCenter ? "center" : "start"}}>
+    <div className={`categories-box ${className}`} style={{justifyContent: align}}>
         {
-            Buttons.map((button, index)=>(
+            categories.map((button, index)=>(
                 <button  
                 key={index} 
                 onClick={()=>{
@@ -25,4 +33,5 @@ const CategoryButtonTemplate = ({Buttons, isCenter, isLoading}) => {
   )
 }
 
-export default memo(CategoryButtonTemplate)
+export default memo(CategoryTabs);
+   

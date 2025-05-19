@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect} from "react";
 import { useSearchParams } from "react-router-dom";
-import SearchResults from "./SearchResults/SearchResults";
-import { useGlobalSearch } from "@/context/GlobalSearchContext";
+import { SearchResults } from "@/components/features";
+import { CategoryProvider, useGlobalSearch } from "@/context";
+
 import { icons } from '@/assets/assets';
 
 const SearchInput = ({initialQuery=""}) => {
@@ -9,7 +10,7 @@ const SearchInput = ({initialQuery=""}) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const inputRef = useRef();
 
-  const { searchGlobally, searchResults } = useGlobalSearch();
+  const { searchGlobally, searchResults, loading, error, searchQuery, clearSearch, totalResults, hasResults } = useGlobalSearch();
   const [query, setQuery] = useState(initialQuery);
 
   useEffect(() => {
@@ -49,7 +50,9 @@ const SearchInput = ({initialQuery=""}) => {
           <icons.search className="w-6 h-6 fill-[var(--button-primary-foreground)] group-active:scale-105 media-769:group-active:scale-125 transition-transform"/>
         </button>
       </form>
-    <SearchResults results={searchResults} />
+      <CategoryProvider initialCategory={"All"}>
+        <SearchResults results={searchResults} loading={loading} error={error} searchQuery={searchQuery} clearSearch={clearSearch} totalResults={totalResults} hasResults={hasResults} />
+    </CategoryProvider>
     </div>
   );
 };

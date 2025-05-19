@@ -1,4 +1,4 @@
-import GridProvider from "@/context/GridContext";
+import { GridProvider } from "@/context";
 import { HomeView } from "@/components/sections";
 
 const Home = () => {

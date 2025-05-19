@@ -4,7 +4,7 @@ import { BackToTop } from "@/components/ui";
 import { Navbar, Footer } from '@/components/common';
 
 function App() {
-  return (
+  return ( 
     <div>
       <Navbar />
       <BackToTop/>

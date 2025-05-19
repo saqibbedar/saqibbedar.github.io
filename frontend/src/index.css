@@ -22,7 +22,7 @@ a {
 }
 :root{
   /* light theme background */
-  --light-theme-background: #EEEEEE;
+  --light-theme-background: #f5f5f7;
   --light-theme-secondary-background: #202124;
 
   /* foregrounds */
@@ -34,7 +34,7 @@ a {
   --light-theme-url-hover-background: #2563EBC5;
 
   /* body color */
-  --body-bg: #eeeeee;
+  --body-bg: #f5f5f7;
 
   --link-color: #2563eb;
   --link-hover: #4285f4;

@@ -1,39 +1,25 @@
 import "./BlogView.css";
-import { useContext } from "react";
-import { BlogContext } from "@/context/BlogContext";
-import { CategoryContext } from "@/context/CategoryContext";
-import {
-  LayoutInfoTemplate,
-  CategoryButtonTemplate,
-} from "@/components/templates/templates";
-import { useBlogs } from "@/context/BlogContext";
+import { useCategory, useBlogs } from "@/context";
+import { SectionHeader } from "@/components/layout";
+import { CategoryTabs } from "@/components/ui";
 import { Link } from "react-router-dom";
 
-const categoryButtons = [
-  "All",
-  "Education",
-  "Technology",
-  "Programming",
-  "Projects",
-];
-
 const BlogView = () => {
-  const { category } = useContext(CategoryContext);
-  const { blogs } = useBlogs(BlogContext);
+  const { category } = useCategory();
+  const { blogs } = useBlogs();
   const allBlogs = blogs.allBlogs(category);
   
-  const sectionTitle =
-    category === "All" ? "All Blogs" : `Category: "${category}"`;
+  const sectionTitle = category === "All" ? "All Blogs" : `Category: "${category}"`;
 
   return (
     <div className="blog-page-layout-wrapper">
-      <LayoutInfoTemplate
+      <SectionHeader
         layoutHeading={"Explore your favorite Blogs"}
         layoutDescription={
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis rem rerum blanditiis a officiis incidunt natus illum, velit, porro molestias nulla alias. Amet consequuntur at atque, et odit officiis sunt."
         }
       />
-      <CategoryButtonTemplate Buttons={categoryButtons} isCenter={true} />
+      <CategoryTabs categories={["All", "Projects", "Certificates"]} align="center" />
       <br />
       <div className="section-info">
         <h1>{sectionTitle}</h1>

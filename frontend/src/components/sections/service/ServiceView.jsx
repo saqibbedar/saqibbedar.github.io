@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
-import { GridContext } from "@/context/GridContext";
+import { GridContext } from "@/context";
 import {
   Grid,
   GridItem,
-  GridToggler,
-  LayoutInfoTemplate,
+  GridToggler
 } from "@/components/templates/templates";
+import { SectionHeader } from "@/components/layout";
 
 const ServiceView = () => {
   const { isGrid } = useContext(GridContext);
@@ -13,12 +13,11 @@ const ServiceView = () => {
 
   return (
     <div className="mt-[2rem] mb-[3rem] animate-[var(--transform)]">
-      <LayoutInfoTemplate
+      <SectionHeader
         layoutHeading={"Explore the best services I provide"}
         layoutDescription={
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, quibusdam. Vel placeat quos dolorem laborum. Sunt voluptatibus quas beatae, cupiditate omnis, eum itaque doloribus dolores eveniet minima nostrum laborum quidem."
         }
-        isLoading={isLoading}
       />
       <GridToggler section_name={"Services"} isLoading={isLoading} />
       <Grid isGrid={isGrid} gridTempCol={"1fr 1fr 1fr 1fr"}>

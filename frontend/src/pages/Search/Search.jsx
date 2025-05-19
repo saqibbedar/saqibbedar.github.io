@@ -1,5 +1,5 @@
 import { useParams, useSearchParams } from "react-router-dom";
-import { SearchInput } from "@/components/templates/templates";
+import { SearchInput } from "@/components/ui";
 
 const Search = () => {
   const { query } = useParams();

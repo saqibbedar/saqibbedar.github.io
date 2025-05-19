@@ -5,34 +5,33 @@ import { ResourceStatus } from "@/components/ui";
 import {
   Grid,
   GridItem,
-  GridToggler,
-  LayoutInfoTemplate,
-  CategoryButtonTemplate,
+  GridToggler
 } from "@/components/templates/templates";
-import { useProjects, CategoryContext, GridContext } from "@/context/context";
+import { useProjects, useCategory, GridContext } from "@/context";
+import { CategoryTabs } from "@/components/ui";
+import { SectionHeader } from "@/components/layout";
 
 const categoryButtons = ["All", "Frontend", "HTML", "CSS", "Tailwind", "Bootstrap", "JavaScript", "React", "NextJS", "Backend", "MERN", "C++", "Python", "NodeJS", "Express", "MongoDB"];
 
 const ProjectView = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { isGrid } = useContext(GridContext);
-  const { category } = useContext(CategoryContext);
+  const { category } = useCategory()
   const { getProjects, loading, error } = useProjects();
   const projects = getProjects(category);
-  const sectionTitle = category === "All" ? "All" : `Category: ${category}`;
+  const sectionTitle = category ;
 
   return (
     <div className="project-page-layout-wrapper">
-      <LayoutInfoTemplate
+      <SectionHeader
         layoutHeading={"Explore your favorite Projects"}
         layoutDescription={
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis rem rerum blanditiis a officiis incidunt natus illum, velit, porro molestias nulla alias. Amet consequuntur at atque, et odit officiis sunt."
         }
       />
-      <CategoryButtonTemplate
-        Buttons={categoryButtons}
-        isCenter={false}
-        isLoading={isLoading}
+      <CategoryTabs
+        categories={categoryButtons}
+        align="start"
       />
       <br />
 

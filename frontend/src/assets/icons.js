@@ -13,7 +13,7 @@ import {
   FaRegHeart,
   FaGraduationCap,
 } from "react-icons/fa";
-import { IoGrid, IoGridOutline, IoLogoJavascript } from "react-icons/io5";
+import { IoGrid, IoGridOutline, IoLogoJavascript, IoClose } from "react-icons/io5";
 import { RiNextjsFill, RiTailwindCssFill } from "react-icons/ri";
 import { DiNodejs, DiMongodb } from "react-icons/di";
 import { SiBuymeacoffee, SiExpress, SiLinktree } from "react-icons/si";
@@ -21,6 +21,7 @@ import { BiLogoFacebookCircle } from "react-icons/bi";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { FiMenu, FiX } from "react-icons/fi";
 import { CiSearch } from "react-icons/ci";
+import { HiAdjustments } from "react-icons/hi";
 
 const icons = {
   search: CiSearch,
@@ -55,6 +56,8 @@ const icons = {
   unFilledGrid: IoGridOutline,
   like: FaRegHeart,
   graduationCap: FaGraduationCap,
+  filter: HiAdjustments,
+  close: IoClose
 };
 
 export default icons;

@@ -1,16 +1,16 @@
-import { createContext, use, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import {
   globalSearchService,
   preloadSearchData,
   clearSearchCache,
-} from "../services/search";
+} from "@/services/search";
 
 // 1. Create the Context
 export const GlobalSearchContext = createContext(null);
 
 // 2. Create custom hook for using the context
 export const useGlobalSearch = () => {
-  const context = use(GlobalSearchContext);
+  const context = useContext(GlobalSearchContext);
   if (!context) {
     throw new Error("useGlobalSearch must be used within GlobalSearchProvider");
   }

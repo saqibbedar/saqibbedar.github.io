@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 export const GridContext = createContext();
 
-const GridProvider = ({ children }) => {
+export function GridProvider({ children }) {
   const [isGrid, setIsGrid] = useState(() => window.innerWidth > 767);
 
   return (
@@ -11,5 +11,3 @@ const GridProvider = ({ children }) => {
     </GridContext.Provider>
   );
 };
-
-export default GridProvider;

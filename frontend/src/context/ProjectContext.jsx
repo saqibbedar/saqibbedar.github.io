@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState, use } from "react";
+import { createContext, useEffect, useState, useContext } from "react";
 import { fetchProjects, getProjectsService, getProjectByIdService } from "@/services/index";
 
 // 1. create context
@@ -6,7 +6,7 @@ export const ProjectContext = createContext();
 
 // 2. Create custom hook for consuming context
 export const useProjects = () => {
-  const context = use(ProjectContext);
+  const context = useContext(ProjectContext);
   if (!context) {
     throw new Error("useProjects must be used within ProjectProvider");
   }
@@ -14,7 +14,7 @@ export const useProjects = () => {
 };
 
 // 3. Create a provider
-export default function ProjectProvider({ children }) {
+export function ProjectProvider({ children }) {
   // state handlers
   const [projectsData, setProjectsData] = useState([]);
   const [loading, setLoading] = useState(true);

@@ -6,7 +6,7 @@ import EducationSection from "./EducationSection/EducationSection";
 import { useContext, useState } from "react";
 import { author, education } from "@/assets/assets";
 import { CategoryContext } from "@/context/CategoryContext";
-import { CategoryButtonTemplate } from "@/components/templates/templates";
+import { CategoryTabs } from "@/components/ui";
 
 const CategoryButtons = ["Education", "Projects", "Certificates", "Awards", "Skills"];
 
@@ -26,7 +26,7 @@ const AboutView = () => {
         image={author.image}
         setIsLoading={setIsLoading}
       />
-      <CategoryButtonTemplate Buttons={CategoryButtons} isLoading={isLoading} />
+      <CategoryTabs categories={CategoryButtons} />
       <div>
         {category === CategoryButtons[0] && (
           <EducationSection

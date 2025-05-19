@@ -1,5 +1,4 @@
-import GridProvider from "@/context/GridContext";
-import CategoryProvider from "@/context/CategoryContext";
+import { CategoryProvider, GridProvider } from "@/context";
 import { ProjectView } from "@/components/sections";
 
 const Projects = () => {

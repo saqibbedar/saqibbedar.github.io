@@ -1,24 +1,16 @@
-import "./LayoutInfoTemplate.css";
+import "./SectionHeader.css";
 
-const LayoutInfoTemplate = ({
-  layoutHeading,
-  layoutDescription,
-  isLoading,
-}) => {
+const SectionHeader = ({layoutHeading, layoutDescription, ...props}) => {
   return (
     <div className="layout-info">
-      <div className={isLoading ? "layout-heading skeleton" : "layout-heading"}>
+      <div className="layout-heading">
         {layoutHeading}
       </div>
-      <div
-        className={
-          isLoading ? "layout-description skeleton" : "layout-description"
-        }
-      >
+      <div className="layout-description">
         {layoutDescription}
       </div>
     </div>
   );
 };
 
-export default LayoutInfoTemplate;
+export default SectionHeader;
