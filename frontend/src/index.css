@@ -1,4 +1,128 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./assets/fonts/SF-Pro-Display-Thin.otf') format('opentype');
+  font-weight: 100; /* Thin */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./assets/fonts/SF-Pro-Display-ThinItalic.otf') format('opentype');
+  font-weight: 100; /* Thin Italic */
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./assets/fonts/SF-Pro-Display-Ultralight.otf') format('opentype');
+  font-weight: 200; /* Ultra-Light */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./assets/fonts/SF-Pro-Display-UltralightItalic.otf') format('opentype');
+  font-weight: 200; /* Ultra-Light Italic */
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./assets/fonts/SF-Pro-Display-Light.otf') format('opentype');
+  font-weight: 300; /* Light */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./assets/fonts/SF-Pro-Display-LightItalic.otf') format('opentype');
+  font-weight: 300; /* Light Italic */
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./assets/fonts/SF-Pro-Display-Regular.otf') format('opentype');
+  font-weight: 400; /* Regular */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./assets/fonts/SF-Pro-Display-RegularItalic.otf') format('opentype');
+  font-weight: 400; /* Regular Italic */
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./assets/fonts/SF-Pro-Display-Medium.otf') format('opentype');
+  font-weight: 500; /* Medium */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./assets/fonts/SF-Pro-Display-MediumItalic.otf') format('opentype');
+  font-weight: 500; /* Medium Italic */
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./assets/fonts/SF-Pro-Display-Semibold.otf') format('opentype');
+  font-weight: 600; /* Semi-Bold */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./assets/fonts/SF-Pro-Display-SemiboldItalic.otf') format('opentype');
+  font-weight: 600; /* Semi-Bold Italic */
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./assets/fonts/SF-Pro-Display-Bold.otf') format('opentype');
+  font-weight: 700; /* Bold */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./assets/fonts/SF-Pro-Display-BoldItalic.otf') format('opentype');
+  font-weight: 700; /* Bold Italic */
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./assets/fonts/SF-Pro-Display-Heavy.otf') format('opentype');
+  font-weight: 800; /* Heavy */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./assets/fonts/SF-Pro-Display-HeavyItalic.otf') format('opentype');
+  font-weight: 800; /* Heavy Italic */
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./assets/fonts/SF-Pro-Display-Black.otf') format('opentype');
+  font-weight: 900; /* Black */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./assets/fonts/SF-Pro-Display-BlackItalic.otf') format('opentype');
+  font-weight: 900; /* Black Italic */
+  font-style: italic;
+}
 
 @tailwind base;
 @tailwind components;
@@ -8,101 +132,65 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  color: var(--text-color);
 }
+
 html, body{
   width: 100%;
-  height: 100%;
-  font-family: "Poppins", sans-serif;
-  transition: .2s ease-out;
-  background: var(--light-theme-background);
+  font-family: 'SF Pro Display', sans-serif;
+  color: var(--dt-primary-foreground);
+  letter-spacing: 0.02em;
+}
+body{
+  background: var(--dt-primary-background);
+}
+body{
+  padding-top: 45px;
 }
 a {
-  text-decoration: none;
+    text-decoration: none;
+}
+h1, h2, h3 {
+  font-family: 'SF Pro Display', sans-serif;
+  font-weight: 700; /* Bold */
+}
+
+p {
+  font-family: 'SF Pro Display', sans-serif;
+  font-weight: 400; /* Regular */
+}
+
+em {
+  font-family: 'SF Pro Display', sans-serif;
+  font-style: italic;
 }
 :root{
-  /* light theme background */
-  --light-theme-background: #f5f5f7;
-  --light-theme-secondary-background: #202124;
+  /* dt: Dark Theme */
+  --dt-secondary-background: white;
+  --dt-primary-background: #000000;
+  --dt-primary-foreground: white;
+  --dt-secondary-foreground: #fff9;
+  --dt-trinary-foreground: #fff9;
+  --dt-card-background: #1f1f1f;
+  --dt-card-button-background: #3a3a3a;
+  --dt-card-button-hover-background: #4c4c4c;
+  --dt-basic-button-foreground: #ffffff;
+  --dt-basic-button-background: #1f1f1f;
+  --dt-basic-button-hover-background: #333333;
 
-  /* foregrounds */
-  --light-theme-primary-foreground: #202124;
-  --light-theme-secondary-foreground: #FFFFFF;
-
-  /* URLs foreground */
-  --light-theme-url-background: #2563EB;
-  --light-theme-url-hover-background: #2563EBC5;
-
-  /* body color */
-  --body-bg: #f5f5f7;
-
-  --link-color: #2563eb;
-  --link-hover: #4285f4;
-
-  --black : #000;
-  --white: #fff;
-  --secondary-color: #f5f5f5;
-
-  --text-color: #202124;
-  --text-color-2: white;
-  /* --max-padding: 0 160px;
-  --min-padding: 0 26px; */
-
-  --svg-bg: #202124;
-  --svg-hover: #fff;
-  --svg-clr: #fff;
-
-  --search-input-bg: #fff;
-  --search-input-svg-clr: #818181;
-  
-  --pop-ups-bg-light: rgba(204, 204, 204, 0.788);
-  --pop-ups-bg-dark: #101010; 
-  --pop-up-color: var(--pop-ups-bg-light);
+  --dt-normal-button-primary-foreground: #fff;
+  --dt-normal-button-primary-background: #ffffff1f;
+  --dt-normal-button-primary-hover-background: #fff3;
+  --dt-normal-button-secondary-foreground: #000;
+  --dt-normal-button-secondary-background: #fff;
+  --dt-normal-button-secondary-hover-background: #fffc;
   
   /* animations */
   --rotate-anim: rotate_ 0.3s ease;
-  --fadeIn : fade .5s ease;
-  --transform : transform .35s ease;
-
-  /* URL Buttons */
-  --btn-txt-clr: #fff;
-  --btn1-bg: #202124;
-  --btn1-hover: "";
-  --btn2-bg: #2563eb;
-  --btn2-hover: #4285f4;
-  
-  /* Theme Buttons */
-  --button-primary-foreground: #FFFFFF;
-  --button-secondary-foreground: #202124;
-  --button-primary-background:#202124;
-  --button-primary-background-hover: #323336;
-  --button-secondary-background:#e0e0e0;
-
-  /* Borders */
-  --light-theme-border-primary-border: #202124;
-  --light-theme-border-secondary-border: #FFFFFF;
-
-  --featured-btn-bg: var(--featured-bg);
+  --fadeIn : fade .64s cubic-bezier(.22,1,.36,1);
+  --transform : transform .64s cubic-bezier(.22,1,.36,1);
 
   /* transition */
-  --transition: 0.3s ease;
-
-  /* featured background */
-  --featured-bg: #202124; 
-
-  /* cards colors */
-  --cards-background: #fff;
-  --cards-text-title-foreground: #202124;
-  --cards-text-description-foreground: #6e6e73;
-  --cards-text-title-size: 16px;
-  --cards-text-description-size: 15px;
-  --other-text-letter-spacing: 0.11px;
-
-  /* skills-icons */
-  --skills-icon-border: 1px solid lightgray;
-}
-body{
-  padding-top: 80px;
+  --transition: .64s cubic-bezier(.22,1,.36,1);
 }
 
 .skeleton{
@@ -202,12 +290,7 @@ body{
 
 
 /* Hide scrollbar for all overflow content */
-:where(.f-blog-content, .testimonials-wrapper, .posts, .categories-box, .search-results-hide-scroll-class)::-webkit-scrollbar {
-  width: 0px;
-  height: 0px;
-}
-
-.hide-scrollbar::-webkit-scrollbar {
+:where(.f-blog-content, .testimonials-wrapper, .posts, .categories-box, .search-results-hide-scroll-class, .hide-scrollbar)::-webkit-scrollbar {
   width: 0px;
   height: 0px;
 }
@@ -215,6 +298,7 @@ body{
 .rows-handler{
   display: -webkit-box;
   -webkit-line-clamp: 4;
+  line-clamp: 4;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -222,8 +306,8 @@ body{
 
 :where(.card-content p, .content p, .f-post-left-section p, .categories, .founded-items, .results, .founded-item-box-content-description ){
   display: -webkit-box;
-  line-clamp: 4;
   -webkit-line-clamp: 4;
+  line-clamp: 4;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
   overflow: hidden;
