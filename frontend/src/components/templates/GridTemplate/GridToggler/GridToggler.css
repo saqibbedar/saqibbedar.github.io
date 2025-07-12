@@ -61,6 +61,9 @@
 }
 
 @media (max-width: 767px) {
+  .grid-toggler-btn{
+    display: none;
+  }
   .grid-toggler h1 {
     font-size: 25px;
   }

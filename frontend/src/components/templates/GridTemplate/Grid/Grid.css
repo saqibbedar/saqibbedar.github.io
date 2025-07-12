@@ -12,7 +12,7 @@
     gap: 20px;
     padding: 25px 30px;
     border-radius: 10px;
-    background: var(--cards-background);
+    background: #474b51;
     overflow: hidden;
 }
 .project-title{
@@ -26,7 +26,7 @@
     height: fit-content;
     border-radius: 12px;
     scale: 1;
-    transition: var(--transition);
+    transition: all .3s ease !important;
     overflow: hidden;
     cursor: pointer;
 }
@@ -38,16 +38,21 @@
     object-fit: cover;
     object-position: center;
     scale: 1;
-    transition: var(--transition);
+    transition: all .3s ease !important;
 }
 .active-landScape-mode .grid-item-img-container img{
     aspect-ratio: 16/9;
+    scale: 1.2;
+}
+.active-landScape-mode .grid-item:hover .grid-item-img-container img{
+    aspect-ratio: 16/9;
+    scale: 1;
 }
 .grid-item:hover .grid-item-img-container{
     scale: .9;
 }
 .grid-item:hover .grid-item-img-container img{
-    scale: 1.1;
+    scale: 1.2;
 }
 @media (width < 767px) {
     .grid{
