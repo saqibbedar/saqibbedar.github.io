@@ -1,18 +1,19 @@
 import "./index.css";
 import AppRoutes from "./routes/AppRoutes.jsx";
-import { BackToTop } from "@/components/ui";
+import { BackToTop, QuickSearch } from "@/components/ui";
 import { Navbar, Footer } from '@/components/common';
+import { useSmoothScroll } from "./hooks";
 
 function App() {
+  useSmoothScroll();
   return ( 
-    <div>
+    <>
       <Navbar />
       <BackToTop/>
-      <div className="2xl:max-w-[100rem] 2xl:m-auto px-[26px] media1:px-[80px] mediaXl:px-0 main">
-          <AppRoutes />
-      </div>
+      <AppRoutes />
+      <QuickSearch/>
       <Footer />
-    </div>
+    </>
   );
 }
 
