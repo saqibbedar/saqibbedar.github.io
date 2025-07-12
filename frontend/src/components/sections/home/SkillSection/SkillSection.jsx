@@ -6,7 +6,7 @@ import {Link} from "react-router-dom"
 const SkillSection = () => {
   return (
     <div className="skill-wrapper">
-      <Marquee pauseOnHover={true} autoFill={true}>
+      <Marquee pauseOnHover={true} autoFill={true} speed={25}>
           <div className="marquee-row">
             {skills.first_row.map((skill, index) => (
               <Link to={`/search?q=${skill.name}`} key={index} className="skill-box">
@@ -17,7 +17,7 @@ const SkillSection = () => {
           </div>
       </Marquee>
 
-      <Marquee pauseOnHover={true} autoFill={true}>
+      <Marquee pauseOnHover={true} autoFill={true} speed={25} direction="right">
           <div className="marquee-row">
             {skills.second_row.map((skill, index) => (
               <Link to={`/search?q=${skill.name}`} key={index} className="skill-box">

@@ -16,23 +16,26 @@ const ProjectSection = () => {
   }
 
   return (
-    <div className="flex flex-col mt-[25.5rem] media2:mt-[26rem] mb-7 media1:mb-2">
-
-      <GridToggler section_name={"Featured projects"}/>
+    <div className="flex flex-col bg-[var(--dt-card-background)]">
       <Grid isGrid={isGrid} gridTempCol={"1fr 1fr"}>
-        {
-          featuredProjects.slice(0, 2).map((project, index)=>(
-            <GridItem key={index} projectId={project._id} projectUrl={project.url} projectName={project.name} projectImage={project.image} projectTags={project.tags} />
-          ))
-        }
+        {featuredProjects.slice(0, 2).map((project, index) => (
+          <GridItem
+            key={index}
+            projectId={project._id}
+            projectUrl={project.url}
+            projectName={project.name}
+            projectImage={project.image}
+            projectTags={project.tags}
+          />
+        ))}
       </Grid>
 
       <div className="hero-btn-wrapper w-full flex justify-center mt-[2rem] media1:mt-[2.5rem]">
         <Button
-          btnValue={"View all projects"}
-          btnLink={'/Projects'}
-          btnBg={"var(--featured-bg)"}
-          hoverColor={"#323336"}
+          variant="navigation"
+          to="/projects"
+          label="View Projects"
+          size="large"
         />
       </div>
     </div>

@@ -1,18 +1,17 @@
 .skill-wrapper{
     display: flex;
     flex-direction: column;
-    --skill-gap: 20px;
-    gap: var(--skill-gap);
-    margin-top: 2.8rem;
+    --marquee-gap: 25px;
+    gap: var(--marquee-gap);
     animation: var(--transform);
 }
 .marquee-row{
     display: flex;
-    gap: 20px;
+    gap: var(--marquee-gap);
 }
 
 .marquee-row:last-child{
-    margin-right: 20px;
+    margin-right: var(--marquee-gap);
 }
 .skill-box{
     display: flex;
@@ -20,14 +19,13 @@
     align-items: center;
     gap: 12px;
     border-radius: 8px;
-    background: #eeeeee75;
-    border: 1px solid lightgray;
+    background: var(--dt-normal-button-primary-background);
     padding: 10px 18px;
-    transition: var(--transition);
+    transition: all var(--transition);
     cursor: pointer;
 }
 .skill-box:hover{
-    background: rgba(211, 211, 211, 0.347);
+    background: var(--dt-normal-button-primary-hover-background);
 }
 .skill-box h1{
     font-size: 25px;
