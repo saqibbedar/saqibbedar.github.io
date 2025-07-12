@@ -1,6 +1,6 @@
 import "./CertificateCard.css";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import SimpleParallax from "simple-parallax-js";
 
 const CertificateCard = ({ image, title, description, providerLogo, providerName, credentialUrl }) => {
 
@@ -8,7 +8,9 @@ const CertificateCard = ({ image, title, description, providerLogo, providerName
     <>
       <div className="card rounded-lg">
         <div className={"main-card-img"}>
-          <img src={image} className="img" />
+          <SimpleParallax orientation={"left"} scale={1.3}>
+            <img src={image} className="img" />
+          </SimpleParallax>
         </div>
         <div className={"card-content"}>
           <h3 className="card-title">{title}</h3>
