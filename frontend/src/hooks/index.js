@@ -1,2 +1,2 @@
 export * from "./useSmoothScroll.js";
-export * from "./useSmoothTransform.js";
+export { default as useSmoothTransform } from "./useSmoothTransform.js";

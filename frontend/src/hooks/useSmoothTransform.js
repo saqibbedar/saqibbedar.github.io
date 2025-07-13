@@ -1,8 +1,9 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import PropTypes from "prop-types";
 
 // Pass any ClassName to perform this animation
-export const useSmoothTransform = (className) => {
+const useSmoothTransform = ({className}) => {
     gsap.registerPlugin(useGSAP);
     useGSAP(() => {
         gsap.from(`.${className}`, {
@@ -14,3 +15,10 @@ export const useSmoothTransform = (className) => {
         });
     });
 };
+
+// PropTypes
+useSmoothTransform.prototype = {
+  className: PropTypes.string.isRequired,
+}
+
+export default useSmoothTransform;
