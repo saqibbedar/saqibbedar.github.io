@@ -1,7 +1,7 @@
 import {
   Home,
   About,
-  Blogs,
+  // Blogs,
   Contact,
   Courses,
   NotFound,
@@ -10,7 +10,8 @@ import {
   Search,
   Error404
 } from "@/pages/pages";
-import { Blog, Project } from '../views/views';
+// import { Blog } from '../views/views';
+import { Project } from '../views/views';
 import { Route, Routes } from "react-router-dom";
 
 const AppRoutes = () => {
@@ -20,8 +21,8 @@ const AppRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/blogs" element={<Blogs />} />
-        <Route path="/blogs/:id" element={<Blog />} />
+        {/* <Route path="/blogs" element={<Blogs />} /> */}
+        {/* <Route path="/blogs/:id" element={<Blog />} /> */}
         <Route path="/courses" element={<Courses />} />
         <Route path="/services" element={<Services />} />
         <Route path="/projects" element={<Projects />} />
