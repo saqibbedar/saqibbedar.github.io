@@ -137,14 +137,12 @@
 html, body{
   width: 100%;
   font-family: 'SF Pro Display', sans-serif;
-  color: var(--dt-primary-foreground);
+  color: var(--dt-pri-fg);
   letter-spacing: 0.02em;
 }
 body{
-  background: var(--dt-primary-background);
-}
-body{
-  padding-top: 45px;
+  background: var(--dt-pri-bg); 
+  overflow-x: hidden;
 }
 a {
     text-decoration: none;
@@ -170,19 +168,27 @@ em {
   --dt-primary-foreground: white;
   --dt-secondary-foreground: #fff9;
   --dt-trinary-foreground: #fff9;
-  --dt-card-background: #1f1f1f;
-  --dt-card-button-background: #3a3a3a;
-  --dt-card-button-hover-background: #4c4c4c;
-  --dt-basic-button-foreground: #ffffff;
-  --dt-basic-button-background: #1f1f1f;
-  --dt-basic-button-hover-background: #333333;
 
-  --dt-normal-button-primary-foreground: #fff;
-  --dt-normal-button-primary-background: #ffffff1f;
-  --dt-normal-button-primary-hover-background: #fff3;
-  --dt-normal-button-secondary-foreground: #000;
-  --dt-normal-button-secondary-background: #fff;
-  --dt-normal-button-secondary-hover-background: #fffc;
+  --dt-pri-bg: #000000;
+  --dt-pri-fg: #ffffff;
+  --dt-sec-bg: #ffffff;
+  --dt-sec-fg: #ffffff99;
+
+  --dt-card-bg: #1a1a1a;
+  --dt-card-btn-bg: #3a3a3a;
+  --dt-card-btn-hover-bg: #4c4c4c;
+  
+  /* Dark Theme Button Primary Styles */
+  --dt-btn-pri-fg: #fff;
+  --dt-btn-pri-bg: #ffffff1f;
+  --dt-btn-pri-hover-bg: #fff3;
+  /* Dark Theme Button Secondary Styles */
+  --dt-btn-sec-fg: #000;
+  --dt-btn-sec-bg: #fff;
+  --dt-btn-sec-hover-bg: #fffc;
+
+  --dt-border: solid .2px #33333377;
+  --dt-border-color: #33333377;
   
   /* animations */
   --rotate-anim: rotate_ 0.3s ease;
