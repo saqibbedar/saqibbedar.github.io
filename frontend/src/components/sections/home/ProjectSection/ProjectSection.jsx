@@ -16,9 +16,12 @@ const ProjectSection = () => {
   }
 
   return (
-    <div className="flex flex-col bg-[var(--dt-card-background)]">
+    <div className="flex flex-col">
+      <div className="flex justify-center text-5xl my-14">
+        <h1 >Projects that bring things differently</h1>
+      </div>
       <Grid isGrid={isGrid} gridTempCol={"1fr 1fr"}>
-        {featuredProjects.slice(0, 2).map((project, index) => (
+        {featuredProjects.map((project, index) => (
           <GridItem
             key={index}
             projectId={project._id}
