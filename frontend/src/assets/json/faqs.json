@@ -1,0 +1,12 @@
+[
+    {
+        "_id": 1,
+        "question": "What services do you offer?",
+        "answer": "I offer web development services including frontend development with React, responsive design, and web app development."
+    },
+    {
+        "_id": 2,
+        "question": "What technologies do you work with?",
+        "answer": "I primarily work with HTML, CSS, JavaScript, React, and related modern web technologies."
+    }
+]

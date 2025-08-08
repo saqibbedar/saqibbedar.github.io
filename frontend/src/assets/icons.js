@@ -1,5 +1,15 @@
 import CppIcon from "@/assets/CppIcon";
-import { FaGitAlt, FaInstagram, FaXTwitter, FaYoutube } from "react-icons/fa6";
+import {
+  FaGitAlt,
+  FaInstagram,
+  FaXTwitter,
+  FaYoutube,
+  FaCodeBranch,
+  FaCodeFork,
+  FaCode,
+  FaTerminal,
+  FaPlus,
+} from "react-icons/fa6";
 import {
   FaHtml5,
   FaCss3Alt,
@@ -16,17 +26,18 @@ import {
 import { IoGrid, IoGridOutline, IoLogoJavascript, IoClose } from "react-icons/io5";
 import { RiNextjsFill, RiTailwindCssFill } from "react-icons/ri";
 import { DiNodejs, DiMongodb } from "react-icons/di";
-import { SiBuymeacoffee, SiExpress, SiLinktree } from "react-icons/si";
+import { SiBuymeacoffee, SiExpress } from "react-icons/si";
 import { BiLogoFacebookCircle } from "react-icons/bi";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import { FiMenu, FiX } from "react-icons/fi";
+import { FiMenu } from "react-icons/fi";
 import { CiSearch } from "react-icons/ci";
 import { HiAdjustments } from "react-icons/hi";
+import { LuMicVocal } from "react-icons/lu";
+
 
 const icons = {
   search: CiSearch,
   hamburger: FiMenu,
-  close: FiX,
   git: FaGitAlt,
   html: FaHtml5,
   css: FaCss3Alt,
@@ -48,7 +59,6 @@ const icons = {
   github: FaGithub,
   insta: FaInstagram,
   youtube: FaYoutube,
-  linktree: SiLinktree,
   arrowUp: IoIosArrowUp,
   arrowDown: IoIosArrowDown,
   byMeCoffee: SiBuymeacoffee,
@@ -57,7 +67,13 @@ const icons = {
   like: FaRegHeart,
   graduationCap: FaGraduationCap,
   filter: HiAdjustments,
-  close: IoClose
+  close: IoClose,
+  mic: LuMicVocal,
+  codeBranch: FaCodeBranch,
+  codeFork: FaCodeFork,
+  htmlCodeTag: FaCode,
+  terminal: FaTerminal,
+  plus: FaPlus
 };
 
 export default icons;
