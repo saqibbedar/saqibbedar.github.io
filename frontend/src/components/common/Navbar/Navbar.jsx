@@ -1,4 +1,3 @@
-import "./Navbar.css";
 import { useState } from "react";
 import { author, icons } from "@/assets/assets";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,7 +5,6 @@ import { SlideText, SplitText } from "@/components/ui";
 import { motion, AnimatePresence } from "motion/react";
 import { footer } from "@/assets/assets";
 import Marquee from "react-fast-marquee";
-
 
 // motion variants for navItems(child div)
 const navItemsVariants = {
@@ -75,25 +73,31 @@ const bottomVariants = {
 const STYLES = {
   logo: "uppercase text-2xl leading-[1.4rem] font-semibold tracking-wider",
   actionButtons: "uppercase cursor-pointer text-lg leading-5 font-semibold tracking-wider",
-  bottomMarquee: "uppercase text-2xl leading-[1.8rem] font-normal tracking-wider ml-6",
+  fixed: "fixed top-0 left-0 w-full",
+  flexBetween: "flex items-center justify-between",
+  responsive: {
+    maxPx: "px-8", // maxPaddingInline
+    minPx: "px-4", // minPaddingInline
+  }
 };
 
 const Navbar = () => {
-  
   // const MotionLink = motion(Link);
-
   const [activeMenu, setActiveMenu] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
 
   return (
-    <header className="navbar-wrapper">
-      <div className="header">
+    <header className={`${STYLES.fixed} z-50`}>
+      <div className={`${STYLES.flexBetween} ${STYLES.responsive.maxPx} overflow-hidden h-16 bg-[var(--dt-pri-bg)]`}>
+        {/*1. activity header: visible component */}
+        {/* Logo */}
         <Link to="/">
           <SlideText as="div" className={`${STYLES.logo}`}>
             {author.logo}
           </SlideText>
         </Link>
+        {/* Menu+(Toggle Button) */}
         <div className="flex items-center gap-3">
           <SlideText
             as="div"
@@ -110,9 +114,11 @@ const Navbar = () => {
           </SlideText>
         </div>
 
-        {/* Menu */}
+        {/*2. Menu: hidden component (toggle with activeMenu)*/}
         <motion.div
-          className={`navbar-overlay ${activeMenu ? "active-navbar" : ""}`}
+          className={`${STYLES.fixed} h-full ${
+            activeMenu ? "active-navbar" : ""
+          }`}
           initial={{
             y: "-102%",
             background: "rgba(0,0,0,0)",
@@ -128,10 +134,12 @@ const Navbar = () => {
             ease: "circInOut",
           }}
         >
-          {/* start of content */}
-          <div className="relative h-full">
-            {/* Hidden Header */}
-            <div className="navbar-overlay-header overflow-hidden bg-green-0 border-[#9999993d] border-b-[1px] mb-2">
+          {/* Menu content */}
+          {/* First div is an overlay for holding its children's */}
+          <div className={`relative h-full`}>
+            
+            {/* Hidden Header Area */}
+            <div className={`${STYLES.flexBetween} ${STYLES.responsive.maxPx} h-16 overflow-hidden border-[var(--dt-bdr-clr-xtra)] border-b-[1px] mb-2`}>
               {/* logo */}
               <Link
                 to="/"
@@ -146,7 +154,7 @@ const Navbar = () => {
 
               {/* search bar */}
               <motion.button
-                className="rounded-full flex items-center justify-between px-[16px] py-3 text-[14px] text-[#ffffff99] w-[25rem]"
+                className="rounded-full flex items-center justify-between px-[16px] py-3 text-[14px] text-[var(--dt-sec-fg)] w-[25rem]"
                 style={{
                   background: "rgba(255, 255, 255, 0.122)",
                 }}
@@ -163,15 +171,19 @@ const Navbar = () => {
                   ease: "linear",
                 }}
                 onHoverStart={() => setIsHovered(!isHovered)}
-                onHoverEnd={()=>setIsHovered(!isHovered)}
+                onHoverEnd={() => setIsHovered(!isHovered)}
               >
-                <SlideText className="tracking-wider text-sm leading-3" isHovered={isHovered} setIsHovered={setIsHovered}>
+                <SlideText
+                  className="tracking-wider text-sm leading-3"
+                  isHovered={isHovered}
+                  setIsHovered={setIsHovered}
+                >
                   Search
                 </SlideText>
                 <icons.search strokeWidth="1" className="ml-2" />
               </motion.button>
 
-              {/* close button */}
+              {/* X Close (toggleButton) */}
               <SlideText
                 as="div"
                 onClick={() => setActiveMenu(!activeMenu)}
@@ -187,8 +199,8 @@ const Navbar = () => {
               </SlideText>
             </div>
 
-            {/* Nav Items */}
-            <nav className="flex flex-col gap-10 font-normal mt-9">
+            {/* Nav Items Area (Middle Content) */}
+            <nav className={`${STYLES.responsive.maxPx} flex flex-col gap-10 font-normal mt-9`}>
               {[
                 "home",
                 "about",
@@ -223,9 +235,10 @@ const Navbar = () => {
               ))}
             </nav>
 
-            {/* Bottom */}
+            {/* Bottom Area */}
             <div className="absolute bottom-0 w-full text-[var(--dt-sec-fg)]">
-              <div className="w-full flex justify-between gap-4">
+              {/* Social Links */}
+              <div className={`${STYLES.responsive.maxPx} w-full flex justify-between gap-4`}>
                 {footer.map((item, index) => (
                   <Link
                     key={index}
@@ -252,6 +265,7 @@ const Navbar = () => {
                   </Link>
                 ))}
               </div>
+              {/* title Marquee */}
               <AnimatePresence>
                 {activeMenu && (
                   <motion.div
@@ -259,15 +273,17 @@ const Navbar = () => {
                     animate="animate"
                     initial="initial"
                     exit="initial"
-                    custom={[0, 1]}
-                    className="w-full border-[#9999993d] border-t-[1px] h-[65px] flex"
+                    className="w-full border-[var(--dt-bdr-clr-xtra)] border-t-[1px] h-[65px] flex"
                   >
                     <Marquee pauseOnHover={false} autoFill={true} speed={25}>
-                        {
-                          ["Developer", "•", "Educator", "•", "Innovation", "•", "Architect", "•"].map((item, index) => (
-                            <div key={index} className={`${STYLES.bottomMarquee}`}>{item}</div>
-                          ))
-                        }
+                      {author.titleMarquee.map((item, index) => (
+                        <div
+                          key={index}
+                          className="uppercase text-2xl leading-[1.8rem] font-normal tracking-wider ml-6"
+                        >
+                          {item}
+                        </div>
+                      ))}
                     </Marquee>
                   </motion.div>
                 )}

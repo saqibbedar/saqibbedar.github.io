@@ -189,6 +189,7 @@ em {
 
   --dt-border: solid .2px #33333377;
   --dt-border-color: #33333377;
+  --dt-bdr-clr-xtra: #9999993d;
   
   /* animations */
   --rotate-anim: rotate_ 0.3s ease;
@@ -229,22 +230,22 @@ em {
 }
 /* width */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 0px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f150; 
+  background: transparent; 
 }
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: transparent; 
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: transparent; 
 }
 
 /* Animations */
