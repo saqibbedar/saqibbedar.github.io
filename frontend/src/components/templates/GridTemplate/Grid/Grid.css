@@ -12,14 +12,18 @@
     gap: 20px;
     padding: 25px 30px;
     border-radius: 10px;
-    background: #474b51;
+    background: var(--dt-card-background);
     overflow: hidden;
 }
 .project-title{
-    font-size: var(--cards-text-title-size);
+    font-size: 25px;
 }
 .project-description{
-    font-size: var(--cards-text-description-size);
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: .03em;
+    line-height: 1.3rem;
+    color: var(--dt-trinary-foreground);
 }
 .grid-item .grid-item-img-container{
     width: 100%;
