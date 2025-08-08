@@ -7,13 +7,13 @@ import { useSmoothScroll } from "./hooks";
 function App() {
   useSmoothScroll();
   return ( 
-    <>
+    <div className="selection:text-black selection:bg-white">
       <Navbar />
       <BackToTop/>
       <AppRoutes />
       <QuickSearch/>
       <Footer />
-    </>
+    </div>
   );
 }
 
