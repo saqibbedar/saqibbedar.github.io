@@ -1,77 +1,8 @@
-/* .main-button{
-    border: none;
-    background: var(--dt-basic-button-background);
-    padding: 9px 12px;
-    border-radius: 50px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    max-width: 100%;
-    width: fit-content;
-    transition: var(--transition);
-}
-.main-button  span{
-    color: var(--dt-basic-button-foreground);
-    font-size: 14px;
-    text-transform: uppercase;
-}
-#main-button-svg{
-    background: transparent;
-    border-radius: 50px;
-    display: grid;
-    place-items: center;
-    height: 25px;
-    width: 25px;
-    position: relative;
-    overflow: hidden;
-}
-#main-button-svg::after{
-    content: "";
-    background: white;
-    height: 10px;
-    width: 10px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    border-radius: 50px;
-    transition: var(--transition);
-}
-.main-button:hover #main-button-svg::after{
-    height: 100%;
-    width: 100%;
-}
-.main-button > span svg{
-    transform: rotate(0deg);
-    opacity: 0;
-    fill: var(--text-color);
-    transition: var(--transition);
-}
-.main-button:hover > span svg {
-    opacity: 1;
-    transform: rotate(-45deg);
-    z-index: 2;
-}
-
-@media (width < 667px) {    
-    #main-button-svg::after{
-        height: 100%;
-        width: 100%;
-    }
-    .main-button > span svg {
-        opacity: 1;
-        z-index: 2;
-    }
-} */
-
-
 .button {
     position: relative;
     border: none;
-    background: var(--dt-basic-button-background);
-    padding: 9px 12px;
+    padding: 10px 20px;
+    font-weight: 400;
     border-radius: 50px;
     cursor: pointer;
     display: flex;
@@ -79,46 +10,35 @@
     gap: 6px;
     max-width: 100%;
     width: fit-content;
-    transition: all .2s;
-  }
-  /* .button::after{
-    content: "";
-    background: white;
-    height: 10px;
-    width: 10px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    border-radius: 50px;
     transition: var(--transition);
-} */
+  }
   /* Sizes */
-  .small { padding: 0.5rem 1rem; font-size: 0.875rem; }
-  .medium { padding: 0.75rem 1.5rem; font-size: 1rem; }
-  .large { padding: 1rem 2rem; font-size: 1.125rem; }
-  
-  /* Variants */
-  .basic {
-    background: var(--dt-basic-button-background);
-    color: var(--dt-basic-button-foreground);
+  .small {
+    padding: 0 20px;
+    font-size: 14px;
+    letter-spacing: .03em;
   }
-  
-  .navigation {
-    background: var(--dt-basic-button-background);
-    color: var(--dt-basic-button-foreground);
+  .medium {
+    padding: 10px 20px;
+    font-size: 1rem;
   }
-  
-  .download {
-    background: var(--dt-basic-button-background);
-    color: var(--dt-basic-button-foreground);
-  }
-  
-  .button-icon {
-    transition: transform 0.2s;
-  }
-  
-  .download:hover .button-icon {
-    transform: rotate(90deg);
-  }
+  .large {
+    padding: 0.8rem 1.8rem;
+    font-size: 1.235rem;
+}
+
+/* Variants */
+.basic {
+  background: var(--dt-btn-pri-bg);
+  color: var(dt-btn-pri-fg);
+}
+.navigation {
+  background: var(--dt-btn-pri-bg);
+}
+.navigation:hover{
+    background: var(--dt-btn-pri-hover-bg);
+}
+.download {
+  background: var(--dt-btn-pri-bg);
+  color: var(--dt-btn-pri-fg);
+}
