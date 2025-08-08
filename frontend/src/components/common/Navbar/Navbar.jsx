@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { author, icons } from "@/assets/assets";
 import { Link, useNavigate } from "react-router-dom";
 import { SlideText, SplitText } from "@/components/ui";
@@ -83,13 +83,38 @@ const STYLES = {
 
 const Navbar = () => {
   // const MotionLink = motion(Link);
+  const navigate = useNavigate();
   const [activeMenu, setActiveMenu] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const navigate = useNavigate();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [])
 
   return (
     <header className={`${STYLES.fixed} z-50`}>
-      <div className={`${STYLES.flexBetween} ${STYLES.responsive.maxPx} overflow-hidden h-16 bg-[var(--dt-pri-bg)]`}>
+      <div className={`${STYLES.flexBetween} ${STYLES.responsive.maxPx} overflow-hidden h-16 bg-transparent`}>
+        {/* 0. header background Overlay */}
+        <motion.div
+          className={`${STYLES.fixed} bg-black h-16 border-white/10 border-b-[.1px] pointer-events-none`}
+          initial={{
+            y:-70
+          }}
+          animate={{
+            y: scrolled ? 0 : -70
+          }}
+          transition={{
+            duration: 0.7,
+            ease: "anticipate"
+          }}
+        >
+        </motion.div>
+
         {/*1. activity header: visible component */}
         {/* Logo */}
         <Link to="/">
