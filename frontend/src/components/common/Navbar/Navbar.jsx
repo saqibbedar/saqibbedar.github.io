@@ -71,7 +71,8 @@ const bottomVariants = {
 };
 
 const STYLES = {
-  logo: "uppercase text-2xl leading-[1.4rem] font-semibold tracking-wider",
+  navHeight: "h-20",
+  logo: "text-2xl leading-[1.4rem] font-semibold tracking-wider",
   actionButtons: "uppercase cursor-pointer text-lg leading-5 font-semibold tracking-wider",
   fixed: "fixed top-0 left-0 w-full",
   flexBetween: "flex items-center justify-between",
@@ -87,7 +88,7 @@ const Navbar = () => {
   const [activeMenu, setActiveMenu] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
+  
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 10);
@@ -98,22 +99,24 @@ const Navbar = () => {
 
   return (
     <header className={`${STYLES.fixed} z-50`}>
-      <div className={`${STYLES.flexBetween} ${STYLES.responsive.maxPx} overflow-hidden h-16 bg-transparent`}>
+      <div className={`${STYLES.flexBetween} ${STYLES.responsive.maxPx} ${STYLES.navHeight} overflow-hidden bg-transparent`}>
         {/* 0. header background Overlay */}
-        <motion.div
-          className={`${STYLES.fixed} bg-black h-16 border-white/10 border-b-[.1px] pointer-events-none`}
-          initial={{
-            y:-70
-          }}
-          animate={{
-            y: scrolled ? 0 : -70
-          }}
-          transition={{
-            duration: 0.7,
-            ease: "anticipate"
-          }}
-        >
-        </motion.div>
+        <AnimatePresence>
+          <motion.div
+            className={`${STYLES.fixed} ${STYLES.navHeight} bg-black border-white/10 border-b-[.1px] pointer-events-none`}
+            initial={{
+              y: -75
+            }}
+            animate={{
+              y: scrolled ? 0 : -80
+            }}
+            transition={{
+              duration: 1,
+              ease: "anticipate"
+            }}
+          >
+          </motion.div>
+        </AnimatePresence>
 
         {/*1. activity header: visible component */}
         {/* Logo */}
@@ -164,7 +167,7 @@ const Navbar = () => {
           <div className={`relative h-full`}>
             
             {/* Hidden Header Area */}
-            <div className={`${STYLES.flexBetween} ${STYLES.responsive.maxPx} h-16 overflow-hidden border-[var(--dt-bdr-clr-xtra)] border-b-[1px] mb-2`}>
+            <div className={`${STYLES.flexBetween} ${STYLES.responsive.maxPx} ${STYLES.navHeight} overflow-hidden border-[var(--dt-bdr-clr-xtra)] border-b-[1px] mb-2`}>
               {/* logo */}
               <Link
                 to="/"
