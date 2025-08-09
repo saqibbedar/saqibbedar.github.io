@@ -190,6 +190,9 @@ em {
   --dt-border: solid .2px #33333377;
   --dt-border-color: #33333377;
   --dt-bdr-clr-xtra: #9999993d;
+  --dt-blur-bg: #00000091;
+
+  --theme-color: #e73c37;
   
   /* animations */
   --rotate-anim: rotate_ 0.3s ease;
@@ -199,7 +202,15 @@ em {
   /* transition */
   --transition: .64s cubic-bezier(.22,1,.36,1);
 }
-
+.maximumWidth{
+  width: 1669px;
+  margin-inline: auto;
+}
+@media (width <= 1669px) {
+  .maximumWidth {
+    width: auto;
+  }
+}
 .skeleton{
   position: relative;
   border-radius: 4px;
