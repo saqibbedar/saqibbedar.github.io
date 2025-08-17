@@ -124,9 +124,7 @@
   font-style: italic;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 *, *::before, *::after {
   box-sizing: border-box;
