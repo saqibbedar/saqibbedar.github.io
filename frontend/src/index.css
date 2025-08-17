@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 @font-face {
   font-family: 'SF Pro Display';
   src: url('./assets/fonts/SF-Pro-Display-Thin.otf') format('opentype');
@@ -124,7 +126,6 @@
   font-style: italic;
 }
 
-@import "tailwindcss";
 
 *, *::before, *::after {
   box-sizing: border-box;

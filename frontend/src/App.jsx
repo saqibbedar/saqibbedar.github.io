@@ -8,7 +8,7 @@ function App() {
   useSmoothScroll();
   useScrollToTop();
   return ( 
-    <div className="selection:text-black selection:bg-white maximumWidth">
+    <div className="selection:text-black selection:bg-white">
       <Navbar />
       <BackToTop/>
       <AppRoutes />
