@@ -1,0 +1,44 @@
+.button {
+    position: relative;
+    border: none;
+    padding: 10px 20px;
+    font-weight: 400;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    max-width: 100%;
+    width: fit-content;
+    transition: var(--transition);
+  }
+  /* Sizes */
+  .small {
+    padding: 0 20px;
+    font-size: 14px;
+    letter-spacing: .03em;
+  }
+  .medium {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+  .large {
+    padding: 0.8rem 1.8rem;
+    font-size: 1.235rem;
+}
+
+/* Variants */
+.basic {
+  background: var(--dt-btn-pri-bg);
+  color: var(dt-btn-pri-fg);
+}
+.navigation {
+  background: var(--dt-btn-pri-bg);
+}
+.navigation:hover{
+    background: var(--dt-btn-pri-hover-bg);
+}
+.download {
+  background: var(--dt-btn-pri-bg);
+  color: var(--dt-btn-pri-fg);
+}
