@@ -1,11 +1,8 @@
 import { GridProvider } from "@/context";
 import { HomeView } from "@/components/sections";
-import { useSmoothTransform } from "@/hooks";
 
 const Home = () => {
   
-  useSmoothTransform({className: "homepage"});
-
   return (
     <div className="homepage">
       <meta name="author" content="Saqib Bedar" />

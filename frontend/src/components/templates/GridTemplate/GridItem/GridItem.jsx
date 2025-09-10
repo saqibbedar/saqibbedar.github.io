@@ -1,6 +1,6 @@
 import "../Grid/Grid.css";
 import { Link, useNavigate } from "react-router-dom";
-import SimpleParallax from "simple-parallax-js"
+// import SimpleParallax from "simple-parallax-js"
 
 const GridItem = ({ projectId=null, projectUrl, projectName, projectDescription, projectImage, projectTags, isLoading=null, setIsLoading=null }) => {
 
@@ -23,9 +23,9 @@ const GridItem = ({ projectId=null, projectUrl, projectName, projectDescription,
       </div>
 
       <div className={"grid-item-img-container"}>
-        <SimpleParallax scale={1.1}>
+        {/* <SimpleParallax scale={1.1}> */}
           <img src={projectImage} />
-        </SimpleParallax>
+        {/* </SimpleParallax> */}
       </div>
 
       <div className="flex gap-[6px] flex-wrap text-xs mb-3 leading-3">
