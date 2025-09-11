@@ -87,36 +87,10 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [activeMenu, setActiveMenu] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  
-  useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [])
 
   return (
     <header className={`${STYLES.fixed} z-50`}>
-      <div className={`${STYLES.flexBetween} ${STYLES.responsive.maxPx} ${STYLES.navHeight} overflow-hidden bg-transparent`}>
-        {/* 0. header background Overlay */}
-        <AnimatePresence>
-          <motion.div
-            className={`${STYLES.fixed} ${STYLES.navHeight} bg-black border-white/10 border-b-[.1px] pointer-events-none`}
-            initial={{
-              y: -75
-            }}
-            animate={{
-              y: scrolled ? 0 : -80
-            }}
-            transition={{
-              duration: 1,
-              ease: "anticipate"
-            }}
-          >
-          </motion.div>
-        </AnimatePresence>
+      <div className={`${STYLES.flexBetween} ${STYLES.responsive.maxPx} ${STYLES.navHeight} overflow-hidden bg-black border-white/10 border-b-[.1px]`}>
 
         {/*1. activity header: visible component */}
         {/* Logo */}
