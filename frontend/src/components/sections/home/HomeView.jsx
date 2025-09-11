@@ -13,11 +13,11 @@ const HomeView = () => {
     <>
       {/* <HeroSection /> */}
       <CoverSection/>
-      <SkillSection />
       {/* <BlogProvider>
         <BlogSection />
-      </BlogProvider> */}
+        </BlogProvider> */}
       <ProjectSection />
+        <SkillSection />
       {/* <CertificateSection /> */}
       {/* <TestimonialSection /> */}
       <FAQSection />

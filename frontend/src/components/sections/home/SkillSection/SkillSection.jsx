@@ -4,27 +4,25 @@ import {Link} from "react-router-dom"
 
 const SkillSection = () => {
   return (
-    <div className="block w-11/12 mx-auto border-t">
-      <div className="bg-gray-100">
+    <div className="mt-10">
+      <div className="">
 
-        <div className="marquee-wrapper">
-          <Marquee pauseOnHover={true} autoFill={true} speed={25}>
-              <div className="marquee-row">
+        <div className="">
+          <Marquee pauseOnHover={true} autoFill={true} speed={70}>
+              <div className="flex">
                 {skills.first_row.map((skill, index) => (
-                  <Link to={`/search?q=${skill.name}`} key={index} className="skill-box">
-                    {<skill.icon />}
-                    <h1>{skill.name}</h1>
+                  <Link to={`/search?q=${skill.name}`} key={index} className="flex items-center justify-center px-20 py-10 border border-[var(--dt-border-color)] hover:bg-[var(--dt-bdr-clr-xtra)]" title={skill.name}>
+                    {<skill.icon className="h-14 w-14"/>}
                   </Link>
                 ))}
               </div>
           </Marquee>
 
-          <Marquee pauseOnHover={true} autoFill={true} speed={25} direction="right">
-              <div className="marquee-row">
+          <Marquee pauseOnHover={true} autoFill={true} speed={70} direction="right">
+              <div className="flex">
                 {skills.second_row.map((skill, index) => (
-                  <Link to={`/search?q=${skill.name}`} key={index} className="skill-box">
-                    {<skill.icon />}
-                    <h1>{skill.name}</h1>
+                  <Link to={`/search?q=${skill.name}`} key={index} className="flex items-center justify-center px-20 py-10 border border-[var(--dt-border-color)] hover:bg-[var(--dt-bdr-clr-xtra)]" title={skill.name}>
+                    {<skill.icon className="h-14 w-14"/>}
                   </Link>
                 ))}
               </div>

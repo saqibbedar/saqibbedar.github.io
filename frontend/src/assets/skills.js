@@ -6,12 +6,12 @@ const first_row = [
     icon: icons.html,
   },
   {
-    name: "CSS",
-    icon: icons.css,
-  },
-  {
     name: "JS",
     icon: icons.js,
+  },
+  {
+    name: "CSS",
+    icon: icons.css,
   },
   {
     name: "REACT",
@@ -24,11 +24,7 @@ const first_row = [
   {
     name: "TAILWIND",
     icon: icons.tailwind,
-  },
-  {
-    name: "BOOTSTRAP",
-    icon: icons.bootstrap,
-  },
+  }
 ];
 
 const second_row = [
