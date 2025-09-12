@@ -87,7 +87,7 @@ const Navbar = () => {
   return (
     <header className={`${STYLES.fixed} z-50`}>
       <div
-        className={`${STYLES.flexBetween} px-3 md:px-8 ${STYLES.navHeight} overflow-hidden bg-black border-white/10 border-b-[.1px]`}
+        className={`${STYLES.flexBetween} px-3 md:px-8 ${STYLES.navHeight} overflow-hidden bg-black border-[var(--dt-bdr-clr-xtra)] border-b-[1px]`}
       >
         {/*1. activity header: visible component */}
         {/* Logo */}
@@ -103,7 +103,7 @@ const Navbar = () => {
             className={`${STYLES.actionButtons}`}
             onClick={() => setActiveMenu(!activeMenu)}
           >
-            <div className="flex items-center justify-center gap-[0.09rem]">
+            <div className="flex items-center justify-center gap-[0.09rem] font-semibold">
               <span className="">Menu</span>
               <icons.plus
                 strokeWidth={"20px"}
@@ -148,13 +148,16 @@ const Navbar = () => {
                 }}
               >
                 <SlideText as="div" className={`${STYLES.logo}`}>
+                  <span className="hidden sm:block">
                   {author.logo}
+                  </span>
+                  <span className="block sm:hidden">B.</span>
                 </SlideText>
               </Link>
 
               {/* search bar */}
               <motion.button
-                className="rounded-full flex items-center justify-between px-[16px] py-3 text-[14px] text-[var(--dt-sec-fg)] sm:w-[25rem] cursor-pointer"
+                className="rounded-full flex items-center justify-between px-[12px] sm:px-[16px] py-[10px] sm:py-3 text-[14px] text-[var(--dt-sec-fg)] w-[13rem] sm:w-[25rem] cursor-pointer"
                 style={{
                   background: "rgba(255, 255, 255, 0.122)",
                 }}
@@ -180,7 +183,7 @@ const Navbar = () => {
                 >
                   Search
                 </SlideText>
-                <icons.search strokeWidth="1" className="ml-2" />
+                <icons.search strokeWidth="1" className="ml-2 stroke-[var(--dt-sec-fg)] fill-[var(--dt-sec-fg)]" />
               </motion.button>
 
               {/* X Close (toggleButton) */}
@@ -194,14 +197,14 @@ const Navbar = () => {
                     strokeWidth={"3px"}
                     className="h-[1.3rem] w-[1.3rem] rotate-45"
                   />
-                  <span>Close</span>
+                  <span className="hidden sm:block">Close</span>
                 </div>
               </SlideText>
             </div>
 
             {/* Nav Items Area (Middle Content) */}
             <nav
-              className={`px-3 md:px-8 flex flex-col gap-4 md:gap-10 font-normal mt-9`}
+              className={`px-3 md:px-8 flex flex-col gap-2 md:gap-10 font-normal mt-3 md:mt-9`}
             >
               {[
                 "home",
@@ -240,11 +243,11 @@ const Navbar = () => {
             {/* Bottom Area */}
             <div className="absolute bottom-0 w-full text-[var(--dt-sec-fg)]">
               {/* Social Links */}
-              <div className={`px-3 md:px-8 w-full flex justify-between gap-4`}>
+              <div className={`px-3 md:px-8 w-full flex justify-between gap-2 lg:gap-4`}>
                 {footer.map((item, index) => (
                   <Link
                     key={index}
-                    className="flex items-center gap-2 h-[65px]"
+                    className="flex items-center gap-2 md:h-[65px]"
                     to={item.link}
                     target="_blank"
                   >
@@ -258,7 +261,7 @@ const Navbar = () => {
                           exit="initial"
                         >
                           <SplitText
-                            className="text-2xl leading-[1.8rem] tracking-wider"
+                            className="text-[14px] md:text-2xl leading-[1.8rem] tracking-wider"
                             front={item.name}
                           />
                         </motion.div>
@@ -275,13 +278,13 @@ const Navbar = () => {
                     animate="animate"
                     initial="initial"
                     exit="initial"
-                    className="w-full border-[var(--dt-bdr-clr-xtra)] border-t-[1px] h-[65px] flex"
+                    className="w-full border-[var(--dt-bdr-clr-xtra)] border-t-[1px] md:h-[65px] flex"
                   >
-                    <Marquee pauseOnHover={false} autoFill={true} speed={25}>
+                    <Marquee pauseOnHover={false} autoFill={true} speed={50}>
                       {author.titleMarquee.map((item, index) => (
                         <div
                           key={index}
-                          className="uppercase text-2xl leading-[1.8rem] font-normal tracking-wider ml-6"
+                          className="uppercase text-[14px] md:text-2xl leading-[1.8rem] font-normal tracking-wider ml-2 md:ml-6"
                         >
                           {item}
                         </div>
