@@ -71,15 +71,11 @@ const bottomVariants = {
 };
 
 const STYLES = {
-  navHeight: "h-20",
+  navHeight: "h-15 2xl:h-20",
   logo: "text-2xl leading-[1.4rem] font-semibold tracking-wider",
   actionButtons: "uppercase cursor-pointer text-lg leading-5 font-semibold tracking-wider",
   fixed: "fixed top-0 left-0 w-full",
-  flexBetween: "flex items-center justify-between",
-  responsive: {
-    maxPx: "px-8", // maxPaddingInline
-    minPx: "px-4", // minPaddingInline
-  }
+  flexBetween: "flex items-center justify-between"
 };
 
 const Navbar = () => {
@@ -90,8 +86,9 @@ const Navbar = () => {
 
   return (
     <header className={`${STYLES.fixed} z-50`}>
-      <div className={`${STYLES.flexBetween} ${STYLES.responsive.maxPx} ${STYLES.navHeight} overflow-hidden bg-black border-white/10 border-b-[.1px]`}>
-
+      <div
+        className={`${STYLES.flexBetween} px-3 md:px-8 ${STYLES.navHeight} overflow-hidden bg-black border-white/10 border-b-[.1px]`}
+      >
         {/*1. activity header: visible component */}
         {/* Logo */}
         <Link to="/">
@@ -139,9 +136,10 @@ const Navbar = () => {
           {/* Menu content */}
           {/* First div is an overlay for holding its children's */}
           <div className={`relative h-full`}>
-            
             {/* Hidden Header Area */}
-            <div className={`${STYLES.flexBetween} ${STYLES.responsive.maxPx} ${STYLES.navHeight} overflow-hidden border-[var(--dt-bdr-clr-xtra)] border-b-[1px] mb-2`}>
+            <div
+              className={`${STYLES.flexBetween} px-3 md:px-8 ${STYLES.navHeight} overflow-hidden border-[var(--dt-bdr-clr-xtra)] border-b-[1px] mb-2`}
+            >
               {/* logo */}
               <Link
                 to="/"
@@ -156,7 +154,7 @@ const Navbar = () => {
 
               {/* search bar */}
               <motion.button
-                className="rounded-full flex items-center justify-between px-[16px] py-3 text-[14px] text-[var(--dt-sec-fg)] w-[25rem]"
+                className="rounded-full flex items-center justify-between px-[16px] py-3 text-[14px] text-[var(--dt-sec-fg)] sm:w-[25rem] cursor-pointer"
                 style={{
                   background: "rgba(255, 255, 255, 0.122)",
                 }}
@@ -202,7 +200,9 @@ const Navbar = () => {
             </div>
 
             {/* Nav Items Area (Middle Content) */}
-            <nav className={`${STYLES.responsive.maxPx} flex flex-col gap-10 font-normal mt-9`}>
+            <nav
+              className={`px-3 md:px-8 flex flex-col gap-4 md:gap-10 font-normal mt-9`}
+            >
               {[
                 "home",
                 "about",
@@ -214,7 +214,7 @@ const Navbar = () => {
                 <Link
                   key={index}
                   to={`/${item}`}
-                  className={`uppercase text-[3.5rem] rounded-md text-[var(--dt-sec-fg)]`}
+                  className={`uppercase text-[2rem] md:text-[3.5rem] rounded-md text-[var(--dt-sec-fg)]`}
                   onClick={() => setActiveMenu(!activeMenu)}
                 >
                   <AnimatePresence>
@@ -240,7 +240,7 @@ const Navbar = () => {
             {/* Bottom Area */}
             <div className="absolute bottom-0 w-full text-[var(--dt-sec-fg)]">
               {/* Social Links */}
-              <div className={`${STYLES.responsive.maxPx} w-full flex justify-between gap-4`}>
+              <div className={`px-3 md:px-8 w-full flex justify-between gap-4`}>
                 {footer.map((item, index) => (
                   <Link
                     key={index}
