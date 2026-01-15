@@ -113,10 +113,10 @@ const bottomVariants = {
 };
 
 const STYLES = {
-  navHeight: "h-15 2xl:h-20",
-  logo: "text-2xl leading-[1.4rem] font-semibold tracking-wider",
+  navHeight: "h-14 sm:h-16 lg:h-18 2xl:h-20",
+  logo: "text-xl sm:text-2xl leading-tight font-semibold tracking-wider",
   actionButtons:
-    "uppercase cursor-pointer text-lg leading-5 font-semibold tracking-wider",
+    "uppercase cursor-pointer text-base sm:text-lg leading-5 font-semibold tracking-wider",
   fixed: "fixed top-0 left-0 w-full",
   flexBetween: "flex items-center justify-between",
 };
@@ -139,7 +139,7 @@ const Navbar = () => {
   return (
     <header className={`${STYLES.fixed} z-50`}>
       <div
-        className={`${STYLES.flexBetween} px-3 md:px-8 ${STYLES.navHeight} overflow-hidden bg-black border-[var(--dt-bdr-clr-xtra)] border-b-[1px]`}
+        className={`${STYLES.flexBetween} px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 ${STYLES.navHeight} overflow-hidden bg-bg-primary border-border-light border-b`}
       >
         {/*1. activity header: visible component */}
         {/* Logo */}
@@ -185,7 +185,7 @@ const Navbar = () => {
               <div className={`relative h-full`}>
                 {/* Hidden Header Area */}
                 <div
-                  className={`${STYLES.flexBetween} px-3 md:px-8 ${STYLES.navHeight} overflow-hidden border-[var(--dt-bdr-clr-xtra)] border-b-[1px] mb-2`}
+                  className={`${STYLES.flexBetween} px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 ${STYLES.navHeight} overflow-hidden border-border-light border-b mb-2`}
                 >
                   {/* logo */}
                   <Link
@@ -252,7 +252,7 @@ const Navbar = () => {
 
                 {/* Nav Items Area (Middle Content) */}
                 <nav
-                  className={`px-3 md:px-8 flex flex-col gap-2 md:gap-10 font-normal mt-3 md:mt-9`}
+                  className={`px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 flex flex-col gap-2 sm:gap-4 md:gap-6 lg:gap-8 font-normal mt-3 md:mt-6`}
                 >
                   {[
                     "home",
@@ -265,7 +265,7 @@ const Navbar = () => {
                     <Link
                       key={index}
                       to={`/${item}`}
-                      className={`uppercase text-[2rem] md:text-[3.5rem] rounded-md text-[var(--dt-sec-fg)]`}
+                      className="uppercase text-[clamp(1.5rem,5vw,3.5rem)] rounded-md text-fg-secondary"
                       onClick={() => setActiveMenu(false)}
                     >
                       <motion.div
@@ -276,7 +276,7 @@ const Navbar = () => {
                         custom={index}
                       >
                         <SplitText
-                          className=" leading-[3rem] tracking-wider"
+                          className="leading-[3rem] tracking-wider"
                           front={item}
                         />
                       </motion.div>
@@ -285,11 +285,9 @@ const Navbar = () => {
                 </nav>
 
                 {/* Bottom Area */}
-                <div className="absolute bottom-0 w-full text-[var(--dt-sec-fg)]">
+                <div className="absolute bottom-0 w-full text-fg-secondary">
                   {/* Social Links */}
-                  <div
-                    className={`px-3 md:px-8 w-full flex justify-between gap-2 lg:gap-4`}
-                  >
+                  <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 w-full flex justify-between gap-2 sm:gap-4">
                     {footer.map((item, index) => (
                       <Link
                         key={index}
@@ -322,7 +320,7 @@ const Navbar = () => {
                     initial="initial"
                     animate="animate"
                     exit="exit"
-                    className="w-full border-[var(--dt-bdr-clr-xtra)] border-t-[1px] md:h-[65px] flex"
+                    className="w-full border-border-light border-t h-12 sm:h-14 md:h-16 flex"
                   >
                     <Marquee pauseOnHover={false} autoFill={true} speed={50}>
                       {author.titleMarquee.map((item, index) => (
