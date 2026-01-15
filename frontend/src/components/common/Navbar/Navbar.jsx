@@ -9,21 +9,25 @@ import Marquee from "react-fast-marquee";
 // motion variants for navItems(child div)
 const navItemsVariants = {
   initial: {
-    y: 100,
+    y: 40,
     opacity: 0,
-    transition: {
-      // No delay for exit!
-      duration: 0.7,
-      ease: "backInOut"
-    },
   },
   animate: (index) => ({
     y: 0,
     opacity: 1,
     transition: {
-      delay: 0.09 * index, // Stagger in
-      duration: 1,
-      ease: "backInOut",
+      delay: 0.15 + 0.04 * index,
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+  exit: (index) => ({
+    y: -30,
+    opacity: 0,
+    transition: {
+      delay: 0.03 * (5 - index),
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1],
     },
   }),
 };
@@ -31,20 +35,25 @@ const navItemsVariants = {
 // motion variants for socialLinks
 const socialLinkVariants = {
   initial: {
-    y: 20,
+    y: 15,
     opacity: 0,
-    transition: {
-      duration: 0.7,
-      ease: "anticipate",
-    },
   },
   animate: (index) => ({
     y: 0,
     opacity: 1,
     transition: {
-      delay: 0.09 * index,
-      duration: 1.6,
-      ease: "anticipate",
+      delay: 0.3 + 0.03 * index,
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+  exit: (index) => ({
+    y: -15,
+    opacity: 0,
+    transition: {
+      delay: 0.02 * index,
+      duration: 0.4,
+      ease: [0.22, 1, 0.36, 1],
     },
   }),
 };
@@ -52,20 +61,24 @@ const socialLinkVariants = {
 // motion variants for bottom Items
 const bottomVariants = {
   initial: {
-    y: 30,
+    y: 20,
     opacity: 0,
-    transition: {
-      duration: 0.7,
-      ease: "anticipate",
-    },
   },
   animate: {
     y: 0,
     opacity: 1,
     transition: {
-      delay: 0.09,
-      duration: 1.6,
-      ease: "anticipate",
+      delay: 0.35,
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+  exit: {
+    y: -15,
+    opacity: 0,
+    transition: {
+      duration: 0.4,
+      ease: [0.22, 1, 0.36, 1],
     },
   },
 };
@@ -73,9 +86,10 @@ const bottomVariants = {
 const STYLES = {
   navHeight: "h-15 2xl:h-20",
   logo: "text-2xl leading-[1.4rem] font-semibold tracking-wider",
-  actionButtons: "uppercase cursor-pointer text-lg leading-5 font-semibold tracking-wider",
+  actionButtons:
+    "uppercase cursor-pointer text-lg leading-5 font-semibold tracking-wider",
   fixed: "fixed top-0 left-0 w-full",
-  flexBetween: "flex items-center justify-between"
+  flexBetween: "flex items-center justify-between",
 };
 
 const Navbar = () => {
@@ -83,6 +97,15 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [activeMenu, setActiveMenu] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <header className={`${STYLES.fixed} z-50`}>
@@ -118,19 +141,23 @@ const Navbar = () => {
           className={`${STYLES.fixed} h-full ${
             activeMenu ? "active-navbar" : ""
           }`}
+          style={{
+            background: "rgba(0, 0, 0, 0.85)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+          }}
           initial={{
-            y: "-102%",
-            background: "rgba(0,0,0,0)",
-            backdropFilter: "blur(0)",
+            clipPath: "inset(0 0 100% 0)",
+            opacity: 0,
           }}
           animate={{
-            y: activeMenu ? 0 : "-102%",
-            background: "rgba(0, 0, 0, 0.57)",
-            backdropFilter: "blur(100px)",
+            clipPath: activeMenu ? "inset(0 0 0% 0)" : "inset(0 0 100% 0)",
+            opacity: activeMenu ? 1 : 0,
           }}
           transition={{
-            duration: 1,
-            ease: "circInOut",
+            duration: activeMenu ? 0.6 : 0.5,
+            ease: [0.22, 1, 0.36, 1],
+            delay: activeMenu ? 0 : 0.25,
           }}
         >
           {/* Menu content */}
@@ -148,9 +175,7 @@ const Navbar = () => {
                 }}
               >
                 <SlideText as="div" className={`${STYLES.logo}`}>
-                  <span className="hidden sm:block">
-                  {author.logo}
-                  </span>
+                  <span className="hidden sm:block">{author.logo}</span>
                   <span className="block sm:hidden">B.</span>
                 </SlideText>
               </Link>
@@ -183,7 +208,10 @@ const Navbar = () => {
                 >
                   Search
                 </SlideText>
-                <icons.search strokeWidth="1" className="ml-2 stroke-[var(--dt-sec-fg)] fill-[var(--dt-sec-fg)]" />
+                <icons.search
+                  strokeWidth="1"
+                  className="ml-2 stroke-[var(--dt-sec-fg)] fill-[var(--dt-sec-fg)]"
+                />
               </motion.button>
 
               {/* X Close (toggleButton) */}
@@ -220,14 +248,14 @@ const Navbar = () => {
                   className={`uppercase text-[2rem] md:text-[3.5rem] rounded-md text-[var(--dt-sec-fg)]`}
                   onClick={() => setActiveMenu(!activeMenu)}
                 >
-                  <AnimatePresence>
+                  <AnimatePresence mode="wait">
                     {activeMenu && (
                       <motion.div
                         variants={navItemsVariants}
                         initial="initial"
                         animate="animate"
+                        exit="exit"
                         custom={index}
-                        exit="initial"
                       >
                         <SplitText
                           className=" leading-[3rem] tracking-wider"
@@ -243,7 +271,9 @@ const Navbar = () => {
             {/* Bottom Area */}
             <div className="absolute bottom-0 w-full text-[var(--dt-sec-fg)]">
               {/* Social Links */}
-              <div className={`px-3 md:px-8 w-full flex justify-between gap-2 lg:gap-4`}>
+              <div
+                className={`px-3 md:px-8 w-full flex justify-between gap-2 lg:gap-4`}
+              >
                 {footer.map((item, index) => (
                   <Link
                     key={index}
@@ -251,19 +281,23 @@ const Navbar = () => {
                     to={item.link}
                     target="_blank"
                   >
-                    <AnimatePresence>
+                    <AnimatePresence mode="wait">
                       {activeMenu && (
                         <motion.div
                           variants={socialLinkVariants}
                           initial="initial"
                           animate="animate"
+                          exit="exit"
                           custom={index}
-                          exit="initial"
                         >
-                          <SplitText
-                            className="text-[14px] md:text-2xl leading-[1.8rem] tracking-wider"
-                            front={item.name}
-                          />
+                          {isMobile ? (
+                            <item.icon className="h-6 w-6 mb-3" />
+                          ) : (
+                            <SplitText
+                              className="text-[20px] xl:text-2xl leading-[1.8rem] tracking-wider"
+                              front={item.name}
+                            />
+                          )}
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -271,13 +305,13 @@ const Navbar = () => {
                 ))}
               </div>
               {/* title Marquee */}
-              <AnimatePresence>
+              <AnimatePresence mode="wait">
                 {activeMenu && (
                   <motion.div
                     variants={bottomVariants}
-                    animate="animate"
                     initial="initial"
-                    exit="initial"
+                    animate="animate"
+                    exit="exit"
                     className="w-full border-[var(--dt-bdr-clr-xtra)] border-t-[1px] md:h-[65px] flex"
                   >
                     <Marquee pauseOnHover={false} autoFill={true} speed={50}>
