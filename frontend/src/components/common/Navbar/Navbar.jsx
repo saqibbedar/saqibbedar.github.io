@@ -6,28 +6,57 @@ import { motion, AnimatePresence } from "motion/react";
 import { footer } from "@/assets/assets";
 import Marquee from "react-fast-marquee";
 
+// Elegant easing curves
+const elegantEase = [0.76, 0, 0.24, 1]; // smooth decelerate
+const smoothEase = [0.22, 1, 0.36, 1]; // gentle overshoot
+
+// Menu container variants
+const menuContainerVariants = {
+  hidden: {
+    clipPath: "inset(0 0 100% 0)",
+  },
+  visible: {
+    clipPath: "inset(0 0 0% 0)",
+    transition: {
+      duration: 0.8,
+      ease: elegantEase,
+    },
+  },
+  exit: {
+    clipPath: "inset(0 0 100% 0)",
+    transition: {
+      duration: 0.6,
+      ease: elegantEase,
+      delay: 0.3, // wait for children to exit first
+    },
+  },
+};
+
 // motion variants for navItems(child div)
 const navItemsVariants = {
   initial: {
-    y: 40,
+    y: 60,
     opacity: 0,
+    filter: "blur(10px)",
   },
   animate: (index) => ({
     y: 0,
     opacity: 1,
+    filter: "blur(0px)",
     transition: {
-      delay: 0.15 + 0.04 * index,
-      duration: 0.6,
-      ease: [0.22, 1, 0.36, 1],
+      delay: 0.2 + 0.06 * index,
+      duration: 0.7,
+      ease: smoothEase,
     },
   }),
   exit: (index) => ({
-    y: -30,
+    y: -40,
     opacity: 0,
+    filter: "blur(5px)",
     transition: {
-      delay: 0.03 * (5 - index),
-      duration: 0.5,
-      ease: [0.22, 1, 0.36, 1],
+      delay: 0.04 * (5 - index),
+      duration: 0.4,
+      ease: elegantEase,
     },
   }),
 };
@@ -35,25 +64,25 @@ const navItemsVariants = {
 // motion variants for socialLinks
 const socialLinkVariants = {
   initial: {
-    y: 15,
+    y: 25,
     opacity: 0,
   },
   animate: (index) => ({
     y: 0,
     opacity: 1,
     transition: {
-      delay: 0.3 + 0.03 * index,
-      duration: 0.5,
-      ease: [0.22, 1, 0.36, 1],
+      delay: 0.5 + 0.04 * index,
+      duration: 0.6,
+      ease: smoothEase,
     },
   }),
   exit: (index) => ({
-    y: -15,
+    y: -20,
     opacity: 0,
     transition: {
-      delay: 0.02 * index,
-      duration: 0.4,
-      ease: [0.22, 1, 0.36, 1],
+      delay: 0.02 * (5 - index),
+      duration: 0.35,
+      ease: elegantEase,
     },
   }),
 };
@@ -61,24 +90,24 @@ const socialLinkVariants = {
 // motion variants for bottom Items
 const bottomVariants = {
   initial: {
-    y: 20,
+    y: 30,
     opacity: 0,
   },
   animate: {
     y: 0,
     opacity: 1,
     transition: {
-      delay: 0.35,
-      duration: 0.5,
-      ease: [0.22, 1, 0.36, 1],
+      delay: 0.55,
+      duration: 0.6,
+      ease: smoothEase,
     },
   },
   exit: {
-    y: -15,
+    y: -20,
     opacity: 0,
     transition: {
-      duration: 0.4,
-      ease: [0.22, 1, 0.36, 1],
+      duration: 0.35,
+      ease: elegantEase,
     },
   },
 };
@@ -137,119 +166,108 @@ const Navbar = () => {
         </div>
 
         {/*2. Menu: hidden component (toggle with activeMenu)*/}
-        <motion.div
-          className={`${STYLES.fixed} h-full ${
-            activeMenu ? "active-navbar" : ""
-          }`}
-          style={{
-            background: "rgba(0, 0, 0, 0.85)",
-            backdropFilter: "blur(20px)",
-            WebkitBackdropFilter: "blur(20px)",
-          }}
-          initial={{
-            clipPath: "inset(0 0 100% 0)",
-            opacity: 0,
-          }}
-          animate={{
-            clipPath: activeMenu ? "inset(0 0 0% 0)" : "inset(0 0 100% 0)",
-            opacity: activeMenu ? 1 : 0,
-          }}
-          transition={{
-            duration: activeMenu ? 0.6 : 0.5,
-            ease: [0.22, 1, 0.36, 1],
-            delay: activeMenu ? 0 : 0.25,
-          }}
-        >
-          {/* Menu content */}
-          {/* First div is an overlay for holding its children's */}
-          <div className={`relative h-full`}>
-            {/* Hidden Header Area */}
-            <div
-              className={`${STYLES.flexBetween} px-3 md:px-8 ${STYLES.navHeight} overflow-hidden border-[var(--dt-bdr-clr-xtra)] border-b-[1px] mb-2`}
+        <AnimatePresence mode="wait">
+          {activeMenu && (
+            <motion.div
+              className={`${STYLES.fixed} h-full`}
+              style={{
+                background: "rgba(0, 0, 0, 0.92)",
+                backdropFilter: "blur(20px)",
+                WebkitBackdropFilter: "blur(20px)",
+              }}
+              variants={menuContainerVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
             >
-              {/* logo */}
-              <Link
-                to="/"
-                onClick={() => {
-                  setActiveMenu(!activeMenu);
-                }}
-              >
-                <SlideText as="div" className={`${STYLES.logo}`}>
-                  <span className="hidden sm:block">{author.logo}</span>
-                  <span className="block sm:hidden">B.</span>
-                </SlideText>
-              </Link>
-
-              {/* search bar */}
-              <motion.button
-                className="rounded-full flex items-center justify-between px-[12px] sm:px-[16px] py-[10px] sm:py-3 text-[14px] text-[var(--dt-sec-fg)] w-[13rem] sm:w-[25rem] cursor-pointer"
-                style={{
-                  background: "rgba(255, 255, 255, 0.122)",
-                }}
-                onClick={() => {
-                  navigate("/search");
-                  setActiveMenu(!activeMenu);
-                }}
-                whileHover={{
-                  background: "rgba(255, 255, 255, 0.2)",
-                  scale: 1.01,
-                }}
-                transition={{
-                  duration: 0.2,
-                  ease: "linear",
-                }}
-                onHoverStart={() => setIsHovered(!isHovered)}
-                onHoverEnd={() => setIsHovered(!isHovered)}
-              >
-                <SlideText
-                  className="tracking-wider text-sm leading-3"
-                  isHovered={isHovered}
-                  setIsHovered={setIsHovered}
+              {/* Menu content */}
+              {/* First div is an overlay for holding its children's */}
+              <div className={`relative h-full`}>
+                {/* Hidden Header Area */}
+                <div
+                  className={`${STYLES.flexBetween} px-3 md:px-8 ${STYLES.navHeight} overflow-hidden border-[var(--dt-bdr-clr-xtra)] border-b-[1px] mb-2`}
                 >
-                  Search
-                </SlideText>
-                <icons.search
-                  strokeWidth="1"
-                  className="ml-2 stroke-[var(--dt-sec-fg)] fill-[var(--dt-sec-fg)]"
-                />
-              </motion.button>
+                  {/* logo */}
+                  <Link
+                    to="/"
+                    onClick={() => {
+                      setActiveMenu(!activeMenu);
+                    }}
+                  >
+                    <SlideText as="div" className={`${STYLES.logo}`}>
+                      <span className="hidden sm:block">{author.logo}</span>
+                      <span className="block sm:hidden">B.</span>
+                    </SlideText>
+                  </Link>
 
-              {/* X Close (toggleButton) */}
-              <SlideText
-                as="div"
-                onClick={() => setActiveMenu(!activeMenu)}
-                className={`${STYLES.actionButtons}`}
-              >
-                <div className="flex items-center justify-center gap-[0.2rem]">
-                  <icons.plus
-                    strokeWidth={"3px"}
-                    className="h-[1.3rem] w-[1.3rem] rotate-45"
-                  />
-                  <span className="hidden sm:block">Close</span>
+                  {/* search bar */}
+                  <motion.button
+                    className="rounded-full flex items-center justify-between px-[12px] sm:px-[16px] py-[10px] sm:py-3 text-[14px] text-[var(--dt-sec-fg)] w-[13rem] sm:w-[25rem] cursor-pointer"
+                    style={{
+                      background: "rgba(255, 255, 255, 0.122)",
+                    }}
+                    onClick={() => {
+                      navigate("/search");
+                      setActiveMenu(!activeMenu);
+                    }}
+                    whileHover={{
+                      background: "rgba(255, 255, 255, 0.2)",
+                      scale: 1.01,
+                    }}
+                    transition={{
+                      duration: 0.2,
+                      ease: "linear",
+                    }}
+                    onHoverStart={() => setIsHovered(!isHovered)}
+                    onHoverEnd={() => setIsHovered(!isHovered)}
+                  >
+                    <SlideText
+                      className="tracking-wider text-sm leading-3"
+                      isHovered={isHovered}
+                      setIsHovered={setIsHovered}
+                    >
+                      Search
+                    </SlideText>
+                    <icons.search
+                      strokeWidth="1"
+                      className="ml-2 stroke-[var(--dt-sec-fg)] fill-[var(--dt-sec-fg)]"
+                    />
+                  </motion.button>
+
+                  {/* X Close (toggleButton) */}
+                  <SlideText
+                    as="div"
+                    onClick={() => setActiveMenu(!activeMenu)}
+                    className={`${STYLES.actionButtons}`}
+                  >
+                    <div className="flex items-center justify-center gap-[0.2rem]">
+                      <icons.plus
+                        strokeWidth={"3px"}
+                        className="h-[1.3rem] w-[1.3rem] rotate-45"
+                      />
+                      <span className="hidden sm:block">Close</span>
+                    </div>
+                  </SlideText>
                 </div>
-              </SlideText>
-            </div>
 
-            {/* Nav Items Area (Middle Content) */}
-            <nav
-              className={`px-3 md:px-8 flex flex-col gap-2 md:gap-10 font-normal mt-3 md:mt-9`}
-            >
-              {[
-                "home",
-                "about",
-                "projects",
-                "services",
-                "courses",
-                "contact",
-              ].map((item, index) => (
-                <Link
-                  key={index}
-                  to={`/${item}`}
-                  className={`uppercase text-[2rem] md:text-[3.5rem] rounded-md text-[var(--dt-sec-fg)]`}
-                  onClick={() => setActiveMenu(!activeMenu)}
+                {/* Nav Items Area (Middle Content) */}
+                <nav
+                  className={`px-3 md:px-8 flex flex-col gap-2 md:gap-10 font-normal mt-3 md:mt-9`}
                 >
-                  <AnimatePresence mode="wait">
-                    {activeMenu && (
+                  {[
+                    "home",
+                    "about",
+                    "projects",
+                    "services",
+                    "courses",
+                    "contact",
+                  ].map((item, index) => (
+                    <Link
+                      key={index}
+                      to={`/${item}`}
+                      className={`uppercase text-[2rem] md:text-[3.5rem] rounded-md text-[var(--dt-sec-fg)]`}
+                      onClick={() => setActiveMenu(false)}
+                    >
                       <motion.div
                         variants={navItemsVariants}
                         initial="initial"
@@ -262,27 +280,23 @@ const Navbar = () => {
                           front={item}
                         />
                       </motion.div>
-                    )}
-                  </AnimatePresence>
-                </Link>
-              ))}
-            </nav>
+                    </Link>
+                  ))}
+                </nav>
 
-            {/* Bottom Area */}
-            <div className="absolute bottom-0 w-full text-[var(--dt-sec-fg)]">
-              {/* Social Links */}
-              <div
-                className={`px-3 md:px-8 w-full flex justify-between gap-2 lg:gap-4`}
-              >
-                {footer.map((item, index) => (
-                  <Link
-                    key={index}
-                    className="flex items-center gap-2 md:h-[65px]"
-                    to={item.link}
-                    target="_blank"
+                {/* Bottom Area */}
+                <div className="absolute bottom-0 w-full text-[var(--dt-sec-fg)]">
+                  {/* Social Links */}
+                  <div
+                    className={`px-3 md:px-8 w-full flex justify-between gap-2 lg:gap-4`}
                   >
-                    <AnimatePresence mode="wait">
-                      {activeMenu && (
+                    {footer.map((item, index) => (
+                      <Link
+                        key={index}
+                        className="flex items-center gap-2 md:h-[65px]"
+                        to={item.link}
+                        target="_blank"
+                      >
                         <motion.div
                           variants={socialLinkVariants}
                           initial="initial"
@@ -299,14 +313,10 @@ const Navbar = () => {
                             />
                           )}
                         </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </Link>
-                ))}
-              </div>
-              {/* title Marquee */}
-              <AnimatePresence mode="wait">
-                {activeMenu && (
+                      </Link>
+                    ))}
+                  </div>
+                  {/* title Marquee */}
                   <motion.div
                     variants={bottomVariants}
                     initial="initial"
@@ -325,11 +335,11 @@ const Navbar = () => {
                       ))}
                     </Marquee>
                   </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </div>
-        </motion.div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </header>
   );
