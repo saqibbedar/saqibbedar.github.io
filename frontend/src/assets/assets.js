@@ -1,21 +1,22 @@
 import faqs from "@/assets/faqs";
 import icons from "@/assets/icons";
-import awards from '@/assets/awards';
-import footer from '@/assets/footer';
-import aboutSkills from './aboutSkills';
+import footer from "@/assets/footer";
+import aboutSkills from "./aboutSkills";
 import author from "@/assets/authorInfo";
 import * as skills from "@/assets/skills";
 import blogPosts from "@/assets/blogPosts";
-import education from '@/assets/education';
+import education from "@/assets/education";
 import ErrorImages from "@/assets/errorImages";
 import certificates from "@/assets/certificates";
-import slideContent from "@/assets/slideContent";
-import testimonials from '@/assets/testimonials';
+import testimonials from "@/assets/testimonials";
+import bootcampsAndEvents from "@/assets/bootcampsAndEvents";
+export * from "./project";
+export * from "./courses";
+export * from "./services";
 
 export {
   faqs,
   icons,
-  awards,
   skills,
   footer,
   author,
@@ -23,7 +24,7 @@ export {
   education,
   aboutSkills,
   ErrorImages,
-  slideContent,
   certificates,
-  testimonials
+  testimonials,
+  bootcampsAndEvents,
 };

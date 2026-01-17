@@ -1,4 +1,5 @@
 import icons from "@/assets/icons";
+import { SiMysql } from "react-icons/si";
 
 const first_row = [
   {
@@ -55,6 +56,10 @@ const second_row = [
   {
     name: "MONGODB",
     icon: icons.mongodb,
+  },
+  {
+    name: "MYSQL",
+    icon: SiMysql,
   },
 ];
 
