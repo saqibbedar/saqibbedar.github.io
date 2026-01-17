@@ -5,7 +5,7 @@ import FAQSection from "./FAQSection";
 import { useContext } from "react";
 import { author, education } from "@/assets/assets";
 import { CategoryContext } from "@/context/CategoryContext";
-import { CategoryTabs } from "@/components/templates/ui";
+import { CategoryTabs } from "@/components/ui";
 
 const CategoryButtons = ["Education", "Bootcamps & Events", "FAQs"];
 

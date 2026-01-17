@@ -1,5 +1,5 @@
 import { useParams, useSearchParams } from "react-router-dom";
-import { SearchInput } from "@/components/ui";
+import { SearchInput } from "@/components/features";
 
 const Search = () => {
   const { query } = useParams();
@@ -11,6 +11,6 @@ const Search = () => {
       <SearchInput initialQuery={searchQuery} />
     </div>
   );
-}
+};
 
 export default Search;

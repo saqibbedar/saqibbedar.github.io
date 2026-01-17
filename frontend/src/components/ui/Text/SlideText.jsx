@@ -14,7 +14,6 @@ export const SlideText = ({
   children,
   ...props
 }) => {
-
   // Use custom component if provided, else use motion[as] or motion.div
   const Comp = component ? motion(component) : motion[as] || motion.div;
 
@@ -27,6 +26,12 @@ export const SlideText = ({
   // If children is provided, use it for both slides
   const contentFront = children ?? front;
   const contentBack = children ?? back ?? front;
+
+  // Determine the longer text to set proper width
+  const longerContent =
+    String(contentFront).length >= String(contentBack).length
+      ? contentFront
+      : contentBack;
 
   // Determine animation trigger: animate if isHovered is defined, else use whileHover
   const motionProps =
@@ -52,7 +57,14 @@ export const SlideText = ({
       {...motionProps}
       {...hoverHandlers}
     >
+      {/* Hidden text to establish width based on longer text */}
+      <div className="invisible" aria-hidden="true">
+        <span>{longerContent}</span>
+      </div>
+
+      {/* Front text (visible initially) */}
       <motion.div
+        className="absolute inset-0"
         transition={usedTransition}
         variants={{
           initial: { y: 0 },
@@ -61,6 +73,8 @@ export const SlideText = ({
       >
         <span>{contentFront}</span>
       </motion.div>
+
+      {/* Back text (slides in on hover) */}
       <motion.div
         className="absolute inset-0 text-inherit"
         transition={usedTransition}

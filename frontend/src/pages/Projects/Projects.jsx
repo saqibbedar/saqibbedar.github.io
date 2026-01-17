@@ -1,4 +1,4 @@
-import { CategoryProvider, GridProvider } from "@/context";
+import { CategoryProvider } from "@/context";
 import { ProjectView } from "@/components/sections";
 
 const Projects = () => {
@@ -6,9 +6,7 @@ const Projects = () => {
     <>
       <title>Saqib Bedar | Projects</title>
     <CategoryProvider initialCategory={"All"}>
-      <GridProvider>
         <ProjectView />
-      </GridProvider>
     </CategoryProvider>
     </>
   );

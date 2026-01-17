@@ -1,4 +1,3 @@
-import Blogs from "./Blogs/Blogs";
 import Home from "./Home/Home";
 import About from "./About/About";
 import Contact from "./Contact/Contact";
@@ -7,7 +6,10 @@ import NotFound from "./NotFound/NotFound";
 import Projects from "./Projects/Projects";
 import Services from "./Services/Services";
 import Search from "./Search/Search";
-import Error404 from './NotFound/Error404';
+import Error404 from "./NotFound/Error404";
+import Terms from "./Terms/Terms";
+import Policy from "./Policy/Policy";
+import Sitemap from "./Sitemap/Sitemap";
 
 export {
   Home,
@@ -18,6 +20,8 @@ export {
   Error404,
   Projects,
   Services,
-  Blogs,
-  Search
+  Search,
+  Terms,
+  Policy,
+  Sitemap,
 };

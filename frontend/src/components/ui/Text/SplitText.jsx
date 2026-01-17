@@ -37,6 +37,15 @@ export const SplitText = ({
         }
       : {};
 
+  // Helper to render character - preserves spaces using non-breaking space
+  const renderChar = (char) => (char === " " ? "\u00A0" : char);
+
+  const frontText = children ?? front;
+  const backText = children ?? back ?? front;
+
+  // Determine the longer text to set proper width
+  const longerText = frontText.length >= backText.length ? frontText : backText;
+
   return (
     <Comp
       className={`relative block overflow-hidden whitespace-nowrap ${className}`}
@@ -47,8 +56,18 @@ export const SplitText = ({
       {...extraProps}
       style={{ padding: 0 }}
     >
-      <div>
-        {(children ?? front).split("").map((char, index) => (
+      {/* Hidden text to establish width based on longer text */}
+      <div className="invisible" aria-hidden="true">
+        {longerText.split("").map((char, index) => (
+          <span key={index} className="inline-block">
+            {renderChar(char)}
+          </span>
+        ))}
+      </div>
+
+      {/* Front text (visible initially) */}
+      <div className="absolute inset-0">
+        {frontText.split("").map((char, index) => (
           <motion.span
             key={index}
             transition={{
@@ -62,12 +81,14 @@ export const SplitText = ({
             }}
             className="inline-block"
           >
-            {char}
+            {renderChar(char)}
           </motion.span>
         ))}
       </div>
+
+      {/* Back text (slides in on hover) */}
       <div className="absolute inset-0">
-        {(children ?? back ?? front).split("").map((char, index) => (
+        {backText.split("").map((char, index) => (
           <motion.span
             key={index}
             transition={{
@@ -81,7 +102,7 @@ export const SplitText = ({
             }}
             className="inline-block"
           >
-            {char}
+            {renderChar(char)}
           </motion.span>
         ))}
       </div>

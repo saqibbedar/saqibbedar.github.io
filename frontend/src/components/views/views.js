@@ -1,4 +1,4 @@
-import Blog from './Blog/Blog';
 import Project from './Project/Project';
+import Course from "./Course/Course";
 
-export { Blog, Project };
+export { Project, Course };
