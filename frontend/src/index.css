@@ -1,351 +1,231 @@
 @import "tailwindcss";
 
+/* Tailwind v4 Theme Configuration */
+@theme {
+  /* Colors */
+  --color-bg-primary: #000000;
+  --color-bg-secondary: #ffffff;
+  --color-bg-card: #1a1a1a;
+  --color-bg-card-btn: #3a3a3a;
+  --color-bg-card-btn-hover: #4c4c4c;
+  --color-bg-blur: rgba(0, 0, 0, 0.57);
+
+  --color-fg-primary: #ffffff;
+  --color-fg-secondary: rgba(255, 255, 255, 0.6);
+  --color-fg-muted: #b4b4b4;
+
+  --color-border: rgba(51, 51, 51, 0.47);
+  --color-border-light: rgba(153, 153, 153, 0.24);
+
+  --color-btn-primary-bg: rgba(255, 255, 255, 0.12);
+  --color-btn-primary-hover: rgba(255, 255, 255, 0.2);
+  --color-btn-secondary-bg: #ffffff;
+  --color-btn-secondary-fg: #000000;
+
+  --color-accent: #e73c37;
+
+  /* Spacing */
+  --spacing-section: clamp(1rem, 3vw, 2rem);
+
+  /* Font Family */
+  --font-display: "SF Pro Display", system-ui, sans-serif;
+
+  /* Transitions */
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-default: 0.64s var(--ease-smooth);
+}
+
 @font-face {
-  font-family: 'SF Pro Display';
-  src: url('./assets/fonts/SF-Pro-Display-Thin.otf') format('opentype');
-  font-weight: 100; /* Thin */
+  font-family: "SF Pro Display";
+  src: url("./assets/fonts/SF-Pro-Display-Thin.otf") format("opentype");
+  font-weight: 100;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'SF Pro Display';
-  src: url('./assets/fonts/SF-Pro-Display-ThinItalic.otf') format('opentype');
-  font-weight: 100; /* Thin Italic */
+  font-family: "SF Pro Display";
+  src: url("./assets/fonts/SF-Pro-Display-ThinItalic.otf") format("opentype");
+  font-weight: 100;
   font-style: italic;
 }
 
 @font-face {
-  font-family: 'SF Pro Display';
-  src: url('./assets/fonts/SF-Pro-Display-Ultralight.otf') format('opentype');
-  font-weight: 200; /* Ultra-Light */
+  font-family: "SF Pro Display";
+  src: url("./assets/fonts/SF-Pro-Display-Ultralight.otf") format("opentype");
+  font-weight: 200;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'SF Pro Display';
-  src: url('./assets/fonts/SF-Pro-Display-UltralightItalic.otf') format('opentype');
-  font-weight: 200; /* Ultra-Light Italic */
+  font-family: "SF Pro Display";
+  src: url("./assets/fonts/SF-Pro-Display-UltralightItalic.otf")
+    format("opentype");
+  font-weight: 200;
   font-style: italic;
 }
 
 @font-face {
-  font-family: 'SF Pro Display';
-  src: url('./assets/fonts/SF-Pro-Display-Light.otf') format('opentype');
-  font-weight: 300; /* Light */
+  font-family: "SF Pro Display";
+  src: url("./assets/fonts/SF-Pro-Display-Light.otf") format("opentype");
+  font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'SF Pro Display';
-  src: url('./assets/fonts/SF-Pro-Display-LightItalic.otf') format('opentype');
-  font-weight: 300; /* Light Italic */
+  font-family: "SF Pro Display";
+  src: url("./assets/fonts/SF-Pro-Display-LightItalic.otf") format("opentype");
+  font-weight: 300;
   font-style: italic;
 }
 
 @font-face {
-  font-family: 'SF Pro Display';
-  src: url('./assets/fonts/SF-Pro-Display-Regular.otf') format('opentype');
-  font-weight: 400; /* Regular */
+  font-family: "SF Pro Display";
+  src: url("./assets/fonts/SF-Pro-Display-Regular.otf") format("opentype");
+  font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'SF Pro Display';
-  src: url('./assets/fonts/SF-Pro-Display-RegularItalic.otf') format('opentype');
-  font-weight: 400; /* Regular Italic */
+  font-family: "SF Pro Display";
+  src: url("./assets/fonts/SF-Pro-Display-RegularItalic.otf") format("opentype");
+  font-weight: 400;
   font-style: italic;
 }
 
 @font-face {
-  font-family: 'SF Pro Display';
-  src: url('./assets/fonts/SF-Pro-Display-Medium.otf') format('opentype');
-  font-weight: 500; /* Medium */
+  font-family: "SF Pro Display";
+  src: url("./assets/fonts/SF-Pro-Display-Medium.otf") format("opentype");
+  font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'SF Pro Display';
-  src: url('./assets/fonts/SF-Pro-Display-MediumItalic.otf') format('opentype');
-  font-weight: 500; /* Medium Italic */
+  font-family: "SF Pro Display";
+  src: url("./assets/fonts/SF-Pro-Display-MediumItalic.otf") format("opentype");
+  font-weight: 500;
   font-style: italic;
 }
 
 @font-face {
-  font-family: 'SF Pro Display';
-  src: url('./assets/fonts/SF-Pro-Display-Semibold.otf') format('opentype');
-  font-weight: 600; /* Semi-Bold */
+  font-family: "SF Pro Display";
+  src: url("./assets/fonts/SF-Pro-Display-Semibold.otf") format("opentype");
+  font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'SF Pro Display';
-  src: url('./assets/fonts/SF-Pro-Display-SemiboldItalic.otf') format('opentype');
-  font-weight: 600; /* Semi-Bold Italic */
+  font-family: "SF Pro Display";
+  src: url("./assets/fonts/SF-Pro-Display-SemiboldItalic.otf")
+    format("opentype");
+  font-weight: 600;
   font-style: italic;
 }
 
 @font-face {
-  font-family: 'SF Pro Display';
-  src: url('./assets/fonts/SF-Pro-Display-Bold.otf') format('opentype');
-  font-weight: 700; /* Bold */
+  font-family: "SF Pro Display";
+  src: url("./assets/fonts/SF-Pro-Display-Bold.otf") format("opentype");
+  font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'SF Pro Display';
-  src: url('./assets/fonts/SF-Pro-Display-BoldItalic.otf') format('opentype');
-  font-weight: 700; /* Bold Italic */
+  font-family: "SF Pro Display";
+  src: url("./assets/fonts/SF-Pro-Display-BoldItalic.otf") format("opentype");
+  font-weight: 700;
   font-style: italic;
 }
 
 @font-face {
-  font-family: 'SF Pro Display';
-  src: url('./assets/fonts/SF-Pro-Display-Heavy.otf') format('opentype');
-  font-weight: 800; /* Heavy */
+  font-family: "SF Pro Display";
+  src: url("./assets/fonts/SF-Pro-Display-Heavy.otf") format("opentype");
+  font-weight: 800;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'SF Pro Display';
-  src: url('./assets/fonts/SF-Pro-Display-HeavyItalic.otf') format('opentype');
-  font-weight: 800; /* Heavy Italic */
+  font-family: "SF Pro Display";
+  src: url("./assets/fonts/SF-Pro-Display-HeavyItalic.otf") format("opentype");
+  font-weight: 800;
   font-style: italic;
 }
 
 @font-face {
-  font-family: 'SF Pro Display';
-  src: url('./assets/fonts/SF-Pro-Display-Black.otf') format('opentype');
-  font-weight: 900; /* Black */
+  font-family: "SF Pro Display";
+  src: url("./assets/fonts/SF-Pro-Display-Black.otf") format("opentype");
+  font-weight: 900;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'SF Pro Display';
-  src: url('./assets/fonts/SF-Pro-Display-BlackItalic.otf') format('opentype');
-  font-weight: 900; /* Black Italic */
+  font-family: "SF Pro Display";
+  src: url("./assets/fonts/SF-Pro-Display-BlackItalic.otf") format("opentype");
+  font-weight: 900;
   font-style: italic;
 }
 
-html, body{
+/* Base Styles */
+html,
+body {
   width: 100%;
-  font-family: 'SF Pro Display', sans-serif;
-  color: var(--dt-pri-fg);
+  font-family: var(--font-display);
+  color: var(--color-fg-primary);
   letter-spacing: 0.02em;
 }
 
-body{
-  background: var(--dt-pri-bg); 
+body {
+  background: var(--color-bg-primary);
   overflow-x: hidden;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
-h1, h2, h3 {
-  font-family: 'SF Pro Display', sans-serif;
-  font-weight: 700; /* Bold */
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
 }
 
 p {
-  font-family: 'SF Pro Display', sans-serif;
-  font-weight: 400; /* Regular */
+  font-family: var(--font-display);
+  font-weight: 400;
 }
 
 em {
-  font-family: 'SF Pro Display', sans-serif;
+  font-family: var(--font-display);
   font-style: italic;
 }
 
-:root{
-  /* dt: Dark Theme */
-  --dt-secondary-background: white;
-  --dt-primary-background: #000000;
-  --dt-primary-foreground: white;
-  --dt-secondary-foreground: #fff9;
-  --dt-trinary-foreground: #fff9;
+/* Legacy CSS variable aliases (for backward compatibility) */
+/* :root {
+  --dt-pri-bg: var(--color-bg-primary);
+  --dt-pri-fg: var(--color-fg-primary);
+  --dt-sec-bg: var(--color-bg-secondary);
+  --dt-sec-fg: var(--color-fg-secondary);
+  --dt-bdr-clr-xtra: var(--color-border-light);
+  --dt-card-bg: var(--color-bg-card);
+  --transition: var(--transition-default);
+} */
 
-  --dt-pri-bg: #000000;
-  --dt-pri-fg: #ffffff;
-  --dt-sec-bg: #ffffff;
-  --dt-sec-fg: #ffffff99;
-
-  --dt-card-bg: #1a1a1a;
-  --dt-card-btn-bg: #3a3a3a;
-  --dt-card-btn-hover-bg: #4c4c4c;
-  
-  /* Dark Theme Button Primary Styles */
-  --dt-btn-pri-fg: #fff;
-  --dt-btn-pri-bg: #ffffff1f;
-  --dt-btn-pri-hover-bg: #ffffff33;
-  /* Dark Theme Button Secondary Styles */
-  --dt-btn-sec-fg: #000;
-  --dt-btn-sec-bg: #fff;
-  --dt-btn-sec-hover-bg: #fffc;
-
-  --dt-border: solid .2px #33333377;
-  --dt-border-color: #33333377;
-  --dt-bdr-clr-xtra: #9999993d;
-  --dt-blur-bg: #00000091;
-
-  --theme-color: #e73c37;
-  
-  /* animations */
-  --rotate-anim: rotate_ 0.3s ease;
-  --fadeIn : fade .64s cubic-bezier(.22,1,.36,1);
-  --transform : transform .64s cubic-bezier(.22,1,.36,1);
-
-  /* transition */
-  --transition: .64s cubic-bezier(.22,1,.36,1);
-}
-
-.maximumWidth{
-  width: 1669px;
-  margin-inline: auto;
-}
-@media (width <= 1669px) {
-  .maximumWidth {
-    width: auto;
-  }
-}
-
-.skeleton{
-  position: relative;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.skeleton::before{
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-  padding-block: 20px;
-  border-radius: 4px;
-  background: linear-gradient(90deg, #eee, #dedede, #eee);
-  background-size: 200%;
-  animation: skeleton .7s infinite linear reverse;
-}
-
-@keyframes skeleton {
-  0%{
-    background-position: -100% 0;
-  }
-  100%{
-    background-position: 100% 0;
-  }
-}
-
-/* width */
+/* Hide scrollbar globally */
 ::-webkit-scrollbar {
-  /* width: 0px;
-   */
-   display: none;
+  display: none;
 }
 
-
-/* Animations */
-@keyframes rotate_ {
-  from{
-      transform: rotate(0deg);
-  }
-  to{
-      transform: rotate(360deg);
-  }
-}
-
-@keyframes transform {
-  from{
-    transform: translateY(30px);
-    filter: blur(3px);
-    opacity: 0;
-  }
-  to{
-      transform: translateY(0px);
-    filter: blur(0px);
-      opacity: 1;
-  }
-}
-
-@keyframes fade {
-  from{
-    opacity: 0;
-  }
-  to{
-    opacity: 1;
-  }
-}
-
-/* mix up styles for all */
-
-.author-info h6> a::after, .awarding-institution h6 > a:after{
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  border-bottom: 2.33px solid var(--link-color);
-  width: 0%;
-  transition: var(--transition);
-}
-.author-info h6:hover > a::after, .awarding-institution h6 > a:hover:after{
-  width: 100%;
-}
-
-
-/* Hide scrollbar for all overflow content */
-:where(.f-blog-content, .testimonials-wrapper, .posts, .categories-box, .search-results-hide-scroll-class, .hide-scrollbar)::-webkit-scrollbar {
+/* Utility: Hide scrollbar for specific elements */
+.hide-scrollbar::-webkit-scrollbar {
   width: 0px;
   height: 0px;
 }
 
-.rows-handler{
+/* Utility: Line clamp for text truncation */
+.line-clamp-4 {
   display: -webkit-box;
   -webkit-line-clamp: 4;
   line-clamp: 4;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
   overflow: hidden;
-}
-
-:where(.card-content p, .content p, .f-post-left-section p, .categories, .founded-items, .results, .founded-item-box-content-description ){
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
-  -webkit-box-orient: vertical;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-
-.animatedHand {
-  animation: 2s ease-in-out infinite animatedHand;
-  transform-origin: 80% 75%;
-  margin-left: 4px;
-  margin-right: 8px;
-}
-
-@keyframes animatedHand {
-  0%, 100%, 60%, 80%, 90% {
-      transform: rotate(20deg);
-  }
-  10% {
-      transform: rotate(45deg);
-  }
-  20% {
-      transform: rotate(10deg);
-  }
-  30% {
-      transform: rotate(40deg);
-  }
-  40% {
-      transform: rotate(15deg);
-  }
-  50% {
-      transform: rotate(35deg);
-  }
-  70% {
-      transform: rotate(30deg);
-  }
 }
