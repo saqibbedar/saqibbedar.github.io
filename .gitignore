@@ -2,3 +2,13 @@ expo-app
 .vscode
 *.py
 *.cpp
+*.mp4
+bedarUI/
+test.html
+.github
+backend/node_modules/
+backend/uploads/
+backend/.env
+frontend/node_modules/
+frontend/.env
+frontend/build/
