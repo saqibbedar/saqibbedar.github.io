@@ -27,8 +27,6 @@ export default async function login(req, res){
             return res.status(401).json("User does not exist");
         }
 
-        console.log(user)
-
         const isPasswordMatched = await bcrypt.compare(password, user.password);
 
         if(!isPasswordMatched) return res.status(400).json("Password does not matched");
@@ -54,14 +52,14 @@ export default async function login(req, res){
             maxAge: tokenExpiresAt
         });
 
-        const subject = "Login Alert!";
-        const bodyHTML = `
-            <p>Dear <strong>${user.fullName || "User"},</p>
-            <p>Your account was logged in at <strong>Saqib Bedar's Website</strong>.</p>
-            <p>If you were not this please try change your password immediately, logged in occurred on ${user.createdAt || "Unknown"}.</p>
-        `;
+        // const subject = "Login Alert!";
+        // const bodyHTML = `
+        //     <p>Dear <strong>${user.fullName || "User"},</p>
+        //     <p>Your account was logged in at <strong>Saqib Bedar's Website</strong>.</p>
+        //     <p>If you were not this please try change your password immediately, logged in occurred on ${user.createdAt || "Unknown"}.</p>
+        // `;
         
-        sendEmail(user.email, subject, "", bodyHTML);
+        // sendEmail(user.email, subject, "", bodyHTML);
 
         return res.status(200).json("Logged in successfully!");
 

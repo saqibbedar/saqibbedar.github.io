@@ -26,14 +26,21 @@
             gap: 10px;
             padding-block: 12px;
         }
+        form {
+            margin-block: 22px;
+        }
+        .response {
+            color: red;
+        }
     </style>
 </head>
 <body>
     <h1>Welcome <strong class="fullName"></strong></h1>
     <hr>
     <div class="action-buttons">
-        <button type="button" class="menu">📃 Menu</button>
-        <button type="button" class="profile-settings">⚙️ Profile Settings</button>
+        <button type="button" class="menu">Menu</button>
+        <button type="button" class="profile-settings">Profile Settings</button>
+        <button type="button" class="password-settings">Update Password</button>
     </div>
     <hr>
     <!-- menu -->
@@ -48,7 +55,7 @@
     </ul>
 
     <!-- profile settings -->
-    <form class="profile-settings" action="/api/profile" method="post" hidden>
+    <form action="/api/profile" method="post" hidden>
         <div>
             <label for="fullName">FullName</label>
             <input type="text" name="fullName" id="fullName" placeholder="Enter your fullName" minlength="6" maxlength="50">
@@ -64,71 +71,136 @@
             <input type="email" name="email" id="email" placeholder="Enter your email">
             <p>e.g., hello@example.com</p>
         </div>
-        <div>
-            <label for="password">New Password</label>
-            <input type="password" name="password" id="password" placeholder="Enter new your password" minlength="6" maxlength="8"> <span data-password-visibility="show">show</span>
-            <p>Password must be at least 6 characters and at most 8 characters</p>
-        </div>
         <input type="submit">
     </form>
+    
+    <!-- update password -->
+    <form action="/api/profile/change-password" method="post" hidden>
+         <div>
+             <label for="oldPassword">Old Password</label>
+             <input type="password" name="oldPassword" id="oldPassword" placeholder="Enter new your oldPassword" minlength="6" maxlength="8"> <span data-password-visibility="show" onclick="togglePasswordVisibility(this)">show</span>
+             <p>Password must be at least 6 characters and at most 8 characters</p>
+         </div>
+         <div>
+             <label for="newPassword">New Password</label>
+             <input type="newPassword" name="newPassword" id="newPassword" placeholder="Enter new your newPassword" minlength="6" maxlength="8"> <span data-password-visibility="show" onclick="togglePasswordVisibility(this)">show</span>
+             <p>Password must be at least 6 characters and at most 8 characters</p>
+         </div>
+         <input type="submit">
+     </form>
+
+     <p class="response"></p>
+
     <script>
 
         // password hide and show logic
-        let span = document.getElementsByTagName("span")[0];
-        span.addEventListener("click",(e)=>{
-            span.dataset.passwordVisibility = span.dataset.passwordVisibility === "show" ? "hide" : "show";
-            span.textContent = span.dataset.passwordVisibility;
-
-            if(span.dataset.passwordVisibility === "hide") {
-                document.getElementById("password").type = "text";
-            } else {
-                document.getElementById("password").type = "password";
-            }
-        });
-
-        let form = document.querySelector("form");
-        let menulist = document.querySelector(".menu-list");
-
-        // profile setting toggle
-        document.querySelector(".profile-settings").addEventListener('click', ()=>{
-            menulist.hidden = true;
-            form.hidden = false;
-        });
-
-        // menu list toggle
-        document.querySelector(".menu").addEventListener("click", ()=> {
-            // incase form is opened too
-            form.hidden = true;
-            menulist.hidden = false;
-        })
-
-        // api call 1: fetch user profile
-        fetch("/api/profile").then(res => res.json()).then(data => {
-            // welcome message
-            document.querySelector(".fullName").textContent = data.fullName + "!";
+        function togglePasswordVisibility(element){
+            element.dataset.passwordVisibility = element.dataset.passwordVisibility === "show" ? "hide" : "show";
+            element.textContent = element.dataset.passwordVisibility;
             
-            // update form values
-            document.getElementById("fullName").value = data.fullName || "";
-            document.getElementById("username").value = data.username || "";
-            document.getElementById("email").value = data.email || "";
+            const passwordInput = element.previousElementSibling;
 
-        }).catch(e => console.error("Error while fetching user data", e));
+            if (element.dataset.passwordVisibility === "hide") {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        }
 
-        // api call 2: post user profile setting changes
-        document.querySelector("form").addEventListener("submit", (e)=>{
-            e.preventDefault();
+        // selectors
+        let forms = document.querySelectorAll("form");
+        let menulist = document.querySelector(".menu-list");
+        let responseEl = document.querySelector(".response");
 
-            const formData = new FormData(e.target);
-            const data = Object.fromEntries(formData.entries());
-            console.log(data)
-            fetch("/api/profile", {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            }).then(res => res.json()).then(d => console.log(d)).catch(e=>console.error("error updating user data:", e));
-        });
+        function UiTogglers(){
+            // profile-settings
+            document.querySelector(".profile-settings").addEventListener('click', ()=>{
+                menulist.hidden = true;
+                forms[1].hidden = true;
+                forms[0].hidden = false;
+            });
+    
+            // menulist
+            document.querySelector(".menu").addEventListener("click", ()=> {
+                // incase form is opened too
+                forms[0].hidden = true;
+                forms[1].hidden = true;
+                menulist.hidden = false;
+            });
+    
+            // password-settings
+            document.querySelector(".password-settings").addEventListener("click", ()=>{
+                forms[0].hidden = true;
+                menulist.hidden = true;
+                forms[1].hidden = false;
+            })
+        }
+
+        UiTogglers();
+
+
+        // ------------------------------------------- API CALLS --------------------------------------------
+
+        // 1. getProfile
+        function getProfile(){
+            fetch("/api/profile").then(res => res.json()).then(data => {
+                // welcome message
+                document.querySelector(".fullName").textContent = data.fullName + "!";
+                
+                // update form values
+                document.getElementById("fullName").value = data.fullName || "";
+                document.getElementById("username").value = data.username || "";
+                document.getElementById("email").value = data.email || "";
+    
+            }).catch(e => console.error("Error while fetching user data", e));
+        }
+
+        getProfile();
+
+        // 2. updateProfile
+        function updateProfile(){
+            forms[0].addEventListener("submit", (e)=>{
+                e.preventDefault();
+    
+                const formData = new FormData(e.target);
+                const data = Object.fromEntries(formData.entries());
+                console.log(data)
+                fetch("/api/profile", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                }).then(res => res.json()).then(d => {
+                    window.location.reload();
+                }).catch(e=>console.error("error updating user data:", e));
+            });
+        }
+
+        updateProfile();
+
+        // 3. updatePassword
+        function updatePassword(){
+            forms[1].addEventListener("submit", (e)=>{
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                const data = Object.fromEntries(formData.entries());
+                fetch("/api/profile/password", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                }).then(res => res.json()).then(d => {
+                    responseEl.textContent = d;
+                    setTimeout(()=>{
+                        responseEl.textContent = ""
+                    }, 2000);
+                }).catch(e => console.error("Error updating password:", e));
+            })
+        }
+
+        updatePassword();
 
     </script>
 </body>
