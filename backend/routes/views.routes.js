@@ -19,6 +19,13 @@ viewsRouter.get("/index.html", authMiddleware, (req, res)=> {
     return res.sendFile(path.join(process.cwd(), "views", "pages", "index.html"));
 });
 
+viewsRouter.get("/index.css", authMiddleware, (req, res)=> {   
+    if(!req.user) {
+        return res.redirect("/login.html");
+    }
+    return res.sendFile(path.join(process.cwd(), "views", "pages", "index.css"));
+});
+
 viewsRouter.get("/login.html", (req, res)=> {   
     return res.sendFile(path.join(process.cwd(), "views", "auth", "login.html"));
 });

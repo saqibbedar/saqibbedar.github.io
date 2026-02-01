@@ -1,0 +1,61 @@
+html, body {
+    scroll-padding: 220px;
+    scroll-behavior: smooth;
+}
+
+form div {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+span {
+  -webkit-user-select: none;
+  user-select: none;
+  color: blueviolet;
+}
+.fullName {
+  color: blueviolet;
+}
+p {
+  margin: 0;
+}
+form {
+    margin-block: 22px;
+}
+.response {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1rem;
+    background-color: blueviolet;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+p.response span {
+    color: white;
+}
+
+.response.active {
+    top: 20px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    z-index: 10;
+    border-bottom: 1px solid #ccc;
+}
+
+#projects {
+    height: 100vh;
+}

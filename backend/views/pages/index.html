@@ -3,55 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
     <title>Home</title>
-    <style>
-        div {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-        span {
-            -webkit-user-select: none;
-            user-select: none;
-            color: blueviolet;
-        }
-        .fullName {
-            color: blueviolet
-        }
-        p {
-            margin: 0;
-        }
-        div.action-buttons{
-            display: flex;
-            gap: 10px;
-            padding-block: 12px;
-        }
-        form {
-            margin-block: 22px;
-        }
-        .response {
-            color: red;
-        }
-    </style>
 </head>
 <body>
+    <!-- notification -->
+    <p class="response">Notification: <span></span></p>
+
+    <!-- welcome message -->
     <h1>Welcome <strong class="fullName"></strong></h1>
-    <hr>
+
+    <!-- action buttons -->
     <div class="action-buttons">
         <button type="button" class="menu">Menu</button>
         <button type="button" class="profile-settings">Profile Settings</button>
         <button type="button" class="password-settings">Update Password</button>
     </div>
-    <hr>
+
     <!-- menu -->
     <ul class="menu-list">
-        <li><a href="">Projects</a></li>
-        <li><a href="">Skills</a></li>
-        <li><a href="">Services</a></li>
-        <li><a href="">Courses</a></li>
-        <li><a href="">Certificates</a></li>
-        <li><a href="">Testimonials</a></li>
-        <li><a href="">FAQs</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#certifications">Certificates</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#faqs">FAQs</a></li>
     </ul>
 
     <!-- profile settings -->
@@ -87,9 +64,15 @@
              <p>Password must be at least 6 characters and at most 8 characters</p>
          </div>
          <input type="submit">
-     </form>
+    </form>
 
-     <p class="response"></p>
+    <!-- sections -->
+    <div class="container">
+        <!-- project section -->
+         <section id="projects">
+            projects
+         </section>
+    </div>
 
     <script>
 
@@ -110,29 +93,46 @@
         // selectors
         let forms = document.querySelectorAll("form");
         let menulist = document.querySelector(".menu-list");
+        let container = document.querySelector(".container");
         let responseEl = document.querySelector(".response");
 
         function UiTogglers(){
             // profile-settings
             document.querySelector(".profile-settings").addEventListener('click', ()=>{
                 menulist.hidden = true;
+                container.hidden = true;
                 forms[1].hidden = true;
                 forms[0].hidden = false;
+                // for sticky menu: scroll back original content
+                window.scrollTo({
+                    top:80,
+                    behavior: "smooth"
+                })
             });
-    
+            
             // menulist
             document.querySelector(".menu").addEventListener("click", ()=> {
                 // incase form is opened too
+                container.hidden = false;
                 forms[0].hidden = true;
                 forms[1].hidden = true;
                 menulist.hidden = false;
+                window.scrollTo({
+                    top:80,
+                    behavior: "smooth"
+                })
             });
-    
+            
             // password-settings
             document.querySelector(".password-settings").addEventListener("click", ()=>{
+                container.hidden = true;
                 forms[0].hidden = true;
                 menulist.hidden = true;
                 forms[1].hidden = false;
+                window.scrollTo({
+                    top:80,
+                    behavior: "smooth"
+                })
             })
         }
 
@@ -192,9 +192,10 @@
                     },
                     body: JSON.stringify(data)
                 }).then(res => res.json()).then(d => {
-                    responseEl.textContent = d;
+                    responseEl.classList.add("active");
+                    responseEl.lastChild.textContent = d;
                     setTimeout(()=>{
-                        responseEl.textContent = ""
+                        responseEl.classList.remove("active");
                     }, 2000);
                 }).catch(e => console.error("Error updating password:", e));
             })
