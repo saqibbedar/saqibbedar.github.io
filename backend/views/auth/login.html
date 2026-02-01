@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        div {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        span {
+            -webkit-user-select: none;
+            user-select: none;
+            color: blueviolet;
+        }
+        p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Login</h1>
+    <form action="/api/auth/login" method="post">
+        <div>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="Enter your email" required>
+            <p>e.g., hello@example.com</p>
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="Enter your password" required minlength="6" maxlength="8"> <span data-password-visibility="show">show</span>
+            <p>Password must be at least 6 characters and at most 8 characters</p>
+        </div>
+        <input type="submit">
+    </form>
+    <br>
+    <p>Don't have an account? <a href="./signup.html">Sign Up</a></p>
+    <script>
+        let span = document.getElementsByTagName("span")[0];
+        span.addEventListener("click",(e)=>{
+            span.dataset.passwordVisibility = span.dataset.passwordVisibility === "show" ? "hide" : "show";
+            span.textContent = span.dataset.passwordVisibility;
+
+            if(span.dataset.passwordVisibility === "hide") {
+                document.getElementById("password").type = "text";
+            } else {
+                document.getElementById("password").type = "password";
+            }
+        })
+
+        document.querySelector("form").addEventListener("submit", (e)=>{
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries())-+
+
+            fetch("/api/auth/login", {
+                method: "POST",
+                headers: {
+                    'Content-Type': "application/json"
+                },
+                body: JSON.stringify(data)
+            }).then(res => res.json()).then(d=>{
+                window.location.href = "/index.html";
+                return;
+            }).catch(e=>console.error("login error:", e));
+        })
+    </script>
+</body>
+</html>

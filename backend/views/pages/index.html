@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        div {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        span {
+            -webkit-user-select: none;
+            user-select: none;
+            color: blueviolet;
+        }
+        .fullName {
+            color: blueviolet
+        }
+        p {
+            margin: 0;
+        }
+        div.action-buttons{
+            display: flex;
+            gap: 10px;
+            padding-block: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome <strong class="fullName"></strong></h1>
+    <hr>
+    <div class="action-buttons">
+        <button type="button" class="menu">📃 Menu</button>
+        <button type="button" class="profile-settings">⚙️ Profile Settings</button>
+    </div>
+    <hr>
+    <!-- menu -->
+    <ul class="menu-list">
+        <li><a href="">Projects</a></li>
+        <li><a href="">Skills</a></li>
+        <li><a href="">Services</a></li>
+        <li><a href="">Courses</a></li>
+        <li><a href="">Certificates</a></li>
+        <li><a href="">Testimonials</a></li>
+        <li><a href="">FAQs</a></li>
+    </ul>
+
+    <!-- profile settings -->
+    <form class="profile-settings" action="/api/profile" method="post" hidden>
+        <div>
+            <label for="fullName">FullName</label>
+            <input type="text" name="fullName" id="fullName" placeholder="Enter your fullName" minlength="6" maxlength="50">
+            <p>FullName must be at least 6 characters and at most 20 characters</p>
+        </div>
+        <div>
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" placeholder="Enter your username" minlength="5" maxlength="20">
+            <p>Username must be at least 5 characters and at most 20 characters</p>
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="Enter your email">
+            <p>e.g., hello@example.com</p>
+        </div>
+        <div>
+            <label for="password">New Password</label>
+            <input type="password" name="password" id="password" placeholder="Enter new your password" minlength="6" maxlength="8"> <span data-password-visibility="show">show</span>
+            <p>Password must be at least 6 characters and at most 8 characters</p>
+        </div>
+        <input type="submit">
+    </form>
+    <script>
+
+        // password hide and show logic
+        let span = document.getElementsByTagName("span")[0];
+        span.addEventListener("click",(e)=>{
+            span.dataset.passwordVisibility = span.dataset.passwordVisibility === "show" ? "hide" : "show";
+            span.textContent = span.dataset.passwordVisibility;
+
+            if(span.dataset.passwordVisibility === "hide") {
+                document.getElementById("password").type = "text";
+            } else {
+                document.getElementById("password").type = "password";
+            }
+        });
+
+        let form = document.querySelector("form");
+        let menulist = document.querySelector(".menu-list");
+
+        // profile setting toggle
+        document.querySelector(".profile-settings").addEventListener('click', ()=>{
+            menulist.hidden = true;
+            form.hidden = false;
+        });
+
+        // menu list toggle
+        document.querySelector(".menu").addEventListener("click", ()=> {
+            // incase form is opened too
+            form.hidden = true;
+            menulist.hidden = false;
+        })
+
+        // api call 1: fetch user profile
+        fetch("/api/profile").then(res => res.json()).then(data => {
+            // welcome message
+            document.querySelector(".fullName").textContent = data.fullName + "!";
+            
+            // update form values
+            document.getElementById("fullName").value = data.fullName || "";
+            document.getElementById("username").value = data.username || "";
+            document.getElementById("email").value = data.email || "";
+
+        }).catch(e => console.error("Error while fetching user data", e));
+
+        // api call 2: post user profile setting changes
+        document.querySelector("form").addEventListener("submit", (e)=>{
+            e.preventDefault();
+
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+            console.log(data)
+            fetch("/api/profile", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(res => res.json()).then(d => console.log(d)).catch(e=>console.error("error updating user data:", e));
+        });
+
+    </script>
+</body>
+</html>
