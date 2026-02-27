@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { SlideText } from "@/components/ui";
 import { motion, AnimatePresence } from "motion/react";
 import {
   FaPlay,
@@ -17,10 +16,37 @@ import {
 const leftTitles = ["Developer", "Educator"];
 const rightTitles = ["Innovation", "Architect"];
 
+// Animated title with crossfade (no empty state)
+const AnimatedTitle = ({ text, className, align = "left" }) => {
+  return (
+    <div
+      className={`relative overflow-hidden ${
+        align === "right" ? "flex justify-end" : "flex justify-start"
+      }`}
+    >
+      <AnimatePresence mode="popLayout">
+        <motion.span
+          key={text}
+          className={className}
+          initial={{ y: "100%", opacity: 0, filter: "blur(4px)" }}
+          animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+          exit={{ y: "-100%", opacity: 0, filter: "blur(4px)" }}
+          transition={{
+            duration: 0.9,
+            ease: [0.76, 0, 0.24, 1],
+          }}
+        >
+          {text}
+        </motion.span>
+      </AnimatePresence>
+    </div>
+  );
+};
+
 const CoverSection = () => {
-  const [leftIndex, setLeftIndex] = useState(0);
-  const [rightIndex, setRightIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
+  // Two separate indices for staggered pair animation
+  const [pairAIndex, setPairAIndex] = useState(0); // Controls: left-top & right-bottom
+  const [pairBIndex, setPairBIndex] = useState(0); // Controls: left-bottom & right-top
   const [isPaused, setIsPaused] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -37,42 +63,26 @@ const CoverSection = () => {
     },
   ];
 
-  // Get current and next titles based on index
-  const getTitle = (titles, index, position) => {
-    const adjustedIndex = (index + position) % titles.length;
-    return titles[adjustedIndex];
-  };
-
-  // Simple animation cycle
+  // Staggered animation cycle
   useEffect(() => {
     if (isPaused) return;
 
     const interval = setInterval(() => {
-      // Trigger animation - slide up
-      setIsAnimating(true);
+      // First pair animates
+      setPairAIndex((prev) => prev + 1);
 
-      // Hold at top position, then update indices and slide back down
+      // Second pair animates after delay
       setTimeout(() => {
-        // Update indices first (so the "front" text is now the new text)
-        setLeftIndex((prev) => (prev + 1) % leftTitles.length);
-        setRightIndex((prev) => (prev + 1) % rightTitles.length);
-      }, 1200); // Wait for slide up (1s) + hold (0.2s)
-
-      // Then release hover state to slide back down
-      setTimeout(() => {
-        setIsAnimating(false);
-      }, 1250); // Slightly after index update
-    }, 5000); // Total cycle: 5 seconds between animations
+        setPairBIndex((prev) => prev + 1);
+      }, 400);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [isPaused]);
 
-  // Responsive title styles using clamp for fluid typography
+  // Responsive title styles
   const titleClass =
     "text-[clamp(2rem,8vw,7rem)] leading-[1.1] font-semibold text-fg-secondary whitespace-nowrap";
-
-  // Smooth easing
-  const transition = { duration: 1, ease: [0.76, 0, 0.24, 1] };
 
   return (
     <section className="relative w-full pt-[64px] md:pt-[72px] h-screen px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 overflow-hidden">
@@ -83,46 +93,34 @@ const CoverSection = () => {
           <div className="relative flex-1 flex flex-col sm:flex-row justify-between">
             {/* Left Column */}
             <div className="w-full sm:w-1/2 h-1/2 sm:h-full flex flex-col justify-start pt-4">
-              <div className="flex justify-end sm:justify-end">
-                <SlideText
-                  className={titleClass}
-                  front={getTitle(leftTitles, leftIndex, 0)}
-                  back={getTitle(leftTitles, leftIndex + 1, 0)}
-                  isHovered={isAnimating}
-                  transition={transition}
-                />
-              </div>
-              <div className="flex justify-start">
-                <SlideText
-                  className={titleClass}
-                  front={getTitle(leftTitles, leftIndex, 1)}
-                  back={getTitle(leftTitles, leftIndex + 1, 1)}
-                  isHovered={isAnimating}
-                  transition={transition}
-                />
-              </div>
+              {/* Left Top - Pair A */}
+              <AnimatedTitle
+                text={leftTitles[pairAIndex % leftTitles.length]}
+                className={titleClass}
+                align="right"
+              />
+              {/* Left Bottom - Pair B */}
+              <AnimatedTitle
+                text={leftTitles[(pairBIndex + 1) % leftTitles.length]}
+                className={titleClass}
+                align="left"
+              />
             </div>
 
             {/* Right Column */}
             <div className="w-full sm:w-1/2 h-1/2 sm:h-full flex flex-col justify-end">
-              <div className="flex justify-end">
-                <SlideText
-                  className={titleClass}
-                  front={getTitle(rightTitles, rightIndex, 0)}
-                  back={getTitle(rightTitles, rightIndex + 1, 0)}
-                  isHovered={isAnimating}
-                  transition={{ ...transition, delay: 0.15 }}
-                />
-              </div>
-              <div className="flex justify-start sm:justify-start">
-                <SlideText
-                  className={titleClass}
-                  front={getTitle(rightTitles, rightIndex, 1)}
-                  back={getTitle(rightTitles, rightIndex + 1, 1)}
-                  isHovered={isAnimating}
-                  transition={{ ...transition, delay: 0.15 }}
-                />
-              </div>
+              {/* Right Top - Pair B */}
+              <AnimatedTitle
+                text={rightTitles[pairBIndex % rightTitles.length]}
+                className={titleClass}
+                align="right"
+              />
+              {/* Right Bottom - Pair A */}
+              <AnimatedTitle
+                text={rightTitles[(pairAIndex + 1) % rightTitles.length]}
+                className={titleClass}
+                align="left"
+              />
             </div>
           </div>
 
