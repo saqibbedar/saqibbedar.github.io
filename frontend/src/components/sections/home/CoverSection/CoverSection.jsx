@@ -47,8 +47,20 @@ const CoverSection = () => {
   // Two separate indices for staggered pair animation
   const [pairAIndex, setPairAIndex] = useState(0); // Controls: left-top & right-bottom
   const [pairBIndex, setPairBIndex] = useState(0); // Controls: left-bottom & right-top
-  const [isPaused, setIsPaused] = useState(false);
+  const [isPaused, setIsPaused] = useState(() => {
+    const saved = localStorage.getItem("coverAnimationPaused");
+    return saved === "true";
+  });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Persist pause preference
+  const togglePause = () => {
+    setIsPaused((prev) => {
+      const newValue = !prev;
+      localStorage.setItem("coverAnimationPaused", String(newValue));
+      return newValue;
+    });
+  };
 
   // Quick links menu items
   const quickLinks = [
@@ -139,7 +151,7 @@ const CoverSection = () => {
             <div className="flex items-center gap-3">
               {/* Pause/Play Button */}
               <button
-                onClick={() => setIsPaused(!isPaused)}
+                onClick={togglePause}
                 className="p-2.5 sm:p-3 rounded-full border border-border hover:border-border-light hover:bg-btn-primary-bg text-fg-secondary hover:text-fg-primary transition-all duration-200 cursor-pointer"
                 aria-label={isPaused ? "Play animation" : "Pause animation"}
               >
