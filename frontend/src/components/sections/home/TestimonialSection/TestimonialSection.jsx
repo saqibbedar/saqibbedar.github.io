@@ -17,6 +17,11 @@ const TestimonialCard = ({
 }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
 
+  useEffect(() => {
+    // Reset image loaded state when image URL changes
+    setImageLoaded(false);
+  }, [image]);
+
   return (
     <div className="group relative flex-shrink-0 w-[320px] sm:w-[380px] p-6 sm:p-8 bg-bg-card rounded-2xl border border-border hover:border-border-light transition-all duration-300">
       {/* Quote Icon */}
@@ -33,15 +38,20 @@ const TestimonialCard = ({
       <div className="flex items-center gap-4">
         {/* Avatar */}
         <div
-          className={`relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden ${
-            !imageLoaded ? "skeleton" : ""
-          }`}
+          className={`relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden`}
         >
+          {!imageLoaded && (
+            <div className="absolute inset-0 flex items-center justify-center bg-bg-card">
+              <div className="w-12 h-12 bg-border rounded-full animate-pulse"></div>
+            </div>
+          )}
           <img
             src={image}
             alt={name}
             onLoad={() => setImageLoaded(true)}
-            className="w-full h-full object-cover"
+            className={`w-full h-full object-cover ${
+              !imageLoaded ? "opacity-0" : "opacity-100"
+            }`}
           />
         </div>
 
@@ -51,14 +61,16 @@ const TestimonialCard = ({
             <h4 className="text-base sm:text-lg font-semibold text-fg-primary">
               {name}
             </h4>
-            <Link
-              to={linkedInUrl}
-              target="_blank"
-              className="text-[#0a66c2] hover:text-[#004182] transition-colors"
-              aria-label={`${name}'s LinkedIn`}
-            >
-              <FaLinkedin className="w-4 h-4 sm:w-5 sm:h-5" />
-            </Link>
+            {linkedInUrl && (
+              <Link
+                to={linkedInUrl}
+                target="_blank"
+                className="text-[#0a66c2] hover:text-[#004182] transition-colors"
+                aria-label={`${name}'s LinkedIn`}
+              >
+                <FaLinkedin className="w-4 h-4 sm:w-5 sm:h-5 text-fg-secondary" />
+              </Link>
+            )}
           </div>
           <p className="text-xs sm:text-sm text-fg-muted">{designation}</p>
         </div>
