@@ -30,7 +30,7 @@ const FAQItem = ({ question, answer, isOpen, onClick, index }) => {
           className={`flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
             isOpen
               ? "bg-fg-primary text-bg-primary rotate-0"
-              : "bg-bg-primary border border-border text-fg-secondary group-hover:border-border-light"
+              : "bg-bg-card border border-border text-fg-secondary group-hover:border-border-light"
           }`}
         >
           {isOpen ? (
