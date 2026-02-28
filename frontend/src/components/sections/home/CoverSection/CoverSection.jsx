@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import {
@@ -12,12 +12,51 @@ import {
   FaServicestack,
 } from "react-icons/fa6";
 
+// Smooth easing
+const smoothEase = [0.32, 0.72, 0, 1];
+
 // Titles array - easy to update from server in future
 const leftTitles = ["Developer", "Educator"];
 const rightTitles = ["Innovation", "Architect"];
 
+// Menu item animation variants
+const menuItemVariants = {
+  hidden: {
+    opacity: 0,
+    y: -10,
+    filter: "blur(4px)",
+  },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.25,
+      delay: i * 0.05,
+      ease: smoothEase,
+    },
+  }),
+  exit: (i) => ({
+    opacity: 0,
+    y: -8,
+    filter: "blur(4px)",
+    transition: {
+      duration: 0.2,
+      delay: (3 - i) * 0.03,
+      ease: smoothEase,
+    },
+  }),
+};
+
 // Animated title with crossfade (no empty state)
 const AnimatedTitle = ({ text, className, align = "left" }) => {
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    // Mark first render as complete after mount
+    isFirstRender.current = false;
+  }, []);
+
   return (
     <div
       className={`relative overflow-hidden ${
@@ -28,7 +67,11 @@ const AnimatedTitle = ({ text, className, align = "left" }) => {
         <motion.span
           key={text}
           className={className}
-          initial={{ y: "100%", opacity: 0, filter: "blur(4px)" }}
+          initial={
+            isFirstRender.current
+              ? false
+              : { y: "100%", opacity: 0, filter: "blur(4px)" }
+          }
           animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
           exit={{ y: "-100%", opacity: 0, filter: "blur(4px)" }}
           transition={{
@@ -48,6 +91,7 @@ const CoverSection = () => {
   const [pairAIndex, setPairAIndex] = useState(0); // Controls: left-top & right-bottom
   const [pairBIndex, setPairBIndex] = useState(0); // Controls: left-bottom & right-top
   const [isPaused, setIsPaused] = useState(() => {
+    // Only pause if user explicitly paused before
     const saved = localStorage.getItem("coverAnimationPaused");
     return saved === "true";
   });
@@ -199,26 +243,37 @@ const CoverSection = () => {
             {/* Toggle Button */}
             <motion.button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="relative z-10 p-3 sm:p-3.5 rounded-full bg-bg-card border border-border hover:border-border-light text-fg-primary hover:scale-105 transition-all duration-300 cursor-pointer shadow-lg"
+              className="relative z-10 p-3 sm:p-3.5 rounded-full bg-bg-card border border-border hover:border-border-light text-fg-primary transition-colors duration-200 cursor-pointer shadow-lg"
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-              animate={{ rotate: isMenuOpen ? 45 : 0 }}
-              transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+              whileTap={{ scale: 0.95 }}
             >
-              <FaPlus className="w-4 h-4" />
+              <motion.div
+                animate={{ rotate: isMenuOpen ? 45 : 0 }}
+                transition={{ duration: 0.25, ease: smoothEase }}
+              >
+                <FaPlus className="w-4 h-4" />
+              </motion.div>
             </motion.button>
 
             {/* Menu Card - Opens downward */}
-            <AnimatePresence>
+            <AnimatePresence mode="popLayout">
               {isMenuOpen && (
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.9, y: -10 }}
+                  initial={{ opacity: 0, scale: 0.85, y: -15 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.9, y: -10 }}
-                  transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+                  exit={{ opacity: 0, scale: 0.85, y: -15 }}
+                  transition={{ duration: 0.3, ease: smoothEase }}
                   className="absolute top-full left-1/2 -translate-x-1/2 mt-3 min-w-[140px] bg-bg-card border border-border rounded-xl overflow-hidden shadow-xl"
                 >
                   {quickLinks.map((item, index) => (
-                    <div key={item.label}>
+                    <motion.div
+                      key={item.label}
+                      variants={menuItemVariants}
+                      initial="hidden"
+                      animate="visible"
+                      exit="exit"
+                      custom={index}
+                    >
                       {item.isScroll ? (
                         <button
                           onClick={() => {
@@ -249,7 +304,7 @@ const CoverSection = () => {
                       {index < quickLinks.length - 1 && (
                         <div className="mx-3 border-t border-border" />
                       )}
-                    </div>
+                    </motion.div>
                   ))}
                 </motion.div>
               )}
