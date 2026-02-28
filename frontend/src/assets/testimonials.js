@@ -2,7 +2,7 @@ const testimonials = [
   {
     _id: 1,
     image: "https://imageio.forbes.com/specials-images/imageserve/5f15a9ee916e8500077ad83b/0x0.jpg?format=jpg&width=1200",
-    linkedInUrl: "/",
+    linkedInUrl: "",
     name: "John Doe",
     designation: "Professor",
     description:

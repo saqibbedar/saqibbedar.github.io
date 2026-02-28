@@ -4,7 +4,6 @@ import footer from "@/assets/footer";
 import aboutSkills from "./aboutSkills";
 import author from "@/assets/authorInfo";
 import * as skills from "@/assets/skills";
-import blogPosts from "@/assets/blogPosts";
 import education from "@/assets/education";
 import ErrorImages from "@/assets/errorImages";
 import certificates from "@/assets/certificates";
@@ -20,7 +19,6 @@ export {
   skills,
   footer,
   author,
-  blogPosts,
   education,
   aboutSkills,
   ErrorImages,
