@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
-import { servicesData } from "@/assets/services";
+import { services } from "@/assets";
 
 // Service Card Component
 const ServiceCard = ({ service, index }) => {
@@ -48,7 +48,7 @@ const ServiceCard = ({ service, index }) => {
 
 const ServiceSection = () => {
   // Get top 4 featured services
-  const featuredServices = servicesData.filter((s) => s.featured).slice(0, 4);
+  const featuredServices = services.filter((s) => s.featured).slice(0, 4);
 
   return (
     <section className="py-10 md:py-16 lg:py-20">

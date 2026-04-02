@@ -1,4 +1,4 @@
-import { skills } from "@/assets/assets";
+import { skills } from "@/assets";
 import Marquee from "react-fast-marquee";
 import { Link } from "react-router-dom";
 

@@ -18,7 +18,7 @@ import {
 } from "react-icons/fa";
 import { SiBuymeacoffee, SiPatreon, SiGithubsponsors } from "react-icons/si";
 import { useState } from "react";
-import { servicesData } from "@/assets/assets";
+import { services } from "@/assets";
 
 // Category data
 const categories = [
@@ -192,11 +192,11 @@ const ServiceView = () => {
   // Filter services based on category
   const filteredServices =
     activeCategory === "All"
-      ? servicesData
-      : servicesData.filter((service) => service.category === activeCategory);
+      ? services
+      : services.filter((service) => service.category === activeCategory);
 
   // Featured services for highlight
-  const featuredServices = servicesData.filter((service) => service.featured);
+  const featuredServices = services.filter((service) => service.featured);
 
   return (
     <section className="pt-24 sm:pt-28 md:pt-32 pb-10 md:pb-16 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">

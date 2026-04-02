@@ -7,7 +7,7 @@ import {
   FaArrowUpRightFromSquare,
   FaHashtag,
 } from "react-icons/fa6";
-import bootcampsAndEvents from "../../../assets/bootcampsAndEvents";
+import { bootcampsAndEvents } from "@/assets";
 
 // 1. Event Badge - Shows type (bootcamp/event) and mode (online/on-site)
 const EventBadge = ({ type, mode }) => {

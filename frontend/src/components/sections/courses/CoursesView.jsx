@@ -10,7 +10,7 @@ import {
   FaUsers,
 } from "react-icons/fa6";
 import { SiUdemy, SiCoursera, SiSkillshare } from "react-icons/si";
-import { coursesList } from "@/assets/assets";
+import { courses } from "@/assets";
 
 // Helper function to get platform icon
 const getPlatformIcon = (iconName) => {
@@ -174,7 +174,7 @@ const CoursesView = () => {
 
       {/* Courses Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {coursesList.map((course) => (
+        {courses.map((course) => (
           <CourseCard key={course._id} course={course} />
         ))}
       </div>

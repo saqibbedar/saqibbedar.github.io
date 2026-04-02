@@ -1,4 +1,4 @@
-import { footer, author } from "@/assets/assets";
+import { footer, author } from "@/assets";
 import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 

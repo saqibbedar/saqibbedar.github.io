@@ -12,12 +12,7 @@ import {
 } from "react-icons/fa";
 
 // Import data sources
-import { projectsData } from "@/assets/project";
-import { coursesList } from "@/assets/courses";
-import { servicesData } from "@/assets/services";
-import certificates from "@/assets/certificates";
-import education from "@/assets/education";
-import bootcampsAndEvents from "@/assets/bootcampsAndEvents";
+import { projects, courses, services, certificates, education, bootcampsAndEvents } from "@/assets";
 
 // Category Tab Component - matching ProjectView style
 const CategoryTab = ({ category, icon: Icon, isActive, onClick, count }) => (
@@ -188,7 +183,7 @@ const SearchInput = ({ initialQuery = "" }) => {
       );
 
     // Search Projects
-    const projects = projectsData.filter(
+    const projects = projects.filter(
       (p) =>
         searchInText(p.title) ||
         searchInText(p.shortDescription) ||
@@ -198,7 +193,7 @@ const SearchInput = ({ initialQuery = "" }) => {
     );
 
     // Search Courses
-    const courses = coursesList.filter(
+    const courses = courses.filter(
       (c) =>
         searchInText(c.title) ||
         searchInText(c.shortDescription) ||
@@ -207,7 +202,7 @@ const SearchInput = ({ initialQuery = "" }) => {
     );
 
     // Search Services
-    const services = servicesData.filter(
+    const services = services.filter(
       (s) =>
         searchInText(s.title) ||
         searchInText(s.shortDescription) ||

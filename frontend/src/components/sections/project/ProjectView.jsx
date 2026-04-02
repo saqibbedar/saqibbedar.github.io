@@ -12,7 +12,7 @@ import {
 } from "react-icons/fa";
 import { SiNpm, SiOrcid, SiPypi } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
-import { projectsData } from "@/assets/assets"
+import { projects } from "@/assets"
 
 // Category buttons
 const categoryButtons = [
@@ -204,8 +204,8 @@ const ProjectView = () => {
   // Filter projects based on category
   const filteredProjects =
     activeCategory === "All"
-      ? projectsData
-      : projectsData.filter(
+      ? projects
+      : projects.filter(
           (project) =>
             project.category === activeCategory ||
             project.tags.includes(activeCategory)

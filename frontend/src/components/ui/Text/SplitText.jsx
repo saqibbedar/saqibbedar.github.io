@@ -40,8 +40,21 @@ export const SplitText = ({
   // Helper to render character - preserves spaces using non-breaking space
   const renderChar = (char) => (char === " " ? "\u00A0" : char);
 
-  const frontText = children ?? front;
-  const backText = children ?? back ?? front;
+  // Normalize incoming text values to avoid runtime errors on length/split.
+  const normalizeText = (value, fallback = "") => {
+    if (typeof value === "string" || typeof value === "number") {
+      return String(value);
+    }
+
+    if (value == null) {
+      return fallback;
+    }
+
+    return fallback;
+  };
+
+  const frontText = normalizeText(children ?? front, "");
+  const backText = normalizeText(children ?? back ?? front, frontText);
 
   // Determine the longer text to set proper width
   const longerText = frontText.length >= backText.length ? frontText : backText;

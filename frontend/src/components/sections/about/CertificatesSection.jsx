@@ -1,5 +1,5 @@
 import { FaExternalLinkAlt } from "react-icons/fa";
-import certificates from "@/assets/certificates";
+import { certificates } from "@/assets";
 
 // Certificate Card Component
 const CertificateCard = ({

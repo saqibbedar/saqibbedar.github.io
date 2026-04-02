@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { testimonials } from "@/assets/assets";
+import { testimonials } from "@/assets";
 import {
   FaQuoteLeft,
   FaLinkedin,
@@ -16,10 +16,17 @@ const TestimonialCard = ({
   description,
 }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
+
+  const safeName = name || "Anonymous";
+  const safeDesignation = designation || "Professional";
+  const safeDescription = description || "No testimonial available yet.";
+  const avatarInitial = safeName.charAt(0).toUpperCase();
 
   useEffect(() => {
     // Reset image loaded state when image URL changes
     setImageLoaded(false);
+    setImageError(false);
   }, [image]);
 
   return (
@@ -31,7 +38,7 @@ const TestimonialCard = ({
 
       {/* Testimonial Text */}
       <p className="text-sm sm:text-base text-fg-secondary leading-relaxed mb-6 line-clamp-4">
-        "{description}"
+        "{safeDescription}"
       </p>
 
       {/* Author Info */}
@@ -40,39 +47,49 @@ const TestimonialCard = ({
         <div
           className={`relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden`}
         >
-          {!imageLoaded && (
+          {!imageLoaded && !imageError && (
             <div className="absolute inset-0 flex items-center justify-center bg-bg-card">
               <div className="w-12 h-12 bg-border rounded-full animate-pulse"></div>
             </div>
           )}
-          <img
-            src={image}
-            alt={name}
-            onLoad={() => setImageLoaded(true)}
-            className={`w-full h-full object-cover ${
-              !imageLoaded ? "opacity-0" : "opacity-100"
-            }`}
-          />
+          {!imageError ? (
+            <img
+              src={image}
+              alt={safeName}
+              onLoad={() => setImageLoaded(true)}
+              onError={() => {
+                setImageError(true);
+                setImageLoaded(true);
+              }}
+              className={`w-full h-full object-cover ${
+                !imageLoaded ? "opacity-0" : "opacity-100"
+              }`}
+            />
+          ) : (
+            <div className="w-full h-full bg-bg-secondary flex items-center justify-center text-fg-primary font-semibold">
+              {avatarInitial}
+            </div>
+          )}
         </div>
 
         {/* Name & Designation */}
         <div className="flex-1">
           <div className="flex items-center gap-2">
             <h4 className="text-base sm:text-lg font-semibold text-fg-primary">
-              {name}
+              {safeName}
             </h4>
             {linkedInUrl && (
               <Link
                 to={linkedInUrl}
                 target="_blank"
                 className="text-[#0a66c2] hover:text-[#004182] transition-colors"
-                aria-label={`${name}'s LinkedIn`}
+                aria-label={`${safeName}'s LinkedIn`}
               >
                 <FaLinkedin className="w-4 h-4 sm:w-5 sm:h-5 text-fg-secondary" />
               </Link>
             )}
           </div>
-          <p className="text-xs sm:text-sm text-fg-muted">{designation}</p>
+          <p className="text-xs sm:text-sm text-fg-muted">{safeDesignation}</p>
         </div>
       </div>
     </div>
@@ -160,12 +177,12 @@ const TestimonialsSection = () => {
       >
         {testimonials.map((reviewer, index) => (
           <TestimonialCard
-            key={index}
-            image={reviewer.image}
+            key={`${reviewer._id ?? "testimonial"}-${index}`}
+            image={reviewer.image || reviewer.avatar || reviewer.photo}
             linkedInUrl={reviewer.linkedInUrl}
-            name={reviewer.name}
-            designation={reviewer.designation}
-            description={reviewer.description}
+            name={reviewer.name || reviewer.fullName}
+            designation={reviewer.designation || reviewer.role}
+            description={reviewer.description || reviewer.testimonial}
           />
         ))}
       </div>

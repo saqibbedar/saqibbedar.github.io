@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { useProjects } from "@/context";
 import { Link } from "react-router-dom";
 import { SplitText } from "@/components/ui";
+import { projects } from "@/assets";
 
 const ProjectItem = ({ project, isFirst }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const projectYear = project?.createdAt
+    ? new Date(project.createdAt).getFullYear()
+    : "";
 
   return (
     <div
@@ -19,31 +22,26 @@ const ProjectItem = ({ project, isFirst }) => {
         onMouseLeave={() => setIsHovered(false)}
       >
         <img
-          src={project.image}
-          alt={project.name}
+          src={project.thumbnail}
+          alt={project.title}
           className="hidden sm:inline-block h-10 sm:h-12 md:h-14 lg:h-16 aspect-video object-cover rounded-md"
         />
         <SplitText
           className="leading-[3.5rem] tracking-wider"
-          front={project.name}
+          front={project.title}
           back={"VIEW PROJECT"}
           isHovered={isHovered}
         />
       </Link>
       <p className="text-xs sm:text-sm md:text-base font-semibold text-fg-muted">
-        2020
+        {projectYear || "-"}
       </p>
     </div>
   );
 };
 
 const ProjectSection = () => {
-  const { getProjects, loading, error } = useProjects();
-  const featuredProjects = getProjects("featured");
-
-  if (error) {
-    console.error("Feature projects error: ", error);
-  }
+  const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
 
   return (
     <section className="py-10 md:py-16 lg:py-20">
@@ -59,7 +57,11 @@ const ProjectSection = () => {
 
       <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
         {featuredProjects.map((project, index) => (
-          <ProjectItem key={index} project={project} isFirst={index === 0} />
+          <ProjectItem
+            key={project._id || index}
+            project={project}
+            isFirst={index === 0}
+          />
         ))}
         <Link
           to="/projects"

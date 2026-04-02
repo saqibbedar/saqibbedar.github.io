@@ -11,6 +11,7 @@ import {
   FaCompass,
   FaServicestack,
 } from "react-icons/fa6";
+import { author } from "@/assets";
 
 // Smooth easing
 const smoothEase = [0.32, 0.72, 0, 1];
@@ -231,7 +232,7 @@ const CoverSection = () => {
           {/* Profile Image */}
           <div className="w-[clamp(12rem,25vw,20rem)] aspect-square overflow-hidden rounded-full pointer-events-none">
             <img
-              src="/images/saqibbedar.png"
+              src={author.image}
               className="w-full h-full object-cover object-center grayscale"
               alt="Saqib Bedar"
               loading="eager"

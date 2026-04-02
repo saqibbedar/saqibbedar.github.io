@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FaChevronLeft, FaChevronRight, FaStar, FaPlay } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa6";
 import { SiUdemy, SiCoursera } from "react-icons/si";
-import { coursesList } from "@/assets/courses";
+import { courses } from "@/assets";
 
 // Platform icon mapping
 const platformIcons = {
@@ -99,7 +99,7 @@ const CourseSection = () => {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
 
-  const featuredCourses = coursesList.filter((c) => c.featured);
+  const featuredCourses = courses.filter((c) => c.featured);
 
   const checkScroll = () => {
     if (scrollRef.current) {

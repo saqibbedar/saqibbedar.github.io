@@ -1,9 +1,8 @@
 import { useEffect, useState, useRef } from "react";
-import { author, icons } from "@/assets/assets";
+import { author, icons, footer } from "@/assets";
 import { Link, useNavigate } from "react-router-dom";
 import { SlideText, SplitText } from "@/components/ui";
 import { motion } from "motion/react";
-import { footer } from "@/assets/assets";
 import Marquee from "react-fast-marquee";
 
 // Elegant easing curves

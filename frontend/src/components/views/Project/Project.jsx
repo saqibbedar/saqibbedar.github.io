@@ -16,7 +16,7 @@ import {
 } from "react-icons/fa";
 import { SiNpm, SiOrcid, SiPypi } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
-import { projectsData } from "@/assets/assets";
+import { projects } from "@/assets";
 
 // Helper function to get status badge
 const getStatusBadge = (status, visibility) => {
@@ -85,7 +85,7 @@ const LinkButton = ({ href, icon: Icon, label, primary = false }) => {
 const Project = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const project = projectsData.find((p) => p._id === id);
+  const project = projects.find((p) => p._id === id);
 
   useEffect(() => {
     if (!project) {

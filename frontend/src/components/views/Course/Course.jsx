@@ -13,7 +13,7 @@ import {
   FaExternalLinkAlt,
 } from "react-icons/fa";
 import { SiUdemy, SiCoursera, SiSkillshare } from "react-icons/si";
-import { coursesList } from "@/assets/assets";
+import { courses } from "@/assets";
 
 // Helper function to get platform icon
 const getPlatformIcon = (iconName, size = "w-5 h-5") => {
@@ -50,7 +50,7 @@ const formatDate = (dateString) => {
 const Course = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const course = coursesList.find((c) => c._id === id);
+  const course = courses.find((c) => c._id === id);
 
   useEffect(() => {
     if (!course) {

@@ -4,7 +4,7 @@ import EducationSection from "./EducationSection/EducationSection";
 import BootcampsAndEventsSection from "./BootcampsAndEventsSection";
 import FAQSection from "./FAQSection";
 import CertificatesSection from "./CertificatesSection";
-import { author, education } from "@/assets/assets";
+import { author, education } from "@/assets";
 
 // Category Tab Component - matching ProjectView style
 const CategoryTab = ({ category, isActive, onClick }) => (
@@ -35,7 +35,7 @@ const AboutView = () => {
       <HeroSection
         name={author.name}
         description={author.description}
-        image={"/images/saqibbedar.png"}
+        image={author.image}
       />
 
       {/* Category Tabs */}
