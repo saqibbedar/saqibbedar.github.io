@@ -21,9 +21,13 @@ export const useGlobalSearch = () => {
 export function GlobalSearchProvider({ children }) {
   // 4. Required states
   const [searchResults, setSearchResults] = useState({
-    blogs: [],
     projects: [],
     certificates: [],
+    courses: [],
+    services: [],
+    education: [],
+    bootcamps: [],
+    docs: [],
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -63,9 +67,13 @@ export function GlobalSearchProvider({ children }) {
   // 6. Clear search results
   const clearSearch = () => {
     setSearchResults({
-      blogs: [],
       projects: [],
       certificates: [],
+      courses: [],
+      services: [],
+      education: [],
+      bootcamps: [],
+      docs: [],
     });
     setSearchQuery("");
     setError(null);
@@ -73,9 +81,13 @@ export function GlobalSearchProvider({ children }) {
 
   // 7. Calculate total results
   const totalResults =
-    (searchResults.blogs?.length || 0) +
     (searchResults.projects?.length || 0) +
-    (searchResults.certificates?.length || 0);
+    (searchResults.certificates?.length || 0) +
+    (searchResults.courses?.length || 0) +
+    (searchResults.services?.length || 0) +
+    (searchResults.education?.length || 0) +
+    (searchResults.bootcamps?.length || 0) +
+    (searchResults.docs?.length || 0);
 
   return (
     <GlobalSearchContext.Provider

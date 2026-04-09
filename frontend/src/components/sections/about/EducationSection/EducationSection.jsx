@@ -58,8 +58,8 @@ const EducationCard = ({
       )}
 
       {/* Timeline Dot */}
-      <div className="relative z-10 flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-fg-primary flex items-center justify-center">
-        <FaGraduationCap className="w-4 h-4 sm:w-5 sm:h-5 text-bg-primary" />
+      <div className="relative z-10 flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-btn-primary-bg flex items-center justify-center">
+        <FaGraduationCap className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
       </div>
 
       {/* Content Card */}

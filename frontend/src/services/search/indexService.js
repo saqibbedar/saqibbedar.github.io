@@ -15,9 +15,56 @@ export const generateIndex = (data) => {
 
   const index = {
     terms: new Map(),
-    blogs: data.blogs || [],
     projects: data.projects || [],
     certificates: data.certificates || [],
+    courses: data.courses || [],
+    services: data.services || [],
+    education: data.education || [],
+    bootcamps: data.bootcamps || [],
+    docs: [
+      {
+        id: "policy",
+        title: "Privacy Policy",
+        content: data.policy || "",
+        path: "/privacy-policy",
+      },
+      {
+        id: "terms",
+        title: "Terms & Conditions",
+        content: data.terms || "",
+        path: "/terms-conditions",
+      },
+      {
+        id: "sitemap",
+        title: "Sitemap",
+        content: JSON.stringify(data.sitemap || {}),
+        path: "/sitemap",
+      },
+    ],
+  };
+
+  const ensureTerm = (term) => {
+    if (!index.terms.has(term)) {
+      index.terms.set(term, {
+        projects: [],
+        certificates: [],
+        courses: [],
+        services: [],
+        education: [],
+        bootcamps: [],
+        docs: [],
+      });
+    }
+  };
+
+  const addTerms = (content, bucketName, rowIndex) => {
+    const terms = extractSearchTerms(content);
+    terms.forEach((term) => {
+      ensureTerm(term);
+      if (!index.terms.get(term)[bucketName].includes(rowIndex)) {
+        index.terms.get(term)[bucketName].push(rowIndex);
+      }
+    });
   };
 
   // 1. Index projects
@@ -26,59 +73,48 @@ export const generateIndex = (data) => {
       if (!project) return;
 
       // 1.1 Extract searchable content
-      const content = [project.name, project.description, project.tags]
-        .filter(Boolean)
-        .join(" ")
-        .toLowerCase();
-
-      // 1.2 Get meaningful search terms
-      const terms = extractSearchTerms(content);
-
-      // 1.3 Add terms to index
-      terms.forEach((term) => {
-        if (!index.terms.has(term)) {
-          index.terms.set(term, { blogs: [], projects: [], certificates: [] });
-        }
-        if (!index.terms.get(term).projects.includes(i)) {
-          index.terms.get(term).projects.push(i);
-        }
-      });
-    });
-  }
-
-  // 2. Index Blogs
-  if (Array.isArray(data.blogs)) {
-    data.blogs.forEach((blog, i) => {
-      if (!blog) return;
-
-      // 2.1 Extract searchable content
+      const tags = Array.isArray(project.tags)
+        ? project.tags.join(" ")
+        : project.tags;
+      const languages = Array.isArray(project?.metadata?.languages)
+        ? project.metadata.languages.map((language) => language?.name).join(" ")
+        : "";
+      const contributors = Array.isArray(project.contributors)
+        ? project.contributors
+            .map((contributor) =>
+              [contributor?.name, contributor?.login, contributor?.role]
+                .filter(Boolean)
+                .join(" ")
+            )
+            .join(" ")
+        : "";
       const content = [
-        blog.title,
-        blog.description,
-        blog.category,
-        blog.content,
+        project.title,
+        project.shortDescription,
+        project.fullDescription,
+        project.category,
+        tags,
+        project.slug,
+        project.owner?.login,
+        project.owner?.name,
+        contributors,
+        languages,
+        project.metadata?.language,
+        project.metadata?.license?.name,
+        Array.isArray(project?.metadata?.topics)
+          ? project.metadata.topics.join(" ")
+          : project.metadata?.topics,
       ]
         .filter(Boolean)
         .join(" ")
         .toLowerCase();
 
-      // 2.2 Get meaningful search terms
-      const terms = extractSearchTerms(content);
-
-      // 2.3 Add terms to index
-      terms.forEach((term) => {
-        if (!index.terms.has(term)) {
-          index.terms.set(term, { blogs: [], projects: [], certificates: [] });
-        }
-        // Fixed syntax error here - was accessing term.blogs instead of term
-        if (!index.terms.get(term).blogs.includes(i)) {
-          index.terms.get(term).blogs.push(i); // Fixed syntax
-        }
-      });
+      // 1.2 Get meaningful search terms
+      addTerms(content, "projects", i);
     });
   }
 
-  // 3. Index Certificates
+  // 2. Index Certificates
   if (Array.isArray(data.certificates)) {
     data.certificates.forEach((cer, i) => {
       if (!cer) return;
@@ -90,22 +126,75 @@ export const generateIndex = (data) => {
         .toLowerCase();
 
       // 3.2 Get meaningful search terms
-      const terms = extractSearchTerms(content);
-
-      // 3.3 Add terms to index
-      terms.forEach((term) => {
-        if (!index.terms.has(term)) {
-          index.terms.set(term, { blogs: [], projects: [], certificates: [] });
-        }
-        // Fixed syntax error here - was accessing term.certificates instead of term
-        if (!index.terms.get(term).certificates.includes(i)) {
-          index.terms.get(term).certificates.push(i); // Fixed syntax
-        }
-      });
+      addTerms(content, "certificates", i);
     });
   }
 
-  console.log(`Index generated with ${index.terms.size} terms`);
+  if (Array.isArray(data.courses)) {
+    data.courses.forEach((course, i) => {
+      if (!course) return;
+      const content = [
+        course.title,
+        course.shortDescription,
+        course.fullDescription,
+        (course.tags || []).join(" "),
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+      addTerms(content, "courses", i);
+    });
+  }
+
+  if (Array.isArray(data.services)) {
+    data.services.forEach((service, i) => {
+      if (!service) return;
+      const content = [
+        service.title,
+        service.shortDescription,
+        service.fullDescription,
+        service.category,
+        (service.features || []).join(" "),
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+      addTerms(content, "services", i);
+    });
+  }
+
+  if (Array.isArray(data.education)) {
+    data.education.forEach((edu, i) => {
+      if (!edu) return;
+      const content = [edu.degreeType, edu.organization, edu.description]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+      addTerms(content, "education", i);
+    });
+  }
+
+  if (Array.isArray(data.bootcamps)) {
+    data.bootcamps.forEach((event, i) => {
+      if (!event) return;
+      const content = [
+        event.title,
+        event.subtitle,
+        event.description,
+        (event.topics || []).join(" "),
+        (event.tags || []).join(" "),
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+      addTerms(content, "bootcamps", i);
+    });
+  }
+
+  index.docs.forEach((doc, i) => {
+    addTerms(`${doc.title} ${doc.content}`, "docs", i);
+  });
+
   return index;
 };
 
@@ -136,46 +225,61 @@ export const clearIndex = () => {
  * @returns {Object} Search results
  */
 export const searchIndex = (query, index) => {
-  // Extract search terms from query
   const terms = extractSearchTerms(query);
 
   if (terms.length === 0) {
-    return { projects: [], certificates: [], blogs: [] };
+    return {
+      projects: [],
+      certificates: [],
+      courses: [],
+      services: [],
+      education: [],
+      bootcamps: [],
+      docs: [],
+    };
   }
 
-  // Track matched indices
   const projectIndices = new Set();
   const certificateIndices = new Set();
-  const blogIndices = new Set();
+  const courseIndices = new Set();
+  const serviceIndices = new Set();
+  const educationIndices = new Set();
+  const bootcampIndices = new Set();
+  const docIndices = new Set();
 
-  // Look for exact matches first
+  const collectMatches = (matches) => {
+    matches.projects.forEach((i) => projectIndices.add(i));
+    matches.certificates.forEach((i) => certificateIndices.add(i));
+    matches.courses.forEach((i) => courseIndices.add(i));
+    matches.services.forEach((i) => serviceIndices.add(i));
+    matches.education.forEach((i) => educationIndices.add(i));
+    matches.bootcamps.forEach((i) => bootcampIndices.add(i));
+    matches.docs.forEach((i) => docIndices.add(i));
+  };
+
   terms.forEach((term) => {
     if (index.terms.has(term)) {
-      const matches = index.terms.get(term);
-      matches.projects.forEach((i) => projectIndices.add(i));
-      matches.certificates.forEach((i) => certificateIndices.add(i));
-      matches.blogs.forEach((i) => blogIndices.add(i));
+      collectMatches(index.terms.get(term));
     }
   });
 
-  // If we don't have enough results, try partial matches
-  if (
+  const hasNoResults =
     projectIndices.size === 0 &&
     certificateIndices.size === 0 &&
-    blogIndices.size === 0
-  ) {
+    courseIndices.size === 0 &&
+    serviceIndices.size === 0 &&
+    educationIndices.size === 0 &&
+    bootcampIndices.size === 0 &&
+    docIndices.size === 0;
+
+  if (hasNoResults) {
     index.terms.forEach((matches, indexTerm) => {
-      // Check if any search term is part of this index term
-      const hasMatch = terms.some((term) => indexTerm.includes(term));
-      if (hasMatch) {
-        matches.projects.forEach((i) => projectIndices.add(i));
-        matches.certificates.forEach((i) => certificateIndices.add(i));
-        matches.blogs.forEach((i) => blogIndices.add(i));
+      if (terms.some((term) => indexTerm.includes(term))) {
+        collectMatches(matches);
       }
     });
   }
 
-  // Convert indices to actual items
   return {
     projects: Array.from(projectIndices)
       .map((i) => index.projects[i])
@@ -183,8 +287,20 @@ export const searchIndex = (query, index) => {
     certificates: Array.from(certificateIndices)
       .map((i) => index.certificates[i])
       .filter(Boolean),
-    blogs: Array.from(blogIndices)
-      .map((i) => index.blogs[i])
+    courses: Array.from(courseIndices)
+      .map((i) => index.courses[i])
+      .filter(Boolean),
+    services: Array.from(serviceIndices)
+      .map((i) => index.services[i])
+      .filter(Boolean),
+    education: Array.from(educationIndices)
+      .map((i) => index.education[i])
+      .filter(Boolean),
+    bootcamps: Array.from(bootcampIndices)
+      .map((i) => index.bootcamps[i])
+      .filter(Boolean),
+    docs: Array.from(docIndices)
+      .map((i) => index.docs[i])
       .filter(Boolean),
   };
 };

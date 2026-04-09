@@ -1,65 +1,87 @@
-import icons from "./icons";
-import { SiMysql } from "react-icons/si";
+import { FaCss3Alt, FaGitAlt, FaGithub, FaHtml5, FaJava, FaPython, FaReact } from "react-icons/fa6";
+import { SiExpress, SiMysql, SiTypescript } from "react-icons/si";
+import { IoLogoJavascript } from "react-icons/io5";
+import { RiNextjsFill, RiTailwindCssFill } from "react-icons/ri";
+import { TbBrandCpp } from "react-icons/tb";
+import { DiMongodb, DiNodejs } from "react-icons/di";
+import { AiOutlineLinux } from "react-icons/ai";
+import { VscVscodeInsiders } from "react-icons/vsc";
 
 const first_row = [
   {
     name: "HTML",
-    icon: icons.html,
+    icon: FaHtml5,
   },
   {
     name: "JS",
-    icon: icons.js,
+    icon: IoLogoJavascript,
+  },
+  {
+    name: "TS",
+    icon: SiTypescript,
   },
   {
     name: "CSS",
-    icon: icons.css,
+    icon: FaCss3Alt,
   },
   {
     name: "REACT",
-    icon: icons.react,
+    icon: FaReact,
   },
   {
     name: "NEXTJS",
-    icon: icons.nextjs,
+    icon: RiNextjsFill,
   },
   {
     name: "TAILWIND",
-    icon: icons.tailwind,
-  }
+    icon: RiTailwindCssFill,
+  },
 ];
 
 const second_row = [
   {
     name: "GIT",
-    icon: icons.git,
+    icon: FaGitAlt,
   },
   {
     name: "GITHUB",
-    icon: icons.github,
+    icon: FaGithub,
+  },
+  {
+    name: "JAVA",
+    icon: FaJava,
   },
   {
     name: "C++",
-    icon: icons.cpp,
+    icon: TbBrandCpp,
   },
   {
     name: "PYTHON",
-    icon: icons.python,
+    icon: FaPython,
   },
   {
     name: "NODEJS",
-    icon: icons.nodejs,
+    icon: DiNodejs,
   },
   {
     name: "EXPRESS",
-    icon: icons.express,
+    icon: SiExpress,
   },
   {
     name: "MONGODB",
-    icon: icons.mongodb,
+    icon: DiMongodb,
   },
   {
     name: "MYSQL",
     icon: SiMysql,
+  },
+  {
+    name: "LINUX",
+    icon: AiOutlineLinux,
+  },
+  {
+    name: "VSCODE",
+    icon: VscVscodeInsiders,
   },
 ];
 

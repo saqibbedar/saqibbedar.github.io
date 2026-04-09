@@ -1,7 +1,9 @@
-import { faqs } from "@/assets";
+import { useContent } from "@/context";
 import { Faqs } from "@/components/ui";
 
 const FAQSection = () => {
+  const { faqs } = useContent();
+
   return (
     <Faqs
       items={faqs}

@@ -16,7 +16,11 @@ import {
 } from "react-icons/fa";
 import { SiNpm, SiOrcid, SiPypi } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
-import { projects } from "@/assets";
+import { useContent } from "@/context";
+import { PageMeta } from "@/components/ui/PageMeta";
+import { getViewMeta } from "@/assets";
+
+const MAX_VISIBLE_AVATARS = 5;
 
 // Helper function to get status badge
 const getStatusBadge = (status, visibility) => {
@@ -52,8 +56,79 @@ const getStatusBadge = (status, visibility) => {
   return badges[status] || badges.active;
 };
 
+const getRepositoryHref = (project) =>
+  project.github?.repoUrl || project.links?.github || null;
+
+const getProjectLanguages = (project) => project?.metadata?.languages || [];
+
+const getPrimaryLanguage = (project) =>
+  getProjectLanguages(project).find((language) => language.isMain)?.name ||
+  getProjectLanguages(project)[0]?.name ||
+  project?.metadata?.language ||
+  "";
+
+const getContributorStack = (project) => {
+  const owner = project?.owner
+    ? {
+        login: project.owner.login || project.owner.name,
+        name: project.owner.name || project.owner.login,
+        avatarUrl: project.owner.avatar || project.owner.avatarUrl,
+        role: project.owner.repositoryRole || "Owner",
+        isOwner: true,
+      }
+    : null;
+
+  const contributors = Array.isArray(project?.contributors)
+    ? project.contributors.filter((contributor) => !contributor?.isOwner)
+    : [];
+
+  return [owner, ...contributors].filter(Boolean);
+};
+
+const ContributorStack = ({ project }) => {
+  const contributors = getContributorStack(project);
+  const visibleContributors = contributors.slice(0, MAX_VISIBLE_AVATARS);
+  const overflow = contributors.length - visibleContributors.length;
+
+  return (
+    <div className="flex items-center -space-x-2">
+      {visibleContributors.map((contributor, index) => (
+        <div
+          key={`${contributor.login || contributor.name || index}`}
+          className="group relative"
+          title={`${contributor.name || contributor.login} · ${
+            contributor.role || "Contributor"
+          }`}
+        >
+          <img
+            src={
+              contributor.avatarUrl ||
+              contributor.avatar ||
+              "/images/author.png"
+            }
+            alt={contributor.name || contributor.login}
+            className="w-10 h-10 rounded-full border-2 border-bg-card object-cover bg-bg-secondary"
+          />
+        </div>
+      ))}
+      {overflow > 0 && getRepositoryHref(project) && (
+        <a
+          href={getRepositoryHref(project)}
+          target="_blank"
+          rel="noopener noreferrer"
+          title={`${overflow} more contributor${overflow === 1 ? "" : "s"}`}
+          className="w-8 h-8 rounded-full border-2 border-bg-card bg-bg-secondary flex items-center justify-center text-[10px] font-semibold text-fg-secondary hover:text-fg-primary transition-colors"
+        >
+          +{overflow}
+        </a>
+      )}
+    </div>
+  );
+};
+
 // Format date helper
 const formatDate = (dateString) => {
+  if (!dateString) return "-";
   const date = new Date(dateString);
   return date.toLocaleDateString("en-US", {
     year: "numeric",
@@ -63,8 +138,9 @@ const formatDate = (dateString) => {
 };
 
 // Link Button Component
-const LinkButton = ({ href, icon: Icon, label, primary = false }) => {
+const LinkButton = ({ href, icon, label, primary = false }) => {
   if (!href) return null;
+  const Icon = icon;
   return (
     <a
       href={href}
@@ -76,7 +152,7 @@ const LinkButton = ({ href, icon: Icon, label, primary = false }) => {
           : "border border-border hover:border-border-light text-fg-secondary hover:text-fg-primary"
       }`}
     >
-      <Icon className="w-4 h-4" />
+      {Icon && <Icon className="w-4 h-4" />}
       {label}
     </a>
   );
@@ -85,15 +161,16 @@ const LinkButton = ({ href, icon: Icon, label, primary = false }) => {
 const Project = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const project = projects.find((p) => p._id === id);
+  const { projects, loading } = useContent();
+  const project = projects.find((p) => p._id === id || p.slug === id);
 
   useEffect(() => {
-    if (!project) {
+    if (!loading && !project) {
       navigate("/404");
     }
-  }, [project, navigate]);
+  }, [loading, project, navigate]);
 
-  if (!project) {
+  if (loading || !project) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-fg-muted">Loading project...</div>
@@ -102,10 +179,19 @@ const Project = () => {
   }
 
   const statusBadge = getStatusBadge(project.status, project.visibility);
+  const projectUrl = getRepositoryHref(project);
+  const primaryLanguage = getPrimaryLanguage(project);
+  const languages = getProjectLanguages(project);
+  const issueCount = project.metadata?.issues?.count ?? 0;
+  const openIssueCount = project.metadata?.issues?.open ?? 0;
+  const licenseName =
+    project.metadata?.license?.name || project.metadata?.license || "-";
+  const licenseUrl = project.metadata?.license?.url || null;
+  const meta = getViewMeta("project", { project });
 
   return (
     <div className="min-h-screen">
-      <title>{`${project.title} | Saqib Bedar`}</title>
+      <PageMeta {...meta} />
 
       {/* Hero Section */}
       <section className="relative pt-24 sm:pt-28 md:pt-32 pb-10 md:pb-16 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
@@ -129,7 +215,7 @@ const Project = () => {
                 {statusBadge.icon}
                 {statusBadge.text}
               </span>
-              {project.tags.map((tag, index) => (
+              {(project.tags || []).map((tag, index) => (
                 <span
                   key={index}
                   className="px-3 py-1 text-sm font-medium text-fg-primary bg-bg-card border border-border rounded-full"
@@ -146,7 +232,7 @@ const Project = () => {
 
             {/* Description */}
             <p className="text-base sm:text-lg text-fg-secondary leading-relaxed mb-6">
-              {project.fullDescription}
+              {project.fullDescription || project.shortDescription}
             </p>
 
             {/* Stats (for public projects) */}
@@ -169,15 +255,28 @@ const Project = () => {
                 </div>
                 <div className="flex items-center gap-1.5">
                   <FaCode className="w-4 h-4" />
-                  <span>
-                    {project.metadata.languages.find((l) => l.isMain)?.name ||
-                      project.metadata.languages[0]?.name}
-                  </span>
+                  <span>{primaryLanguage || "-"}</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <FaBalanceScale className="w-4 h-4" />
-                  <span>{project.metadata.license}</span>
+                  <span>{licenseName}</span>
                 </div>
+              </div>
+            )}
+
+            {languages.length > 0 && (
+              <div className="flex items-center gap-2 flex-wrap mb-6">
+                {languages.map((language) => (
+                  <span
+                    key={language.name}
+                    className="px-3 py-1 text-xs font-medium text-fg-secondary bg-bg-card border border-border rounded-full"
+                  >
+                    {language.name}
+                    {typeof language.percentage === "number"
+                      ? ` ${language.percentage}%`
+                      : ""}
+                  </span>
+                ))}
               </div>
             )}
 
@@ -186,37 +285,15 @@ const Project = () => {
               <h3 className="text-sm font-semibold text-fg-muted uppercase tracking-wider mb-3">
                 Contributors
               </h3>
-              <div className="flex flex-wrap gap-3">
-                {project.contributors.map((contributor, index) => (
-                  <a
-                    key={index}
-                    href={contributor.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 p-3 bg-bg-card border border-border rounded-xl hover:border-border-light transition-colors"
-                  >
-                    <img
-                      src={contributor.avatar}
-                      alt={contributor.name}
-                      className="w-10 h-10 rounded-full object-cover"
-                    />
-                    <div>
-                      <p className="font-medium text-fg-primary">
-                        {contributor.name}
-                      </p>
-                      <p className="text-xs text-fg-muted">
-                        {contributor.role}
-                      </p>
-                    </div>
-                  </a>
-                ))}
+              <div className="flex flex-wrap items-center gap-3">
+                <ContributorStack project={project} />
               </div>
             </div>
 
             {/* Action Buttons */}
             <div className="flex items-center gap-3 flex-wrap">
               <LinkButton
-                href={project.links.github}
+                href={projectUrl}
                 icon={FaGithub}
                 label="View on GitHub"
                 primary
@@ -248,7 +325,7 @@ const Project = () => {
                 label="ORCID"
               />
               {/* Other Links */}
-              {project.links.other?.map((link, index) => (
+              {project.links?.other?.map((link, index) => (
                 <LinkButton
                   key={index}
                   href={link.url}
@@ -272,8 +349,7 @@ const Project = () => {
                 <div className="flex items-center justify-between flex-wrap gap-2">
                   <div className="flex items-center gap-2">
                     <span className="px-2 py-1 bg-white/10 backdrop-blur-sm rounded text-white text-xs font-medium">
-                      {project.metadata.languages.find((l) => l.isMain)?.name ||
-                        project.metadata.languages[0]?.name}
+                      {primaryLanguage || "-"}
                     </span>
                     <span className="px-2 py-1 bg-white/10 backdrop-blur-sm rounded text-white text-xs font-medium">
                       {project.category}
@@ -282,7 +358,11 @@ const Project = () => {
                   <div className="flex items-center gap-2 text-white/80 text-sm">
                     <FaCalendarAlt className="w-4 h-4" />
                     <span>
-                      Updated {formatDate(project.metadata.lastUpdated)}
+                      Updated{" "}
+                      {formatDate(
+                        project.metadata?.updatedAt ||
+                          project.metadata?.lastUpdated
+                      )}
                     </span>
                   </div>
                 </div>
@@ -320,9 +400,56 @@ const Project = () => {
             <div className="p-4 bg-bg-card border border-border rounded-xl text-center">
               <FaCalendarAlt className="w-6 h-6 text-fg-secondary mx-auto mb-2" />
               <p className="text-lg font-semibold text-fg-primary">
-                {new Date(project.createdAt).getFullYear()}
+                {new Date(
+                  project.metadata?.createdAt || project.createdAt
+                ).getFullYear()}
               </p>
               <p className="text-sm text-fg-muted">Started</p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mt-6">
+            <div className="p-4 bg-bg-card border border-border rounded-xl">
+              <p className="text-xs uppercase tracking-wider text-fg-muted mb-2">
+                Repository flags
+              </p>
+              <div className="flex flex-wrap gap-2 text-xs text-fg-secondary">
+                <span className="px-2 py-1 rounded-full bg-bg-primary">
+                  {project.metadata?.private ? "Private" : "Public"}
+                </span>
+                <span className="px-2 py-1 rounded-full bg-bg-primary">
+                  {project.metadata?.archived ? "Archived" : "Active"}
+                </span>
+                <span className="px-2 py-1 rounded-full bg-bg-primary">
+                  {project.metadata?.isTemplate ? "Template" : "Not template"}
+                </span>
+                <span className="px-2 py-1 rounded-full bg-bg-primary">
+                  {project.metadata?.allowForking
+                    ? "Forking on"
+                    : "Forking off"}
+                </span>
+              </div>
+            </div>
+            <div className="p-4 bg-bg-card border border-border rounded-xl">
+              <p className="text-xs uppercase tracking-wider text-fg-muted mb-2">
+                Issues and license
+              </p>
+              <div className="flex flex-wrap gap-3 text-sm text-fg-secondary">
+                <span>{issueCount} total issues</span>
+                <span>{openIssueCount} open</span>
+                {licenseUrl ? (
+                  <a
+                    href={licenseUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-fg-primary hover:underline"
+                  >
+                    {licenseName}
+                  </a>
+                ) : (
+                  <span>{licenseName}</span>
+                )}
+              </div>
             </div>
           </div>
         </div>

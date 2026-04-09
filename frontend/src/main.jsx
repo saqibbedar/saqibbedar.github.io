@@ -3,7 +3,10 @@ import React from "react";
 import App from "./App.jsx";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import { GlobalSearchProvider, ProjectProvider } from "@/context";
+import {
+  ContentProvider,
+  GlobalSearchProvider
+} from "@/context";
 
 const root = createRoot(document.getElementById("root"));
 
@@ -13,9 +16,9 @@ root.render(
       future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
     >
       <GlobalSearchProvider>
-        <ProjectProvider>
-          <App />
-        </ProjectProvider>
+        <ContentProvider>
+            <App />
+        </ContentProvider>
       </GlobalSearchProvider>
     </BrowserRouter>
   </React.StrictMode>

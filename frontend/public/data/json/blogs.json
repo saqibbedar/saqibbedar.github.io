@@ -1,0 +1,19 @@
+[
+  {
+    "_id": "blog-source-code",
+    "slug": "source-code",
+    "title": "Source Code",
+    "summary": "How this portfolio is structured, how to run it locally, and how to contribute updates.",
+    "category": "Engineering",
+    "doc": "source-code.md",
+    "publishedAt": "2024-10-10",
+    "updatedAt": "2025-01-15",
+    "featured": true,
+    "allowGithubEdit": true,
+    "related": [
+      { "title": "Projects", "path": "/projects" },
+      { "title": "Services", "path": "/services" },
+      { "title": "Contact", "path": "/contact" }
+    ]
+  }
+]

@@ -1,4 +1,3 @@
-import { motion } from "motion/react";
 import {
   FaMicrophone,
   FaChalkboardUser,
@@ -7,21 +6,13 @@ import {
   FaArrowUpRightFromSquare,
   FaHashtag,
 } from "react-icons/fa6";
-import { bootcampsAndEvents } from "@/assets";
+import { useContent } from "@/context";
 
 // 1. Event Badge - Shows type (bootcamp/event) and mode (online/on-site)
 const EventBadge = ({ type, mode }) => {
-  const isBootcamp = type === "bootcamp";
-
   return (
     <div className="flex flex-wrap items-center gap-2">
-      <span
-        className={`px-3 py-1 text-xs font-semibold uppercase tracking-wider rounded-full ${
-          isBootcamp
-            ? "bg-accent/20 text-accent"
-            : "bg-purple-500/20 text-purple-400"
-        }`}
-      >
+      <span className="px-3 py-1 text-xs font-semibold uppercase tracking-wider rounded-full bg-bg-card text-fg-secondary border border-border">
         {type}
       </span>
       <span className="flex items-center gap-1 px-2 py-1 text-xs text-fg-secondary bg-bg-card rounded-full border border-border">
@@ -46,11 +37,11 @@ const RoleBadge = ({ role }) => {
   const isInstructor = role.toLowerCase() === "instructor";
 
   return (
-    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-medium text-fg-primary bg-fg-primary/10 rounded-lg border border-fg-primary/20">
+    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-medium text-fg-primary bg-bg-card rounded-full border border-border">
       {isInstructor ? (
-        <FaChalkboardUser className="w-3 h-3 sm:w-4 sm:h-4" />
+        <FaChalkboardUser className="w-3 h-3 sm:w-4 sm:h-4 text-fg-secondary" />
       ) : (
-        <FaMicrophone className="w-3 h-3 sm:w-4 sm:h-4" />
+        <FaMicrophone className="w-3 h-3 sm:w-4 sm:h-4 text-fg-secondary" />
       )}
       {role}
     </span>
@@ -87,7 +78,7 @@ const ResourceLinks = ({ resources }) => {
           href={resource.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-fg-primary bg-bg-card hover:bg-fg-primary hover:text-bg-primary rounded-lg border border-border transition-all duration-300 group"
+          className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-black bg-white rounded-full border border-transparent hover:border-transparent hover:opacity-90 transition-all duration-300 group"
         >
           {resource.label}
           <FaArrowUpRightFromSquare className="w-3 h-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -149,30 +140,37 @@ const ImageGallery = ({ images, title }) => {
 };
 
 // 7. Event Card - Individual event/bootcamp card
-const EventCard = ({ event, index, isLast }) => {
-  const isBootcamp = event.type === "bootcamp";
+const EventCard = ({ event, isLast }) => {
+  const formatEventDate = (value) => {
+    if (!value) return "Date TBD";
+
+    if (/^\d{4}$/.test(String(value))) {
+      return value;
+    }
+
+    const parsedDate = new Date(value);
+    if (Number.isNaN(parsedDate.getTime())) {
+      return value;
+    }
+
+    return new Intl.DateTimeFormat("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    }).format(parsedDate);
+  };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      viewport={{ once: true }}
-      className="group relative flex gap-4 sm:gap-6"
-    >
+    <div className="group relative flex gap-4 sm:gap-6">
       {/* Timeline Line */}
       {!isLast && (
         <div className="absolute left-[15px] sm:left-[19px] top-10 bottom-0 w-px bg-border" />
       )}
 
       {/* Timeline Dot */}
-      <div
-        className={`relative z-10 flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center ${
-          isBootcamp ? "bg-accent" : "bg-purple-500"
-        }`}
-      >
-        {isBootcamp ? (
-          <FaChalkboardUser className="w-4 h-4 sm:w-5 sm:h-5 text-bg-primary" />
+      <div className="relative z-10 flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center bg-btn-primary-bg">
+        {event.type === "bootcamp" ? (
+          <FaChalkboardUser className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
         ) : (
           <FaMicrophone className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
         )}
@@ -187,13 +185,13 @@ const EventCard = ({ event, index, isLast }) => {
             <div className="flex items-center gap-2">
               <RoleBadge role={event.role} />
               <span className="text-xs sm:text-sm text-fg-secondary">
-                {event.date}
+                {formatEventDate(event.date)}
               </span>
             </div>
           </div>
 
           {/* Title */}
-          <h3 className="text-lg sm:text-xl font-semibold text-fg-primary group-hover:text-accent transition-colors">
+          <h3 className="text-lg sm:text-xl font-semibold text-fg-primary">
             {event.title}
           </h3>
 
@@ -228,12 +226,14 @@ const EventCard = ({ event, index, isLast }) => {
         {/* Tags */}
         <TagsList tags={event.tags} />
       </div>
-    </motion.div>
+    </div>
   );
 };
 
 // 8. Main Section Component
 const BootcampsAndEventsSection = () => {
+  const { bootcampsAndEvents } = useContent();
+
   return (
     <section className="py-10 md:py-16 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
       {/* Section Header */}
@@ -252,7 +252,6 @@ const BootcampsAndEventsSection = () => {
           <EventCard
             key={event._id}
             event={event}
-            index={index}
             isLast={index === bootcampsAndEvents.length - 1}
           />
         ))}

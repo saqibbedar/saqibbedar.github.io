@@ -1,54 +1,21 @@
 import { useState, useRef, useEffect, useMemo } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { IoSearch, IoArrowUp, IoClose } from "react-icons/io5";
-import {
-  FaProjectDiagram,
-  FaGraduationCap,
-  FaBriefcase,
-  FaCertificate,
-  FaBook,
-  FaMicrophone,
-  FaArrowRight,
-} from "react-icons/fa";
-
-// Import data sources
-import { projects, courses, services, certificates, education, bootcampsAndEvents } from "@/assets";
-
-// Category Tab Component - matching ProjectView style
-const CategoryTab = ({ category, icon: Icon, isActive, onClick, count }) => (
-  <button
-    onClick={() => onClick(category)}
-    className={`flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full whitespace-nowrap transition-all ${
-      isActive
-        ? "bg-fg-primary text-bg-primary"
-        : "text-fg-secondary hover:text-fg-primary border border-border hover:border-border-light"
-    }`}
-  >
-    {Icon && <Icon className="w-3.5 h-3.5" />}
-    <span>{category}</span>
-    {count > 0 && (
-      <span
-        className={`text-xs px-1.5 py-0.5 rounded-full ${
-          isActive
-            ? "bg-bg-primary/20 text-bg-primary"
-            : "bg-bg-card text-fg-muted"
-        }`}
-      >
-        {count}
-      </span>
-    )}
-  </button>
-);
+import { FaArrowRight } from "react-icons/fa";
+import { CategoryTab } from "@/components/ui";
+import { useContent } from "@/context";
 
 // Result Card Component - Clean, minimal design
 const ResultCard = ({ item, type }) => {
-  const isClickable = type === "project" || type === "course";
+  const isClickable = type === "project" || type === "course" || type === "doc";
   const linkPath =
     type === "project"
-      ? `/projects/${item._id || item.slug}`
+      ? `/projects/${item.slug || item._id}`
       : type === "course"
-      ? `/courses/${item._id || item.slug}`
-      : null;
+        ? `/courses/${item._id || item.slug}`
+        : type === "doc"
+          ? item.path
+          : null;
 
   const externalUrl =
     type === "certificate" ? item.credentialUrl : item.platformUrl || null;
@@ -162,6 +129,19 @@ const SearchInput = ({ initialQuery = "" }) => {
   const [query, setQuery] = useState(initialQuery);
   const [activeCategory, setActiveCategory] = useState("All");
   const [isFocused, setIsFocused] = useState(false);
+  const {
+    projects: projectData,
+    courses: courseData,
+    services: serviceData,
+    certificates: certificateData,
+    education: educationData,
+    bootcampsAndEvents: bootcampData,
+    policyDoc,
+    termsDoc,
+    sitemap,
+    blogs,
+    sourceCodeDoc,
+  } = useContent();
 
   // Initialize query from URL
   useEffect(() => {
@@ -181,19 +161,35 @@ const SearchInput = ({ initialQuery = "" }) => {
       arr.some((item) =>
         searchInText(typeof item === "string" ? item : item.name)
       );
+    const searchInProjectContributors = (contributors) =>
+      Array.isArray(contributors) &&
+      contributors.some(
+        (contributor) =>
+          searchInText(contributor?.name) ||
+          searchInText(contributor?.login) ||
+          searchInText(contributor?.role)
+      );
 
     // Search Projects
-    const projects = projects.filter(
+    const projectResults = projectData.filter(
       (p) =>
         searchInText(p.title) ||
         searchInText(p.shortDescription) ||
         searchInText(p.fullDescription) ||
         searchInArray(p.tags) ||
-        searchInText(p.category)
+        searchInText(p.category) ||
+        searchInText(p.slug) ||
+        searchInText(p.owner?.login) ||
+        searchInText(p.owner?.name) ||
+        searchInProjectContributors(p.contributors) ||
+        searchInArray(p.metadata?.languages) ||
+        searchInText(p.metadata?.language) ||
+        searchInText(p.metadata?.license?.name) ||
+        searchInArray(p.metadata?.topics)
     );
 
     // Search Courses
-    const courses = courses.filter(
+    const courseResults = courseData.filter(
       (c) =>
         searchInText(c.title) ||
         searchInText(c.shortDescription) ||
@@ -202,7 +198,7 @@ const SearchInput = ({ initialQuery = "" }) => {
     );
 
     // Search Services
-    const services = services.filter(
+    const serviceResults = serviceData.filter(
       (s) =>
         searchInText(s.title) ||
         searchInText(s.shortDescription) ||
@@ -211,7 +207,7 @@ const SearchInput = ({ initialQuery = "" }) => {
     );
 
     // Search Certificates
-    const certs = certificates.filter(
+    const certificateResults = certificateData.filter(
       (c) =>
         searchInText(c.title) ||
         searchInText(c.description) ||
@@ -220,7 +216,7 @@ const SearchInput = ({ initialQuery = "" }) => {
     );
 
     // Search Education
-    const edu = education.filter(
+    const educationResults = educationData.filter(
       (e) =>
         searchInText(e.degreeType) ||
         searchInText(e.organization) ||
@@ -228,7 +224,7 @@ const SearchInput = ({ initialQuery = "" }) => {
     );
 
     // Search Bootcamps & Events
-    const bootcamps = bootcampsAndEvents.filter(
+    const bootcampResults = bootcampData.filter(
       (b) =>
         searchInText(b.title) ||
         searchInText(b.subtitle) ||
@@ -237,15 +233,77 @@ const SearchInput = ({ initialQuery = "" }) => {
         searchInArray(b.tags)
     );
 
+    const docs = [
+      {
+        _id: "policy",
+        title: "Privacy Policy",
+        path: "/privacy-policy",
+        description: "Privacy and data handling details",
+        category: "Legal",
+        content: policyDoc,
+      },
+      {
+        _id: "terms",
+        title: "Terms & Conditions",
+        path: "/terms-conditions",
+        description: "Website usage terms",
+        category: "Legal",
+        content: termsDoc,
+      },
+      {
+        _id: "source-code",
+        title: "Source Code",
+        path: "/blog/source-code",
+        description: "Project structure, setup steps, and contribution notes",
+        category: "Engineering",
+        content: sourceCodeDoc,
+      },
+      {
+        _id: "sitemap",
+        title: "Sitemap",
+        path: "/sitemap",
+        description: "Complete site navigation",
+        category: "Utility",
+        content: JSON.stringify(sitemap || {}),
+      },
+      ...blogs.map((post) => ({
+        _id: post._id || post.slug,
+        title: post.title,
+        path: `/blogs/${post.slug}`,
+        description: post.summary,
+        category: post.category || "Blog",
+        content: post.markdown || "",
+      })),
+    ].filter(
+      (doc) =>
+        searchInText(doc.title) ||
+        searchInText(doc.description) ||
+        searchInText(doc.content)
+    );
+
     return {
-      projects,
-      courses,
-      services,
-      certificates: certs,
-      education: edu,
-      bootcamps,
+      projects: projectResults,
+      courses: courseResults,
+      services: serviceResults,
+      certificates: certificateResults,
+      education: educationResults,
+      bootcamps: bootcampResults,
+      docs,
     };
-  }, [query]);
+  }, [
+    query,
+    projectData,
+    courseData,
+    serviceData,
+    certificateData,
+    educationData,
+    bootcampData,
+    policyDoc,
+    termsDoc,
+    sitemap,
+    blogs,
+    sourceCodeDoc,
+  ]);
 
   // Calculate counts for category tabs
   const categoryCounts = useMemo(() => {
@@ -258,6 +316,7 @@ const SearchInput = ({ initialQuery = "" }) => {
       Certificates: searchResults.certificates.length,
       Education: searchResults.education.length,
       Events: searchResults.bootcamps.length,
+      Docs: searchResults.docs.length,
     };
   }, [searchResults]);
 
@@ -289,6 +348,7 @@ const SearchInput = ({ initialQuery = "" }) => {
       Certificates: { certificates: searchResults.certificates },
       Education: { education: searchResults.education },
       Events: { bootcamps: searchResults.bootcamps },
+      Docs: { docs: searchResults.docs },
     };
 
     return categoryMap[activeCategory] || searchResults;
@@ -297,13 +357,14 @@ const SearchInput = ({ initialQuery = "" }) => {
   const filteredResults = getFilteredResults();
 
   const categories = [
-    { name: "All", icon: null },
-    { name: "Projects", icon: FaProjectDiagram },
-    { name: "Courses", icon: FaGraduationCap },
-    { name: "Services", icon: FaBriefcase },
-    { name: "Certificates", icon: FaCertificate },
-    { name: "Education", icon: FaBook },
-    { name: "Events", icon: FaMicrophone },
+    { name: "All" },
+    { name: "Projects" },
+    { name: "Courses" },
+    { name: "Services" },
+    { name: "Certificates" },
+    { name: "Education" },
+    { name: "Events" },
+    { name: "Docs" },
   ];
 
   return (
@@ -328,7 +389,6 @@ const SearchInput = ({ initialQuery = "" }) => {
               <CategoryTab
                 key={cat.name}
                 category={cat.name}
-                icon={cat.icon}
                 isActive={activeCategory === cat.name}
                 onClick={setActiveCategory}
                 count={categoryCounts[cat.name] || 0}
@@ -434,6 +494,15 @@ const SearchInput = ({ initialQuery = "" }) => {
                   title="Bootcamps & Events"
                   items={filteredResults.bootcamps}
                   type="bootcamp"
+                />
+              )}
+
+            {(activeCategory === "All" || activeCategory === "Docs") &&
+              filteredResults.docs && (
+                <ResultSection
+                  title="Docs"
+                  items={filteredResults.docs}
+                  type="doc"
                 />
               )}
           </div>

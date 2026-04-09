@@ -12,7 +12,10 @@ import {
 } from "react-icons/fa";
 import { SiNpm, SiOrcid, SiPypi } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
-import { projects } from "@/assets"
+import { CategoryTab } from "@/components/ui";
+import { useContent } from "@/context";
+
+const MAX_VISIBLE_AVATARS = 5;
 
 // Category buttons
 const categoryButtons = [
@@ -61,14 +64,90 @@ const getStatusBadge = (status, visibility) => {
   return badges[status] || badges.active;
 };
 
+const getProjectHref = (project) => `/projects/${project.slug || project._id}`;
+
+const getProjectRepositoryHref = (project) =>
+  project.github?.repoUrl || project.links?.github || null;
+
+const getProjectLanguages = (project) => project?.metadata?.languages || [];
+
+const getPrimaryLanguage = (project) =>
+  getProjectLanguages(project).find((language) => language.isMain)?.name ||
+  getProjectLanguages(project)[0]?.name ||
+  project?.metadata?.language ||
+  "";
+
+const getContributorStack = (project) => {
+  const owner = project?.owner
+    ? {
+        login: project.owner.login || project.owner.name,
+        name: project.owner.name || project.owner.login,
+        avatarUrl: project.owner.avatar || project.owner.avatarUrl,
+        profileUrl: project.owner.profileUrl,
+        role: project.owner.repositoryRole || "Owner",
+        isOwner: true,
+      }
+    : null;
+
+  const contributors = Array.isArray(project?.contributors)
+    ? project.contributors.filter((contributor) => !contributor?.isOwner)
+    : [];
+
+  return [owner, ...contributors].filter(Boolean);
+};
+
+const ContributorStack = ({ project }) => {
+  const contributors = getContributorStack(project);
+  const visibleContributors = contributors.slice(0, MAX_VISIBLE_AVATARS);
+  const overflow = contributors.length - visibleContributors.length;
+  const repositoryUrl = getProjectRepositoryHref(project);
+
+  return (
+    <div className="flex items-center -space-x-2">
+      {visibleContributors.map((contributor, index) => (
+        <div
+          key={`${contributor.login || contributor.name || index}`}
+          className="group relative"
+          title={`${contributor.name || contributor.login} · ${
+            contributor.role || "Contributor"
+          }`}
+        >
+          <img
+            src={
+              contributor.avatarUrl ||
+              contributor.avatar ||
+              "/images/author.png"
+            }
+            alt={contributor.name || contributor.login}
+            className="w-7 h-7 rounded-full border-2 border-bg-card object-cover bg-bg-secondary"
+          />
+        </div>
+      ))}
+      {overflow > 0 && repositoryUrl && (
+        <a
+          href={repositoryUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          title={`${overflow} more contributor${overflow === 1 ? "" : "s"}`}
+          className="w-7 h-7 rounded-full border-2 border-bg-card bg-bg-secondary flex items-center justify-center text-[10px] font-semibold text-fg-secondary hover:text-fg-primary transition-colors"
+        >
+          +{overflow}
+        </a>
+      )}
+    </div>
+  );
+};
+
 // Project Card Component
 const ProjectCard = ({ project }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const statusBadge = getStatusBadge(project.status, project.visibility);
+  const primaryLanguage = getPrimaryLanguage(project);
+  const languages = getProjectLanguages(project);
 
   return (
     <Link
-      to={`/projects/${project._id}`}
+      to={getProjectHref(project)}
       className="group bg-bg-card rounded-2xl border border-border hover:border-border-light transition-all duration-300 overflow-hidden"
     >
       {/* Thumbnail */}
@@ -92,8 +171,7 @@ const ProjectCard = ({ project }) => {
         </div>
         {/* Language Badge */}
         <div className="absolute bottom-3 right-3 px-2 py-1 bg-black/70 backdrop-blur-sm rounded-md text-white text-xs font-medium">
-          {project.metadata.languages.find((l) => l.isMain)?.name ||
-            project.metadata.languages[0]?.name}
+          {primaryLanguage}
         </div>
       </div>
 
@@ -139,6 +217,19 @@ const ProjectCard = ({ project }) => {
           </div>
         )}
 
+        {languages.length > 0 && (
+          <div className="flex items-center gap-2 mb-4 flex-wrap">
+            {languages.slice(0, 3).map((language) => (
+              <span
+                key={language.name}
+                className="px-2.5 py-0.5 text-[11px] font-medium text-fg-secondary bg-bg-card border border-border-light rounded-full"
+              >
+                {language.name}
+              </span>
+            ))}
+          </div>
+        )}
+
         {/* Footer - Links & Contributors */}
         <div className="flex items-center justify-between pt-4 border-t border-border">
           {/* Quick Links */}
@@ -163,42 +254,15 @@ const ProjectCard = ({ project }) => {
           </div>
 
           {/* Contributors */}
-          <div className="flex items-center -space-x-2">
-            {project.contributors.slice(0, 3).map((contributor, index) => (
-              <img
-                key={index}
-                src={contributor.avatar}
-                alt={contributor.name}
-                className="w-7 h-7 rounded-full border-2 border-bg-card object-cover"
-              />
-            ))}
-            {project.contributors.length > 3 && (
-              <div className="w-7 h-7 rounded-full border-2 border-bg-card bg-bg-secondary flex items-center justify-center text-xs font-medium text-fg-secondary">
-                +{project.contributors.length - 3}
-              </div>
-            )}
-          </div>
+          <ContributorStack project={project} />
         </div>
       </div>
     </Link>
   );
 };
 
-// Category Tab Component
-const CategoryTab = ({ category, isActive, onClick }) => (
-  <button
-    onClick={() => onClick(category)}
-    className={`px-4 py-2 text-sm font-medium rounded-full whitespace-nowrap transition-colors ${
-      isActive
-        ? "bg-fg-primary text-bg-primary"
-        : "text-fg-secondary hover:text-fg-primary border border-border hover:border-border-light"
-    }`}
-  >
-    {category}
-  </button>
-);
-
 const ProjectView = () => {
+  const { projects } = useContent();
   const [activeCategory, setActiveCategory] = useState("All");
 
   // Filter projects based on category

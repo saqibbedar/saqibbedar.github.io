@@ -1,9 +1,12 @@
 import { useEffect, useState, useRef } from "react";
-import { author, icons, footer } from "@/assets";
+import { author, footer } from "@/assets";
 import { Link, useNavigate } from "react-router-dom";
 import { SlideText, SplitText } from "@/components/ui";
 import { motion } from "motion/react";
 import Marquee from "react-fast-marquee";
+import { FaPlus } from "react-icons/fa6";
+import { CiSearch } from "react-icons/ci";
+
 
 // Elegant easing curves
 const elegantEase = [0.76, 0, 0.24, 1]; // smooth decelerate
@@ -157,7 +160,7 @@ const Navbar = () => {
           >
             <div className="flex items-center justify-center gap-[0.09rem] font-semibold">
               <span className="">Menu</span>
-              <icons.plus
+              <FaPlus
                 strokeWidth={"20px"}
                 className="h-[.9rem] w-[.9rem]"
               />
@@ -228,7 +231,7 @@ const Navbar = () => {
                   placeholder="Search..."
                   className="bg-transparent outline-none w-full tracking-wider text-sm text-fg-secondary placeholder:text-fg-secondary/60"
                 />
-                <icons.search
+                <CiSearch
                   strokeWidth="1"
                   className="ml-2 stroke-fg-secondary fill-fg-secondary flex-shrink-0 cursor-pointer"
                   onClick={(e) => {
@@ -247,7 +250,7 @@ const Navbar = () => {
               {/* X Close (toggleButton) */}
               <div className="flex gap-[7px] items-center">
                 <Link to={"/search"} onClick={() => setActiveMenu(!activeMenu)}>
-                  <icons.search
+                  <CiSearch
                     strokeWidth="2px"
                     className="block text-fg-secondary stroke-fg-secondary sm:hidden"
                   />
@@ -258,7 +261,7 @@ const Navbar = () => {
                   className={`${STYLES.actionButtons}`}
                 >
                   <div className="flex items-center justify-center gap-[0.2rem]">
-                    <icons.plus
+                    <FaPlus
                       strokeWidth={isMobile ? "1px" : "3px"}
                       className="text-fg-secondary sm:text-inherit h-[1.3rem] w-[1.3rem] rotate-45"
                     />
@@ -275,6 +278,7 @@ const Navbar = () => {
               {[
                 "home",
                 "about",
+                "blogs",
                 "projects",
                 "services",
                 "courses",
@@ -324,7 +328,7 @@ const Navbar = () => {
                         <item.icon className="h-6 w-6 mb-3" />
                       ) : (
                         <SplitText
-                          className="text-[20px] xl:text-2xl leading-[1.8rem] tracking-wider"
+                          className="text-[1.1rem] xl:text-2xl leading-[1.8rem] tracking-wider"
                           front={item.name}
                         />
                       )}

@@ -1,10 +1,14 @@
 import { ServiceView } from "@/components/sections";
+import { PageMeta } from "@/components/ui";
+import { getPageMeta } from "@/assets";
 
 const Services = () => {
+  const meta = getPageMeta("services");
+
   return (
     <>
-      <title>Saqib Bedar | Services</title>
-        <ServiceView />
+      <PageMeta {...meta} />
+      <ServiceView />
     </>
   );
 };

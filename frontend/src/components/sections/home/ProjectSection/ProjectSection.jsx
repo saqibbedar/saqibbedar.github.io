@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { SplitText } from "@/components/ui";
-import { projects } from "@/assets";
+import { useContent } from "@/context";
 
 const ProjectItem = ({ project, isFirst }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const projectYear = project?.createdAt
-    ? new Date(project.createdAt).getFullYear()
-    : "";
+  const projectYear =
+    project?.metadata?.createdAt || project?.createdAt
+      ? new Date(project.metadata?.createdAt || project.createdAt).getFullYear()
+      : "";
 
   return (
     <div
@@ -16,7 +17,7 @@ const ProjectItem = ({ project, isFirst }) => {
       }`}
     >
       <Link
-        to={`/projects/${project._id}`}
+        to={`/projects/${project.slug || project._id}`}
         className="py-5 sm:py-8 md:py-12 text-[clamp(1.5rem,6vw,4rem)] font-semibold uppercase text-fg-secondary flex items-center gap-2 sm:gap-6 md:gap-8"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -29,7 +30,7 @@ const ProjectItem = ({ project, isFirst }) => {
         <SplitText
           className="leading-[3.5rem] tracking-wider"
           front={project.title}
-          back={"VIEW PROJECT"}
+          back={project.title}
           isHovered={isHovered}
         />
       </Link>
@@ -41,6 +42,7 @@ const ProjectItem = ({ project, isFirst }) => {
 };
 
 const ProjectSection = () => {
+  const { projects } = useContent();
   const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
 
   return (

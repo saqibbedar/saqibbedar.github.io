@@ -1,13 +1,14 @@
-import { CategoryProvider } from "@/context";
 import { ProjectView } from "@/components/sections";
+import { PageMeta } from "@/components/ui";
+import { getPageMeta } from "@/assets";
 
 const Projects = () => {
+  const meta = getPageMeta("projects");
+
   return (
     <>
-      <title>Saqib Bedar | Projects</title>
-    <CategoryProvider initialCategory={"All"}>
-        <ProjectView />
-    </CategoryProvider>
+      <PageMeta {...meta} />
+      <ProjectView />
     </>
   );
 };

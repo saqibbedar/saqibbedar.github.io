@@ -1,0 +1,102 @@
+[
+  {
+    "_id": 1,
+    "image": "https://s3.amazonaws.com/coursera_assets/meta_images/generated/CERTIFICATE_LANDING_PAGE/CERTIFICATE_LANDING_PAGE~STE2IL1GQHT8/CERTIFICATE_LANDING_PAGE~STE2IL1GQHT8.jpeg",
+    "title": "Introduction to Networking",
+    "description": "Earned a distinguished Nvidia certification through Coursera for mastering Introduction to Networking.",
+    "providerName": "Nvidia",
+    "credentialUrl": "https://www.coursera.org/verify/STE2IL1GQHT8",
+    "providerLogo": "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/http://coursera-university-assets.s3.amazonaws.com/77/9078959db5472ab81dbd883497e987/NVIDIA-360x360.png?auto=format%2Ccompress&dpr=1&w=80&h=80",
+    "tags": "networking, nvidia, coursera"
+  },
+  {
+    "_id": 2,
+    "image": "https://s3.amazonaws.com/coursera_assets/meta_images/generated/CERTIFICATE_LANDING_PAGE/CERTIFICATE_LANDING_PAGE~F2AZEBXWRDJB/CERTIFICATE_LANDING_PAGE~F2AZEBXWRDJB.jpeg",
+    "title": "Google AI Essentials",
+    "description": "Earned a distinguished Google certification through Coursera for mastering Google AI Essentials.",
+    "providerName": "Google",
+    "credentialUrl": "https://coursera.org/verify/F2AZEBXWRDJB",
+    "providerLogo": "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/http://coursera-university-assets.s3.amazonaws.com/92/d0d1ee4a844037be9a2d349ee5f59d/GoogleG_FullColor_RGB.png?auto=format%2Ccompress&dpr=1&w=80&h=80",
+    "tags": "ai, google, mysql, coursera"
+  },
+  {
+    "_id": 3,
+    "image": "https://s3.amazonaws.com/coursera_assets/meta_images/generated/CERTIFICATE_LANDING_PAGE/CERTIFICATE_LANDING_PAGE~HNBS292LZU6Y/CERTIFICATE_LANDING_PAGE~HNBS292LZU6Y.jpeg",
+    "title": "Programming With JavaScript",
+    "description": "Earned a distinguished Meta certification through Coursera for mastering Programming With JavaScript.",
+    "providerName": "Meta",
+    "credentialUrl": "https://www.coursera.org/verify/HNBS292LZU6Y",
+    "providerLogo": "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/http://coursera-university-assets.s3.amazonaws.com/73/e03b13a8e44df9b19eb279e5506396/360-x-360.png?auto=format%2Ccompress&dpr=1&w=80&h=80",
+    "tags": "javascript, programming, meta, coursera"
+  },
+  {
+    "_id": 4,
+    "image": "https://s3.amazonaws.com/coursera_assets/meta_images/generated/CERTIFICATE_LANDING_PAGE/CERTIFICATE_LANDING_PAGE~8U8LJ8IUCOM0/CERTIFICATE_LANDING_PAGE~8U8LJ8IUCOM0.jpeg",
+    "title": "C++ Basics: Selection and Iteration",
+    "description": "Earned a distinguished Codio certification through Coursera for mastering C++ Basics: Selection and Iteration.",
+    "providerName": "Codio",
+    "credentialUrl": "https://www.coursera.org/verify/8U8LJ8IUCOM0",
+    "providerLogo": "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/http://coursera-university-assets.s3.amazonaws.com/a9/8bf44a234442d4aaa0da096026dfd8/Untitled-design-1-.png?auto=format%2Ccompress&dpr=1&w=80&h=80",
+    "tags": "c++, programming, codio, coursera"
+  },
+  {
+    "_id": 4,
+    "image": "https://s3.amazonaws.com/coursera_assets/meta_images/generated/CERTIFICATE_LANDING_PAGE/CERTIFICATE_LANDING_PAGE~PLACTXIYZ919/CERTIFICATE_LANDING_PAGE~PLACTXIYZ919.jpeg",
+    "title": "Build a Full Website using WordPress",
+    "description": "Earned a distinguished Coursera Project Network certification through Coursera for mastering website development with WordPress.",
+    "providerName": "Coursera Project Network",
+    "credentialUrl": "https://www.coursera.org/verify/PLACTXIYZ919",
+    "providerLogo": "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/http://coursera-university-assets.s3.amazonaws.com/61/dec3c0d28a469da45e1fe410f69ed9/coursera-square-wordmark-logo-full-rgb.png?auto=format%2Ccompress&dpr=1&w=80&h=80",
+    "tags": "wordpress, website development, coursera project network, coursera"
+  },
+  {
+    "_id": 5,
+    "image": "/images/certificates/web_fcc.webp",
+    "title": "Legacy Responsive Web Design V8",
+    "description": "Earned a prestigious certification through freeCodeCamp, showcasing mastery in web design & front-end development.",
+    "providerName": "freeCodeCamp",
+    "credentialUrl": "https://www.freecodecamp.org/certification/saqibbedar/responsive-web-design",
+    "providerLogo": "https://avatars3.githubusercontent.com/u/9892522?s=280&v=4",
+    "tags": "html, css, javascript, web development, freeCodeCamp"
+  },
+  {
+    "_id": 6,
+    "image": "https://storage.googleapis.com/programminghub/certificate%2F1688570418306.jpg",
+    "title": "Python Certification Course",
+    "description": "Completed the Python Certification Course from Programming Hub, understanding fundamental concepts of Python.",
+    "providerName": "Programming Hub",
+    "providerLogo": "/images/certificates/orgs/prohub.webp",
+    "credentialUrl": "https://storage.googleapis.com/programminghub/certificate%2F1688570418306.jpg",
+    "tags": "python, programming, programming hub"
+  },
+  {
+    "_id": 7,
+    "image": "https://storage.googleapis.com/programminghub/certificate%2F1688548837186.jpg",
+    "title": "HTML Excellence Certificate",
+    "description": "Honored with the HTML Excellence Certificate from Programming Hub, highlighting proficiency in HTML coding.",
+    "providerName": "Programming Hub",
+    "providerLogo": "/images/certificates/orgs/prohub.webp",
+    "credentialUrl": "https://storage.googleapis.com/programminghub/certificate%2F1688548837186.jpg",
+    "tags": "html, programming hub"
+  },
+  {
+    "_id": 8,
+    "image": "https://storage.googleapis.com/programminghub/certificate%2F1688547942093.jpg",
+    "title": "CSS Excellence Certificate",
+    "description": "Attained a CSS Excellence Certificate from Programming Hub, recognizing exceptional skills in CSS styling techniques.",
+    "providerName": "Programming Hub",
+    "providerLogo": "/images/certificates/orgs/prohub.webp",
+    "credentialUrl": "https://storage.googleapis.com/programminghub/certificate%2F1688547942093.jpg",
+    "tags": "css, programming hub"
+  },
+  {
+    "_id": 9,
+    "image": "/images/certificates/singing_ccl.webp",
+    "title": "Certificate of Merit",
+    "description": "Awarded for achieving the 1st position in the college singing competition, showcasing exceptional vocal talent and musical prowess.",
+    "providerName": "Cadet College Larkana",
+    "providerLogo": "https://jaamiah.com/wp-content/uploads/2019/05/cadet-college-larkana-logo.jpg",
+    "credentialUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj9poGATzdXwDjd5vDJm88fTyiVU7rI7denq-IzWOfdJnWsRJ-KUh-1OvBpBpv4p2HZNasqLICKmsihsFfdVDmpnQfGDkEcBehIl4YG-QgWOOdvGrnf3yw4DAKg3Lw_sNopTXqMbbiqLpvRoPGy_8-5ugTcnwMQJLp1YwaM6aUQP2z8HyoIS5T_WUAVGzSl/s1600/Cetificate%20of%20Merit.jpg",
+    "tags": "singing, cadet college larkana"
+  }
+]

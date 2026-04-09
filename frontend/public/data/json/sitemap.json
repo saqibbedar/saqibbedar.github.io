@@ -1,0 +1,147 @@
+{
+  "sitemapData": [
+    {
+      "category": "Main Pages",
+      "description": "Core pages of the website",
+      "links": [
+        {
+          "name": "Home",
+          "path": "/",
+          "icon": "FaHome",
+          "description": "Welcome page with overview of my work and skills"
+        },
+        {
+          "name": "About",
+          "path": "/about",
+          "icon": "FaUser",
+          "description": "Learn more about me, my background, and experience"
+        },
+        {
+          "name": "Contact",
+          "path": "/contact",
+          "icon": "FaEnvelope",
+          "description": "Get in touch with me for inquiries or opportunities"
+        }
+      ]
+    },
+    {
+      "category": "Portfolio",
+      "description": "Explore my work and learning resources",
+      "links": [
+        {
+          "name": "Projects",
+          "path": "/projects",
+          "icon": "FaProjectDiagram",
+          "description": "Browse my open-source projects and contributions"
+        },
+        {
+          "name": "Courses",
+          "path": "/courses",
+          "icon": "FaGraduationCap",
+          "description": "View courses and tutorials I've created or recommend"
+        },
+        {
+          "name": "Blog",
+          "path": "/blog",
+          "icon": "FaBookOpen",
+          "description": "Read documentation-style posts and technical notes"
+        },
+        {
+          "name": "Source Code",
+          "path": "/source-code",
+          "icon": "FaCode",
+          "description": "Reference source code setup, structure, and contribution guidance"
+        }
+      ]
+    },
+    {
+      "category": "Services",
+      "description": "Professional services I offer",
+      "links": [
+        {
+          "name": "Services",
+          "path": "/services",
+          "icon": "FaBriefcase",
+          "description": "Hire me, book consultation, speaking, teaching, and more"
+        }
+      ]
+    },
+    {
+      "category": "Utility",
+      "description": "Helpful tools and pages",
+      "links": [
+        {
+          "name": "Search",
+          "path": "/search",
+          "icon": "FaSearch",
+          "description": "Search across projects, courses, and content"
+        },
+        {
+          "name": "Sitemap",
+          "path": "/sitemap",
+          "icon": "FaSitemap",
+          "description": "Complete site navigation"
+        }
+      ]
+    },
+    {
+      "category": "Legal",
+      "description": "Policies and terms",
+      "links": [
+        {
+          "name": "Privacy Policy",
+          "path": "/privacy-policy",
+          "icon": "FaShieldAlt",
+          "description": "How I collect, use, and protect your data"
+        },
+        {
+          "name": "Terms & Conditions",
+          "path": "/terms-conditions",
+          "icon": "FaFileContract",
+          "description": "Rules and guidelines for using this website"
+        }
+      ]
+    },
+    {
+      "category": "Error Pages",
+      "description": "Error handling pages",
+      "links": [
+        {
+          "name": "404 - Not Found",
+          "path": "/404",
+          "icon": "FaExclamationTriangle",
+          "description": "Page displayed when a route doesn't exist"
+        }
+      ]
+    }
+  ],
+  "externalLinks": [
+    { "name": "GitHub", "url": "https://github.com/saqibbedar" },
+    { "name": "LinkedIn", "url": "https://linkedin.com/in/saqibbedar" },
+    { "name": "Twitter / X", "url": "https://twitter.com/saqibbedar" },
+    { "name": "YouTube", "url": "https://youtube.com/@bedarsaqib" },
+    { "name": "Buy Me a Coffee", "url": "https://buymeacoffee.com/saqibbedar" }
+  ],
+  "dynamicRoutes": [
+    {
+      "name": "Project Details",
+      "path": "/projects/:id",
+      "description": "Individual project pages with full details"
+    },
+    {
+      "name": "Course Details",
+      "path": "/courses/:id",
+      "description": "Individual course pages with complete metadata"
+    },
+    {
+      "name": "Search Query",
+      "path": "/search/:query",
+      "description": "Search page with route query segment"
+    },
+    {
+      "name": "Blog Details",
+      "path": "/blog/:slug",
+      "description": "Individual blog post pages rendered from docs"
+    }
+  ]
+}

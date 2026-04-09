@@ -1,5 +1,5 @@
 import { FaExternalLinkAlt } from "react-icons/fa";
-import { certificates } from "@/assets";
+import { useContent } from "@/context";
 
 // Certificate Card Component
 const CertificateCard = ({
@@ -63,6 +63,8 @@ const CertificateCard = ({
 };
 
 const CertificatesSection = () => {
+  const { certificates } = useContent();
+
   return (
     <section className="py-10 md:py-16 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
       {/* Section Header */}

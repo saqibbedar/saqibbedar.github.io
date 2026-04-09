@@ -1,36 +1,56 @@
-import icons from './icons'
+import { FaGithub, FaInstagram, FaLinkedin, FaTwitch, FaXTwitter, FaYoutube } from 'react-icons/fa6';
+import { SiBuymeacoffee } from 'react-icons/si';
+import { TbBrandLinktree } from 'react-icons/tb';
+import { BiLogoFacebookCircle } from 'react-icons/bi';
+
+// add twitch, facebook, thread, tiktok, linktree(everywhere username:saqibbedar)
 
 const footer = [
   {
-    link: "https://twitter.com/saqibbedar",
-    icon: icons.twitter,
-    name: "X/TWITTER"
-  },
-  {
-    link: "https://www.youtube.com/@bedarsaqib",
-    icon: icons.youtube,
-    name: "YOUTUBE"
+    link: "https://x.com/saqibbedar",
+    icon: FaXTwitter,
+    name: "X/TWITTER",
   },
   {
     link: "https://www.linkedin.com/in/saqibbedar",
-    icon: icons.linkedIn,
-    name: "LINKEDIN"
+    icon: FaLinkedin,
+    name: "LINKEDIN",
   },
   {
     link: "https://github.com/saqibbedar",
-    icon: icons.github,
-    name: "GITHUB"
+    icon: FaGithub,
+    name: "GITHUB",
   },
   {
     link: "https://www.instagram.com/saqibbedar",
-    icon: icons.insta,
-    name: "INSTAGRAM"
+    icon: FaInstagram,
+    name: "INSTAGRAM",
+  },
+  {
+    link: "https://www.youtube.com/@saqibbedar",
+    icon: FaYoutube,
+    name: "YOUTUBE",
+  },
+  {
+    link: "https://www.twitch.tv/saqibbedar",
+    icon: FaTwitch,
+    name: "TWITCH",
   },
   {
     link: "https://buymeacoffee.com/saqibbedar",
-    icon: icons.byMeCoffee,
-    name: "SUPPORT"
-  }
+    icon: SiBuymeacoffee,
+    name: "SUPPORT",
+  },
+  // {
+  //   link: "https://linktr.ee/saqibbedar",
+  //   icon: TbBrandLinktree,
+  //   name: "LINKTREE",
+  // },
+  // {
+  //   link: "https://www.facebook.com/saqibbedar.fb/",
+  //   icon: BiLogoFacebookCircle,
+  //   name: "FACEBOOK",
+  // },
 ];
 
 export default footer;

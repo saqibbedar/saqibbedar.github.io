@@ -1,14 +1,14 @@
 import { HomeView } from "@/components/sections";
+import { PageMeta } from "@/components/ui/PageMeta";
+import { getPageMeta } from "@/assets";
 
 const Home = () => {
-  
+  const meta = getPageMeta("home");
+
   return (
     <>
-      <meta name="author" content="Saqib Bedar" />
-      <meta name="keywords" content="Saqib Bedar, JavaScript, semantic markup, html" />
-      <meta name="description" content="Saqib Bedar" />
-      <title>Saqib Bedar | Home</title>
-        <HomeView />
+      <PageMeta {...meta} />
+      <HomeView />
     </>
   );
 };

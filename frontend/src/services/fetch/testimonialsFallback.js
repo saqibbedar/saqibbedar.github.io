@@ -1,0 +1,59 @@
+const testimonialsFallback = [
+  {
+    _id: 1,
+    image:
+      "https://imageio.forbes.com/specials-images/imageserve/5f15a9ee916e8500077ad83b/0x0.jpg?format=jpg&width=1200",
+    url: "https://github.com/saqibbedar",
+    urlType: "link",
+    name: "John Doe",
+    designation: "Professor",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident nostrum rerum et. Cupiditate eligendi, explicabo animi laboriosam dolorum deleniti itaque ipsam enim corporis ex harum voluptatum, eum alias ducimus dolorem.",
+  },
+  {
+    _id: 2,
+    image:
+      "https://imageio.forbes.com/specials-images/imageserve/5f15a9ee916e8500077ad83b/0x0.jpg?format=jpg&width=1200",
+    url: "mailto:saqib@example.com",
+    urlType: "contact",
+    name: "John Doe",
+    designation: "Professor",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident nostrum rerum et. Cupiditate eligendi, explicabo animi laboriosam dolorum deleniti itaque ipsam enim corporis ex harum voluptatum, eum alias ducimus dolorem.",
+  },
+  {
+    _id: 3,
+    image:
+      "https://imageio.forbes.com/specials-images/imageserve/5f15a9ee916e8500077ad83b/0x0.jpg?format=jpg&width=1200",
+    url: "https://t.me/saqibbedar",
+    urlType: "chat",
+    name: "John Doe",
+    designation: "Professor",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident nostrum rerum et. Cupiditate eligendi, explicabo animi laboriosam dolorum deleniti itaque ipsam enim corporis ex harum voluptatum, eum alias ducimus dolorem.",
+  },
+  {
+    _id: 4,
+    image:
+      "https://imageio.forbes.com/specials-images/imageserve/5f15a9ee916e8500077ad83b/0x0.jpg?format=jpg&width=1200",
+    url: "https://saqibbedar.com",
+    urlType: "globe",
+    name: "John Doe",
+    designation: "Professor",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident nostrum rerum et. Cupiditate eligendi, explicabo animi laboriosam dolorum deleniti itaque ipsam enim corporis ex harum voluptatum, eum alias ducimus dolorem.",
+  },
+  {
+    _id: 5,
+    image:
+      "https://imageio.forbes.com/specials-images/imageserve/5f15a9ee916e8500077ad83b/0x0.jpg?format=jpg&width=1200",
+    url: "https://buymeacoffee.com/saqibbedar",
+    urlType: "link",
+    name: "John Doe",
+    designation: "Professor",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident nostrum rerum et. Cupiditate eligendi, explicabo animi laboriosam dolorum deleniti itaque ipsam enim corporis ex harum voluptatum, eum alias ducimus dolorem.",
+  },
+];
+
+export default testimonialsFallback;

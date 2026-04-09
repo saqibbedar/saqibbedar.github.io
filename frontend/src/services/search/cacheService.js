@@ -3,7 +3,7 @@
  */
 let dataCache = null;
 let cacheTimestamp = null;
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+const CACHE_DURATION = 15 * 60 * 1000; // 15 minutes
 
 /**
  * Gets data from cache or fetches fresh data if cache is stale

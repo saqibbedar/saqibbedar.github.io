@@ -13,7 +13,9 @@ import {
   FaExternalLinkAlt,
 } from "react-icons/fa";
 import { SiUdemy, SiCoursera, SiSkillshare } from "react-icons/si";
-import { courses } from "@/assets";
+import { useContent } from "@/context";
+import { PageMeta } from "@/components/ui/PageMeta";
+import { getViewMeta } from "@/assets";
 
 // Helper function to get platform icon
 const getPlatformIcon = (iconName, size = "w-5 h-5") => {
@@ -50,7 +52,8 @@ const formatDate = (dateString) => {
 const Course = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const course = courses.find((c) => c._id === id);
+  const { courses } = useContent();
+  const course = courses.find((c) => c._id === id || c.slug === id);
 
   useEffect(() => {
     if (!course) {
@@ -66,9 +69,11 @@ const Course = () => {
     );
   }
 
+  const meta = getViewMeta("course", { course });
+
   return (
     <div className="min-h-screen">
-      <title>{`${course.title} | Saqib Bedar`}</title>
+      <PageMeta {...meta} />
 
       {/* Hero Section */}
       <section className="relative pt-24 sm:pt-28 md:pt-32 pb-10 md:pb-16 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">

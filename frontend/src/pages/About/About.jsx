@@ -1,13 +1,14 @@
-import { CategoryProvider } from "@/context";
 import { AboutView } from "@/components/sections";
+import { PageMeta } from "@/components/ui";
+import { getPageMeta } from "@/assets";
 
 const About = () => {
+  const meta = getPageMeta("about");
+
   return (
     <>
-      <title>Saqib Bedar | About</title>
-      <CategoryProvider initialCategory={"Education"}>
-          <AboutView />
-      </CategoryProvider>
+      <PageMeta {...meta} />
+      <AboutView />
     </>
   );
 };

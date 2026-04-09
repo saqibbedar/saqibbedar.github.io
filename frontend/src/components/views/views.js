@@ -1,4 +1,5 @@
-import Project from './Project/Project';
+import Project from "./Project/Project";
 import Course from "./Course/Course";
+import Blog from "./Blog/Blog";
 
-export { Project, Course };
+export { Project, Course, Blog };

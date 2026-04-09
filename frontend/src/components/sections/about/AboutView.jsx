@@ -4,21 +4,9 @@ import EducationSection from "./EducationSection/EducationSection";
 import BootcampsAndEventsSection from "./BootcampsAndEventsSection";
 import FAQSection from "./FAQSection";
 import CertificatesSection from "./CertificatesSection";
-import { author, education } from "@/assets";
-
-// Category Tab Component - matching ProjectView style
-const CategoryTab = ({ category, isActive, onClick }) => (
-  <button
-    onClick={() => onClick(category)}
-    className={`px-4 py-2 text-sm font-medium rounded-full whitespace-nowrap transition-colors ${
-      isActive
-        ? "bg-fg-primary text-bg-primary"
-        : "text-fg-secondary hover:text-fg-primary border border-border hover:border-border-light"
-    }`}
-  >
-    {category}
-  </button>
-);
+import { CategoryTab } from "@/components/ui";
+import { author } from "@/assets";
+import { useContent } from "@/context";
 
 const categoryButtons = [
   "Education",
@@ -29,6 +17,7 @@ const categoryButtons = [
 
 const AboutView = () => {
   const [activeCategory, setActiveCategory] = useState("Education");
+  const { education } = useContent();
 
   return (
     <div>
@@ -55,8 +44,12 @@ const AboutView = () => {
         {activeCategory === "Education" && (
           <EducationSection educational_data={education} />
         )}
-        {activeCategory === "Certificates & Credentials" && <CertificatesSection />}
-        {activeCategory === "Bootcamps & Events" && <BootcampsAndEventsSection />}
+        {activeCategory === "Certificates & Credentials" && (
+          <CertificatesSection />
+        )}
+        {activeCategory === "Bootcamps & Events" && (
+          <BootcampsAndEventsSection />
+        )}
         {activeCategory === "FAQs" && <FAQSection />}
       </div>
     </div>

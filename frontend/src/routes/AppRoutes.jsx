@@ -11,8 +11,9 @@ import {
   Policy,
   Terms,
   Sitemap,
+  Blogs,
 } from "@/pages";
-import { Project, Course } from "@/components/views/views";
+import { Project, Course, Blog } from "@/components/views/views";
 import { Route, Routes } from "react-router-dom";
 
 const AppRoutes = () => {
@@ -30,6 +31,8 @@ const AppRoutes = () => {
         <Route path="/services" element={<Services />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/projects/:id" element={<Project />} />
+        <Route path="/blogs" element={<Blogs />} />
+        <Route path="/blogs/:slug" element={<Blog />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/search" element={<Search />} />
         <Route path="/search/:query" element={<Search />} />

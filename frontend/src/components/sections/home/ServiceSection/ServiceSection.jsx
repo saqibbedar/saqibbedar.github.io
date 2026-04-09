@@ -1,18 +1,35 @@
 import { Link } from "react-router-dom";
-import { FaArrowRight } from "react-icons/fa";
-import { services } from "@/assets";
+import {
+  FaArrowRight,
+  FaCode,
+  FaVideo,
+  FaMicrophone,
+  FaHeart,
+  FaCoffee,
+  FaChalkboardTeacher,
+  FaHandshake,
+} from "react-icons/fa";
+import { useContent } from "@/context";
+
+const serviceIconMap = {
+  FaCode,
+  FaVideo,
+  FaMicrophone,
+  FaHeart,
+  FaCoffee,
+  FaChalkboardTeacher,
+  FaHandshake,
+};
 
 // Service Card Component
-const ServiceCard = ({ service, index }) => {
-  const Icon = service.icon;
+const ServiceCard = ({ service }) => {
+  const Icon = serviceIconMap[service.icon] || FaCode;
 
   return (
     <div className="group p-6 bg-bg-card border border-border rounded-2xl hover:border-border-light transition-colors">
       {/* Icon */}
-      <div
-        className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${service.iconBg}`}
-      >
-        <Icon className={`w-5 h-5 ${service.iconColor}`} />
+      <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 bg-btn-primary-bg text-white">
+        <Icon className="w-5 h-5" />
       </div>
 
       {/* Content */}
@@ -47,8 +64,12 @@ const ServiceCard = ({ service, index }) => {
 };
 
 const ServiceSection = () => {
-  // Get top 4 featured services
-  const featuredServices = services.filter((s) => s.featured).slice(0, 4);
+  const { services } = useContent();
+
+  // Homepage showcases only the core three services.
+  const homepageServices = services.filter((service) =>
+    ["hire-developer", "consultation", "teaching"].includes(service.slug)
+  );
 
   return (
     <section className="py-10 md:py-16 lg:py-20">
@@ -68,9 +89,9 @@ const ServiceSection = () => {
 
       {/* Services Grid */}
       <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          {featuredServices.map((service, index) => (
-            <ServiceCard key={service._id} service={service} index={index} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          {homepageServices.map((service) => (
+            <ServiceCard key={service._id} service={service} />
           ))}
         </div>
 

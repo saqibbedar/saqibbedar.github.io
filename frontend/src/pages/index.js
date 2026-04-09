@@ -10,6 +10,7 @@ import Error404 from "./NotFound/Error404";
 import Terms from "./Terms/Terms";
 import Policy from "./Policy/Policy";
 import Sitemap from "./Sitemap/Sitemap";
+import Blogs from "./Blogs/Blogs";
 
 export {
   Home,
@@ -24,4 +25,5 @@ export {
   Terms,
   Policy,
   Sitemap,
+  Blogs,
 };

@@ -1,16 +1,12 @@
-/**
- * Fetches blogs from JSON file
- * @returns {Promise<Array>} Array of blogs
- */
-export const fetchBlogsService = async () => {
-  try {
-    const response = await fetch("src/assets/json/blogs.json");
+import { fetchWithCache } from "./cacheService";
+
+const CACHE_KEY = "data:blogs";
+
+export const fetchBlogsService = async () =>
+  fetchWithCache(CACHE_KEY, async () => {
+    const response = await fetch("/data/json/blogs.json");
     if (!response.ok) {
       throw new Error(`Failed to fetch blogs: ${response.status}`);
     }
-    return await response.json();
-  } catch (error) {
-    console.error("Error fetching blogs: ", error);
-    return [];
-  }
-};
+    return response.json();
+  });

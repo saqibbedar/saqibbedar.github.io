@@ -12,28 +12,48 @@ import {
   FaClock,
   FaCalendarCheck,
   FaYoutube,
-  FaUsers,
-  FaBriefcase,
   FaGraduationCap,
 } from "react-icons/fa";
 import { SiBuymeacoffee, SiPatreon, SiGithubsponsors } from "react-icons/si";
 import { useState } from "react";
-import { services } from "@/assets";
+import { CategoryTab } from "@/components/ui";
+import { useContent } from "@/context";
+import { author } from "@/assets";
+
+const serviceIconMap = {
+  FaCode,
+  FaVideo,
+  FaMicrophone,
+  FaHeart,
+  FaCoffee,
+  FaChalkboardTeacher,
+  FaHandshake,
+  FaYoutube,
+  FaGraduationCap,
+};
+
+const platformIconMap = {
+  SiBuymeacoffee,
+  SiPatreon,
+  SiGithubsponsors,
+};
 
 // Category data
 const categories = [
-  { name: "All", icon: null },
-  { name: "Employment", icon: FaBriefcase },
-  { name: "Consultation", icon: FaVideo },
-  { name: "Speaking", icon: FaMicrophone },
-  { name: "Education", icon: FaGraduationCap },
-  { name: "Collaboration", icon: FaHandshake },
-  { name: "Support", icon: FaHeart },
+  { name: "All" },
+  { name: "Employment" },
+  { name: "Consultation" },
+  { name: "Speaking" },
+  { name: "Education" },
+  { name: "Collaboration" },
+  { name: "Support" },
 ];
 
 // Service Card Component
 const ServiceCard = ({ service }) => {
-  const Icon = service.icon;
+  const Icon = serviceIconMap[service.icon] || FaCode;
+  const isConsultation = service.slug === "consultation";
+  const isHireDeveloper = service.slug === "hire-developer";
 
   return (
     <div className="group bg-bg-card rounded-2xl border border-border hover:border-border-light transition-all duration-300 overflow-hidden flex flex-col h-full">
@@ -41,10 +61,8 @@ const ServiceCard = ({ service }) => {
       <div className="p-6 sm:p-8 flex-1">
         {/* Icon & Category */}
         <div className="flex items-start justify-between mb-4">
-          <div
-            className={`w-14 h-14 rounded-xl flex items-center justify-center ${service.iconBg}`}
-          >
-            <Icon className={`w-7 h-7 ${service.iconColor}`} />
+          <div className="w-14 h-14 rounded-xl flex items-center justify-center bg-btn-primary-bg/70 text-white">
+            <Icon className="w-7 h-7" />
           </div>
           <span className="px-3 py-1 text-xs font-medium text-fg-primary bg-bg-card border border-border-light rounded-full">
             {service.category}
@@ -89,7 +107,7 @@ const ServiceCard = ({ service }) => {
             <p className="text-xs text-fg-secondary mb-3">Support via:</p>
             <div className="flex items-center gap-2">
               {service.platforms.map((platform, index) => {
-                const PlatformIcon = platform.icon;
+                const PlatformIcon = platformIconMap[platform.icon] || FaHeart;
                 return (
                   <a
                     key={index}
@@ -113,7 +131,7 @@ const ServiceCard = ({ service }) => {
             <p className="text-xs text-fg-secondary mb-3">Open for:</p>
             <div className="flex items-center gap-2">
               {service.collaborationTypes.map((type, index) => {
-                const TypeIcon = type.icon;
+                const TypeIcon = serviceIconMap[type.icon] || FaCode;
                 return (
                   <div
                     key={index}
@@ -127,66 +145,58 @@ const ServiceCard = ({ service }) => {
             </div>
           </div>
         )}
+
+        {isHireDeveloper && (
+          <div className="mt-5 pt-4 border-t border-border">
+            <p className="text-xs text-fg-secondary mb-3">Resources:</p>
+            <div className="flex items-center gap-2 flex-wrap">
+              <a
+                href={author.cv}
+                download
+                className="px-3 py-1.5 bg-bg-primary border border-border rounded-full text-xs text-fg-secondary hover:text-fg-primary hover:border-border-light transition-colors"
+              >
+                Download CV
+              </a>
+              <Link
+                to="/about"
+                className="px-3 py-1.5 bg-bg-primary border border-border rounded-full text-xs text-fg-secondary hover:text-fg-primary hover:border-border-light transition-colors"
+              >
+                About
+              </Link>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Footer CTA */}
       <div className="p-6 sm:p-8 pt-0">
-        <Link
-          to="/contact"
-          state={{ service: service.title }}
-          className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 bg-fg-primary text-bg-primary font-medium rounded-full hover:opacity-90 transition-opacity"
-        >
-          {service.ctaText}
-          <FaArrowRight className="w-3.5 h-3.5" />
-        </Link>
+        {isConsultation ? (
+          <a
+            href="https://topmate.io/saqibbedar"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 bg-fg-primary text-bg-primary font-medium rounded-full hover:opacity-90 transition-opacity"
+          >
+            {service.ctaText}
+            <FaArrowRight className="w-3.5 h-3.5" />
+          </a>
+        ) : (
+          <Link
+            to="/contact"
+            state={{ service: service.title }}
+            className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 bg-fg-primary text-bg-primary font-medium rounded-full hover:opacity-90 transition-opacity"
+          >
+            {service.ctaText}
+            <FaArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        )}
       </div>
     </div>
   );
 };
 
-// Category Tab Component
-const CategoryTab = ({ category, isActive, onClick }) => {
-  const Icon = category.icon;
-  return (
-    <button
-      onClick={() => onClick(category.name)}
-      className={`flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full whitespace-nowrap transition-colors ${
-        isActive
-          ? "bg-fg-primary text-bg-primary"
-          : "text-fg-secondary hover:text-fg-primary border border-border hover:border-border-light"
-      }`}
-    >
-      {Icon && <Icon className="w-3.5 h-3.5" />}
-      {category.name}
-    </button>
-  );
-};
-
-// Quick Action Card
-const QuickActionCard = ({
-  icon: Icon,
-  title,
-  description,
-  link,
-  external,
-}) => (
-  <a
-    href={external ? link : undefined}
-    target={external ? "_blank" : undefined}
-    rel={external ? "noopener noreferrer" : undefined}
-    className="flex items-start gap-4 p-4 bg-bg-card border border-border rounded-xl hover:border-border-light transition-colors group"
-  >
-    <div className="w-10 h-10 rounded-lg bg-bg-primary border border-border flex items-center justify-center flex-shrink-0">
-      <Icon className="w-5 h-5 text-fg-secondary group-hover:text-fg-primary transition-colors" />
-    </div>
-    <div>
-      <h4 className="font-medium text-fg-primary mb-1">{title}</h4>
-      <p className="text-sm text-fg-secondary">{description}</p>
-    </div>
-  </a>
-);
-
 const ServiceView = () => {
+  const { services } = useContent();
   const [activeCategory, setActiveCategory] = useState("All");
 
   // Filter services based on category
@@ -194,9 +204,6 @@ const ServiceView = () => {
     activeCategory === "All"
       ? services
       : services.filter((service) => service.category === activeCategory);
-
-  // Featured services for highlight
-  const featuredServices = services.filter((service) => service.featured);
 
   return (
     <section className="pt-24 sm:pt-28 md:pt-32 pb-10 md:pb-16 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
@@ -209,44 +216,10 @@ const ServiceView = () => {
           How Can I Help You?
         </p>
         <p className="text-fg-secondary max-w-2xl">
-          Whether you need a developer, consultant, speaker, or collaborator —
-          I&apos;m here to help. All services require a request and confirmation
-          to ensure we&apos;re the right fit.
+          Need development, consultation, speaking, teaching, or collaboration
+          support? Pick a service below and reach out. I review each request
+          personally.
         </p>
-      </div>
-
-      {/* Quick Actions */}
-      <div className="mb-10 md:mb-14">
-        <h3 className="text-sm font-semibold text-fg-muted uppercase tracking-wider mb-4">
-          Quick Actions
-        </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <QuickActionCard
-            icon={FaBriefcase}
-            title="Looking to Hire?"
-            description="Check my availability for opportunities"
-            link="/contact"
-          />
-          <QuickActionCard
-            icon={SiBuymeacoffee}
-            title="Support My Work"
-            description="Buy me a coffee to keep me going"
-            link="https://buymeacoffee.com/saqibbedar"
-            external
-          />
-          <QuickActionCard
-            icon={FaYoutube}
-            title="Collaborate on Content"
-            description="Let's create something together"
-            link="/contact"
-          />
-          <QuickActionCard
-            icon={FaUsers}
-            title="Request Consultation"
-            description="Get personalized technical advice"
-            link="/contact"
-          />
-        </div>
       </div>
 
       {/* Category Tabs */}
@@ -254,7 +227,7 @@ const ServiceView = () => {
         {categories.map((category) => (
           <CategoryTab
             key={category.name}
-            category={category}
+            category={category.name}
             isActive={activeCategory === category.name}
             onClick={setActiveCategory}
           />

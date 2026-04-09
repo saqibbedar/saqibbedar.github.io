@@ -1,5 +1,5 @@
 import { footer, author } from "@/assets";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 
 // Footer links data
@@ -7,8 +7,10 @@ const footerLinks = {
   explore: [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
+    { name: "Blogs", path: "/blogs" },
     { name: "Projects", path: "/projects" },
     { name: "Courses", path: "/courses" },
+    { name: "Source Code", path: "/blogs/source-code" },
   ],
   services: [
     { name: "Services", path: "/services" },
@@ -22,12 +24,14 @@ const footerLinks = {
 };
 
 const Footer = () => {
-
-  const currentPath = window.location.pathname; // Get current path
+  const location = useLocation();
+  const currentPath = location.pathname;
 
   return (
     // Footer hidden on /search page
-    <footer className={` ${currentPath === "/search" ? "hidden" : "w-full"} border-t border-border`}>
+    <footer
+      className={` ${currentPath === "/search" ? "hidden" : "w-full"} border-t border-border`}
+    >
       {/* Main Footer */}
       <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
