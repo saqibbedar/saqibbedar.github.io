@@ -23,6 +23,10 @@ const footerLinks = {
   ],
 };
 
+const footerOptions = {
+  description: "Building digital experiences with passion. Developer, creator, and lifelong learner sharing knowledge with the community."
+}
+
 const Footer = () => {
   const location = useLocation();
   const currentPath = location.pathname;
@@ -38,28 +42,27 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="lg:col-span-5">
             {/* Big BEDAR Text */}
-            <Link to="/about" className="block mb-6">
-              <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-fg-primary tracking-tight">
-                Saqib Bedar
+            <Link to="/about" className="block mb-6 w-fit">
+              <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-fg-primary tracking-wider">
+                {author.name.toUpperCase()}
               </h2>
             </Link>
             <p className="text-fg-secondary text-sm sm:text-base leading-relaxed max-w-sm mb-6">
-              Building digital experiences with passion. Developer, creator, and
-              lifelong learner sharing knowledge with the community.
+              {footerOptions.description}
             </p>
             {/* Social Links */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 flex-wrap">
               {footer.map((data, index) => (
-                <a
+                <Link
                   key={index}
-                  href={data.link}
+                  to={data.link}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-bg-card border border-border hover:border-border-light flex items-center justify-center text-fg-muted hover:text-fg-primary transition-colors"
                   aria-label={data.name}
                 >
                   <data.icon className="w-4 h-4" fill="currentColor" />
-                </a>
+                </Link>
               ))}
             </div>
           </div>

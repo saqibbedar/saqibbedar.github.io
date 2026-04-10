@@ -15,7 +15,7 @@ import {
   FaGraduationCap,
 } from "react-icons/fa";
 import { SiBuymeacoffee, SiPatreon, SiGithubsponsors } from "react-icons/si";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CategoryTab } from "@/components/ui";
 import { useContent } from "@/context";
 import { author } from "@/assets";
@@ -198,6 +198,13 @@ const ServiceCard = ({ service }) => {
 const ServiceView = () => {
   const { services } = useContent();
   const [activeCategory, setActiveCategory] = useState("All");
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setScreenWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Filter services based on category
   const filteredServices =
@@ -223,13 +230,14 @@ const ServiceView = () => {
       </div>
 
       {/* Category Tabs */}
-      <div className="flex items-center gap-2 mb-8 overflow-x-auto hide-scrollbar pb-2">
+      <div className="flex items-center gap-2 py-6 overflow-x-auto hide-scrollbar sticky top-[55px] md:top-[72px] bg-bg-primary z-40 shadow-[shadow:#000000_0px_-20px_20px_4px]">
         {categories.map((category) => (
           <CategoryTab
             key={category.name}
             category={category.name}
             isActive={activeCategory === category.name}
             onClick={setActiveCategory}
+            scrollOffset={screenWidth >= 768 ? 232 : 242}
           />
         ))}
       </div>

@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { CategoryTab } from "@/components/ui";
 import { useContent } from "@/context";
 
 const formatDate = (value) => {
@@ -95,24 +96,19 @@ const BlogView = () => {
           </p>
         </header>
 
-        <div className="flex flex-col gap-4 mb-8">
-          <div className="flex items-center gap-2 overflow-x-auto hide-scrollbar pb-2">
-            {filterButtons.map((filter) => (
-              <button
-                key={filter}
-                type="button"
-                onClick={() => setActiveFilter(filter)}
-                className={`h-10 px-4 text-sm font-medium rounded-full whitespace-nowrap border transition-colors ${
-                  activeFilter === filter
-                    ? "bg-fg-primary text-bg-primary border-fg-primary"
-                    : "bg-transparent text-fg-secondary border-border hover:text-fg-primary hover:border-border-light"
-                }`}
-              >
-                {filter}
-              </button>
-            ))}
-          </div>
+        <div className="flex items-center gap-2 py-4 mb-4 overflow-x-auto hide-scrollbar sticky top-[55px] md:top-[76px] bg-bg-primary z-40 shadow-[shadow:#000000_0px_-20px_20px_4px]">
+          {filterButtons.map((filter) => (
+            <CategoryTab
+              key={filter}
+              category={filter}
+              isActive={activeFilter === filter}
+              onClick={setActiveFilter}
+              scrollOffset={202}
+            />
+          ))}
+        </div>
 
+        <div className="flex flex-col gap-4 mb-8">
           <div className="flex items-center gap-2">
             {["latest", "oldest"].map((sortOption) => (
               <button

@@ -374,7 +374,7 @@ const SearchInput = ({ initialQuery = "" }) => {
 
         {/* Category Tabs */}
         {query.trim() && (
-          <div className="flex items-center gap-2 mb-8 overflow-x-auto hide-scrollbar pb-2">
+          <div className="flex items-center gap-2 py-6 overflow-x-auto hide-scrollbar sticky top-[55px] md:top-[72px] bg-bg-primary z-40 shadow-[shadow:#000000_0px_-20px_20px_4px]">
             {categories.map((cat) => (
               <CategoryTab
                 key={cat.name}
@@ -382,6 +382,7 @@ const SearchInput = ({ initialQuery = "" }) => {
                 isActive={activeCategory === cat.name}
                 onClick={setActiveCategory}
                 count={categoryCounts[cat.name] || 0}
+                scrollOffset={262}
               />
             ))}
           </div>
@@ -397,8 +398,8 @@ const SearchInput = ({ initialQuery = "" }) => {
               Start Your Search
             </h2>
             <p className="text-fg-secondary max-w-md mx-auto">
-              Type in the search box below to find projects, blogs, courses, services,
-              certificates, and more.
+              Type in the search box below to find projects, blogs, courses,
+              services, certificates, and more.
             </p>
           </div>
         )}

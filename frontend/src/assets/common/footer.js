@@ -1,5 +1,5 @@
 import { FaGithub, FaInstagram, FaLinkedin, FaTwitch, FaXTwitter, FaYoutube } from 'react-icons/fa6';
-import { SiBuymeacoffee } from 'react-icons/si';
+import { SiBuymeacoffee, SiGravatar } from 'react-icons/si';
 import { TbBrandLinktree } from 'react-icons/tb';
 import { BiLogoFacebookCircle } from 'react-icons/bi';
 
@@ -40,6 +40,11 @@ const footer = [
     link: "https://buymeacoffee.com/saqibbedar",
     icon: SiBuymeacoffee,
     name: "SUPPORT",
+  },
+  {
+    link: "https://gravatar.com/saqibbedar",
+    icon: SiGravatar,
+    name: "GRAVATAR",
   },
   // {
   //   link: "https://linktr.ee/saqibbedar",

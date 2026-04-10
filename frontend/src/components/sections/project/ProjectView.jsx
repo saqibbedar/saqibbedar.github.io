@@ -293,13 +293,14 @@ const ProjectView = () => {
       </div>
 
       {/* Category Tabs */}
-      <div className="flex items-center gap-2 mb-8 overflow-x-auto hide-scrollbar pb-2">
+      <div className="flex items-center gap-2 py-6 overflow-x-auto hide-scrollbar sticky top-[55px] md:top-[72px] bg-bg-primary z-40 shadow-[shadow:#000000_0px_-20px_20px_4px]">
         {categoryButtons.map((category) => (
           <CategoryTab
             key={category}
             category={category}
             isActive={activeCategory === category}
             onClick={setActiveCategory}
+            scrollOffset={232}
           />
         ))}
       </div>

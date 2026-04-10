@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import React from "react";
 
 const baseClasses =
   "inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium rounded-full whitespace-nowrap border transition-colors shrink-0";
@@ -34,6 +35,7 @@ const CategoryTab = ({
   activeClassName = "",
   inactiveClassName = "",
   countClassName = "",
+  scrollOffset=62,
   ...props
 }) => {
   const { value, label: resolvedLabel } = normalizeCategory(category, label);
@@ -46,6 +48,13 @@ const CategoryTab = ({
   ]
     .filter(Boolean)
     .join(" ");
+
+  const scrollToOffset = (offset = 62) => {
+    window.scrollTo({
+      top: offset,
+      behavior: "smooth",
+    });
+  };
 
   const shouldShowCount =
     typeof count === "number" && (count > 0 || showCount === true);
@@ -83,7 +92,12 @@ const CategoryTab = ({
   return (
     <button
       type="button"
-      onClick={() => onClick?.(value)}
+      onClick={() => {
+        if (!isActive) {
+          onClick?.(value);
+          scrollToOffset(scrollOffset);
+        }
+      }}
       className={tabClasses}
       aria-pressed={shouldHighlight}
       {...props}

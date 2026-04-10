@@ -93,12 +93,13 @@ const ContributorStack = ({ project }) => {
   return (
     <div className="flex items-center -space-x-2">
       {visibleContributors.map((contributor, index) => (
-        <div
+        <Link
           key={`${contributor.login || contributor.name || index}`}
           className="group relative"
           title={`${contributor.name || contributor.login} · ${
             contributor.role || "Contributor"
           }`}
+          to={contributor.isOwner ? `/about` : `${contributor.profileUrl || "#"}`}
         >
           <img
             src={
@@ -109,7 +110,7 @@ const ContributorStack = ({ project }) => {
             alt={contributor.name || contributor.login}
             className="w-10 h-10 rounded-full border-2 border-bg-card object-cover bg-bg-secondary"
           />
-        </div>
+        </Link>
       ))}
       {overflow > 0 && getRepositoryHref(project) && (
         <a
@@ -414,16 +415,16 @@ const Project = () => {
                 Repository flags
               </p>
               <div className="flex flex-wrap gap-2 text-xs text-fg-secondary">
-                <span className="px-2 py-1 rounded-full bg-bg-primary">
+                <span className="px-2 py-0.5 text-[0.8rem] text-fg-primary/70 bg-btn-primary-bg/40 border border-border-light rounded-full">
                   {project.metadata?.private ? "Private" : "Public"}
                 </span>
-                <span className="px-2 py-1 rounded-full bg-bg-primary">
+                <span className="px-2 py-0.5 text-[0.8rem] text-fg-primary/70 bg-btn-primary-bg/40 border border-border-light rounded-full">
                   {project.metadata?.archived ? "Archived" : "Active"}
                 </span>
-                <span className="px-2 py-1 rounded-full bg-bg-primary">
+                <span className="px-2 py-0.5 text-[0.8rem] text-fg-primary/70 bg-btn-primary-bg/40 border border-border-light rounded-full">
                   {project.metadata?.isTemplate ? "Template" : "Not template"}
                 </span>
-                <span className="px-2 py-1 rounded-full bg-bg-primary">
+                <span className="px-2 py-0.5 text-[0.8rem] text-fg-primary/70 bg-btn-primary-bg/40 border border-border-light rounded-full">
                   {project.metadata?.allowForking
                     ? "Forking on"
                     : "Forking off"}
