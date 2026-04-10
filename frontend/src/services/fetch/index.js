@@ -8,7 +8,6 @@ export * from "./fetchTestimonialsService";
 export * from "./fetchSitemapService";
 export * from "./fetchPolicyDocService";
 export * from "./fetchTermsDocService";
-export * from "./fetchSourceCodeDocService";
 export * from "./fetchBlogsService";
 export * from "./fetchBlogDocService";
 export * from "./fetchFaqsService";

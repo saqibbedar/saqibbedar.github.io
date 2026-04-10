@@ -140,7 +140,6 @@ const SearchInput = ({ initialQuery = "" }) => {
     termsDoc,
     sitemap,
     blogs,
-    sourceCodeDoc,
   } = useContent();
 
   // Initialize query from URL
@@ -251,14 +250,6 @@ const SearchInput = ({ initialQuery = "" }) => {
         content: termsDoc,
       },
       {
-        _id: "source-code",
-        title: "Source Code",
-        path: "/blog/source-code",
-        description: "Project structure, setup steps, and contribution notes",
-        category: "Engineering",
-        content: sourceCodeDoc,
-      },
-      {
         _id: "sitemap",
         title: "Sitemap",
         path: "/sitemap",
@@ -302,7 +293,6 @@ const SearchInput = ({ initialQuery = "" }) => {
     termsDoc,
     sitemap,
     blogs,
-    sourceCodeDoc,
   ]);
 
   // Calculate counts for category tabs
@@ -407,7 +397,7 @@ const SearchInput = ({ initialQuery = "" }) => {
               Start Your Search
             </h2>
             <p className="text-fg-secondary max-w-md mx-auto">
-              Type in the search box below to find projects, courses, services,
+              Type in the search box below to find projects, blogs, courses, services,
               certificates, and more.
             </p>
           </div>

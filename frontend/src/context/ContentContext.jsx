@@ -10,7 +10,6 @@ import {
   fetchSitemapService,
   fetchPolicyDocService,
   fetchTermsDocService,
-  fetchSourceCodeDocService,
   fetchBlogsService,
   fetchBlogDocService,
   fetchFaqsService,
@@ -29,7 +28,6 @@ export function ContentProvider({ children }) {
     sitemap: { sitemapData: [], externalLinks: [], dynamicRoutes: [] },
     policyDoc: "",
     termsDoc: "",
-    sourceCodeDoc: "",
     blogs: [],
     faqs: [],
   });
@@ -60,7 +58,6 @@ export function ContentProvider({ children }) {
           sitemap,
           policyDoc,
           termsDoc,
-          sourceCodeDoc,
           blogs,
           faqs,
         ] = await Promise.allSettled([
@@ -74,7 +71,6 @@ export function ContentProvider({ children }) {
           fetchSitemapService(),
           fetchPolicyDocService(),
           fetchTermsDocService(),
-          fetchSourceCodeDocService(),
           fetchBlogsService(),
           fetchFaqsService(),
         ]);
@@ -125,7 +121,6 @@ export function ContentProvider({ children }) {
           },
           policyDoc: unwrap(policyDoc, "") || "",
           termsDoc: unwrap(termsDoc, "") || "",
-          sourceCodeDoc: unwrap(sourceCodeDoc, "") || "",
           blogs: hydratedBlogs,
           faqs: Array.isArray(unwrap(faqs, [])) ? unwrap(faqs, []) : [],
         });
@@ -141,7 +136,6 @@ export function ContentProvider({ children }) {
           sitemap,
           policyDoc,
           termsDoc,
-          sourceCodeDoc,
           blogs,
           faqs,
         ].filter((result) => result.status === "rejected");
