@@ -21,7 +21,7 @@ const ResultCard = ({ item, type }) => {
     type === "certificate" ? item.credentialUrl : item.platformUrl || null;
 
   const CardContent = () => (
-    <div className="flex items-start gap-3">
+    <div className="flex items-start gap-3.5">
       {/* Thumbnail */}
       {item.thumbnail && (
         <img
@@ -33,20 +33,32 @@ const ResultCard = ({ item, type }) => {
 
       {/* Content */}
       <div className="flex-1 min-w-0">
-        <h3 className="font-medium text-fg-primary group-hover:text-fg-secondary transition-colors line-clamp-1">
+        <h3 className="font-semibold text-fg-primary group-hover:text-fg-secondary transition-colors line-clamp-1 leading-snug">
           {item.title || item.name || item.degreeType}
         </h3>
-        <p className="text-sm text-fg-muted mt-0.5 line-clamp-2">
+        <p className="text-sm text-fg-muted mt-1 line-clamp-2 leading-relaxed">
           {item.shortDescription || item.description}
         </p>
 
         {/* Meta info */}
-        <div className="flex items-center gap-2 mt-2 text-xs text-fg-muted">
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mt-2 text-[11px] sm:text-xs text-fg-muted">
           <span className="capitalize">{type}</span>
           {item.category && (
             <>
               <span>·</span>
               <span>{item.category}</span>
+            </>
+          )}
+          {item.time && (
+            <>
+              <span>·</span>
+              <span>{item.time}</span>
+            </>
+          )}
+          {item.venue && (
+            <>
+              <span>·</span>
+              <span>{item.venue}</span>
             </>
           )}
           {item.organization && (
@@ -107,14 +119,14 @@ const ResultSection = ({ title, items, type }) => {
   if (!items || items.length === 0) return null;
 
   return (
-    <div className="mb-6">
+    <div className="mb-8">
       <div className="flex items-center justify-between mb-2 px-4 -mx-4">
         <h2 className="text-sm font-medium text-fg-muted uppercase tracking-wider">
           {title}
         </h2>
         <span className="text-xs text-fg-muted">{items.length}</span>
       </div>
-      <div className="divide-y divide-border">
+      <div className="space-y-1">
         {items.map((item, index) => (
           <ResultCard key={item._id || index} item={item} type={type} />
         ))}
@@ -228,6 +240,11 @@ const SearchInput = ({ initialQuery = "" }) => {
         searchInText(b.title) ||
         searchInText(b.subtitle) ||
         searchInText(b.description) ||
+        searchInText(b.time) ||
+        searchInText(b.venue) ||
+        searchInText(b.organizedBy) ||
+        searchInText(b.mode) ||
+        searchInText(b.role) ||
         searchInArray(b.topics) ||
         searchInArray(b.tags)
     );
