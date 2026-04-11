@@ -6,23 +6,23 @@
     "role": "Instructor",
     "title": "GitHub: Learn What Matters",
     "subtitle": "Day 2 of GitHub Mastery Bootcamp",
-    "date": "2024",
+    "date": "21st Sep, 2024",
+    "time": "9:00 PM",
+    "venue": "Microsoft Teams",
     "organizedBy": "MLSA QAU",
-    "description": "Led an engaging GitHub session covering core concepts from basics to advanced topics including Git vs GitHub differences, managing local and remote repositories, essential Git commands, working with branches, and deploying websites for free using GitHub Pages.",
+    "description": "Led an engaging GitHub session covering core concepts from basics to advanced topics including Git vs GitHub differences, managing local and remote repositories, essential Git commands, and deploying websites for free using GitHub Pages.",
     "topics": [
       "Git vs GitHub",
       "Local & Remote Repositories",
       "Essential Git Commands",
-      "Working with Branches",
       "GitHub Pages Deployment"
     ],
     "images": [
-      "/images/placeholder-bootcamp-1.jpg",
-      "/images/placeholder-bootcamp-2.jpg"
+      "https://media.licdn.com/dms/image/v2/D4D22AQHvMbNE486Efg/feedshare-shrink_800/feedshare-shrink_800/0/1726965723721?e=1777507200&v=beta&t=6RRhn9dNqONKms3a8p6-khjyGCqWk4yYDm5bbJGOCAA"
     ],
     "resources": [
-      { "label": "GitHub Mastery Resource", "url": "https://lnkd.in/dh_4TXVN" },
-      { "label": "Event Notes", "url": "https://lnkd.in/d_yGtgpm" }
+      { "label": "Event Notes", "url": "https://saqibbedar.github.io/learn-github/index.html" },
+      { "label": "GitHub Repository", "url": "https://github.com/saqibbedar/github-event" }
     ],
     "tags": ["GitHubBootcamp", "OpenSource", "WebDevelopment", "TechEducation"]
   },
@@ -33,7 +33,9 @@
     "role": "Speaker",
     "title": "Introduction to Version Control & GitHub",
     "subtitle": "Orientation Event for Junior Fellows",
-    "date": "2024",
+    "date": "7th Oct, 2024",
+    "time": "11:00 AM - 01:00 PM",
+    "venue": "Razmi Auditorium, Physics Department, Quaid-i-Azam University, Islamabad",
     "organizedBy": "MLSA QAU",
     "description": "Guided junior fellows during the orientation event, introducing them to version control systems and GitHub, highlighting how essential these tools are in today's development landscape.",
     "topics": [
@@ -41,8 +43,12 @@
       "Introduction to GitHub",
       "Why VCS Matters"
     ],
-    "images": ["/images/placeholder-event-1.jpg"],
+    "images": [
+      "https://media.licdn.com/dms/image/v2/D4D22AQF20zA5NAa7uQ/feedshare-shrink_800/feedshare-shrink_800/0/1728503845822?e=1777507200&v=beta&t=5kHziXdmki57g8mdUEyj2pFuVG9TPHDPt6k7OUcUukw",
+      "https://media.licdn.com/dms/image/v2/D4D22AQGh2CPz2Gkh3A/feedshare-shrink_800/feedshare-shrink_800/0/1728503844722?e=1777507200&v=beta&t=Rxx1UI8MXyk2OWQe2e6AU7H79C6ok0QD2x0K-56EyHY",
+      "https://media.licdn.com/dms/image/v2/D4D22AQGtajgNB6tDfg/feedshare-shrink_800/feedshare-shrink_800/0/1728503845519?e=1777507200&v=beta&t=o0bgUIsZN6eXyQ-vmc_pxqJmALNOk9xPUwZvrdVV5fM"
+    ],
     "resources": [],
-    "tags": ["TechTalk", "CommunityLearning", "DeveloperJourney"]
+    "tags": ["TechTalk", "CommunityLearning", "DeveloperJourney", "OrientationEvent"]
   }
 ]

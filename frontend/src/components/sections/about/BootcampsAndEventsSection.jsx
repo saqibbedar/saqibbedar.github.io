@@ -3,10 +3,13 @@ import {
   FaChalkboardUser,
   FaGlobe,
   FaLocationDot,
+  FaClock,
+  FaCalendarDay,
   FaArrowUpRightFromSquare,
   FaHashtag,
 } from "react-icons/fa6";
 import { useContent } from "@/context";
+import { ImageCarousel } from "@/components/ui";
 
 // 1. Event Badge - Shows type (bootcamp/event) and mode (online/on-site)
 const EventBadge = ({ type, mode }) => {
@@ -37,7 +40,7 @@ const RoleBadge = ({ role }) => {
   const isInstructor = role.toLowerCase() === "instructor";
 
   return (
-    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-medium text-fg-primary bg-bg-card rounded-full border border-border">
+    <span className="w-fit flex items-center gap-2 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider rounded-full bg-bg-card text-fg-primary border border-border">
       {isInstructor ? (
         <FaChalkboardUser className="w-3 h-3 sm:w-4 sm:h-4 text-fg-secondary" />
       ) : (
@@ -45,6 +48,54 @@ const RoleBadge = ({ role }) => {
       )}
       {role}
     </span>
+  );
+};
+
+const EventMeta = ({ date, time, venue }) => {
+  const formatEventDate = (value) => {
+    if (!value) return "Date TBD";
+
+    if (/^\d{4}$/.test(String(value))) {
+      return value;
+    }
+
+    const parsedDate = new Date(value);
+    if (Number.isNaN(parsedDate.getTime())) {
+      return value;
+    }
+
+    return new Intl.DateTimeFormat("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    }).format(parsedDate);
+  };
+
+  return (
+    <div className="space-y-2 text-xs sm:text-sm text-fg-secondary">
+      <div className="flex gap-2.5">
+        <div className="inline-flex items-center gap-1.5">
+          <FaCalendarDay className="w-3.5 h-3.5 text-fg-secondary" />
+          {formatEventDate(date)}
+        </div>
+
+        {time && (
+          <div className="inline-flex items-center gap-1.5">
+            <FaClock className="w-3.5 h-3.5 text-fg-secondary" />
+            {time}
+          </div>
+        )}
+      </div>
+
+      {venue && (
+        <div className="flex items-start gap-1.5 min-w-0">
+          <FaLocationDot className="w-3.5 h-3.5 text-fg-secondary shrink-0 mt-0.5" />
+          <span className="min-w-0 whitespace-normal break-words leading-snug">
+            {venue}
+          </span>
+        </div>
+      )}
+    </div>
   );
 };
 
@@ -107,64 +158,13 @@ const TagsList = ({ tags }) => {
   );
 };
 
-// 6. Image Gallery - Displays event images
-const ImageGallery = ({ images, title }) => {
-  if (!images || images.length === 0) return null;
-
-  return (
-    <div className="mt-4 sm:mt-6">
-      <div
-        className={`grid gap-2 sm:gap-3 ${
-          images.length === 1 ? "grid-cols-1" : "grid-cols-2"
-        }`}
-      >
-        {images.slice(0, 2).map((image, index) => (
-          <div
-            key={index}
-            className="relative aspect-video rounded-lg sm:rounded-xl overflow-hidden bg-bg-card border border-border group"
-          >
-            <img
-              src={image}
-              alt={`${title} - ${index + 1}`}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              onError={(e) => {
-                e.target.style.display = "none";
-              }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-bg-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-// 7. Event Card - Individual event/bootcamp card
+// 6. Event Card - Individual event/bootcamp card
 const EventCard = ({ event, isLast }) => {
-  const formatEventDate = (value) => {
-    if (!value) return "Date TBD";
-
-    if (/^\d{4}$/.test(String(value))) {
-      return value;
-    }
-
-    const parsedDate = new Date(value);
-    if (Number.isNaN(parsedDate.getTime())) {
-      return value;
-    }
-
-    return new Intl.DateTimeFormat("en-US", {
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-    }).format(parsedDate);
-  };
-
   return (
-    <div className="group relative flex gap-4 sm:gap-6">
+    <div className="relative flex gap-4 sm:gap-6">
       {/* Timeline Line */}
       {!isLast && (
-        <div className="absolute left-[15px] sm:left-[19px] top-10 bottom-0 w-px bg-border" />
+        <div className="absolute left-[15px] sm:left-[19px] top-8 sm:top-10 bottom-0 w-px bg-border" />
       )}
 
       {/* Timeline Dot */}
@@ -177,60 +177,61 @@ const EventCard = ({ event, isLast }) => {
       </div>
 
       {/* Content Card */}
-      <div className="flex-1 pb-6 sm:pb-8">
+      <div className="flex-1 pb-8 sm:pb-10 pt-1">
         {/* Header */}
-        <div className="flex flex-col gap-3 mb-3">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4">
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
             <EventBadge type={event.type} mode={event.mode} />
-            <div className="flex items-center gap-2">
-              <RoleBadge role={event.role} />
-              <span className="text-xs sm:text-sm text-fg-secondary">
-                {formatEventDate(event.date)}
-              </span>
-            </div>
+            <RoleBadge role={event.role} />
           </div>
 
           {/* Title */}
-          <h3 className="text-lg sm:text-xl font-semibold text-fg-primary">
-            {event.title}
-          </h3>
+          <div className="space-y-1">
+            <h3 className="text-lg sm:text-xl font-semibold text-fg-primary leading-tight">
+              {event.title}
+            </h3>
 
-          {/* Subtitle */}
-          {event.subtitle && (
-            <p className="text-sm text-fg-secondary -mt-1">{event.subtitle}</p>
-          )}
+            {/* Subtitle */}
+            {event.subtitle && (
+              <p className="text-sm text-fg-secondary leading-relaxed max-w-3xl">
+                {event.subtitle}
+              </p>
+            )}
+          </div>
+
+          <EventMeta date={event.date} time={event.time} venue={event.venue} />
+
+          {/* Organizer */}
+          <p className="text-xs sm:text-sm text-fg-secondary">
+            Organized by{" "}
+            <span className="font-medium text-fg-primary">
+              {event.organizedBy}
+            </span>
+          </p>
+
+          {/* Description */}
+          <p className="text-sm sm:text-base text-fg-secondary leading-relaxed max-w-3xl">
+            {event.description}
+          </p>
+
+          {/* Topics */}
+          <TopicsList topics={event.topics} />
+
+          {/* Images */}
+          <ImageCarousel images={event.images} title={event.title} />
+
+          {/* Resources */}
+          <ResourceLinks resources={event.resources} />
+
+          {/* Tags */}
+          <TagsList tags={event.tags} />
         </div>
-
-        {/* Organizer */}
-        <p className="text-xs sm:text-sm text-fg-secondary mb-3">
-          Organized by{" "}
-          <span className="font-medium text-fg-primary">
-            {event.organizedBy}
-          </span>
-        </p>
-
-        {/* Description */}
-        <p className="text-sm sm:text-base text-fg-secondary leading-relaxed">
-          {event.description}
-        </p>
-
-        {/* Topics */}
-        <TopicsList topics={event.topics} />
-
-        {/* Images */}
-        <ImageGallery images={event.images} title={event.title} />
-
-        {/* Resources */}
-        <ResourceLinks resources={event.resources} />
-
-        {/* Tags */}
-        <TagsList tags={event.tags} />
       </div>
     </div>
   );
 };
 
-// 8. Main Section Component
+// 7. Main Section Component
 const BootcampsAndEventsSection = () => {
   const { bootcampsAndEvents } = useContent();
 
