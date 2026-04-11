@@ -38,7 +38,7 @@ const CertificateCard = ({
             <img
               src={providerLogo}
               alt={providerName}
-              className="w-5 h-5 rounded-full object-cover"
+              className="w-5 h-5 rounded-full object-cover bg-white p-0.5"
             />
           )}
           <span className="text-xs text-fg-muted">{providerName}</span>
