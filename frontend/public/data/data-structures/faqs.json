@@ -1,0 +1,14 @@
+[
+  {
+    "_id": "number",
+    "question": "string",
+    "ans": "string"
+  },
+  {
+    "example": {
+      "_id": 1,
+      "question": "Who are you and what do you focus on?",
+      "ans": "I am Saqib Bedar, a Computer Science student at QAU Islamabad and a self-taught developer from Pakistan."
+    }
+  }
+]

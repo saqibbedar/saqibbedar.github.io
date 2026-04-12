@@ -24,6 +24,7 @@ const PostLayout = ({
   author,
   publishedAt,
   updatedAt,
+  relatedArticles = [],
   relatedLinks = [],
   editUrl,
   topAction,
@@ -83,11 +84,17 @@ const PostLayout = ({
 
               <div className="flex items-center justify-between  border-b border-t pb-4 pt-4 border-border">
                 <div className="flex items-center gap-3 min-w-0">
+                  <Link
+                    to={"/about"}
+                    title="About Author"
+                    className="flex items-center gap-3 min-w-0"
+                  >
                   <img
                     src={author?.image || "/images/author.png"}
                     alt={author?.name || "Author"}
                     className="w-11 h-11 rounded-full object-cover border border-border shadow-sm"
                   />
+                  </Link>
                   <div className="min-w-0">
                     <p className="text-sm font-semibold text-fg-primary truncate">
                       {author?.name || "Author"}
@@ -122,6 +129,41 @@ const PostLayout = ({
         <article className="mb-10">
           <MarkdownRenderer markdown={cleanedMarkdown} />
         </article>
+
+        {relatedArticles.length > 0 && (
+          <section className="border-t border-border pt-6 mb-8">
+            <h2 className="text-sm uppercase tracking-wider font-semibold text-fg-muted mb-4">
+              Related Articles
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {relatedArticles.map((article) => {
+                if (!article?.path || !article?.title) return null;
+
+                return (
+                  <Link
+                    key={article.path}
+                    to={article.path}
+                    className="block rounded-2xl border border-border bg-bg-card p-4 sm:p-5 hover:border-border-light transition-colors"
+                  >
+                    <p className="text-base sm:text-lg font-semibold text-fg-primary leading-snug line-clamp-2">
+                      {article.title}
+                    </p>
+                    {article.category && (
+                      <p className="text-xs uppercase tracking-wider text-fg-muted mt-2">
+                        {article.category}
+                      </p>
+                    )}
+                    {article.summary && (
+                      <p className="text-sm text-fg-secondary leading-relaxed mt-3 line-clamp-3">
+                        {article.summary}
+                      </p>
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
+          </section>
+        )}
 
         {(relatedLinks.length > 0 || editUrl) && (
           <footer className="border-t border-border pt-6">

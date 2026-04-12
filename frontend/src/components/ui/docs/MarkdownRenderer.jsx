@@ -69,7 +69,10 @@ const MarkdownRenderer = ({ markdown = "" }) => {
           }
 
           return (
-            <p className="text-fg-secondary leading-relaxed mb-3" {...props}>
+            <p
+              className="text-fg-secondary leading-relaxed mb-3 [overflow-wrap:anywhere]"
+              {...props}
+            >
               {children}
             </p>
           );
@@ -87,7 +90,10 @@ const MarkdownRenderer = ({ markdown = "" }) => {
           />
         ),
         li: ({ ...props }) => (
-          <li className="text-fg-secondary leading-relaxed" {...props} />
+          <li
+            className="text-fg-secondary leading-relaxed [overflow-wrap:anywhere]"
+            {...props}
+          />
         ),
         blockquote: ({ ...props }) => (
           <blockquote
@@ -129,7 +135,7 @@ const MarkdownRenderer = ({ markdown = "" }) => {
         ),
         a: ({ ...props }) => (
           <a
-            className="text-[#0f6cbd] hover:text-[#0a4f8a] underline underline-offset-2 transition-colors"
+            className="text-[#0f6cbd] hover:text-[#0a4f8a] underline underline-offset-2 transition-colors [overflow-wrap:anywhere]"
             target="_blank"
             rel="noopener noreferrer"
             {...props}

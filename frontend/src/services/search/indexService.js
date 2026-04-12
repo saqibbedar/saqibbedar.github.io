@@ -76,9 +76,16 @@ export const generateIndex = (data) => {
       const tags = Array.isArray(project.tags)
         ? project.tags.join(" ")
         : project.tags;
-      const languages = Array.isArray(project?.metadata?.languages)
-        ? project.metadata.languages.map((language) => language?.name).join(" ")
+      const techStack = Array.isArray(project?.tech?.stack)
+        ? project.tech.stack.join(" ")
         : "";
+      const languages = Array.isArray(project?.tech?.languages)
+        ? project.tech.languages.map((language) => language?.name).join(" ")
+        : Array.isArray(project?.metadata?.languages)
+          ? project.metadata.languages
+              .map((language) => language?.name)
+              .join(" ")
+          : "";
       const contributors = Array.isArray(project.contributors)
         ? project.contributors
             .map((contributor) =>
@@ -94,13 +101,24 @@ export const generateIndex = (data) => {
         project.fullDescription,
         project.category,
         tags,
+        techStack,
         project.slug,
+        project.repository?.name,
         project.owner?.login,
         project.owner?.name,
         contributors,
         languages,
         project.metadata?.language,
         project.metadata?.license?.name,
+        project.package?.license,
+        project.links?.github,
+        project.links?.npm,
+        project.links?.docs,
+        project.links?.marketplace,
+        project.links?.demo,
+        project.status,
+        project.visibility,
+        (project.features || []).join(" "),
         Array.isArray(project?.metadata?.topics)
           ? project.metadata.topics.join(" ")
           : project.metadata?.topics,

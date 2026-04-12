@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   FaGithub,
@@ -8,6 +8,7 @@ import {
   FaStar,
   FaCodeBranch,
   FaEye,
+  FaDownload,
   FaLink,
 } from "react-icons/fa";
 import { SiNpm, SiOrcid, SiPypi } from "react-icons/si";
@@ -17,18 +18,15 @@ import { useContent } from "@/context";
 
 const MAX_VISIBLE_AVATARS = 5;
 
-// Category buttons
-const categoryButtons = [
-  "All",
-  "Frontend",
-  "Backend",
-  "MERN",
-  "Python",
-  "AI/ML",
-  "Developer Tools",
-  "React",
-  "Node.js",
-];
+const getProjectThumbnail = (project) =>
+  project?.thumbnail || project?.media?.thumbnail || "/images/author.png";
+
+const getProjectShortDescription = (project) =>
+  project?.shortDescription || project?.description?.short || "";
+
+const getProjectCategory = (project) => project?.category || "General";
+
+const normalizeForMatch = (value) => String(value || "").toLowerCase();
 
 // Helper function to get status badge
 const getStatusBadge = (status, visibility) => {
@@ -93,7 +91,44 @@ const getContributorStack = (project) => {
     ? project.contributors.filter((contributor) => !contributor?.isOwner)
     : [];
 
-  return [owner, ...contributors].filter(Boolean);
+  const ownerIdentity = [owner?.login, owner?.name]
+    .filter(Boolean)
+    .map((value) => String(value).toLowerCase());
+  const seen = new Set();
+
+  return [owner, ...contributors].filter(Boolean).filter((contributor) => {
+    const contributorIdentity = [
+      contributor.login,
+      contributor.name,
+      contributor.profileUrl,
+    ]
+      .filter(Boolean)
+      .map((value) => String(value).toLowerCase());
+
+    const hasOwnerMatch = contributorIdentity.some((value) =>
+      ownerIdentity.includes(value)
+    );
+    const uniqueKey = contributorIdentity[0] || contributor.profileUrl || "";
+
+    if (hasOwnerMatch && seen.has("owner")) {
+      return false;
+    }
+
+    if (!uniqueKey) {
+      return true;
+    }
+
+    if (seen.has(uniqueKey)) {
+      return false;
+    }
+
+    seen.add(uniqueKey);
+    if (hasOwnerMatch) {
+      seen.add("owner");
+    }
+
+    return true;
+  });
 };
 
 const ContributorStack = ({ project }) => {
@@ -144,6 +179,10 @@ const ProjectCard = ({ project }) => {
   const statusBadge = getStatusBadge(project.status, project.visibility);
   const primaryLanguage = getPrimaryLanguage(project);
   const languages = getProjectLanguages(project);
+  const showDownloads = Boolean(project?.metadata?.showDownloads);
+  const downloads = Number.isFinite(Number(project?.metadata?.downloads))
+    ? Number(project.metadata.downloads)
+    : null;
 
   return (
     <Link
@@ -157,7 +196,7 @@ const ProjectCard = ({ project }) => {
         }`}
       >
         <img
-          src={project.thumbnail}
+          src={getProjectThumbnail(project)}
           alt={project.title}
           onLoad={() => setImageLoaded(true)}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -196,7 +235,7 @@ const ProjectCard = ({ project }) => {
 
         {/* Description */}
         <p className="text-sm text-fg-muted leading-relaxed line-clamp-2 mb-4">
-          {project.shortDescription}
+          {getProjectShortDescription(project)}
         </p>
 
         {/* Stats Row */}
@@ -214,6 +253,12 @@ const ProjectCard = ({ project }) => {
               <FaEye className="w-3.5 h-3.5" />
               <span>{project.metadata.watchers}</span>
             </div>
+            {showDownloads && downloads !== null && (
+              <div className="flex items-center gap-1">
+                <FaDownload className="w-3.5 h-3.5" />
+                <span>{downloads.toLocaleString()}</span>
+              </div>
+            )}
           </div>
         )}
 
@@ -265,14 +310,27 @@ const ProjectView = () => {
   const { projects } = useContent();
   const [activeCategory, setActiveCategory] = useState("All");
 
+  const categoryButtons = useMemo(() => {
+    const categories = new Set(["All"]);
+    projects.forEach((project) => {
+      categories.add(getProjectCategory(project));
+    });
+    return Array.from(categories);
+  }, [projects]);
+
   // Filter projects based on category
   const filteredProjects =
     activeCategory === "All"
       ? projects
       : projects.filter(
           (project) =>
-            project.category === activeCategory ||
-            project.tags.includes(activeCategory)
+            normalizeForMatch(getProjectCategory(project)) ===
+              normalizeForMatch(activeCategory) ||
+            (Array.isArray(project?.tags) &&
+              project.tags.some(
+                (tag) =>
+                  normalizeForMatch(tag) === normalizeForMatch(activeCategory)
+              ))
         );
 
   return (

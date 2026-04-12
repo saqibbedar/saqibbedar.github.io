@@ -1,0 +1,30 @@
+[
+  {
+    "_id": "string",
+    "slug": "string",
+    "title": "string",
+    "summary": "string",
+    "category": "string",
+    "doc": "string",
+    "publishedAt": "string",
+    "updatedAt": "string | null",
+    "featured": "boolean",
+    "allowGithubEdit": "boolean",
+    "relatedStrategy": "string | null"
+  },
+  {
+    "example": {
+      "_id": "blog-dsa-cpp",
+      "slug": "dsa-cpp",
+      "title": "Learn Data Structures & Algorithms in C++",
+      "summary": "A practical, structured guide to learning DSA in C++.",
+      "category": "Computer Science",
+      "doc": "/data/blogs/02-dsa-cpp.md",
+      "publishedAt": "12-01-2024",
+      "updatedAt": "12-01-2024",
+      "featured": true,
+      "allowGithubEdit": true,
+      "relatedStrategy": "category"
+    }
+  }
+]

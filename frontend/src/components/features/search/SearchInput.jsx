@@ -180,6 +180,13 @@ const SearchInput = ({ initialQuery = "" }) => {
           searchInText(contributor?.login) ||
           searchInText(contributor?.role)
       );
+    const searchInProjectLanguages = (languages) =>
+      Array.isArray(languages) &&
+      languages.some((language) =>
+        searchInText(typeof language === "string" ? language : language?.name)
+      );
+    const searchInProjectStack = (stack) =>
+      Array.isArray(stack) && stack.some((item) => searchInText(item));
 
     // Search Projects
     const projectResults = projectData.filter(
@@ -188,12 +195,21 @@ const SearchInput = ({ initialQuery = "" }) => {
         searchInText(p.shortDescription) ||
         searchInText(p.fullDescription) ||
         searchInArray(p.tags) ||
+        searchInProjectStack(p.tech?.stack) ||
+        searchInProjectStack(
+          p.tech?.languages?.map((language) => language?.name)
+        ) ||
+        searchInProjectLanguages(p.metadata?.languages) ||
         searchInText(p.category) ||
         searchInText(p.slug) ||
+        searchInText(p.repository?.name) ||
+        searchInText(p.package?.license) ||
+        searchInText(p.status) ||
+        searchInText(p.visibility) ||
+        searchInProjectStack(p.features) ||
         searchInText(p.owner?.login) ||
         searchInText(p.owner?.name) ||
         searchInProjectContributors(p.contributors) ||
-        searchInArray(p.metadata?.languages) ||
         searchInText(p.metadata?.language) ||
         searchInText(p.metadata?.license?.name) ||
         searchInArray(p.metadata?.topics)

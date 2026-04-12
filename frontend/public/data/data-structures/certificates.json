@@ -1,0 +1,24 @@
+[
+  {
+    "_id": "number",
+    "image": "string",
+    "title": "string",
+    "description": "string",
+    "providerName": "string",
+    "credentialUrl": "string",
+    "providerLogo": "string",
+    "tags": "string"
+  },
+  {
+    "example": {
+      "_id": 1,
+      "image": "https://s3.amazonaws.com/coursera_assets/meta_images/generated/CERTIFICATE_LANDING_PAGE/CERTIFICATE_LANDING_PAGE~STE2IL1GQHT8/CERTIFICATE_LANDING_PAGE~STE2IL1GQHT8.jpeg",
+      "title": "Introduction to Networking",
+      "description": "Earned a distinguished Nvidia certification through Coursera.",
+      "providerName": "Nvidia",
+      "credentialUrl": "https://www.coursera.org/verify/STE2IL1GQHT8",
+      "providerLogo": "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/http://coursera-university-assets.s3.amazonaws.com/77/9078959db5472ab81dbd883497e987/NVIDIA-360x360.png?auto=format%2Ccompress&dpr=1&w=80&h=80",
+      "tags": "networking, nvidia, coursera"
+    }
+  }
+]

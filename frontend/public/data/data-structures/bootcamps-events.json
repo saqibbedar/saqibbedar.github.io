@@ -1,0 +1,64 @@
+[
+  {
+    "_id": "string",
+    "type": "bootcamp | event",
+    "mode": "online | on-site",
+    "role": "string",
+    "title": "string",
+    "subtitle": "string",
+    "date": "string",
+    "time": "string",
+    "venue": "string",
+    "organizedBy": "string",
+    "description": "string",
+    "topics": ["string"],
+    "images": ["string"],
+    "resources": [
+      {
+        "label": "string",
+        "url": "string"
+      }
+    ],
+    "tags": ["string"]
+  },
+  {
+    "example": {
+      "_id": "bootcamp-1",
+      "type": "bootcamp",
+      "mode": "online",
+      "role": "Instructor",
+      "title": "GitHub: Learn What Matters",
+      "subtitle": "Day 2 of GitHub Mastery Bootcamp",
+      "date": "21st Sep, 2024",
+      "time": "9:00 PM",
+      "venue": "Microsoft Teams",
+      "organizedBy": "MLSA QAU",
+      "description": "Led an engaging GitHub session covering core concepts from basics to advanced topics.",
+      "topics": [
+        "Git vs GitHub",
+        "Local & Remote Repositories",
+        "Essential Git Commands",
+        "GitHub Pages Deployment"
+      ],
+      "images": [
+        "https://media.licdn.com/dms/image/v2/D4D22AQHvMbNE486Efg/feedshare-shrink_800/feedshare-shrink_800/0/1726965723721?e=1777507200&v=beta&t=6RRhn9dNqONKms3a8p6-khjyGCqWk4yYDm5bbJGOCAA"
+      ],
+      "resources": [
+        {
+          "label": "Event Notes",
+          "url": "https://saqibbedar.github.io/learn-github/index.html"
+        },
+        {
+          "label": "GitHub Repository",
+          "url": "https://github.com/saqibbedar/github-event"
+        }
+      ],
+      "tags": [
+        "GitHubBootcamp",
+        "OpenSource",
+        "WebDevelopment",
+        "TechEducation"
+      ]
+    }
+  }
+]

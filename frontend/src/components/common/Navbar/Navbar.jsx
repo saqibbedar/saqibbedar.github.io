@@ -280,9 +280,10 @@ const Navbar = () => {
                 "about",
                 "blogs",
                 "projects",
-                "services",
                 "courses",
+                "services",
                 "contact",
+                "faqs"
               ].map((item, index) => (
                 <Link
                   key={index}

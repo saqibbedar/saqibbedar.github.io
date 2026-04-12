@@ -1,300 +1,583 @@
 [
   {
-    "_id": "project1",
+    "_id": "project_bxp_code",
     "slug": "bxp-code",
     "title": "bxp-code",
-    "shortDescription": "A modern React component library with beautiful animations and accessible components.",
-    "fullDescription": "BedarUI is a comprehensive React component library featuring smooth animations, accessibility-first design, and customizable theming. Built with TypeScript and Tailwind CSS for maximum developer experience.",
-    "thumbnail": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800",
+
+    "description": {
+      "short": "Drop-in React code blocks with Shiki highlighting and Prettier formatting.",
+      "full": "bxp-code is a modern React component library for rendering beautiful code blocks with zero configuration. It uses Shiki for VS Code-accurate syntax highlighting and Prettier for automatic formatting, with built-in support for themes, copy button, line numbers, and tabbed views."
+    },
+
+    "media": {
+      "thumbnail": "",
+      "banner": null
+    },
+
     "repository": {
       "provider": "github",
       "owner": "saqibbedar",
       "name": "bxp-code",
       "url": "https://github.com/saqibbedar/bxp-code"
     },
+
     "owner": {
       "login": "saqibbedar",
       "name": "Saqib Bedar",
       "avatar": "/images/author.png",
       "profileUrl": "https://github.com/saqibbedar"
     },
+
     "contributors": [
       {
-        "name": "Saqib Bedar",
         "login": "saqibbedar",
+        "name": "Saqib Bedar",
         "avatar": "/images/author.png",
-        "avatarUrl": "/images/author.png",
-        "role": "Lead Developer",
-        "githubUrl": "https://github.com/saqibbedar",
-        "profileUrl": "https://github.com/saqibbedar"
+        "role": "Creator & Maintainer",
+        "githubUrl": "https://github.com/saqibbedar"
       }
     ],
+
     "links": {
       "github": "https://github.com/saqibbedar/bxp-code",
-      "demo": "https://bedarui.vercel.app",
-      "docker": null,
-      "npm": "https://www.npmjs.com/package/bedarui",
-      "vscode": null,
-      "pypi": null,
-      "orcid": null,
+      "npm": "https://www.npmjs.com/package/bxp-code",
+      "marketplace": null,
+      "docs": "https://saqibbedar.github.io/bxp-code/",
+      "demo": "https://saqibbedar.github.io/bxp-code/playground/",
+      "playground": "https://saqibbedar.github.io/bxp-code/playground/",
       "other": []
     },
-    "metadata": {
-      "stars": 245,
-      "forks": 32,
-      "watchers": 18,
-      "languages": [
-        { "name": "TypeScript", "percentage": 85, "isMain": true },
-        { "name": "CSS", "percentage": 10, "isMain": false },
-        { "name": "JavaScript", "percentage": 5, "isMain": false }
-      ],
-      "license": "MIT",
-      "lastUpdated": "2025-12-20"
-    },
-    "tags": ["React", "TypeScript", "Tailwind", "UI Library", "Components"],
-    "category": "Frontend",
-    "status": "active",
-    "visibility": "public",
-    "featured": true,
-    "createdAt": "2024-06-15"
-  },
-  {
-    "_id": "project2",
-    "slug": "portfolio-api",
-    "title": "Portfolio API",
-    "shortDescription": "RESTful API backend for portfolio website with authentication and content management.",
-    "fullDescription": "A robust Node.js backend API built with Express.js and MongoDB. Features include JWT authentication, rate limiting, file uploads, and a complete CRUD system for managing portfolio content.",
-    "thumbnail": "https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=800",
-    "repository": {
-      "provider": "github",
-      "owner": "saqibbedar",
-      "name": "portfolio-api",
-      "url": "https://github.com/saqibbedar/portfolio-api"
-    },
-    "owner": {
-      "login": "saqibbedar",
-      "name": "Saqib Bedar",
-      "avatar": "/images/author.png",
-      "profileUrl": "https://github.com/saqibbedar"
-    },
-    "contributors": [
-      {
-        "name": "Saqib Bedar",
-        "login": "saqibbedar",
-        "avatar": "/images/author.png",
-        "avatarUrl": "/images/author.png",
-        "role": "Full Stack Developer",
-        "githubUrl": "https://github.com/saqibbedar",
-        "profileUrl": "https://github.com/saqibbedar"
-      },
-      {
-        "name": "John Doe",
-        "login": "johndoe",
-        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=john",
-        "avatarUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=john",
-        "role": "Backend Developer",
-        "githubUrl": "https://github.com/johndoe",
-        "profileUrl": "https://github.com/johndoe"
-      }
-    ],
-    "links": {
-      "github": "https://github.com/saqibbedar/portfolio-api",
-      "demo": "https://api.saqibbedar.com",
-      "docker": "https://hub.docker.com/r/saqibbedar/portfolio-api",
-      "npm": null,
-      "vscode": null,
-      "pypi": null,
-      "orcid": null,
-      "other": [{ "label": "API Docs", "url": "https://docs.saqibbedar.com" }]
-    },
-    "metadata": {
-      "stars": 128,
-      "forks": 45,
-      "watchers": 12,
-      "languages": [
-        { "name": "JavaScript", "percentage": 92, "isMain": true },
-        { "name": "Shell", "percentage": 8, "isMain": false }
-      ],
-      "license": "MIT",
-      "lastUpdated": "2025-11-15"
-    },
-    "tags": ["Node.js", "Express", "MongoDB", "REST API", "Backend"],
-    "category": "Backend",
-    "status": "active",
-    "visibility": "public",
-    "featured": true,
-    "createdAt": "2024-03-20"
-  },
-  {
-    "_id": "project3",
-    "slug": "code-snippets-vscode",
-    "title": "Code Snippets Pro",
-    "shortDescription": "VS Code extension with 500+ code snippets for React, Vue, and Angular development.",
-    "fullDescription": "A powerful VS Code extension that provides over 500 curated code snippets for modern web development. Supports React, Vue, Angular, TypeScript, and includes custom snippet creation.",
-    "thumbnail": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=800",
-    "repository": {
-      "provider": "github",
-      "owner": "saqibbedar",
-      "name": "code-snippets-pro",
-      "url": "https://github.com/saqibbedar/code-snippets-pro"
-    },
-    "owner": {
-      "login": "saqibbedar",
-      "name": "Saqib Bedar",
-      "avatar": "/images/author.png",
-      "profileUrl": "https://github.com/saqibbedar"
-    },
-    "contributors": [
-      {
-        "name": "Saqib Bedar",
-        "login": "saqibbedar",
-        "avatar": "/images/author.png",
-        "avatarUrl": "/images/author.png",
-        "role": "Creator",
-        "githubUrl": "https://github.com/saqibbedar",
-        "profileUrl": "https://github.com/saqibbedar"
-      }
-    ],
-    "links": {
-      "github": "https://github.com/saqibbedar/code-snippets-pro",
-      "demo": null,
-      "docker": null,
-      "npm": null,
-      "vscode": "https://marketplace.visualstudio.com/items?itemName=saqibbedar.code-snippets-pro",
-      "pypi": null,
-      "orcid": null,
-      "other": []
-    },
-    "metadata": {
-      "stars": 892,
-      "forks": 67,
-      "watchers": 45,
-      "languages": [{ "name": "JSON", "percentage": 100, "isMain": true }],
-      "license": "MIT",
-      "lastUpdated": "2025-10-05"
-    },
-    "tags": ["VS Code", "Extension", "Snippets", "Developer Tools"],
-    "category": "Developer Tools",
-    "status": "active",
-    "visibility": "public",
-    "featured": true,
-    "createdAt": "2023-08-10"
-  },
-  {
-    "_id": "project4",
-    "slug": "ai-chatbot",
-    "title": "AI Assistant Platform",
-    "shortDescription": "Building an advanced AI chatbot platform with multi-model support.",
-    "fullDescription": "An ambitious project to create a versatile AI assistant platform supporting multiple language models. Features include conversation memory, plugin system, and custom model fine-tuning.",
-    "thumbnail": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800",
-    "repository": {
-      "provider": "local",
-      "owner": null,
-      "name": null,
-      "url": null
-    },
-    "owner": null,
-    "contributors": [
-      {
-        "name": "Saqib Bedar",
-        "login": "saqibbedar",
-        "avatar": "/images/author.png",
-        "avatarUrl": "/images/author.png",
-        "role": "Lead Developer",
-        "githubUrl": "https://github.com/saqibbedar",
-        "profileUrl": "https://github.com/saqibbedar"
-      }
-    ],
-    "links": {
-      "github": null,
-      "demo": null,
-      "docker": null,
-      "npm": null,
-      "vscode": null,
-      "pypi": null,
-      "orcid": null,
-      "other": []
-    },
-    "metadata": {
+
+    "stats": {
       "stars": 0,
       "forks": 0,
       "watchers": 0,
-      "languages": [
-        { "name": "Python", "percentage": 75, "isMain": true },
-        { "name": "TypeScript", "percentage": 20, "isMain": false },
-        { "name": "Docker", "percentage": 5, "isMain": false }
-      ],
-      "license": "Proprietary",
-      "lastUpdated": "2026-01-10"
+      "downloads": null,
+      "showDownloads": true
     },
-    "tags": ["AI", "Python", "Machine Learning", "Chatbot"],
-    "category": "AI/ML",
-    "status": "ongoing",
-    "visibility": "private",
-    "featured": false,
-    "createdAt": "2025-09-01"
+
+    "package": {
+      "version": "1.0.0",
+      "license": "MIT"
+    },
+
+    "tech": {
+      "stack": [
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Shiki",
+        "Prettier",
+        "Vite",
+        "VitePress"
+      ],
+      "languages": [
+        {
+          "name": "TypeScript",
+          "percentage": 100,
+          "primary": true
+        }
+      ]
+    },
+
+    "features": [
+      "VS Code-level syntax highlighting using Shiki",
+      "Automatic code formatting with Prettier",
+      "Zero configuration setup",
+      "Dark and light themes",
+      "Copy-to-clipboard support",
+      "Line numbers and tabbed code blocks"
+    ],
+
+    "tags": ["React", "Syntax Highlighting", "UI Component", "Developer Tools"],
+
+    "category": "frontend",
+    "status": "active",
+    "visibility": "public",
+    "featured": true,
+
+    "timestamps": {
+      "createdAt": null,
+      "updatedAt": null
+    }
   },
   {
-    "_id": "project5",
-    "slug": "data-viz-toolkit",
-    "title": "Data Visualization Toolkit",
-    "shortDescription": "Python library for creating beautiful and interactive data visualizations.",
-    "fullDescription": "A comprehensive Python library that simplifies creating stunning data visualizations. Built on top of Matplotlib and Plotly with an intuitive API for researchers and data scientists.",
-    "thumbnail": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800",
+    "_id": "project_bedarx_pro",
+    "slug": "bedarx-pro",
+    "title": "BedarX Pro",
+
+    "description": {
+      "short": "A VS Code extension to boost developer productivity with custom tools and workflows.",
+      "full": "BedarX Pro is a Visual Studio Code extension built to enhance developer productivity through custom commands, streamlined workflows, and integrated utilities. It extends the editor with powerful features while remaining lightweight and fast."
+    },
+
+    "media": {
+      "thumbnail": "https://raw.githubusercontent.com/saqibbedar/BedarX-Pro/main/Public/banner.png",
+      "banner": "https://raw.githubusercontent.com/saqibbedar/BedarX-Pro/main/Public/banner.png"
+    },
+
     "repository": {
       "provider": "github",
       "owner": "saqibbedar",
-      "name": "data-viz-toolkit",
-      "url": "https://github.com/saqibbedar/data-viz-toolkit"
+      "name": "BedarX-Pro",
+      "url": "https://github.com/saqibbedar/BedarX-Pro"
     },
+
     "owner": {
       "login": "saqibbedar",
       "name": "Saqib Bedar",
       "avatar": "/images/author.png",
       "profileUrl": "https://github.com/saqibbedar"
     },
+
     "contributors": [
       {
-        "name": "Saqib Bedar",
         "login": "saqibbedar",
+        "name": "Saqib Bedar",
         "avatar": "/images/author.png",
-        "avatarUrl": "/images/author.png",
-        "role": "Creator",
-        "githubUrl": "https://github.com/saqibbedar",
-        "profileUrl": "https://github.com/saqibbedar"
+        "role": "Creator & Maintainer",
+        "githubUrl": "https://github.com/saqibbedar"
       }
     ],
+
     "links": {
-      "github": "https://github.com/saqibbedar/data-viz-toolkit",
-      "demo": "https://dataviz.saqibbedar.com",
-      "docker": null,
+      "github": "https://github.com/saqibbedar/BedarX-Pro",
       "npm": null,
-      "vscode": null,
-      "pypi": "https://pypi.org/project/data-viz-toolkit/",
-      "orcid": "https://orcid.org/0000-0000-0000-0000",
-      "other": [
+      "marketplace": "https://marketplace.visualstudio.com/items?itemName=saqibbedar.bedarx-pro",
+      "docs": null,
+      "demo": null,
+      "playground": null,
+      "other": []
+    },
+
+    "stats": {
+      "stars": 0,
+      "forks": 0,
+      "watchers": 0,
+      "downloads": null,
+      "showDownloads": false
+    },
+
+    "package": {
+      "version": "2.0.0",
+      "license": "MIT"
+    },
+
+    "tech": {
+      "stack": ["JavaScript", "VS Code Extension API"],
+      "languages": [
         {
-          "label": "Documentation",
-          "url": "https://dataviz-docs.saqibbedar.com"
+          "name": "JavaScript",
+          "percentage": 100,
+          "primary": true
         }
       ]
     },
-    "metadata": {
-      "stars": 567,
-      "forks": 89,
-      "watchers": 34,
-      "languages": [
-        { "name": "Python", "percentage": 90, "isMain": true },
-        { "name": "Jupyter Notebook", "percentage": 10, "isMain": false }
-      ],
-      "license": "Apache-2.0",
-      "lastUpdated": "2025-08-22"
-    },
-    "tags": ["Python", "Data Science", "Visualization", "Research"],
-    "category": "Python",
+
+    "features": [
+      "Custom VS Code commands",
+      "Workflow automation inside editor",
+      "Lightweight extension performance",
+      "Seamless editor integration"
+    ],
+
+    "tags": ["VS Code Extension", "Developer Tools", "Productivity"],
+
+    "category": "developer-tools",
     "status": "active",
     "visibility": "public",
     "featured": true,
-    "createdAt": "2024-01-15"
+
+    "timestamps": {
+      "createdAt": null,
+      "updatedAt": null
+    }
+  },
+  {
+    "_id": "online_student_portal",
+    "slug": "online-student-portal",
+    "title": "Online Student Portal",
+
+    "description": {
+      "short": "Enterprise MERN-based university portal with role-based access and secure session management.",
+      "full": "Online Student Portal is a full-scale enterprise-grade university management system built as a freelance project. It implements a hierarchical role-based architecture including Master Admin, Department Admin, Faculty, and Student roles. The system focuses heavily on security and scalability, featuring JWT authentication with HTTP-only cookies, refresh token rotation, concurrent session control, and OTP-based password recovery with rate limiting. The backend follows a modular architecture using controllers and middleware, ensuring maintainability and extensibility."
+    },
+
+    "media": {
+      "thumbnail": "",
+      "banner": null
+    },
+
+    "repository": {
+      "provider": "github",
+      "owner": "saqibbedar",
+      "name": "online-student-portal",
+      "url": null
+    },
+
+    "owner": {
+      "login": "saqibbedar",
+      "name": "Saqib Bedar",
+      "avatar": "/images/author.png",
+      "profileUrl": "https://github.com/saqibbedar"
+    },
+
+    "contributors": [
+      {
+        "login": "saqibbedar",
+        "name": "Saqib Bedar",
+        "avatar": "/images/author.png",
+        "role": "Full-Stack Developer",
+        "githubUrl": "https://github.com/saqibbedar"
+      }
+    ],
+
+    "links": {
+      "github": null,
+      "npm": null,
+      "marketplace": null,
+      "docs": null,
+      "demo": null,
+      "playground": null,
+      "other": []
+    },
+
+    "stats": {
+      "stars": 0,
+      "forks": 0,
+      "watchers": 0,
+      "downloads": null
+    },
+
+    "package": {
+      "version": null,
+      "license": null
+    },
+
+    "tech": {
+      "stack": ["MongoDB", "Express", "React", "Node.js", "Tailwind CSS"],
+      "languages": [
+        {
+          "name": "JavaScript",
+          "percentage": 100,
+          "primary": true
+        }
+      ]
+    },
+
+    "features": [
+      "Hierarchical role-based access control (Master Admin, Department Admin, Faculty, Student)",
+      "JWT authentication with HTTP-only cookies",
+      "Refresh token rotation for session security",
+      "Server-managed concurrent session limitation",
+      "OTP-based password recovery with rate limiting",
+      "Modular backend architecture (controllers and middleware)",
+      "Secure authentication and authorization flows",
+      "Scalable MERN stack architecture"
+    ],
+
+    "tags": ["MERN", "Full Stack", "Authentication", "RBAC", "Enterprise App", "Client Project"],
+
+    "category": "fullstack",
+    "status": "completed",
+    "visibility": "private",
+    "featured": true,
+
+    "timestamps": {
+      "createdAt": "2024-09-01",
+      "updatedAt": null
+    }
+  },
+  {
+    "_id": "project_reactfolio",
+    "slug": "reactfolio",
+    "title": "Reactfolio",
+
+    "description": {
+      "short": "A customizable React portfolio template for developers.",
+      "full": "Reactfolio is a modern and customizable developer portfolio template built with React, Vite, and Tailwind CSS. It is designed for developers who want to showcase their work with simplicity and style. The template centralizes all content in a single assets.js file, making it extremely easy to modify, extend, and deploy. It provides a clean structure, responsive design, and flexible configuration for rapid portfolio creation."
+    },
+
+    "media": {
+      "thumbnail": "https://raw.githubusercontent.com/saqibbedar/Reactfolio/refs/heads/main/public/header.jpg",
+      "banner": "https://raw.githubusercontent.com/saqibbedar/Reactfolio/refs/heads/main/public/header.jpg"
+    },
+
+    "repository": {
+      "provider": "github",
+      "owner": "saqibbedar",
+      "name": "Reactfolio",
+      "url": "https://github.com/saqibbedar/Reactfolio"
+    },
+
+    "owner": {
+      "login": "saqibbedar",
+      "name": "Saqib Bedar",
+      "avatar": "/images/author.png",
+      "profileUrl": "https://github.com/saqibbedar"
+    },
+
+    "contributors": [
+      {
+        "login": "saqibbedar",
+        "name": "Saqib Bedar",
+        "avatar": "/images/author.png",
+        "role": "Creator & Maintainer",
+        "githubUrl": "https://github.com/saqibbedar"
+      }
+    ],
+
+    "links": {
+      "github": "https://github.com/saqibbedar/Reactfolio",
+      "npm": null,
+      "marketplace": null,
+      "docs": null,
+      "demo": "https://saqibbedar.github.io/Reactfolio/",
+      "playground": null,
+      "other": []
+    },
+
+    "stats": {
+      "stars": 0,
+      "forks": 0,
+      "watchers": 0,
+      "downloads": null
+    },
+
+    "package": {
+      "version": null,
+      "license": "MIT"
+    },
+
+    "tech": {
+      "stack": ["React", "Vite", "Tailwind CSS"],
+      "languages": [
+        {
+          "name": "JavaScript",
+          "percentage": 100,
+          "primary": true
+        }
+      ]
+    },
+
+    "features": [
+      "Customizable portfolio template",
+      "All data managed from a single assets.js file",
+      "Clean and modern UI design",
+      "Responsive layout for all devices",
+      "Easy to modify and extend",
+      "Fast build system using Vite"
+    ],
+
+    "tags": ["Portfolio Template", "React", "Frontend", "Developer Portfolio"],
+
+    "category": "frontend",
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+
+    "timestamps": {
+      "createdAt": null,
+      "updatedAt": null
+    }
+  },
+  {
+    "_id": "project_smart_library_management_system",
+    "slug": "smart-library-management-system",
+    "title": "Smart Library Management System",
+
+    "description": {
+      "short": "A Java desktop library management system with MVC architecture and MS Access integration.",
+      "full": "Smart Library Management System is a Java-based desktop application designed to manage core library operations through a structured MVC-style architecture. The system separates concerns into UI, controllers, and models, enabling maintainability and clarity in business logic handling. It integrates with a bundled Microsoft Access database using UCanAccess (JDBC), allowing persistent storage without requiring a separate database server. The application supports essential workflows including authentication, book and inventory management, member handling, issue/return processes, fine tracking, and audit logging. It is built using a simple classpath-based execution model with direct javac/java commands and bundled dependencies, making it lightweight and easy to run without modern build tools."
+    },
+
+    "media": {
+      "thumbnail": null,
+      "banner": null
+    },
+
+    "repository": {
+      "provider": "github",
+      "owner": "saqibbedar",
+      "name": "smart-library-management-system",
+      "url": "https://github.com/saqibbedar/smart-library-management-system"
+    },
+
+    "owner": {
+      "login": "saqibbedar",
+      "name": "Saqib Bedar",
+      "avatar": "/images/author.png",
+      "profileUrl": "https://github.com/saqibbedar"
+    },
+
+    "contributors": [
+      {
+        "login": "saqibbedar",
+        "name": "Saqib Bedar",
+        "avatar": "/images/author.png",
+        "role": "Full-Stack Developer",
+        "githubUrl": "https://github.com/saqibbedar"
+      }
+    ],
+
+    "links": {
+      "github": "https://github.com/saqibbedar/smart-library-management-system",
+      "npm": null,
+      "marketplace": null,
+      "docs": null,
+      "demo": null,
+      "playground": null,
+      "other": []
+    },
+
+    "stats": {
+      "stars": 0,
+      "forks": 0,
+      "watchers": 0,
+      "downloads": null
+    },
+
+    "package": {
+      "version": null,
+      "license": null
+    },
+
+    "tech": {
+      "stack": [
+        "Java",
+        "Swing/AWT",
+        "JDBC",
+        "UCanAccess",
+        "Microsoft Access",
+        "Jackcess",
+        "HSQLDB"
+      ],
+      "languages": [
+        {
+          "name": "Java",
+          "percentage": 100,
+          "primary": true
+        }
+      ]
+    },
+
+    "features": [
+      "MVC-style architecture (models, controllers, UI separation)",
+      "User authentication and login system",
+      "Dashboard interface for system overview",
+      "Book and inventory management",
+      "Book copy tracking and availability management",
+      "Member management system",
+      "Issue and return workflow handling",
+      "Fine calculation and payment tracking",
+      "Audit logging for system activities",
+      "Reservation data model support",
+      "Embedded Microsoft Access database integration"
+    ],
+
+    "tags": ["Java", "Desktop App", "MVC", "Library System", "Database"],
+
+    "category": "desktop",
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+
+    "timestamps": {
+      "createdAt": null,
+      "updatedAt": null
+    }
+  },
+  {
+    "_id": "project_nextjs_blog_app",
+    "slug": "nextjs-blog-app",
+    "title": "NextJS Blog App",
+
+    "description": {
+      "short": "A full-stack blog application built with Next.js and Tailwind CSS.",
+      "full": "NextJS Blog App is a full-stack web application built using Next.js, designed to provide a simple and modern blogging platform. It allows users to create, manage, and delete blog posts, while also supporting categorized content and email subscriptions. The application features a responsive UI styled with Tailwind CSS and demonstrates core full-stack capabilities such as content management, user interactions, and dynamic rendering within a unified framework."
+    },
+
+    "media": {
+      "thumbnail": null,
+      "banner": null
+    },
+
+    "repository": {
+      "provider": "github",
+      "owner": "saqibbedar",
+      "name": "nextjs-blog-app",
+      "url": "https://github.com/saqibbedar/nextjs-blog-app"
+    },
+
+    "owner": {
+      "login": "saqibbedar",
+      "name": "Saqib Bedar",
+      "avatar": "/images/author.png",
+      "profileUrl": "https://github.com/saqibbedar"
+    },
+
+    "contributors": [
+      {
+        "login": "saqibbedar",
+        "name": "Saqib Bedar",
+        "avatar": "/images/author.png",
+        "role": "Full-Stack Developer",
+        "githubUrl": "https://github.com/saqibbedar"
+      }
+    ],
+
+    "links": {
+      "github": "https://github.com/saqibbedar/nextjs-blog-app",
+      "npm": null,
+      "marketplace": null,
+      "docs": null,
+      "demo": null,
+      "playground": null,
+      "other": []
+    },
+
+    "stats": {
+      "stars": 0,
+      "forks": 0,
+      "watchers": 0,
+      "downloads": null
+    },
+
+    "package": {
+      "version": null,
+      "license": null
+    },
+
+    "tech": {
+      "stack": ["Next.js", "React", "Tailwind CSS"],
+      "languages": [
+        {
+          "name": "JavaScript",
+          "percentage": 100,
+          "primary": true
+        }
+      ]
+    },
+
+    "features": [
+      "Create and publish blog articles",
+      "Delete and manage blog posts",
+      "Email subscription system",
+      "Category-based blog organization",
+      "Responsive UI with Tailwind CSS",
+      "Full-stack rendering using Next.js"
+    ],
+
+    "tags": ["Next.js", "Blog App", "Full Stack", "Content Management"],
+
+    "category": "fullstack",
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+
+    "timestamps": {
+      "createdAt": "2024-01-01",
+      "updatedAt": null
+    }
   }
 ]

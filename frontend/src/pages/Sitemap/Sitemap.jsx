@@ -14,11 +14,14 @@ import {
   FaArrowRight,
   FaExternalLinkAlt,
   FaBookOpen,
-  FaCode,
 } from "react-icons/fa";
 import { useContent } from "@/context";
 import { PageMeta } from "@/components/ui/PageMeta";
 import { getPageMeta } from "@/assets";
+
+const REPO_BASE_URL = "https://github.com/saqibbedar/saqibbedar.github.io";
+const SITEMAP_JSON_REPO_PATH = "frontend/public/data/json/sitemap.json";
+const SITEMAP_PAGE_REPO_PATH = "frontend/src/pages/Sitemap/Sitemap.jsx";
 
 const iconMap = {
   FaHome,
@@ -33,7 +36,6 @@ const iconMap = {
   FaExclamationTriangle,
   FaSitemap,
   FaBookOpen,
-  FaCode,
 };
 
 const LinkCard = ({ link }) => {
@@ -83,6 +85,8 @@ const Sitemap = () => {
   const sitemapData = sitemap?.sitemapData || [];
   const externalLinks = sitemap?.externalLinks || [];
   const dynamicRoutes = sitemap?.dynamicRoutes || [];
+  const sitemapJsonUrl = `${REPO_BASE_URL}/blob/main/${SITEMAP_JSON_REPO_PATH}`;
+  const sitemapPageUrl = `${REPO_BASE_URL}/blob/main/${SITEMAP_PAGE_REPO_PATH}`;
 
   return (
     <section className="pt-24 sm:pt-28 md:pt-32 pb-10 md:pb-16 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
@@ -97,8 +101,33 @@ const Sitemap = () => {
             Sitemap
           </h1>
         </div>
-        <p className="text-fg-secondary max-w-2xl">
+        <p className="text-fg-secondary max-w-2xl mb-3">
           Rendered from /public/data/json/sitemap.json
+        </p>
+        <div className="flex flex-wrap items-center gap-3 text-sm">
+          <a
+            href={sitemapJsonUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-3 py-1.5 bg-bg-card border border-border rounded-lg text-fg-secondary hover:text-fg-primary hover:border-border-light transition-colors"
+          >
+            Sitemap JSON Source
+            <FaExternalLinkAlt className="w-3.5 h-3.5" />
+          </a>
+          <a
+            href={sitemapPageUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-3 py-1.5 bg-bg-card border border-border rounded-lg text-fg-secondary hover:text-fg-primary hover:border-border-light transition-colors"
+          >
+            Sitemap Page Source
+            <FaExternalLinkAlt className="w-3.5 h-3.5" />
+          </a>
+        </div>
+        <p className="text-[12px] text-fg-muted mt-3 max-w-3xl">
+          Notice: Routes, links, and metadata shown on this page are provided
+          for navigation convenience and may be updated, moved, or removed
+          without prior notice as the project evolves.
         </p>
       </div>
 

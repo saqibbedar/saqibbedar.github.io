@@ -16,7 +16,7 @@ const HomeView = () => {
       <BlogSection />
       {/* <CourseSection /> */}
       <ServiceSection />
-      <TestimonialSection />
+      {/* <TestimonialSection /> */}
       <FAQSection />
     </>
   );

@@ -1,6 +1,10 @@
 import { fetchWithCache } from "./cacheService";
 
-const normalizeDocPath = (docPath = "") => docPath.replace(/^\/+/, "");
+const normalizeDocPath = (docPath = "") =>
+  String(docPath || "")
+    .trim()
+    .replace(/^\/+/, "")
+    .replace(/^data\/blogs\//i, "");
 
 export const fetchBlogDocService = async (docPath) => {
   const safeDocPath = normalizeDocPath(docPath);
@@ -9,7 +13,7 @@ export const fetchBlogDocService = async (docPath) => {
     throw new Error("Invalid blog document path");
   }
 
-  return fetchWithCache(`doc:${safeDocPath}`, async () => {
+  return fetchWithCache(`doc:v2:${safeDocPath}`, async () => {
     const response = await fetch(`/data/blogs/${safeDocPath}`);
     if (!response.ok) {
       throw new Error(

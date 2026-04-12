@@ -3,12 +3,40 @@ import { Link } from "react-router-dom";
 import { SplitText } from "@/components/ui";
 import { useContent } from "@/context";
 
+const getProjectThumbnail = (project) =>
+  project?.thumbnail || project?.media?.thumbnail || "/images/author.png";
+
+const getProjectYear = (project) => {
+  const createdAt =
+    project?.metadata?.createdAt ||
+    project?.timestamps?.createdAt ||
+    project?.createdAt;
+
+  if (!createdAt) return "";
+
+  const date = new Date(createdAt);
+  return Number.isNaN(date.getTime()) ? "" : date.getFullYear();
+};
+
+const getProjectUpdatedLabel = (project) => {
+  const updatedAt =
+    project?.metadata?.updatedAt ||
+    project?.timestamps?.updatedAt ||
+    project?.updatedAt;
+
+  if (!updatedAt) return "";
+
+  const date = new Date(updatedAt);
+  if (Number.isNaN(date.getTime())) return "";
+
+  return date.getFullYear();
+};
+
 const ProjectItem = ({ project, isFirst }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const projectYear =
-    project?.metadata?.createdAt || project?.createdAt
-      ? new Date(project.metadata?.createdAt || project.createdAt).getFullYear()
-      : "";
+  const projectYear = getProjectYear(project);
+  const lastUpdated = getProjectUpdatedLabel(project);
+  const dateText = lastUpdated ? `${lastUpdated}` : projectYear || "-";
 
   return (
     <div
@@ -23,7 +51,7 @@ const ProjectItem = ({ project, isFirst }) => {
         onMouseLeave={() => setIsHovered(false)}
       >
         <img
-          src={project.thumbnail}
+          src={getProjectThumbnail(project)}
           alt={project.title}
           className="hidden sm:inline-block h-10 sm:h-12 md:h-14 lg:h-16 aspect-video object-cover rounded-md"
         />
@@ -34,8 +62,8 @@ const ProjectItem = ({ project, isFirst }) => {
           isHovered={isHovered}
         />
       </Link>
-      <p className="text-xs sm:text-sm md:text-base font-semibold text-fg-muted">
-        {projectYear || "-"}
+      <p className="text-xs sm:text-sm md:text-base font-semibold text-fg-muted text-right">
+        {dateText}
       </p>
     </div>
   );
@@ -43,7 +71,9 @@ const ProjectItem = ({ project, isFirst }) => {
 
 const ProjectSection = () => {
   const { projects } = useContent();
-  const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
+  const featuredProjects = projects
+    .filter((p) => Boolean(p?.featured))
+    .slice(0, 3);
 
   return (
     <section className="py-10 md:py-16 lg:py-20">

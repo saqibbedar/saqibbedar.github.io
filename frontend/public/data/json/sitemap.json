@@ -42,15 +42,9 @@
         },
         {
           "name": "Blog",
-          "path": "/blog",
+          "path": "/blogs",
           "icon": "FaBookOpen",
           "description": "Read documentation-style posts and technical notes"
-        },
-        {
-          "name": "Source Code",
-          "path": "/source-code",
-          "icon": "FaCode",
-          "description": "Reference source code setup, structure, and contribution guidance"
         }
       ]
     },
@@ -81,6 +75,12 @@
           "path": "/sitemap",
           "icon": "FaSitemap",
           "description": "Complete site navigation"
+        },
+        {
+          "name": "FAQs",
+          "path": "/faqs",
+          "icon": "FaSitemap",
+          "description": "Frequently asked questions about my profile, work, and services"
         }
       ]
     },
@@ -118,8 +118,10 @@
   "externalLinks": [
     { "name": "GitHub", "url": "https://github.com/saqibbedar" },
     { "name": "LinkedIn", "url": "https://linkedin.com/in/saqibbedar" },
-    { "name": "Twitter / X", "url": "https://twitter.com/saqibbedar" },
-    { "name": "YouTube", "url": "https://youtube.com/@bedarsaqib" },
+    { "name": "Twitter / X", "url": "https://x.com/saqibbedar" },
+    { "name": "YouTube", "url": "https://www.youtube.com/@saqibbedar" },
+    { "name": "Instagram", "url": "https://www.instagram.com/saqibbedar" },
+    { "name": "Twitch", "url": "https://www.twitch.tv/saqibbedar" },
     { "name": "Buy Me a Coffee", "url": "https://buymeacoffee.com/saqibbedar" }
   ],
   "dynamicRoutes": [
@@ -140,7 +142,7 @@
     },
     {
       "name": "Blog Details",
-      "path": "/blog/:slug",
+      "path": "/blogs/:slug",
       "description": "Individual blog post pages rendered from docs"
     }
   ]

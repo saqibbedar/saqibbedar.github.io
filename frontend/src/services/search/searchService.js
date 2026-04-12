@@ -24,7 +24,26 @@ export const performTraditionalSearch = (keyword, data) => {
         const tags = Array.isArray(project.tags)
           ? project.tags.join(" ").toLowerCase()
           : project.tags
-          ? project.tags.toLowerCase()
+            ? project.tags.toLowerCase()
+            : "";
+        const techStack = Array.isArray(project?.tech?.stack)
+          ? project.tech.stack.join(" ").toLowerCase()
+          : "";
+        const languages = Array.isArray(project?.tech?.languages)
+          ? project.tech.languages
+              .map((language) => language?.name)
+              .filter(Boolean)
+              .join(" ")
+              .toLowerCase()
+          : Array.isArray(project?.metadata?.languages)
+            ? project.metadata.languages
+                .map((language) => language?.name)
+                .filter(Boolean)
+                .join(" ")
+                .toLowerCase()
+            : "";
+        const features = Array.isArray(project?.features)
+          ? project.features.join(" ").toLowerCase()
           : "";
 
         return (
@@ -32,6 +51,13 @@ export const performTraditionalSearch = (keyword, data) => {
           includesKeyword(project.shortDescription) ||
           includesKeyword(project.fullDescription) ||
           includesKeyword(project.category) ||
+          includesKeyword(project?.repository?.name) ||
+          includesKeyword(project?.package?.license) ||
+          includesKeyword(project?.status) ||
+          includesKeyword(project?.visibility) ||
+          techStack.includes(lowerCaseKeyword) ||
+          languages.includes(lowerCaseKeyword) ||
+          features.includes(lowerCaseKeyword) ||
           tags.includes(lowerCaseKeyword)
         );
       })

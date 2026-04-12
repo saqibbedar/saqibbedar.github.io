@@ -1,10 +1,31 @@
 // import "./HeroSection.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaDownload, FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa6";
 
 const HeroSection = ({ name, description, cv_url, image }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [isTruncated, setIsTruncated] = useState(false);
+
+  useEffect(() => {
+    const checkTruncation = () => {
+      const tempElement = document.createElement("p");
+      tempElement.className =
+        "text-fg-secondary text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl line-clamp-4";
+      tempElement.textContent = description;
+      document.body.appendChild(tempElement);
+
+      const lineHeight = parseFloat(getComputedStyle(tempElement).lineHeight);
+      const maxLines = 4;
+      const maxHeight = lineHeight * maxLines;
+      setIsTruncated(tempElement.scrollHeight > maxHeight + 5);
+
+      document.body.removeChild(tempElement);
+    };
+
+    checkTruncation();
+  }, [description]);
 
   return (
     <section className="pt-24 sm:pt-28 md:pt-32 pb-10 md:pb-16 lg:pb-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
@@ -37,10 +58,36 @@ const HeroSection = ({ name, description, cv_url, image }) => {
             {name}
           </h1>
 
-          {/* Description */}
-          <p className="text-fg-secondary text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mb-6 md:mb-8">
-            {description}
-          </p>
+          {/* Description with Read More/Less */}
+          <div className="mb-6 md:mb-8">
+            {!expanded ? (
+              <div className="flex gap-1 items-center md:items-start flex-wrap flex-col">
+                <p className="text-fg-secondary text-[1rem] md:text-lg leading-relaxed max-w-2xl line-clamp-4">
+                  {description}
+                </p>
+                {isTruncated && (
+                  <button
+                    onClick={() => setExpanded(!expanded)}
+                    className="text-fg-primary text-[0.875rem] md:text-sm font-medium hover:opacity-80 transition-opacity flex-shrink-0"
+                  >
+                    See More
+                  </button>
+                )}
+              </div>
+            ) : (
+              <div>
+                <p className="text-fg-secondary text-[1rem] md:text-lg leading-relaxed max-w-2xl mb-2">
+                  {description}
+                </p>
+                <button
+                  onClick={() => setExpanded(!expanded)}
+                  className="text-fg-primary text-[0.875rem] md:text-sm font-medium hover:opacity-80 transition-opacity"
+                >
+                  See Less
+                </button>
+              </div>
+            )}
+          </div>
 
           {/* Action Buttons */}
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 sm:gap-4">

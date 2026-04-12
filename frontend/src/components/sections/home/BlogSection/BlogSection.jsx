@@ -39,7 +39,7 @@ const HomeBlogCard = ({ post }) => {
           {post.title}
         </h3>
 
-        <p className="text-fg-secondary text-sm sm:text-base leading-relaxed line-clamp-3">
+        <p className="text-fg-secondary text-sm sm:text-base leading-relaxed line-clamp-2">
           {post.summary}
         </p>
 

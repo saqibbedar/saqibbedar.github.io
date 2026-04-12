@@ -38,7 +38,7 @@ const BlogCard = ({ post }) => {
           {post.title}
         </h2>
 
-        <p className="text-fg-secondary text-sm sm:text-base leading-relaxed max-w-3xl">
+        <p className="text-fg-secondary text-sm sm:text-base leading-relaxed max-w-3xl line-clamp-2">
           {post.summary}
         </p>
 

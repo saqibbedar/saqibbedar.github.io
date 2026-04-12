@@ -15,6 +15,7 @@ const footerLinks = {
   services: [
     { name: "Services", path: "/services" },
     { name: "Contact", path: "/contact" },
+    { name: "FAQs", path: "/faqs" },
   ],
   legal: [
     { name: "Privacy Policy", path: "/privacy-policy" },

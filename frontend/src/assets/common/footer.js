@@ -7,9 +7,9 @@ import { BiLogoFacebookCircle } from 'react-icons/bi';
 
 const footer = [
   {
-    link: "https://x.com/saqibbedar",
-    icon: FaXTwitter,
-    name: "X/TWITTER",
+    link: "https://github.com/saqibbedar",
+    icon: FaGithub,
+    name: "GITHUB",
   },
   {
     link: "https://www.linkedin.com/in/saqibbedar",
@@ -17,19 +17,19 @@ const footer = [
     name: "LINKEDIN",
   },
   {
-    link: "https://github.com/saqibbedar",
-    icon: FaGithub,
-    name: "GITHUB",
-  },
-  {
-    link: "https://www.instagram.com/saqibbedar",
-    icon: FaInstagram,
-    name: "INSTAGRAM",
+    link: "https://x.com/saqibbedar",
+    icon: FaXTwitter,
+    name: "X/TWITTER",
   },
   {
     link: "https://www.youtube.com/@saqibbedar",
     icon: FaYoutube,
     name: "YOUTUBE",
+  },
+  {
+    link: "https://www.instagram.com/saqibbedar",
+    icon: FaInstagram,
+    name: "INSTAGRAM",
   },
   {
     link: "https://www.twitch.tv/saqibbedar",
@@ -41,11 +41,11 @@ const footer = [
     icon: SiBuymeacoffee,
     name: "SUPPORT",
   },
-  {
-    link: "https://gravatar.com/saqibbedar",
-    icon: SiGravatar,
-    name: "GRAVATAR",
-  },
+  // {
+  //   link: "https://gravatar.com/saqibbedar",
+  //   icon: SiGravatar,
+  //   name: "GRAVATAR",
+  // },
   // {
   //   link: "https://linktr.ee/saqibbedar",
   //   icon: TbBrandLinktree,

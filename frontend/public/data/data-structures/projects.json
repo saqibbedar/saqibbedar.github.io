@@ -1,0 +1,160 @@
+[
+  {
+    "_id": "string",
+    "slug": "string",
+    "title": "string",
+    "description": {
+      "short": "string",
+      "full": "string"
+    },
+    "media": {
+      "thumbnail": "string | null",
+      "banner": "string | null"
+    },
+    "repository": {
+      "provider": "github",
+      "owner": "string",
+      "name": "string",
+      "url": "string | null"
+    },
+    "owner": {
+      "login": "string",
+      "name": "string",
+      "avatar": "string",
+      "profileUrl": "string"
+    },
+    "contributors": [
+      {
+        "login": "string",
+        "name": "string",
+        "avatar": "string",
+        "role": "string",
+        "githubUrl": "string"
+      }
+    ],
+    "links": {
+      "github": "string | null",
+      "npm": "string | null",
+      "marketplace": "string | null",
+      "docs": "string | null",
+      "demo": "string | null",
+      "playground": "string | null",
+      "other": "array"
+    },
+    "stats": {
+      "stars": "number",
+      "forks": "number",
+      "watchers": "number",
+      "downloads": "number | null",
+      "showDownloads": "boolean"
+    },
+    "package": {
+      "version": "string | null",
+      "license": "string | null"
+    },
+    "tech": {
+      "stack": ["string"],
+      "languages": [
+        {
+          "name": "string",
+          "percentage": "number",
+          "primary": "boolean"
+        }
+      ]
+    },
+    "features": ["string"],
+    "tags": ["string"],
+    "category": "string",
+    "status": "active | archived | completed",
+    "visibility": "public | private",
+    "featured": "boolean",
+    "timestamps": {
+      "createdAt": "string | null",
+      "updatedAt": "string | null"
+    }
+  },
+  {
+    "example": {
+      "_id": "project_bxp_code",
+      "slug": "bxp-code",
+      "title": "bxp-code",
+      "description": {
+        "short": "Drop-in React code blocks with Shiki highlighting and Prettier formatting.",
+        "full": "bxp-code is a modern React component library for rendering beautiful code blocks with zero configuration."
+      },
+      "media": {
+        "thumbnail": null,
+        "banner": null
+      },
+      "repository": {
+        "provider": "github",
+        "owner": "saqibbedar",
+        "name": "bxp-code",
+        "url": "https://github.com/saqibbedar/bxp-code"
+      },
+      "owner": {
+        "login": "saqibbedar",
+        "name": "Saqib Bedar",
+        "avatar": "/images/author.png",
+        "profileUrl": "https://github.com/saqibbedar"
+      },
+      "contributors": [
+        {
+          "login": "saqibbedar",
+          "name": "Saqib Bedar",
+          "avatar": "/images/author.png",
+          "role": "Creator & Maintainer",
+          "githubUrl": "https://github.com/saqibbedar"
+        }
+      ],
+      "links": {
+        "github": "https://github.com/saqibbedar/bxp-code",
+        "npm": "https://www.npmjs.com/package/bxp-code",
+        "marketplace": null,
+        "docs": "https://saqibbedar.github.io/bxp-code/",
+        "demo": "https://saqibbedar.github.io/bxp-code/playground/",
+        "playground": "https://saqibbedar.github.io/bxp-code/playground/",
+        "other": []
+      },
+      "stats": {
+        "stars": 0,
+        "forks": 0,
+        "watchers": 0,
+        "downloads": null,
+        "showDownloads": true
+      },
+      "package": {
+        "version": "1.0.0",
+        "license": "MIT"
+      },
+      "tech": {
+        "stack": ["React", "TypeScript", "Shiki", "Prettier", "Vite"],
+        "languages": [
+          {
+            "name": "TypeScript",
+            "percentage": 100,
+            "primary": true
+          }
+        ]
+      },
+      "features": [
+        "VS Code-level syntax highlighting",
+        "Automatic code formatting"
+      ],
+      "tags": [
+        "React",
+        "Syntax Highlighting",
+        "UI Component",
+        "Developer Tools"
+      ],
+      "category": "frontend",
+      "status": "active",
+      "visibility": "public",
+      "featured": true,
+      "timestamps": {
+        "createdAt": null,
+        "updatedAt": null
+      }
+    }
+  }
+]

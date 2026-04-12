@@ -8,10 +8,27 @@ import { getViewMeta } from "@/assets";
 
 const REPO_BASE_URL = "https://github.com/saqibbedar/saqibbedar.github.io";
 
+const normalizeBlogDocPath = (docPath = "") =>
+  String(docPath || "")
+    .trim()
+    .replace(/^\/+/, "")
+    .replace(/^data\/blogs\//i, "");
+
 const getEditUrl = (docPath, allowGithubEdit) => {
   if (!allowGithubEdit || !docPath) return "";
-  const safeDocPath = String(docPath).replace(/^\/+/, "");
+  const safeDocPath = normalizeBlogDocPath(docPath);
   return `${REPO_BASE_URL}/blob/main/frontend/public/data/blogs/${safeDocPath}`;
+};
+
+const normalize = (value) =>
+  String(value || "")
+    .toLowerCase()
+    .trim();
+
+const getPostDate = (post) => {
+  const value = post?.publishedAt || post?.updatedAt || null;
+  const date = value ? new Date(value) : null;
+  return date && !Number.isNaN(date.getTime()) ? date.getTime() : 0;
 };
 
 const Blog = () => {
@@ -36,6 +53,33 @@ const Blog = () => {
   }
 
   const meta = getViewMeta("blog", { post });
+  const relatedArticles = blogs
+    .filter((article) => article.slug !== post.slug)
+    .filter(
+      (article) => normalize(article.category) === normalize(post.category)
+    )
+    .sort((left, right) => getPostDate(right) - getPostDate(left))
+    .slice(0, 2)
+    .map((article) => ({
+      title: article.title,
+      summary: article.summary,
+      category: article.category,
+      path: `/blogs/${article.slug}`,
+    }));
+
+  const fallbackArticles =
+    relatedArticles.length > 0
+      ? relatedArticles
+      : blogs
+          .filter((article) => article.slug !== post.slug)
+          .sort((left, right) => getPostDate(right) - getPostDate(left))
+          .slice(0, 2)
+          .map((article) => ({
+            title: article.title,
+            summary: article.summary,
+            category: article.category,
+            path: `/blogs/${article.slug}`,
+          }));
 
   return (
     <>
@@ -52,7 +96,7 @@ const Blog = () => {
         }}
         publishedAt={post.publishedAt}
         updatedAt={post.updatedAt}
-        relatedLinks={post.related || []}
+        relatedArticles={fallbackArticles}
         editUrl={getEditUrl(post.doc, post.allowGithubEdit)}
         backHref="/blogs"
         backLabel="Back to Blog Posts"

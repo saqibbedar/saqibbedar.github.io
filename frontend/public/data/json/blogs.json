@@ -1,19 +1,21 @@
 [
   {
-    "_id": "blog-source-code",
-    "slug": "source-code",
-    "title": "Source Code",
-    "summary": "How this portfolio is structured, how to run it locally, and how to contribute updates.",
-    "category": "Engineering",
-    "doc": "source-code.md",
-    "publishedAt": "2024-10-10",
-    "updatedAt": "2025-01-15",
+    "_id": "blog-dsa-cpp",
+    "slug": "dsa-cpp",
+    "title": "Learn Data Structures & Algorithms in C++ (Structured Roadmap + Full Implementations from Scratch)",
+
+    "summary": "A practical, structured guide to learning DSA in C++ using my saqibbedar/dsa repository. It’s organized like a curriculum (topics, labs, assignments, revision), includes full implementations from scratch (stack, queue, linked list, BST, sorting, recursion, etc.), and is easy to explore folder-by-folder. If you’re a dev, you can also contribute and help improve it.",
+
+    "category": "Computer Science",
+
+    "doc": "/data/blogs/02-dsa-cpp.md",
+
+    "publishedAt": "12-01-2024",
+    "updatedAt": "12-01-2024",
+
     "featured": true,
     "allowGithubEdit": true,
-    "related": [
-      { "title": "Projects", "path": "/projects" },
-      { "title": "Services", "path": "/services" },
-      { "title": "Contact", "path": "/contact" }
-    ]
+
+    "relatedStrategy": "category"
   }
 ]

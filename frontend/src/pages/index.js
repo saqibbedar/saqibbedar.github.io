@@ -11,6 +11,7 @@ import Terms from "./Terms/Terms";
 import Policy from "./Policy/Policy";
 import Sitemap from "./Sitemap/Sitemap";
 import Blogs from "./Blogs/Blogs";
+import FAQs from "./Faqs/Faqs";
 
 export {
   Home,
@@ -26,4 +27,5 @@ export {
   Policy,
   Sitemap,
   Blogs,
+  FAQs
 };

@@ -12,6 +12,7 @@ import {
   Terms,
   Sitemap,
   Blogs,
+  FAQs
 } from "@/pages";
 import { Project, Course, Blog } from "@/components/views/views";
 import { Route, Routes } from "react-router-dom";
@@ -37,6 +38,7 @@ const AppRoutes = () => {
         <Route path="/search" element={<Search />} />
         <Route path="/search/:query" element={<Search />} />
         <Route path="/sitemap" element={<Sitemap />} />
+        <Route path="/faqs" element={<FAQs />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/404" element={<Error404 />} />
       </Routes>

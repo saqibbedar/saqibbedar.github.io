@@ -13,11 +13,11 @@ const first_row = [
     icon: FaHtml5,
   },
   {
-    name: "JS",
+    name: "JAVASCRIPT",
     icon: IoLogoJavascript,
   },
   {
-    name: "TS",
+    name: "TYPESCRIPT",
     icon: SiTypescript,
   },
   {

@@ -41,8 +41,8 @@ const SocialCard = ({ social }) => {
       rel="noopener noreferrer"
       className="group flex items-center gap-4 p-4 bg-bg-card border border-border rounded-xl hover:border-border-light transition-colors"
     >
-      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-bg-primary border border-border flex items-center justify-center">
-        <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-fg-secondary" />
+      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-btn-primary-bg/80 border border-border flex items-center justify-center">
+        <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-fg-primary" />
       </div>
       <div className="flex-1 min-w-0">
         <p className="font-medium text-fg-primary">{social.name}</p>
@@ -209,8 +209,8 @@ const ContactView = () => {
           <div className="space-y-4">
             <p className="text-fg-secondary leading-relaxed">
               I would love to hear from you! Whether you have a project in mind,
-              want to collaborate, or just want to say hello — feel free to
-              reach out.
+              want to collaborate, or just want to say hello, feel free to reach
+              out.
             </p>
             <p className="text-fg-secondary leading-relaxed">
               You can send me a message using the form, or connect with me
@@ -219,7 +219,7 @@ const ContactView = () => {
           </div>
 
           {/* Social Links */}
-          <div className="space-y-3">
+          <div className="space-y-3 hidden md:block">
             <h4 className="text-sm font-semibold text-fg-secondary uppercase tracking-wider">
               Connect Directly
             </h4>
@@ -231,7 +231,7 @@ const ContactView = () => {
           </div>
 
           {/* Response Time Note */}
-          <div className="p-4 bg-bg-card/50 border border-border rounded-xl">
+          <div className="p-4 bg-bg-card/50 border border-border rounded-xl hidden md:block">
             <p className="text-sm text-fg-secondary">
               <span className="text-fg-primary font-medium">
                 Typical response time:

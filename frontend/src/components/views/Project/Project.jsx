@@ -11,6 +11,7 @@ import {
   FaArrowLeft,
   FaCalendarAlt,
   FaCode,
+  FaDownload,
   FaBalanceScale,
   FaLink,
 } from "react-icons/fa";
@@ -82,7 +83,44 @@ const getContributorStack = (project) => {
     ? project.contributors.filter((contributor) => !contributor?.isOwner)
     : [];
 
-  return [owner, ...contributors].filter(Boolean);
+  const ownerIdentity = [owner?.login, owner?.name]
+    .filter(Boolean)
+    .map((value) => String(value).toLowerCase());
+  const seen = new Set();
+
+  return [owner, ...contributors].filter(Boolean).filter((contributor) => {
+    const contributorIdentity = [
+      contributor.login,
+      contributor.name,
+      contributor.profileUrl,
+    ]
+      .filter(Boolean)
+      .map((value) => String(value).toLowerCase());
+
+    const hasOwnerMatch = contributorIdentity.some((value) =>
+      ownerIdentity.includes(value)
+    );
+    const uniqueKey = contributorIdentity[0] || contributor.profileUrl || "";
+
+    if (hasOwnerMatch && seen.has("owner")) {
+      return false;
+    }
+
+    if (!uniqueKey) {
+      return true;
+    }
+
+    if (seen.has(uniqueKey)) {
+      return false;
+    }
+
+    seen.add(uniqueKey);
+    if (hasOwnerMatch) {
+      seen.add("owner");
+    }
+
+    return true;
+  });
 };
 
 const ContributorStack = ({ project }) => {
@@ -99,7 +137,9 @@ const ContributorStack = ({ project }) => {
           title={`${contributor.name || contributor.login} · ${
             contributor.role || "Contributor"
           }`}
-          to={contributor.isOwner ? `/about` : `${contributor.profileUrl || "#"}`}
+          to={
+            contributor.isOwner ? `/about` : `${contributor.profileUrl || "#"}`
+          }
         >
           <img
             src={
@@ -185,9 +225,110 @@ const Project = () => {
   const languages = getProjectLanguages(project);
   const issueCount = project.metadata?.issues?.count ?? 0;
   const openIssueCount = project.metadata?.issues?.open ?? 0;
+  const links = project.links || {};
+  const showDownloads = Boolean(project.metadata?.showDownloads);
+  const monthlyDownloads = Number.isFinite(Number(project.metadata?.downloads))
+    ? Number(project.metadata.downloads)
+    : null;
+  const version = project.package?.version;
+  const hasVersion = Boolean(
+    version &&
+    !["unknown", "null", "undefined"].includes(String(version).toLowerCase())
+  );
+  const featureList = Array.isArray(project.features) ? project.features : [];
+  const techStack = Array.isArray(project.tech?.stack)
+    ? project.tech.stack
+    : [];
+  const projectTags = Array.isArray(project.tags) ? project.tags : [];
+  const relatedCandidates = projects
+    .filter((candidate) => candidate._id !== project._id)
+    .map((candidate) => {
+      const sameCategory =
+        String(candidate?.category || "").toLowerCase() ===
+        String(project?.category || "").toLowerCase();
+
+      const candidateTags = Array.isArray(candidate?.tags)
+        ? candidate.tags.map((tag) => String(tag).toLowerCase())
+        : [];
+      const candidateStack = Array.isArray(candidate?.tech?.stack)
+        ? candidate.tech.stack.map((item) => String(item).toLowerCase())
+        : [];
+      const baseTags = projectTags.map((tag) => String(tag).toLowerCase());
+      const baseStack = techStack.map((item) => String(item).toLowerCase());
+      const candidatePrimaryLanguage = String(
+        candidate?.metadata?.language ||
+          candidate?.tech?.languages?.find((language) => language?.isMain)
+            ?.name ||
+          ""
+      ).toLowerCase();
+      const currentPrimaryLanguage = String(
+        primaryLanguage || ""
+      ).toLowerCase();
+
+      const tagOverlap = candidateTags.filter((tag) =>
+        baseTags.includes(tag)
+      ).length;
+      const stackOverlap = candidateStack.filter((item) =>
+        baseStack.includes(item)
+      ).length;
+      const languageMatch =
+        Boolean(candidatePrimaryLanguage) &&
+        Boolean(currentPrimaryLanguage) &&
+        candidatePrimaryLanguage === currentPrimaryLanguage;
+
+      const isRelated = sameCategory || tagOverlap >= 2 || stackOverlap >= 2;
+      const isClose =
+        !isRelated && (tagOverlap > 0 || stackOverlap > 0 || languageMatch);
+      const score =
+        (sameCategory ? 3 : 0) +
+        tagOverlap * 2 +
+        stackOverlap +
+        (languageMatch ? 1 : 0) +
+        (candidate?.featured ? 1 : 0);
+
+      return { candidate, score, isRelated, isClose };
+    })
+    .sort((left, right) => right.score - left.score);
+
+  const relatedProjects = relatedCandidates
+    .filter((entry) => entry.isRelated)
+    .slice(0, 2)
+    .map((entry) => entry.candidate);
+  const suggestedProjects = relatedCandidates
+    .filter((entry) => entry.isClose)
+    .slice(0, 2)
+    .map((entry) => entry.candidate);
+  const youMayLikeProjects = relatedCandidates
+    .slice(0, 2)
+    .map((entry) => entry.candidate);
+
+  const recommendationTitle =
+    relatedProjects.length > 0
+      ? "Related Projects"
+      : suggestedProjects.length > 0
+        ? "Suggested Projects"
+        : "You May Like";
+  const recommendationProjects =
+    relatedProjects.length > 0
+      ? relatedProjects
+      : suggestedProjects.length > 0
+        ? suggestedProjects
+        : youMayLikeProjects;
+  const resolvedLicense = project.metadata?.license;
   const licenseName =
-    project.metadata?.license?.name || project.metadata?.license || "-";
-  const licenseUrl = project.metadata?.license?.url || null;
+    (typeof resolvedLicense === "object" && resolvedLicense?.name) ||
+    (typeof resolvedLicense === "string" ? resolvedLicense : null) ||
+    project.package?.license ||
+    "-";
+  const licenseUrl =
+    typeof resolvedLicense === "object" && resolvedLicense?.url
+      ? resolvedLicense.url
+      : null;
+  const updatedAt =
+    project.metadata?.updatedAt ||
+    project.metadata?.lastUpdated ||
+    project.timestamps?.updatedAt ||
+    null;
   const meta = getViewMeta("project", { project });
 
   return (
@@ -216,14 +357,11 @@ const Project = () => {
                 {statusBadge.icon}
                 {statusBadge.text}
               </span>
-              {(project.tags || []).map((tag, index) => (
-                <span
-                  key={index}
-                  className="px-3 py-1 text-sm font-medium text-fg-primary bg-bg-card border border-border rounded-full"
-                >
-                  {tag}
+              {project.category && (
+                <span className="px-3 py-1 text-sm font-medium text-fg-primary bg-bg-card border border-border rounded-full">
+                  {project.category}
                 </span>
-              ))}
+              )}
             </div>
 
             {/* Title */}
@@ -233,7 +371,10 @@ const Project = () => {
 
             {/* Description */}
             <p className="text-base sm:text-lg text-fg-secondary leading-relaxed mb-6">
-              {project.fullDescription || project.shortDescription}
+              {project.fullDescription ||
+                project.description?.full ||
+                project.shortDescription ||
+                project.description?.short}
             </p>
 
             {/* Stats (for public projects) */}
@@ -262,6 +403,20 @@ const Project = () => {
                   <FaBalanceScale className="w-4 h-4" />
                   <span>{licenseName}</span>
                 </div>
+                {showDownloads && monthlyDownloads !== null && (
+                  <div className="flex items-center gap-1.5">
+                    <FaDownload className="w-4 h-4" />
+                    <span>
+                      {monthlyDownloads.toLocaleString()} monthly downloads
+                    </span>
+                  </div>
+                )}
+                {hasVersion && (
+                  <div className="flex items-center gap-1.5">
+                    <FaCode className="w-4 h-4" />
+                    <span>v{version}</span>
+                  </div>
+                )}
               </div>
             )}
 
@@ -300,33 +455,36 @@ const Project = () => {
                 primary
               />
               <LinkButton
-                href={project.links.demo}
+                href={links.demo}
                 icon={FaExternalLinkAlt}
                 label="Live Demo"
               />
               <LinkButton
-                href={project.links.docker}
-                icon={FaDocker}
-                label="Docker"
+                href={links.docs}
+                icon={FaExternalLinkAlt}
+                label="Docs"
               />
-              <LinkButton href={project.links.npm} icon={SiNpm} label="npm" />
               <LinkButton
-                href={project.links.vscode}
+                href={links.playground}
+                icon={FaExternalLinkAlt}
+                label="Playground"
+              />
+              <LinkButton
+                href={links.marketplace}
+                icon={FaExternalLinkAlt}
+                label="Marketplace"
+              />
+              <LinkButton href={links.docker} icon={FaDocker} label="Docker" />
+              <LinkButton href={links.npm} icon={SiNpm} label="npm" />
+              <LinkButton
+                href={links.vscode}
                 icon={VscVscode}
                 label="VS Code"
               />
-              <LinkButton
-                href={project.links.pypi}
-                icon={SiPypi}
-                label="PyPI"
-              />
-              <LinkButton
-                href={project.links.orcid}
-                icon={SiOrcid}
-                label="ORCID"
-              />
+              <LinkButton href={links.pypi} icon={SiPypi} label="PyPI" />
+              <LinkButton href={links.orcid} icon={SiOrcid} label="ORCID" />
               {/* Other Links */}
-              {project.links?.other?.map((link, index) => (
+              {links?.other?.map((link, index) => (
                 <LinkButton
                   key={index}
                   href={link.url}
@@ -341,7 +499,7 @@ const Project = () => {
           <div className="order-1 lg:order-2">
             <div className="relative rounded-2xl overflow-hidden border border-border shadow-xl">
               <img
-                src={project.thumbnail}
+                src={project.thumbnail || project.media?.thumbnail}
                 alt={project.title}
                 className="w-full aspect-video object-cover"
               />
@@ -356,16 +514,12 @@ const Project = () => {
                       {project.category}
                     </span>
                   </div>
-                  <div className="flex items-center gap-2 text-white/80 text-sm">
-                    <FaCalendarAlt className="w-4 h-4" />
-                    <span>
-                      Updated{" "}
-                      {formatDate(
-                        project.metadata?.updatedAt ||
-                          project.metadata?.lastUpdated
-                      )}
-                    </span>
-                  </div>
+                  {updatedAt && (
+                    <div className="flex items-center gap-2 text-white/80 text-sm">
+                      <FaCalendarAlt className="w-4 h-4" />
+                      <span>Updated {formatDate(updatedAt)}</span>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -410,6 +564,75 @@ const Project = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mt-6">
+            {techStack.length > 0 && (
+              <div className="p-4 bg-bg-card border border-border rounded-xl">
+                <p className="text-xs uppercase tracking-wider text-fg-muted mb-2">
+                  Tech Stack
+                </p>
+                <div className="flex flex-wrap gap-2 text-xs text-fg-secondary">
+                  {techStack.map((techItem) => (
+                    <span
+                      key={techItem}
+                      className="px-2 py-0.5 text-[0.8rem] text-fg-primary/70 bg-btn-primary-bg/40 border border-border-light rounded-full"
+                    >
+                      {techItem}
+                    </span>
+                  ))}
+                </div>
+
+                {projectTags.length > 0 && (
+                  <>
+                    <p className="text-xs uppercase tracking-wider text-fg-muted mt-4 mb-2">
+                      Tags
+                    </p>
+                    <div className="flex flex-wrap gap-2 text-xs text-fg-secondary">
+                      {projectTags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2 py-0.5 text-[0.8rem] text-fg-primary/70 bg-btn-primary-bg/30 border border-border-light rounded-full"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
+            )}
+
+            {techStack.length === 0 && projectTags.length > 0 && (
+              <div className="p-4 bg-bg-card border border-border rounded-xl">
+                <p className="text-xs uppercase tracking-wider text-fg-muted mb-2">
+                  Tags
+                </p>
+                <div className="flex flex-wrap gap-2 text-xs text-fg-secondary">
+                  {projectTags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2 py-0.5 text-[0.8rem] text-fg-primary/70 bg-btn-primary-bg/30 border border-border-light rounded-full"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {featureList.length > 0 && (
+              <div className="p-4 bg-bg-card border border-border rounded-xl">
+                <p className="text-xs uppercase tracking-wider text-fg-muted mb-2">
+                  Key Features
+                </p>
+                <ul className="space-y-1 text-sm text-fg-secondary">
+                  {featureList.slice(0, 6).map((feature) => (
+                    <li key={feature} className="leading-relaxed">
+                      • {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
             <div className="p-4 bg-bg-card border border-border rounded-xl">
               <p className="text-xs uppercase tracking-wider text-fg-muted mb-2">
                 Repository flags
@@ -419,7 +642,11 @@ const Project = () => {
                   {project.metadata?.private ? "Private" : "Public"}
                 </span>
                 <span className="px-2 py-0.5 text-[0.8rem] text-fg-primary/70 bg-btn-primary-bg/40 border border-border-light rounded-full">
-                  {project.metadata?.archived ? "Archived" : "Active"}
+                  {project.status === "completed"
+                    ? "Completed"
+                    : project.metadata?.archived
+                      ? "Archived"
+                      : project.status || "Active"}
                 </span>
                 <span className="px-2 py-0.5 text-[0.8rem] text-fg-primary/70 bg-btn-primary-bg/40 border border-border-light rounded-full">
                   {project.metadata?.isTemplate ? "Template" : "Not template"}
@@ -431,28 +658,57 @@ const Project = () => {
                 </span>
               </div>
             </div>
-            <div className="p-4 bg-bg-card border border-border rounded-xl">
-              <p className="text-xs uppercase tracking-wider text-fg-muted mb-2">
-                Issues and license
+            {projectUrl && (
+              <div className="p-4 bg-bg-card border border-border rounded-xl">
+                <p className="text-xs uppercase tracking-wider text-fg-muted mb-2">
+                  Issues and license
+                </p>
+                <div className="flex flex-wrap gap-3 text-sm text-fg-secondary">
+                  <span>{issueCount} total issues</span>
+                  <span>{openIssueCount} open</span>
+                  {hasVersion && <span>Version {version}</span>}
+                  {licenseUrl ? (
+                    <a
+                      href={licenseUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-fg-primary hover:underline"
+                    >
+                      {licenseName}
+                    </a>
+                  ) : (
+                    <span>{licenseName}</span>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {recommendationProjects.length > 0 && (
+            <div className="mt-8 pt-6 border-t border-border">
+              <p className="text-sm sm:text-base font-semibold tracking-wide text-fg-primary mb-4">
+                {recommendationTitle}
               </p>
-              <div className="flex flex-wrap gap-3 text-sm text-fg-secondary">
-                <span>{issueCount} total issues</span>
-                <span>{openIssueCount} open</span>
-                {licenseUrl ? (
-                  <a
-                    href={licenseUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-fg-primary hover:underline"
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {recommendationProjects.map((relatedProject) => (
+                  <Link
+                    key={relatedProject._id}
+                    to={`/projects/${relatedProject.slug || relatedProject._id}`}
+                    className="p-4 sm:p-5 rounded-xl border border-border bg-bg-card hover:border-border-light transition-colors"
                   >
-                    {licenseName}
-                  </a>
-                ) : (
-                  <span>{licenseName}</span>
-                )}
+                    <p className="text-base sm:text-lg font-semibold text-fg-primary line-clamp-1 leading-snug">
+                      {relatedProject.title}
+                    </p>
+                    <p className="text-sm text-fg-secondary mt-2 line-clamp-2 leading-relaxed">
+                      {relatedProject.shortDescription ||
+                        relatedProject.description?.short ||
+                        "Open project details"}
+                    </p>
+                  </Link>
+                ))}
               </div>
             </div>
-          </div>
+          )}
         </div>
       </section>
     </div>

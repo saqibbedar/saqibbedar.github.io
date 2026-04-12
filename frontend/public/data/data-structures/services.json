@@ -1,0 +1,60 @@
+[
+  {
+    "_id": "string",
+    "slug": "string",
+    "title": "string",
+    "shortDescription": "string",
+    "fullDescription": "string",
+    "icon": "string",
+    "category": "Employment | Consultation | Speaking | Support | Education | Collaboration",
+    "features": ["string"],
+    "availability": "string",
+    "responseTime": "string",
+    "ctaText": "string",
+    "featured": "boolean",
+    "platforms": [
+      {
+        "name": "string",
+        "icon": "SiGithubsponsors | SiBuymeacoffee | SiPatreon | string",
+        "url": "string"
+      }
+    ],
+    "collaborationTypes": [
+      {
+        "name": "string",
+        "icon": "FaYoutube | FaCode | FaGraduationCap | string"
+      }
+    ]
+  },
+  {
+    "example": {
+      "_id": "service4",
+      "slug": "sponsorship",
+      "title": "Support My Work",
+      "shortDescription": "Support my open-source projects and educational content through sponsorship or one-time donations.",
+      "fullDescription": "If my projects, tutorials, or content have helped you, you can support my work through one-time or monthly contributions.",
+      "icon": "FaHeart",
+      "category": "Support",
+      "features": [
+        "Support open-source development",
+        "One-time and monthly support options"
+      ],
+      "availability": "Always open",
+      "responseTime": "Instant acknowledgment",
+      "ctaText": "Support My Work",
+      "featured": false,
+      "platforms": [
+        {
+          "name": "GitHub Sponsors",
+          "icon": "SiGithubsponsors",
+          "url": "https://github.com/sponsors/saqibbedar"
+        },
+        {
+          "name": "Buy Me a Coffee",
+          "icon": "SiBuymeacoffee",
+          "url": "https://buymeacoffee.com/saqibbedar"
+        }
+      ]
+    }
+  }
+]

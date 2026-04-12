@@ -1,0 +1,18 @@
+[
+  {
+    "year": "string",
+    "degreeType": "string",
+    "organization": "string",
+    "description": "string",
+    "projects": ["string"]
+  },
+  {
+    "example": {
+      "year": "2023 - Present",
+      "degreeType": "BS Computer Science",
+      "organization": "QAU Islamabad",
+      "description": "",
+      "projects": []
+    }
+  }
+]

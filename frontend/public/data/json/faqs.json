@@ -1,22 +1,47 @@
 [
   {
     "_id": 1,
-    "question": "Can you create a full stack web application?",
-    "ans": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident nostrum rerum et. Cupiditate eligendi, explicabo animi laboriosam dolorum deleniti itaque ipsam enim corporis ex harum voluptatum, eum alias ducimus dolorem."
+    "question": "Who are you and what do you focus on?",
+    "ans": "I am Saqib Bedar, a Computer Science student at QAU Islamabad and a self-taught developer from Pakistan. I focus on full stack development, open source building, and developer tooling, with growing interest in systems, DevOps, and AI."
   },
   {
     "_id": 2,
-    "question": "Can you create a full stack web application?",
-    "ans": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident nostrum rerum et. Cupiditate eligendi, explicabo animi laboriosam dolorum deleniti itaque ipsam enim corporis ex harum voluptatum, eum alias ducimus dolorem."
+    "question": "What kind of projects have you built?",
+    "ans": "I have built frontend, full stack, desktop, and developer-tooling projects. Highlights include bxp-code (React code block library), BedarX Pro (VS Code theme extension), an enterprise-style Online Student Portal (MERN), Reactfolio, a Java Smart Library Management System, and a Next.js Blog App."
   },
   {
     "_id": 3,
-    "question": "Can you create a full stack web application?",
-    "ans": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident nostrum rerum et. Cupiditate eligendi, explicabo animi laboriosam dolorum deleniti itaque ipsam enim corporis ex harum voluptatum, eum alias ducimus dolorem."
+    "question": "Do you work on private and freelance projects too?",
+    "ans": "Yes. Along with public open-source repositories, I have also delivered private client work like the Online Student Portal with secure authentication, role-based access control, and scalable backend architecture."
   },
   {
     "_id": 4,
-    "question": "Can you create a full stack web application?",
-    "ans": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident nostrum rerum et. Cupiditate eligendi, explicabo animi laboriosam dolorum deleniti itaque ipsam enim corporis ex harum voluptatum, eum alias ducimus dolorem."
+    "question": "What technologies do you usually work with?",
+    "ans": "I regularly work with JavaScript, TypeScript, React, Next.js, Node.js, Express, Tailwind CSS, MongoDB, and MySQL. I also explore Java desktop development, API design, authentication systems, and tooling around developer productivity."
+  },
+  {
+    "_id": 5,
+    "question": "Are you active in open source?",
+    "ans": "Yes. Open source is a major part of my journey. I build and maintain projects on GitHub, including bxp-code and other developer-focused tools, while continuously improving code quality, documentation, and usability."
+  },
+  {
+    "_id": 6,
+    "question": "Do you also teach or mentor?",
+    "ans": "Yes. I have delivered community sessions as an instructor and speaker, including GitHub and version control bootcamps and orientation talks under MLSA QAU. I also share learning content through my YouTube channel, BedarMind."
+  },
+  {
+    "_id": 7,
+    "question": "What certifications have you completed?",
+    "ans": "I have completed certifications from platforms and organizations such as Coursera, Nvidia, Google, Meta, Codio, freeCodeCamp, and Programming Hub, covering networking, AI essentials, JavaScript, C++, Python, HTML, and CSS."
+  },
+  {
+    "_id": 8,
+    "question": "What are you learning right now?",
+    "ans": "I am currently deepening my knowledge in backend engineering, Linux internals, containerization, and DevOps while exploring AI and machine learning. My long term goal is to build impactful systems-level and research-driven software."
+  },
+  {
+    "_id": 9,
+    "question": "Are you available for collaboration or opportunities?",
+    "ans": "Yes, I am open to meaningful collaborations, open-source contributions, internships, and software engineering opportunities where I can build reliable products and grow with strong teams."
   }
 ]

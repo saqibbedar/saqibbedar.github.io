@@ -1,0 +1,60 @@
+[
+  {
+    "sitemapData": [
+      {
+        "category": "string",
+        "description": "string",
+        "links": [
+          {
+            "name": "string",
+            "path": "string",
+            "icon": "string",
+            "description": "string"
+          }
+        ]
+      }
+    ],
+    "externalLinks": [
+      {
+        "name": "string",
+        "url": "string"
+      }
+    ],
+    "dynamicRoutes": [
+      {
+        "name": "string",
+        "path": "string",
+        "description": "string"
+      }
+    ]
+  },
+  {
+    "example": {
+      "sitemapData": [
+        {
+          "category": "Main Pages",
+          "description": "Core pages of the website",
+          "links": [
+            {
+              "name": "Home",
+              "path": "/",
+              "icon": "FaHome",
+              "description": "Welcome page with overview of my work and skills"
+            }
+          ]
+        }
+      ],
+      "externalLinks": [
+        { "name": "GitHub", "url": "https://github.com/saqibbedar" },
+        { "name": "LinkedIn", "url": "https://linkedin.com/in/saqibbedar" }
+      ],
+      "dynamicRoutes": [
+        {
+          "name": "Blog Details",
+          "path": "/blogs/:slug",
+          "description": "Individual blog post pages rendered from docs"
+        }
+      ]
+    }
+  }
+]
