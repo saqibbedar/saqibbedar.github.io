@@ -1,159 +1,193 @@
-# Hi, I'm Saqib Bedar
+# Portfolio Website Source Code Walkthrough
 
-![Profile Views](https://komarev.com/ghpvc/?username=saqibbedar&color=blueviolet&style=flat)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/saqibbedar)
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/saqibbedar)
-[![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=flat&logo=youtube&logoColor=white)](https://www.youtube.com/@BedarMind)
-[![Email](https://img.shields.io/badge/Email-D14836?style=flat&logo=gmail&logoColor=white)](mailto:chandio.saqib.m@gmail.com)
+If you landed on this page, you are probably here for one reason:
 
----
+You want to understand how this portfolio is built, what stack it uses, and how you can reuse the same structure for your own portfolio without getting lost in over-engineered setup.
 
-## About Me
-
-Computer Science student, open-source developer, and digital creator who enjoys turning complex ideas into practical, reliable software. I build across the stack — from crafting modern, responsive frontends to designing backend services, APIs, authentication systems, and database-driven applications.
-
-I'm steadily expanding deeper into backend engineering, DevOps, containerization, and Linux internals to better understand how production systems are built and operated. What excites me most is understanding how things work under the hood — from compilers and kernels to AI models, networking, and distributed systems.
-
-I believe strong software comes from strong fundamentals, and I'm constantly experimenting, learning, and contributing to open-source projects to sharpen my skills. My long-term goal is to work on impactful systems-level and research-driven projects, while continuing to build developer-friendly tools and scalable applications that solve real-world problems.
+That is exactly what this post is for.
 
 ---
 
-## Currently Learning / Building
+## Why I wrote this
 
-**Open Source** — Constantly building open-source projects, maintaining my own libraries like [bxp-code](https://github.com/saqibbedar/bxp-code), and much more.
+Most portfolio repos show a finished UI but do not explain:
 
-**C Language** — Diving into C to understand low-level systems, memory management, and how things work closer to the hardware. Planning to build personal projects that leverage this foundational knowledge.
+- where the actual content lives,
+- how dynamic pages are wired,
+- how caching is handled,
+- how search indexing works,
+- and how to update everything without touching half the codebase.
 
-**BedarMind** — A YouTube channel focused on sharing knowledge, programming tutorials, and insights for developers. Planning to document my learning journey and help others grow in tech.
-
-** AI & Machine Learning** — Exploring AI, machine learning, and deep learning with inspiration to become an AI engineer.
-
----
-
-## Tech Stack
-
-**Languages**
-
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
-![C++](https://img.shields.io/badge/C++-00599C?style=flat&logo=c%2B%2B&logoColor=white)
-![Java](https://img.shields.io/badge/Java-ED8B00?style=flat&logo=openjdk&logoColor=white)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
-
-**Frontend**
-
-![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=nextdotjs&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
-![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=flat&logo=framer&logoColor=white)
-![GSAP](https://img.shields.io/badge/GSAP-88CE02?style=flat&logo=greensock&logoColor=white)
-![Redux](https://img.shields.io/badge/Redux-593D88?style=flat&logo=redux&logoColor=white)
-![Styled Components](https://img.shields.io/badge/Styled_Components-DB7093?style=flat&logo=styled-components&logoColor=white)
-
-**Backend**
-
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=nodedotjs&logoColor=white)
-![Express.js](https://img.shields.io/badge/Express.js-000000?style=flat&logo=express&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white)
-![flask](https://img.shields.io/badge/Flask-000000?style=flat&logo=flask&logoColor=white)
-![REST API](https://img.shields.io/badge/REST_API-FF6F00?style=flat&logo=fastapi&logoColor=white)
-![GraphQL](https://img.shields.io/badge/GraphQL-E10098?style=flat&logo=graphql&logoColor=white)
-![JWT](https://img.shields.io/badge/JWT-000000?style=flat&logo=JSON%20web%20tokens&logoColor=white)
-
-**Databases**
-
-![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=flat&logo=mongodb&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-005C84?style=flat&logo=mysql&logoColor=white)
-
-**DevOps & Tools**
-
-![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=flat&logo=docker&logoColor=white)
-![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black)
-![Git](https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white)
-![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat&logo=github-actions&logoColor=white)
-![VS Code](https://img.shields.io/badge/VS_Code-007ACC?style=flat&logo=visual-studio-code&logoColor=white)
-
-**Testing**
-
-![Jest](https://img.shields.io/badge/Jest-C21325?style=flat&logo=jest&logoColor=white)
-![Testing Library](https://img.shields.io/badge/Testing_Library-E33332?style=flat&logo=testing-library&logoColor=white)
+This project is intentionally built to make those things clear.
 
 ---
 
-## Featured Projects
+## Project purpose in one line
 
-### bxp-code | React Code Blocks
-
-[![npm](https://img.shields.io/badge/npm-e06b74?style=flat&logo=npm&logoColor=white)](https://www.npmjs.com/package/bxp-code)
-[![Docs](https://img.shields.io/badge/Docs-4f9a7a?style=flat&logo=readthedocs&logoColor=white)](https://saqibbedar.github.io/bxp-code/)
-[![Playground](https://img.shields.io/badge/Playground-e88490?style=flat&logo=react&logoColor=white)](https://saqibbedar.github.io/bxp-code/playground/)
-[![Repo](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/saqibbedar/bxp-code)
-
-Drop-in React code blocks with Shiki highlighting, Prettier formatting, and zero config. Dark and light themes, copy button, line numbers — all built in.
-
-- VS Code-accurate syntax highlighting (TextMate grammars via Shiki)
-- Automatic Prettier formatting on render
-- Two components: `<BxpCode>` and `<BxpCodeTabs>`
-- Zero-config defaults with full customization via props
-
-**Stack:** TypeScript, React, Shiki, Prettier, Vite, VitePress
+This is a content-driven portfolio system where most updates happen in JSON and asset files, while services and views handle rendering, caching, and search behavior in a structured way.
 
 ---
 
-### BedarX Pro | VS Code Theme Extension
+## Tech stack
 
-[![Marketplace](https://img.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visual-studio-code&logoColor=white)](https://marketplace.visualstudio.com/items?itemName=saqibbedar.bedarx-pro)
-[![Repo](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/saqibbedar/BedarX-Pro)
+### Frontend
 
-A premium collection of 4 elegant VS Code themes with unique identity, proper depth hierarchy, and signature accent colors. Includes dark themes (Obsidian, Sapphire, Onyx) and a light theme (Pearl).
+- **Vite** for build and dev server
+- **React** for UI composition
+- **React Router** for routes and dynamic pages
+- **Tailwind CSS** for styling
+- **React Markdown + rehype-raw** for markdown docs/blog rendering
 
-- Optimized syntax highlighting for 15+ languages
-- AMOLED-friendly true blacks option
-- Eye-friendly light theme for daytime coding
-- Distinctive bracket pair colorization
+### Backend
 
-**Stack:** JavaScript, VS Code Extension API
-
----
-
-### Online Student Portal System (MERN)
-
-`Freelance Project` `Private Repository`
-
-Enterprise-style university portal built for a client, featuring hierarchical role-based access control.
-
-- Multi-role architecture (Master Admin, Department Admin, Faculty, Student)
-- JWT authentication with HTTP-only cookies + refresh token rotation
-- Server-managed concurrent session limitation
-- OTP-based password recovery with rate limiting
-- Modular backend architecture (controllers + middleware)
-
-**Stack:** JavaScript, MongoDB, Express, React, Node.js, Tailwind CSS
+- **Express** for minimal API server
+- **Nodemailer** for contact email delivery
+- **CORS** for cross-origin frontend requests
+- **dotenv** for environment variables
 
 ---
 
-## What I Care About
+## High-level architecture
 
-- Clean code and maintainable architecture
-- Secure authentication and authorization systems
-- Performance and scalability
-- Developer experience and tooling
-- Understanding systems from first principles
+The repository is split into two focused applications:
+
+- `frontend/` - public site, routes, content rendering, search, caching
+- `backend/` - contact endpoint that forwards messages to email inbox
+
+The frontend drives almost everything using data files and reusable service functions.
 
 ---
 
-## GitHub Stats
+## Where your content actually lives
 
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=saqibbedar&show_icons=true&theme=tokyonight&hide_border=true" alt="GitHub Stats" />
-</p>
+If your goal is quick customization, start from these folders first:
 
-<p align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=saqibbedar&theme=tokyonight&hide_border=true" alt="GitHub Streak" />
-</p>
+### Primary content data
 
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=saqibbedar&layout=compact&theme=tokyonight&hide_border=true" alt="Top Languages" />
-</p>
+- `frontend/public/data/json/`
+
+This contains projects, blogs, services, FAQs, courses, certificates, testimonials, sitemap, and other main data.
+
+### Blog markdown files
+
+- `frontend/public/data/blogs/`
+
+This is where long-form blog body content lives.
+
+### Legal docs markdown
+
+- `frontend/public/data/docs/`
+
+### Data shape references
+
+- `frontend/public/data/data-structures/`
+
+These files help you understand expected data types before editing JSON.
+
+---
+
+## Frontend structure you should know
+
+If you want to reverse engineer quickly, this is the shortest map:
+
+- `src/pages/` - route-level page entry points
+- `src/components/sections/` - per-page section blocks
+- `src/components/views/` - dynamic detail views (project/blog/course)
+- `src/components/common/` - Navbar and Footer shell
+- `src/routes/` - route definitions
+- `src/assets/` - profile data, footer links, metadata maps
+- `src/services/` - fetch, cache, search, and indexing logic
+- `src/context/` - shared content state consumed across pages
+
+---
+
+## Caching strategy (simple but practical)
+
+The fetch layer uses a two-level cache model:
+
+1. **In-memory cache** for quick repeated reads in the same tab
+2. **LocalStorage cache** for persistence across reloads
+
+Default cache duration is 15 minutes.
+
+When cache is expired, the system fetches fresh data and updates cache again. Key versioning is used where needed (for example when a data shape changes) so stale entries can be safely invalidated.
+
+This gives good performance while keeping update behavior predictable.
+
+---
+
+## Search system notes
+
+Search is not just simple text matching.
+
+The project includes indexing and structured search services under `src/services/search/`, so when you add or rename fields in content data, search logic should be updated too for complete coverage.
+
+---
+
+## Contact flow
+
+Frontend contact form sends JSON payload to backend API.
+
+Backend validates payload and uses Nodemailer to send mail to configured inbox.
+
+For production, backend can be deployed separately (for example on Vercel), and frontend reads API URL through env variable.
+
+---
+
+## Environment setup
+
+### Frontend `.env`
+
+Set your contact endpoint:
+
+`VITE_BACKEND_CONTACT_API=your_backend_api_url`
+
+### Backend `.env`
+
+Configure mail and allowed frontend origin:
+
+- `EMAIL_USER`
+- `EMAIL_PASS`
+- `EMAIL_TO` (optional)
+- `FRONTEND_URL`
+
+If you use Gmail SMTP, generate an App Password from your Google account settings and use that in `EMAIL_PASS`.
+
+---
+
+## Why this setup is useful for developers
+
+This project is generic enough for reuse and structured enough for scaling content.
+
+You can:
+
+- quickly replace profile and project data,
+- add blogs with markdown,
+- keep route and metadata changes organized,
+- and avoid rewriting core components for normal content updates.
+
+In short: you focus on your content and identity, the architecture handles the rest.
+
+---
+
+## If you want to reuse this portfolio
+
+Use this path:
+
+1. update JSON content files in `frontend/public/data/json/`
+2. update profile assets in `frontend/src/assets/common/`
+3. verify routes in `frontend/src/routes/`
+4. update backend env and contact API URL
+5. deploy frontend and backend separately
+
+If you change data structures, update related services and search index mapping too.
+
+---
+
+## Final note
+
+This post is meant to save you time.
+
+If you are a developer trying to build a portfolio that is fast, maintainable, and easy to customize, this architecture gives you a strong base without unnecessary overhead.
+
+If you improve something meaningful in this repo structure, contributions are always welcome.
