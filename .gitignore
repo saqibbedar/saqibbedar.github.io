@@ -13,3 +13,5 @@ frontend/node_modules/
 frontend/.env
 frontend/build/
 /bui
+/backend/.env
+/frontend/.env

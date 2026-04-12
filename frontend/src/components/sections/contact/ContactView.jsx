@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   FaLinkedinIn,
   FaXTwitter,
@@ -54,28 +54,38 @@ const SocialCard = ({ social }) => {
 };
 
 // 3. Input Field Component
-const InputField = ({ label, ...props }) => (
+const InputField = ({ label, error, ...props }) => (
   <div className="space-y-2">
     <label className="block text-sm font-medium text-fg-secondary">
       {label}
     </label>
     <input
       {...props}
-      className="w-full px-4 py-3 bg-bg-card border border-border rounded-xl text-fg-primary placeholder:text-fg-muted focus:outline-none focus:border-fg-primary/50 transition-colors"
+      className={`w-full px-4 py-3 bg-bg-card border rounded-xl text-fg-primary placeholder:text-fg-muted focus:outline-none transition-colors ${
+        error
+          ? "border-red-500/60 focus:border-red-500"
+          : "border-border focus:border-fg-primary/50"
+      }`}
     />
+    {error && <p className="text-xs text-red-400">{error}</p>}
   </div>
 );
 
 // 4. Textarea Field Component
-const TextareaField = ({ label, ...props }) => (
+const TextareaField = ({ label, error, ...props }) => (
   <div className="space-y-2">
     <label className="block text-sm font-medium text-fg-secondary">
       {label}
     </label>
     <textarea
       {...props}
-      className="w-full px-4 py-3 bg-bg-card border border-border rounded-xl text-fg-primary placeholder:text-fg-muted focus:outline-none focus:border-fg-primary/50 transition-colors resize-none"
+      className={`w-full px-4 py-3 bg-bg-card border rounded-xl text-fg-primary placeholder:text-fg-muted focus:outline-none transition-colors resize-none ${
+        error
+          ? "border-red-500/60 focus:border-red-500"
+          : "border-border focus:border-fg-primary/50"
+      }`}
     />
+    {error && <p className="text-xs text-red-400">{error}</p>}
   </div>
 );
 
@@ -86,18 +96,104 @@ const ContactView = () => {
     email: "",
     message: "",
   });
+  const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [toast, setToast] = useState({
+    open: false,
+    type: "error",
+    title: "",
+    message: "",
+  });
+
+  useEffect(() => {
+    if (!toast.open) return;
+    const timer = setTimeout(() => {
+      setToast((prev) => ({ ...prev, open: false }));
+    }, 4200);
+    return () => clearTimeout(timer);
+  }, [toast.open]);
+
+  const validateEmail = (value) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+
+  const validateField = (name, value) => {
+    const trimmed = (value || "").trim();
+
+    if (name === "subject") {
+      if (!trimmed) return "Subject is required.";
+      if (trimmed.length < 3) return "Subject must be at least 3 characters.";
+      return "";
+    }
+
+    if (name === "email") {
+      if (!trimmed) return "Email is required.";
+      if (!validateEmail(trimmed)) return "Enter a valid email address.";
+      return "";
+    }
+
+    if (name === "message") {
+      if (!trimmed) return "Message is required.";
+      if (trimmed.length < 10) return "Message must be at least 10 characters.";
+      return "";
+    }
+
+    return "";
+  };
+
+  const validateForm = (values) => {
+    const nextErrors = {
+      subject: validateField("subject", values.subject),
+      email: validateField("email", values.email),
+      message: validateField("message", values.message),
+    };
+
+    return Object.fromEntries(
+      Object.entries(nextErrors).filter(([, value]) => value)
+    );
+  };
+
+  const showToast = (type, title, message) => {
+    setToast({ open: true, type, title, message });
+  };
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    // Re-validate field while typing after first validation pass.
+    if (errors[name]) {
+      const fieldError = validateField(name, value);
+      setErrors((prev) => {
+        if (!fieldError) {
+          const { [name]: _, ...rest } = prev;
+          return rest;
+        }
+        return { ...prev, [name]: fieldError };
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const formErrors = validateForm(formData);
+    setErrors(formErrors);
+
+    if (Object.keys(formErrors).length > 0) {
+      showToast(
+        "error",
+        "Please fix the form",
+        "All fields are required and must be valid before sending."
+      );
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
-      const res = await fetch(`url/contact`, {
+      const api = import.meta.env.VITE_CONTACT_API || "/api/contact";
+      const res = await fetch(`${api}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -105,17 +201,31 @@ const ContactView = () => {
         body: JSON.stringify(formData),
       });
 
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
 
-      if (data.success) {
-        alert(data.message);
+      if (res.ok && data.success) {
+        showToast(
+          "success",
+          "Message sent",
+          "Thanks! Your email was sent successfully."
+        );
         setFormData({ subject: "", email: "", message: "" });
+        setErrors({});
       } else {
-        alert(data.message);
+        showToast(
+          "error",
+          "Message not sent",
+          data.message ||
+            "Unable to send email right now. Please try again later."
+        );
       }
     } catch (e) {
       console.error("Error: ", e);
-      alert("An error occurred, please try again later.");
+      showToast(
+        "error",
+        "Network error",
+        "Could not reach the server. Please check your connection and try again."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -123,6 +233,43 @@ const ContactView = () => {
 
   return (
     <section className="pt-24 sm:pt-28 md:pt-32 pb-10 md:pb-16 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+      <div
+        className={`fixed top-6 left-1/2 -translate-x-1/2 z-[80] w-[min(92vw,560px)] transition-all duration-300 ${
+          toast.open
+            ? "opacity-100 translate-y-0 scale-100"
+            : "opacity-0 -translate-y-3 scale-[0.98] pointer-events-none"
+        }`}
+        role="status"
+        aria-live="polite"
+      >
+        <div
+          className={`rounded-2xl border backdrop-blur px-4 sm:px-5 py-3 sm:py-4 shadow-[0_12px_30px_rgba(0,0,0,0.35)] ${
+            toast.type === "success"
+              ? "bg-emerald-500/10 border-emerald-400/40"
+              : "bg-bg-card border-border-light"
+          }`}
+        >
+          <div className="flex items-start gap-3">
+            <div className="min-w-0 flex-1">
+              <p className="text-sm sm:text-base font-semibold text-fg-primary">
+                {toast.title}
+              </p>
+              <p className="text-sm text-fg-secondary mt-0.5">
+                {toast.message}
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setToast((prev) => ({ ...prev, open: false }))}
+              className="text-fg-muted hover:text-fg-primary transition-colors text-sm"
+              aria-label="Close message"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+
       {/* Section Header */}
       <div className="mb-8 md:mb-12">
         <h2 className="text-fg-secondary text-sm sm:text-base font-semibold uppercase tracking-widest mb-2">
@@ -162,7 +309,7 @@ const ContactView = () => {
                 placeholder="What's this about?"
                 value={formData.subject}
                 onChange={handleChange}
-                required
+                error={errors.subject}
               />
 
               <InputField
@@ -172,7 +319,7 @@ const ContactView = () => {
                 placeholder="your@email.com"
                 value={formData.email}
                 onChange={handleChange}
-                required
+                error={errors.email}
               />
 
               <TextareaField
@@ -182,7 +329,7 @@ const ContactView = () => {
                 value={formData.message}
                 onChange={handleChange}
                 rows={6}
-                required
+                error={errors.message}
               />
 
               <button
