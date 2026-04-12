@@ -19,7 +19,7 @@ import { useContent } from "@/context";
 const MAX_VISIBLE_AVATARS = 5;
 
 const getProjectThumbnail = (project) =>
-  project?.thumbnail || project?.media?.thumbnail || "/images/author.png";
+  project?.thumbnail || project?.media?.thumbnail || "/images/author.avif";
 
 const getProjectShortDescription = (project) =>
   project?.shortDescription || project?.description?.short || "";
@@ -151,7 +151,7 @@ const ContributorStack = ({ project }) => {
             src={
               contributor.avatarUrl ||
               contributor.avatar ||
-              "/images/author.png"
+              "/images/author.avif"
             }
             alt={contributor.name || contributor.login}
             className="w-7 h-7 rounded-full border-2 border-bg-card object-cover bg-bg-secondary"

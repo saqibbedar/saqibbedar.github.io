@@ -145,7 +145,7 @@ const ContributorStack = ({ project }) => {
             src={
               contributor.avatarUrl ||
               contributor.avatar ||
-              "/images/author.png"
+              "/images/author.avif"
             }
             alt={contributor.name || contributor.login}
             className="w-10 h-10 rounded-full border-2 border-bg-card object-cover bg-bg-secondary"

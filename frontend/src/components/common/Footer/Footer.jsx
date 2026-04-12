@@ -21,12 +21,18 @@ const footerLinks = {
     { name: "Privacy Policy", path: "/privacy-policy" },
     { name: "Terms & Conditions", path: "/terms-conditions" },
     { name: "Sitemap", path: "/sitemap" },
+    {
+      name: "Releases",
+      path: "https://github.com/saqibbedar/saqibbedar.github.io/releases",
+      external: true,
+    },
   ],
 };
 
 const footerOptions = {
-  description: "Building digital experiences with passion. Developer, creator, and lifelong learner sharing knowledge with the community."
-}
+  description:
+    "Building digital experiences with passion. Developer, creator, and lifelong learner sharing knowledge with the community.",
+};
 
 const Footer = () => {
   const location = useLocation();
@@ -117,12 +123,23 @@ const Footer = () => {
                 <ul className="space-y-3">
                   {footerLinks.legal.map((link, index) => (
                     <li key={index}>
-                      <Link
-                        to={link.path}
-                        className="text-fg-secondary hover:text-fg-primary text-sm transition-colors"
-                      >
-                        {link.name}
-                      </Link>
+                      {link.external ? (
+                        <a
+                          href={link.path}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-fg-secondary hover:text-fg-primary text-sm transition-colors"
+                        >
+                          {link.name}
+                        </a>
+                      ) : (
+                        <Link
+                          to={link.path}
+                          className="text-fg-secondary hover:text-fg-primary text-sm transition-colors"
+                        >
+                          {link.name}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>

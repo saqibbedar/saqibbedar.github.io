@@ -4,7 +4,7 @@ const PROJECTS_CACHE_KEY = "data:projects:v4";
 const GITHUB_CACHE_TTL = 15 * 60 * 1000;
 const NPM_CACHE_TTL = 15 * 60 * 1000;
 
-const DEFAULT_OWNER_AVATAR = "/images/author.png";
+const DEFAULT_OWNER_AVATAR = "/images/author.avif";
 
 const formatRepoTitle = (repoName) =>
   String(repoName || "")

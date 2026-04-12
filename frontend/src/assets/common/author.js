@@ -1,5 +1,5 @@
 const author = {
-  image: "/images/author.png",
+  image: "/images/author.avif",
   logo: "BEDAR.",
   name: "Saqib Bedar",
   description:

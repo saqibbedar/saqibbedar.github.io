@@ -4,7 +4,7 @@ import { SplitText } from "@/components/ui";
 import { useContent } from "@/context";
 
 const getProjectThumbnail = (project) =>
-  project?.thumbnail || project?.media?.thumbnail || "/images/author.png";
+  project?.thumbnail || project?.media?.thumbnail || "/images/author.avif";
 
 const getProjectYear = (project) => {
   const createdAt =
