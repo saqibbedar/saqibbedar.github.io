@@ -1,5 +1,24 @@
 [
   {
+    "_id": "blog-portfolio-source-code",
+    "slug": "source-code",
+    "title": "Portfolio Website Source Code Walkthrough (Vite + React + Express): Stack, Architecture, and How to Reuse It",
+
+    "summary": "A practical source-code walkthrough of my portfolio project for developers who want to understand the stack, folder architecture, caching approach, dynamic content flow, and deployment setup. It covers frontend with Vite + React, backend contact mail service with Express + Nodemailer, and how you can quickly customize the site using JSON data files.",
+
+    "category": "Web Development",
+
+    "doc": "/data/blogs/01-source-code.md",
+
+    "publishedAt": "12-04-2026",
+    "updatedAt": "12-04-2026",
+
+    "featured": true,
+    "allowGithubEdit": true,
+
+    "relatedStrategy": "category"
+  },
+  {
     "_id": "blog-dsa-cpp",
     "slug": "dsa-cpp",
     "title": "Learn Data Structures & Algorithms in C++ (Structured Roadmap + Full Implementations from Scratch)",

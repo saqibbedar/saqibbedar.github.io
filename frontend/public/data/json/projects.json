@@ -194,6 +194,126 @@
     }
   },
   {
+    "_id": "portfolio_saqibbedar_website",
+    "slug": "saqibbedar-portfolio",
+    "title": "Saqib Bedar Portfolio",
+
+    "description": {
+      "short": "A content-driven portfolio website with Vite + React frontend and Express + Nodemailer backend.",
+      "full": "Saqib Bedar Portfolio is a modern, self-contained portfolio system built with Vite, React, and Tailwind CSS. It features a minimal Express backend for contact emails via Nodemailer, comprehensive caching strategy with 15-minute TTL, in-memory search indexing, and markdown-based blog content. The entire content structure is data-driven through JSON files and asset modules, making customization and reuse straightforward. It includes full documentation, contribution guidelines, and is designed to serve as both a portfolio and a reusable template for other developers."
+    },
+
+    "media": {
+      "thumbnail": "",
+      "banner": null
+    },
+
+    "repository": {
+      "provider": "github",
+      "owner": "saqibbedar",
+      "name": "saqibbedar.github.io",
+      "url": "https://github.com/saqibbedar/saqibbedar.github.io"
+    },
+
+    "owner": {
+      "login": "saqibbedar",
+      "name": "Saqib Bedar",
+      "avatar": "/images/author.avif",
+      "profileUrl": "https://github.com/saqibbedar"
+    },
+
+    "contributors": [
+      {
+        "login": "saqibbedar",
+        "name": "Saqib Bedar",
+        "avatar": "/images/author.avif",
+        "role": "Creator & Architect",
+        "githubUrl": "https://github.com/saqibbedar"
+      }
+    ],
+
+    "links": {
+      "github": "https://github.com/saqibbedar/saqibbedar.github.io",
+      "npm": null,
+      "marketplace": null,
+      "docs": "https://github.com/saqibbedar/saqibbedar.github.io#readme",
+      "demo": "https://saqibbedar.github.io",
+      "playground": null,
+      "other": []
+    },
+
+    "stats": {
+      "stars": 0,
+      "forks": 0,
+      "watchers": 0,
+      "downloads": null
+    },
+
+    "package": {
+      "version": null,
+      "license": "MIT"
+    },
+
+    "tech": {
+      "stack": [
+        "Vite",
+        "React",
+        "React Router",
+        "Tailwind CSS",
+        "React Icons",
+        "React Markdown",
+        "Express",
+        "Nodemailer",
+        "GitHub Pages",
+        "Vercel"
+      ],
+      "languages": [
+        {
+          "name": "JavaScript",
+          "percentage": 85,
+          "primary": true
+        },
+        {
+          "name": "HTML/CSS",
+          "percentage": 15,
+          "primary": false
+        }
+      ]
+    },
+
+    "features": [
+      "Content-driven architecture with JSON-based configuration",
+      "Two-level caching system (memory + localStorage, 15-min TTL)",
+      "In-memory search indexing with stale-while-revalidate fallback",
+      "Dynamic routing for projects, blogs, and courses",
+      "Markdown-based blog and documentation support",
+      "Contact form with custom validation and toast notifications",
+      "CORS-enabled Express backend for email delivery",
+      "Comprehensive documentation and contribution guidelines",
+      "Reusable portfolio template structure",
+      "Responsive design with Tailwind CSS"
+    ],
+
+    "tags": [
+      "Portfolio",
+      "Full Stack",
+      "React",
+      "Content-Driven",
+      "Template",
+      "Open Source"
+    ],
+
+    "category": "fullstack",
+    "status": "active",
+    "visibility": "public",
+    "featured": true,
+
+    "timestamps": {
+      "createdAt": null,
+      "updatedAt": null
+    }
+  },
+  {
     "_id": "online_student_portal",
     "slug": "online-student-portal",
     "title": "Online Student Portal",
@@ -276,12 +396,19 @@
       "Scalable MERN stack architecture"
     ],
 
-    "tags": ["MERN", "Full Stack", "Authentication", "RBAC", "Enterprise App", "Client Project"],
+    "tags": [
+      "MERN",
+      "Full Stack",
+      "Authentication",
+      "RBAC",
+      "Enterprise App",
+      "Client Project"
+    ],
 
     "category": "fullstack",
     "status": "completed",
     "visibility": "private",
-    "featured": true,
+    "featured": false,
 
     "timestamps": {
       "createdAt": "2024-09-01",

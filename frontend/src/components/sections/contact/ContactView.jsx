@@ -192,7 +192,7 @@ const ContactView = () => {
     setIsSubmitting(true);
 
     try {
-      const api = import.meta.env.VITE_CONTACT_API || "/api/contact";
+      const api = import.meta.env.VITE_BACKEND_CONTACT_API || "/api/contact";
       const res = await fetch(`${api}`, {
         method: "POST",
         headers: {
