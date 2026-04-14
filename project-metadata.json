@@ -35,9 +35,9 @@
     }
   },
   "release": {
-    "current": "1.0.1",
-    "title": "Release Automation and Deployment Fixes",
-    "description": "Fixed metadata-driven GitHub release creation, improved GitHub Pages deployment flow, and applied frontend build/config compatibility fixes."
+    "current": "1.0.2",
+    "title": "Fixed blogs metadata",
+    "description": "Updated publishedAt and updatedAt fields in blogs.json to ensure correct sorting and display on the frontend. This release includes metadata fixes for better content management and user experience."
   },
   "releaseHistory": [
     {
@@ -51,6 +51,13 @@
       "version": "1.0.1",
       "date": "2026-04-15",
       "tag": "v1.0.1",
+      "summary": "Release Automation and Deployment Fixes",
+      "status": "previous"
+    },
+    {
+      "version": "1.0.2",
+      "date": "2026-04-15",
+      "tag": "v1.0.2",
       "summary": "Release Automation and Deployment Fixes",
       "status": "current"
     }
