@@ -32,9 +32,9 @@ jobs:
         id: meta
         shell: bash
         run: |
-          TAG=$(node -p "const m=require('./project-metadata.json'); const t=m?.release?.current; t?.startsWith('v')?t:`v${t}`")
-          TITLE=$(node -p "const m=require('./project-metadata.json'); m?.release?.title || `Release ${m?.release?.current || m?.version || ''}`")
-          DESC=$(node -p "const m=require('./project-metadata.json'); m?.release?.description || m?.description || 'Automated release from project-metadata.json update.'")
+          TAG=$(node -e "const m=require('./project-metadata.json'); const t=String(m?.release?.current || m?.version || '0.0.0'); process.stdout.write(t.startsWith('v') ? t : 'v' + t);")
+          TITLE=$(node -e "const m=require('./project-metadata.json'); const current=String(m?.release?.current || m?.version || '').trim(); process.stdout.write(m?.release?.title || ('Release ' + current));")
+          DESC=$(node -e "const m=require('./project-metadata.json'); process.stdout.write(m?.release?.description || m?.description || 'Automated release from project-metadata.json update.');")
 
           {
             echo "tag=$TAG"
@@ -81,6 +81,9 @@ jobs:
       - name: Build frontend
         run: npm run build
         working-directory: frontend
+
+      - name: Add SPA fallback page
+        run: cp frontend/dist/index.html frontend/dist/404.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
