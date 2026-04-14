@@ -1,0 +1,64 @@
+{
+  "name": "saqibbedar-portfolio",
+  "displayName": "Saqib Bedar Portfolio",
+  "version": "1.0.0",
+  "description": "Content-driven developer portfolio built with Vite + React frontend and Express + Nodemailer backend.",
+  "homepage": "https://saqibbedar.github.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/saqibbedar/saqibbedar.github.io"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Saqib Bedar",
+    "email": "chandio.saqib.m@gmail.com",
+    "url": "https://github.com/saqibbedar"
+  },
+  "maintainers": [
+    {
+      "name": "Saqib Bedar",
+      "role": "Owner / Maintainer"
+    }
+  ],
+  "project": {
+    "status": "active",
+    "visibility": "public",
+    "started": "2023",
+    "stack": {
+      "frontend": ["Vite", "React", "React Router", "Tailwind CSS"],
+      "backend": ["Express", "Nodemailer", "CORS", "dotenv"],
+      "content": ["JSON", "Markdown"]
+    },
+    "deployment": {
+      "frontend": "GitHub Pages",
+      "backend": "Vercel"
+    }
+  },
+  "release": {
+    "current": "1.0.0",
+    "title": "Initial Release",
+    "description": "Initial release of my portfolio website with core features and content."
+  },
+  "releaseHistory": [
+    {
+      "version": "1.0.0",
+      "date": "2026-04-15",
+      "tag": "v1.0.0",
+      "summary": "Initial Release",
+      "status": "current"
+    }
+  ],
+  "links": {
+    "portfolio": "https://saqibbedar.github.io",
+    "github": "https://github.com/saqibbedar"
+  },
+  "keywords": [
+    "portfolio",
+    "vite",
+    "react",
+    "express",
+    "nodemailer",
+    "content-driven",
+    "developer"
+  ]
+}
