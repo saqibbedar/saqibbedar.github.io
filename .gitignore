@@ -5,7 +5,7 @@ expo-app
 *.mp4
 bedarUI/
 test.html
-.github
+# Track workflow and deployment docs under .github for CI/CD automation.
 backend/node_modules/
 backend/uploads/
 backend/.env
