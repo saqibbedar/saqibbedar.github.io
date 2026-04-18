@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { SplitText } from "@/components/ui";
+import { ProjectSectionSkeleton } from "@/components/ui/skeleton";
 import { useContent } from "@/context";
 
 const getProjectThumbnail = (project) =>
@@ -70,7 +71,12 @@ const ProjectItem = ({ project, isFirst }) => {
 };
 
 const ProjectSection = () => {
-  const { projects } = useContent();
+  const { projects, loading } = useContent();
+
+  if (loading) {
+    return <ProjectSectionSkeleton />;
+  }
+
   const featuredProjects = projects
     .filter((p) => Boolean(p?.featured))
     .slice(0, 3);

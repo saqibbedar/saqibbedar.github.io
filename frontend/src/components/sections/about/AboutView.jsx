@@ -7,6 +7,7 @@ import CertificatesSection from "./CertificatesSection";
 import { CategoryTab } from "@/components/ui";
 import { author } from "@/assets";
 import { useContent } from "@/context";
+import { AboutPageSkeleton } from "@/components/ui/skeleton";
 
 const categoryButtons = [
   "Education",
@@ -17,7 +18,7 @@ const categoryButtons = [
 
 const AboutView = () => {
   const [activeCategory, setActiveCategory] = useState("Education");
-  const { education } = useContent();
+  const { education, loading } = useContent();
 
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
@@ -26,6 +27,10 @@ const AboutView = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  if (loading) {
+    return <AboutPageSkeleton />;
+  }
 
   return (
     <div>

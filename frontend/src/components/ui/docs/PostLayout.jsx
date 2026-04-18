@@ -89,11 +89,14 @@ const PostLayout = ({
                     title="About Author"
                     className="flex items-center gap-3 min-w-0"
                   >
-                  <img
-                    src={author?.image || "/images/author.png"}
-                    alt={author?.name || "Author"}
-                    className="w-11 h-11 rounded-full object-cover border border-border shadow-sm"
-                  />
+                    <img
+                      src={author?.image || "/images/author.png"}
+                      alt={author?.name || "Author"}
+                      width="44"
+                      height="44"
+                      decoding="async"
+                      className="w-11 h-11 rounded-full object-cover border border-border shadow-sm"
+                    />
                   </Link>
                   <div className="min-w-0">
                     <p className="text-sm font-semibold text-fg-primary truncate">

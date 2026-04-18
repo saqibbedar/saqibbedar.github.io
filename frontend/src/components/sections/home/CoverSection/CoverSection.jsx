@@ -237,7 +237,10 @@ const CoverSection = () => {
               src={author.image}
               className="w-full h-full object-cover object-center"
               alt="Saqib Bedar"
+              width="640"
+              height="640"
               loading="eager"
+              decoding="async"
             />
           </div>
 

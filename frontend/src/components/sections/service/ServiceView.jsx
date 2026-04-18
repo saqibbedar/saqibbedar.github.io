@@ -19,6 +19,7 @@ import { useEffect, useState } from "react";
 import { CategoryTab } from "@/components/ui";
 import { useContent } from "@/context";
 import { author } from "@/assets";
+import { ServicesViewSkeleton } from "@/components/ui/skeleton";
 
 const serviceIconMap = {
   FaCode,
@@ -196,7 +197,7 @@ const ServiceCard = ({ service }) => {
 };
 
 const ServiceView = () => {
-  const { services } = useContent();
+  const { services, loading } = useContent();
   const [activeCategory, setActiveCategory] = useState("All");
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
@@ -211,6 +212,10 @@ const ServiceView = () => {
     activeCategory === "All"
       ? services
       : services.filter((service) => service.category === activeCategory);
+
+  if (loading) {
+    return <ServicesViewSkeleton />;
+  }
 
   return (
     <section className="pt-24 sm:pt-28 md:pt-32 pb-10 md:pb-16 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">

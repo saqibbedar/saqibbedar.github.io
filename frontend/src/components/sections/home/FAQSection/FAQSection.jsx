@@ -1,9 +1,15 @@
 import { useContent } from "@/context";
 import { Faqs } from "@/components/ui";
 import { Link } from "react-router-dom";
+import { FAQSectionSkeleton } from "@/components/ui/skeleton";
 
 const FAQSection = () => {
-  const { faqs } = useContent();
+  const { faqs, loading } = useContent();
+
+  if (loading) {
+    return <FAQSectionSkeleton />;
+  }
+
   const topFaqs = Array.isArray(faqs) ? faqs.slice(0, 4) : [];
 
   return (

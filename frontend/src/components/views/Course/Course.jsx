@@ -16,6 +16,7 @@ import { SiUdemy, SiCoursera, SiSkillshare } from "react-icons/si";
 import { useContent } from "@/context";
 import { PageMeta } from "@/components/ui/PageMeta";
 import { getViewMeta } from "@/assets";
+import { CourseDetailSkeleton } from "@/components/ui/skeleton";
 
 // Helper function to get platform icon
 const getPlatformIcon = (iconName, size = "w-5 h-5") => {
@@ -52,21 +53,17 @@ const formatDate = (dateString) => {
 const Course = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { courses } = useContent();
+  const { courses, loading } = useContent();
   const course = courses.find((c) => c._id === id || c.slug === id);
 
   useEffect(() => {
-    if (!course) {
+    if (!loading && !course) {
       navigate("/404");
     }
-  }, [course, navigate]);
+  }, [course, loading, navigate]);
 
-  if (!course) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-fg-muted">Loading course...</div>
-      </div>
-    );
+  if (loading || !course) {
+    return <CourseDetailSkeleton />;
   }
 
   const meta = getViewMeta("course", { course });

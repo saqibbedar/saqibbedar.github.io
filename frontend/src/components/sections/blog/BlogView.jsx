@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { CategoryTab } from "@/components/ui";
 import { useContent } from "@/context";
+import { BlogViewSkeleton } from "@/components/ui/skeleton";
 
 const formatDate = (value) => {
   if (!value) return "-";
@@ -52,7 +53,7 @@ const BlogCard = ({ post }) => {
 };
 
 const BlogView = () => {
-  const { blogs } = useContent();
+  const { blogs, loading } = useContent();
   const [activeFilter, setActiveFilter] = useState("All");
   const [sortOrder, setSortOrder] = useState("latest");
 
@@ -71,6 +72,25 @@ const BlogView = () => {
       return post.category === activeFilter;
     });
 
+    if (activeFilter === "Featured") {
+      const getPriority = (post) => {
+        const value = Number(post?.priority);
+        return Number.isFinite(value) ? value : Number.MAX_SAFE_INTEGER;
+      };
+
+      const getUpdatedTime = (post) =>
+        new Date(post.updatedAt || post.publishedAt || 0).getTime();
+
+      return [...baseList].sort((a, b) => {
+        const priorityDiff = getPriority(a) - getPriority(b);
+        if (priorityDiff !== 0) return priorityDiff;
+
+        const aDate = getUpdatedTime(a);
+        const bDate = getUpdatedTime(b);
+        return bDate - aDate;
+      });
+    }
+
     return [...baseList].sort((a, b) => {
       const aDate = new Date(a.updatedAt || a.publishedAt || 0).getTime();
       const bDate = new Date(b.updatedAt || b.publishedAt || 0).getTime();
@@ -79,6 +99,10 @@ const BlogView = () => {
   }, [blogs, activeFilter, sortOrder]);
 
   const hasResults = filteredBlogs.length > 0;
+
+  if (loading) {
+    return <BlogViewSkeleton />;
+  }
 
   return (
     <section className="pt-24 sm:pt-28 md:pt-32 pb-10 md:pb-16 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
@@ -108,24 +132,26 @@ const BlogView = () => {
           ))}
         </div>
 
-        <div className="flex flex-col gap-4 mb-8">
-          <div className="flex items-center gap-2">
-            {["latest", "oldest"].map((sortOption) => (
-              <button
-                key={sortOption}
-                type="button"
-                onClick={() => setSortOrder(sortOption)}
-                className={`h-10 px-4 text-xs sm:text-sm font-medium rounded-full capitalize border transition-colors ${
-                  sortOrder === sortOption
-                    ? "bg-bg-card border border-border-light text-fg-primary"
-                    : "text-fg-muted border-border hover:border-border-light hover:text-fg-primary"
-                }`}
-              >
-                {sortOption}
-              </button>
-            ))}
+        {activeFilter !== "Featured" && (
+          <div className="flex flex-col gap-4 mb-8">
+            <div className="flex items-center gap-2">
+              {["latest", "oldest"].map((sortOption) => (
+                <button
+                  key={sortOption}
+                  type="button"
+                  onClick={() => setSortOrder(sortOption)}
+                  className={`h-10 px-4 text-xs sm:text-sm font-medium rounded-full capitalize border transition-colors ${
+                    sortOrder === sortOption
+                      ? "bg-bg-card border border-border-light text-fg-primary"
+                      : "text-fg-muted border-border hover:border-border-light hover:text-fg-primary"
+                  }`}
+                >
+                  {sortOption}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {hasResults ? (
           <div className="grid grid-cols-1 gap-5">

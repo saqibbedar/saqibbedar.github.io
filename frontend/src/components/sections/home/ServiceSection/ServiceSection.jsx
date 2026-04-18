@@ -10,6 +10,7 @@ import {
   FaHandshake,
 } from "react-icons/fa";
 import { useContent } from "@/context";
+import { ServiceSectionSkeleton } from "@/components/ui/skeleton";
 
 const serviceIconMap = {
   FaCode,
@@ -64,7 +65,11 @@ const ServiceCard = ({ service }) => {
 };
 
 const ServiceSection = () => {
-  const { services } = useContent();
+  const { services, loading } = useContent();
+
+  if (loading) {
+    return <ServiceSectionSkeleton />;
+  }
 
   // Homepage showcases only the core three services.
   const homepageServices = services.filter((service) =>

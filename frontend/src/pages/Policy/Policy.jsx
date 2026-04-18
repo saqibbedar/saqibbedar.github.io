@@ -2,10 +2,15 @@ import { useContent } from "@/context";
 import { PageMeta } from "@/components/ui/PageMeta";
 import { PostLayout } from "@/components/ui/docs";
 import { getPageMeta } from "@/assets";
+import { DocPageSkeleton } from "@/components/ui/skeleton";
 
 const Policy = () => {
-  const { policyDoc } = useContent();
+  const { policyDoc, loading } = useContent();
   const meta = getPageMeta("policy");
+
+  if (loading) {
+    return <DocPageSkeleton />;
+  }
 
   return (
     <>

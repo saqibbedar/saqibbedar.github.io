@@ -18,6 +18,7 @@ import {
 import { useContent } from "@/context";
 import { PageMeta } from "@/components/ui/PageMeta";
 import { getPageMeta } from "@/assets";
+import { DocPageSkeleton } from "@/components/ui/skeleton";
 
 const REPO_BASE_URL = "https://github.com/saqibbedar/saqibbedar.github.io";
 const SITEMAP_JSON_REPO_PATH = "frontend/public/data/json/sitemap.json";
@@ -80,13 +81,17 @@ const CategorySection = ({ category, description, links }) => (
 );
 
 const Sitemap = () => {
-  const { sitemap } = useContent();
+  const { sitemap, loading } = useContent();
   const meta = getPageMeta("sitemap");
   const sitemapData = sitemap?.sitemapData || [];
   const externalLinks = sitemap?.externalLinks || [];
   const dynamicRoutes = sitemap?.dynamicRoutes || [];
   const sitemapJsonUrl = `${REPO_BASE_URL}/blob/main/${SITEMAP_JSON_REPO_PATH}`;
   const sitemapPageUrl = `${REPO_BASE_URL}/blob/main/${SITEMAP_PAGE_REPO_PATH}`;
+
+  if (loading) {
+    return <DocPageSkeleton />;
+  }
 
   return (
     <section className="pt-24 sm:pt-28 md:pt-32 pb-10 md:pb-16 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">

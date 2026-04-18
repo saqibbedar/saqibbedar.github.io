@@ -1,6 +1,7 @@
 import { fetchWithCache } from "./cacheService";
 
-const CACHE_KEY = "data:blogs";
+// Bump cache key when blog schema changes (e.g., priority field)
+const CACHE_KEY = "data:v2:blogs";
 
 export const fetchBlogsService = async () =>
   fetchWithCache(CACHE_KEY, async () => {

@@ -4,6 +4,7 @@ import { IoSearch, IoArrowUp, IoClose } from "react-icons/io5";
 import { FaArrowRight } from "react-icons/fa";
 import { CategoryTab } from "@/components/ui";
 import { useContent } from "@/context";
+import { SearchViewSkeleton } from "@/components/ui/skeleton";
 
 // Result Card Component - Clean, minimal design
 const ResultCard = ({ item, type }) => {
@@ -152,6 +153,7 @@ const SearchInput = ({ initialQuery = "" }) => {
     termsDoc,
     sitemap,
     blogs,
+    loading,
   } = useContent();
 
   // Initialize query from URL
@@ -389,6 +391,10 @@ const SearchInput = ({ initialQuery = "" }) => {
     { name: "Events" },
     { name: "Docs" },
   ];
+
+  if (loading) {
+    return <SearchViewSkeleton />;
+  }
 
   return (
     <section className="min-h-screen pt-24 sm:pt-28 md:pt-32 pb-32 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">

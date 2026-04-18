@@ -1,6 +1,8 @@
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { author } from "@/assets";
 import { useContent } from "@/context";
+import { BlogSectionSkeleton } from "@/components/ui/skeleton";
 
 const formatDate = (value) => {
   if (!value) return "-";
@@ -62,9 +64,30 @@ const HomeBlogCard = ({ post }) => {
 };
 
 const BlogSection = () => {
-  const { blogs } = useContent();
+  const { blogs, loading } = useContent();
 
-  const featured = blogs.filter((post) => post.featured).slice(0, 3);
+  if (loading) {
+    return <BlogSectionSkeleton />;
+  }
+
+  const featured = useMemo(() => {
+    const getPriority = (post) => {
+      const value = Number(post?.priority);
+      return Number.isFinite(value) ? value : Number.MAX_SAFE_INTEGER;
+    };
+
+    const getUpdatedTime = (post) =>
+      new Date(post?.updatedAt || post?.publishedAt || 0).getTime();
+
+    return [...blogs]
+      .filter((post) => Boolean(post?.featured))
+      .sort((left, right) => {
+        const priorityDiff = getPriority(left) - getPriority(right);
+        if (priorityDiff !== 0) return priorityDiff;
+        return getUpdatedTime(right) - getUpdatedTime(left);
+      })
+      .slice(0, 3);
+  }, [blogs]);
 
   return (
     <section className="py-10 md:py-16 lg:py-20">

@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa6";
 import { SiUdemy, SiCoursera, SiSkillshare } from "react-icons/si";
 import { useContent } from "@/context";
+import { CoursesViewSkeleton } from "@/components/ui/skeleton";
 
 // Helper function to get platform icon
 const getPlatformIcon = (iconName) => {
@@ -160,7 +161,11 @@ const CourseCard = ({ course }) => {
 };
 
 const CoursesView = () => {
-  const { courses } = useContent();
+  const { courses, loading } = useContent();
+
+  if (loading) {
+    return <CoursesViewSkeleton />;
+  }
 
   return (
     <section className="pt-24 sm:pt-28 md:pt-32 pb-10 md:pb-16 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">

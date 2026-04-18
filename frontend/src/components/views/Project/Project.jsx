@@ -20,6 +20,7 @@ import { VscVscode } from "react-icons/vsc";
 import { useContent } from "@/context";
 import { PageMeta } from "@/components/ui/PageMeta";
 import { getViewMeta } from "@/assets";
+import { ProjectDetailSkeleton } from "@/components/ui/skeleton";
 
 const MAX_VISIBLE_AVATARS = 5;
 
@@ -212,11 +213,7 @@ const Project = () => {
   }, [loading, project, navigate]);
 
   if (loading || !project) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-fg-muted">Loading project...</div>
-      </div>
-    );
+    return <ProjectDetailSkeleton />;
   }
 
   const statusBadge = getStatusBadge(project.status, project.visibility);

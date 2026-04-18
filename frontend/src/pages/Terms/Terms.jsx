@@ -2,10 +2,15 @@ import { useContent } from "@/context";
 import { PageMeta } from "@/components/ui/PageMeta";
 import { PostLayout } from "@/components/ui/docs";
 import { getPageMeta } from "@/assets";
+import { DocPageSkeleton } from "@/components/ui/skeleton";
 
 const Terms = () => {
-  const { termsDoc } = useContent();
+  const { termsDoc, loading } = useContent();
   const meta = getPageMeta("terms");
+
+  if (loading) {
+    return <DocPageSkeleton />;
+  }
 
   return (
     <>
