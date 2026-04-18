@@ -1,13 +1,14 @@
 {
   "name": "saqibbedar-portfolio",
-  "displayName": "Saqib Bedar Portfolio",
-  "version": "1.0.1",
+  "displayName": "Saqib Bedar Portfolio",  
+  "version": "1.0.3",
   "description": "Content-driven developer portfolio built with Vite + React frontend and Express + Nodemailer backend.",
   "homepage": "https://saqibbedar.github.io",
   "repository": {
     "type": "git",
     "url": "https://github.com/saqibbedar/saqibbedar.github.io"
   },
+  "banner": "https://saqibbedar.github.io/images/sitebanner.avif",
   "license": "MIT",
   "author": {
     "name": "Saqib Bedar",
@@ -25,9 +26,22 @@
     "visibility": "public",
     "started": "2023",
     "stack": {
-      "frontend": ["Vite", "React", "React Router", "Tailwind CSS"],
-      "backend": ["Express", "Nodemailer", "CORS", "dotenv"],
-      "content": ["JSON", "Markdown"]
+      "frontend": [
+        "Vite",
+        "React",
+        "React Router",
+        "Tailwind CSS"
+      ],
+      "backend": [
+        "Express",
+        "Nodemailer",
+        "CORS",
+        "dotenv"
+      ],
+      "content": [
+        "JSON",
+        "Markdown"
+      ]
     },
     "deployment": {
       "frontend": "GitHub Pages",
@@ -35,9 +49,9 @@
     }
   },
   "release": {
-    "current": "1.0.2",
-    "title": "Fixed blogs metadata",
-    "description": "Updated publishedAt and updatedAt fields in blogs.json to ensure correct sorting and display on the frontend. This release includes metadata fixes for better content management and user experience."
+    "current": "1.0.3",
+    "title": "SEO Optimization, documentation, & UI bug fixes",
+    "description": "This release focuses on improving SEO metadata for better search engine indexing, enhancing Open Graph and Twitter sharing metadata for richer link previews, and fixing UI issues such as text overflow in the homepage's cover section and projects section, as well as adjusting navbar text sizes for better readability. Additionally, a CHANGELOG.md file has been added to document release notes, and the deployment workflow has been updated to refer to this file for future releases."
   },
   "releaseHistory": [
     {
@@ -55,16 +69,18 @@
       "status": "previous"
     },
     {
-      "version": "1.0.2",
-      "date": "2026-04-15",
-      "tag": "v1.0.2",
-      "summary": "Release Automation and Deployment Fixes",
+      "version": "1.0.3",
+      "date": "2026-04-18",
+      "tag": "v1.0.3",
+      "summary": "SEO Optimization, documentation, & UI bug fixes",
       "status": "current"
     }
   ],
   "links": {
     "portfolio": "https://saqibbedar.github.io",
-    "github": "https://github.com/saqibbedar"
+    "github": "https://github.com/saqibbedar",
+    "sitemap": "https://saqibbedar.github.io/sitemap.xml",
+    "changelog": "https://github.com/saqibbedar/saqibbedar.github.io/blob/main/CHANGELOG.md"
   },
   "keywords": [
     "portfolio",
@@ -73,6 +89,10 @@
     "express",
     "nodemailer",
     "content-driven",
-    "developer"
+    "developer",
+    "computer science student",
+    "open-source developer",
+    "devops",
+    "linux"
   ]
 }

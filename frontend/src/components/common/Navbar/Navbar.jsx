@@ -160,10 +160,7 @@ const Navbar = () => {
           >
             <div className="flex items-center justify-center gap-[0.09rem] font-semibold">
               <span className="">Menu</span>
-              <FaPlus
-                strokeWidth={"20px"}
-                className="h-[.9rem] w-[.9rem]"
-              />
+              <FaPlus strokeWidth={"20px"} className="h-[.9rem] w-[.9rem]" />
             </div>
           </SlideText>
         </div>
@@ -273,7 +270,7 @@ const Navbar = () => {
 
             {/* Nav Items Area (Middle Content) */}
             <nav
-              className={`px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 flex flex-col gap-2 sm:gap-4 md:gap-6 lg:gap-8 font-normal mt-3 md:mt-6`}
+              className={`px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 flex flex-col gap-[clamp(0.5rem, 1vw, 1.5rem)] font-normal mt-3 md:mt-6`}
             >
               {[
                 "home",
@@ -283,12 +280,12 @@ const Navbar = () => {
                 "courses",
                 "services",
                 "contact",
-                "faqs"
+                "faqs",
               ].map((item, index) => (
                 <Link
                   key={index}
                   to={`/${item}`}
-                  className="uppercase text-[clamp(1.5rem,5vw,3.5rem)] rounded-md text-fg-secondary"
+                  className="uppercase text-[clamp(1.5rem,5vw,1.8rem)] leading-[0rem] rounded-md text-fg-secondary w-fit"
                   onClick={() => setActiveMenu(false)}
                 >
                   <motion.div
@@ -308,7 +305,7 @@ const Navbar = () => {
             </nav>
 
             {/* Bottom Area */}
-            <div className="absolute bottom-0 w-full text-fg-secondary">
+            <div className="absolute bottom-0 w-full text-fg-secondary bg-black shadow-[0px_-20px_20px_4px_rgba(0,0,0,0.8)]">
               {/* Social Links */}
               <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 w-full flex justify-between gap-2 sm:gap-4">
                 {footer.map((item, index) => (
@@ -329,7 +326,7 @@ const Navbar = () => {
                         <item.icon className="h-6 w-6 mb-3" />
                       ) : (
                         <SplitText
-                          className="text-[1.1rem] xl:text-2xl leading-[1.8rem] tracking-wider"
+                          className="text-[clamp(0.8rem,2vw,1.2rem)] leading-[1.8rem] tracking-wider"
                           front={item.name}
                         />
                       )}
@@ -349,7 +346,7 @@ const Navbar = () => {
                   {author.titleMarquee.map((item, index) => (
                     <div
                       key={index}
-                      className="uppercase text-[14px] md:text-2xl leading-[1.8rem] font-normal tracking-wider ml-2 md:ml-6"
+                      className="uppercase text-[clamp(0.8rem,2vw,1.2rem)] leading-[1.8rem] font-normal tracking-wider ml-2 md:ml-6"
                     >
                       {item}
                     </div>

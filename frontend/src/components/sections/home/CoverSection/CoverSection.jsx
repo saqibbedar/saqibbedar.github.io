@@ -137,19 +137,21 @@ const CoverSection = () => {
     return () => clearInterval(interval);
   }, [isPaused]);
 
-  // Responsive title styles
+  // Responsive title styles with viewport height consideration
+  // Uses min(8vw, 6vh) to scale based on BOTH width and height
+  // This prevents over-sizing on compact/short screens
   const titleClass =
-    "text-[clamp(2rem,8vw,7rem)] leading-[1.1] font-semibold text-fg-secondary whitespace-nowrap";
+    "text-[clamp(1.5rem,min(8vw,7vh),7rem)] leading-[1.1] font-semibold text-fg-secondary whitespace-nowrap";
 
   return (
     <section className="relative w-full pt-[64px] md:pt-[72px] h-screen px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 overflow-hidden">
       {/* Main Content Container */}
-      <div className="h-full flex items-center">
-        <div className="w-full h-[90%] flex flex-col">
+      <div className="h-full flex items-center pb-5">
+        <div className="w-full h-full flex flex-col lg:pt-4">
           {/* Title Grid */}
-          <div className="relative flex-1 flex flex-col sm:flex-row justify-between">
+          <div className="relative flex-1 flex flex-col md:flex-row justify-between gap-1 sm:gap-0">
             {/* Left Column */}
-            <div className="w-full sm:w-1/2 h-1/2 sm:h-full flex flex-col justify-start pt-4">
+            <div className="w-full md:w-1/2 h-1/2 md:h-full flex flex-col justify-start pt-4 gap-2 md:gap-0">
               {/* Left Top - Pair A */}
               <AnimatedTitle
                 text={leftTitles[pairAIndex % leftTitles.length]}
@@ -165,7 +167,7 @@ const CoverSection = () => {
             </div>
 
             {/* Right Column */}
-            <div className="w-full sm:w-1/2 h-1/2 sm:h-full flex flex-col justify-end">
+            <div className="w-full md:w-1/2 h-1/2 md:h-full flex flex-col justify-end gap-2 md:gap-0">
               {/* Right Top - Pair B */}
               <AnimatedTitle
                 text={rightTitles[pairBIndex % rightTitles.length]}
@@ -182,12 +184,12 @@ const CoverSection = () => {
           </div>
 
           {/* Bottom Info Bar */}
-          <div className="w-full mt-4 sm:mt-2 flex flex-row-reverse sm:flex-row items-center justify-between">
+          <div className="w-full mt-4 md:mt-2 flex flex-row-reverse md:flex-row items-center justify-between">
             <div className="flex flex-col">
-              <span className="text-xs sm:text-sm md:text-base font-semibold tracking-wider text-fg-primary">
+              <span className="text-xs md:text-md md:text-base font-semibold tracking-wider text-fg-primary">
                 Available for full time & Freelance
               </span>
-              <span className="text-xs sm:text-sm md:text-base font-semibold tracking-wider text-fg-secondary text-right sm:text-left">
+              <span className="text-xs md:text-md md:text-base font-semibold tracking-wider text-fg-secondary text-right md:text-left">
                 Work from Feb '23
               </span>
             </div>
@@ -230,10 +232,10 @@ const CoverSection = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
         <div className="relative">
           {/* Profile Image */}
-          <div className="w-[clamp(12rem,25vw,20rem)] aspect-square overflow-hidden rounded-full pointer-events-none">
+          <div className="w-[clamp(12rem,min(25vw,30vh),25rem)] aspect-square overflow-hidden rounded-full pointer-events-none">
             <img
               src={author.image}
-              className="w-full h-full object-cover object-center grayscale"
+              className="w-full h-full object-cover object-center"
               alt="Saqib Bedar"
               loading="eager"
             />

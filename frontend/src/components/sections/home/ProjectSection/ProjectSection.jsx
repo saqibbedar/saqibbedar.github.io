@@ -56,7 +56,7 @@ const ProjectItem = ({ project, isFirst }) => {
           className="hidden sm:inline-block h-10 sm:h-12 md:h-14 lg:h-16 aspect-video object-cover rounded-md"
         />
         <SplitText
-          className="leading-[3.5rem] tracking-wider"
+          className="text-[clamp(1.5rem,5vw,4rem)] leading-[3.5rem] tracking-wider"
           front={project.title}
           back={project.title}
           isHovered={isHovered}

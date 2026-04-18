@@ -24,6 +24,7 @@ jobs:
       tag: ${{ steps.meta.outputs.tag }}
       release_title: ${{ steps.meta.outputs.release_title }}
       release_description: ${{ steps.meta.outputs.release_description }}
+      release_body: ${{ steps.meta.outputs.release_body }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -35,12 +36,24 @@ jobs:
           TAG=$(node -e "const m=require('./project-metadata.json'); const t=String(m?.release?.current || m?.version || '0.0.0'); process.stdout.write(t.startsWith('v') ? t : 'v' + t);")
           TITLE=$(node -e "const m=require('./project-metadata.json'); const current=String(m?.release?.current || m?.version || '').trim(); process.stdout.write(m?.release?.title || ('Release ' + current));")
           DESC=$(node -e "const m=require('./project-metadata.json'); process.stdout.write(m?.release?.description || m?.description || 'Automated release from project-metadata.json update.');")
+          REPO_URL=$(node -e "const m=require('./project-metadata.json'); process.stdout.write(m?.repository?.url || '');")
+
+          if [ -z "$REPO_URL" ]; then
+            REPO_URL="${{ github.server_url }}/${{ github.repository }}"
+          fi
+
+          CHANGELOG_URL="$REPO_URL/blob/main/CHANGELOG.md"
 
           {
             echo "tag=$TAG"
             echo "release_title=$TITLE"
             echo "release_description<<EOF"
             echo "$DESC"
+            echo "EOF"
+            echo "release_body<<EOF"
+            echo "$DESC"
+            echo
+            echo "Changelog: $CHANGELOG_URL"
             echo "EOF"
           } >> "$GITHUB_OUTPUT"
 
@@ -49,10 +62,8 @@ jobs:
         with:
           tag_name: ${{ steps.meta.outputs.tag }}
           name: ${{ steps.meta.outputs.release_title }}
-          body: ${{ steps.meta.outputs.release_description }}
+          body: ${{ steps.meta.outputs.release_body }}
           target_commitish: ${{ github.sha }}
-          generate_release_notes: true
-          append_body: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

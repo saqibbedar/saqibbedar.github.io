@@ -12,8 +12,8 @@ export const pagesMetadata = new Map([
   [
     "home",
     withDefaults({
-      title: `${author.name} | Home`,
-      description: `${author.name}'s portfolio, projects, blog posts, and services.`,
+      title: `${author.name} | Computer Science Student & Full Stack Developer`,
+      description: `Computer Science student and full stack developer portfolio by ${author.name}, featuring projects, blog posts, and services.`,
       keywords: [
         author.name,
         "portfolio",
@@ -29,7 +29,7 @@ export const pagesMetadata = new Map([
     "about",
     withDefaults({
       title: `${author.name} | About`,
-      description: `Learn more about ${author.name}, background, journey, and technical experience.`,
+      description: `Learn more about ${author.name}, a Computer Science student, open-source developer, and full stack engineer in progress.`,
       keywords: [author.name, "about", "developer", "experience", "journey"],
       url: `${SITE_URL}/about`,
     }),
@@ -193,3 +193,5 @@ export const getPageMeta = (key, params) => {
     url: SITE_URL,
   });
 };
+
+

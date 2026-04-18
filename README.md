@@ -1,7 +1,7 @@
 <div align="center">
   <img src="./frontend/public/images/favicon.avif" alt="Saqib Bedar" width="200" />
   <h1>Saqib Bedar</h1>
-  <p>Full Stack Developer | Open Source Builder | Tech Educator | Portfolio Architect</p>
+  <p>Computer Science Student | Full Stack Developer | Open Source Builder | Tech Educator </p>
 </div>
 
 <p align="center">
@@ -22,9 +22,9 @@
   <img src="https://img.shields.io/badge/Backend-Express%20%2B%20Nodemailer-1f2937?style=flat" alt="Backend Stack" />
 </p>
 
-# Saqib Bedar's Portfolio
+# Saqib Bedar's Developer Portfolio
 
-This repository powers my personal portfolio website. It is a clean, content-driven portfolio built to showcase who I am, what I build, what I teach, and how I like to work.
+This repository powers my personal portfolio website [`(Live Demo)`](https://saqibbedar.github.io). It is a clean, content-driven portfolio built to showcase who I am, what I build, what I teach, and how I like to work.
 
 It is designed to stay simple for editing and strong in structure. Most site content lives in JSON files and lightweight asset modules, so updates are quick and the code remains easy to maintain.
 

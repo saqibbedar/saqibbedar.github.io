@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Home Page -->
+  <url>
+    <loc>https://saqibbedar.github.io/</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://saqibbedar.github.io/images/sitebanner.avif</image:loc>
+      <image:title>Saqib Bedar - Computer Science Student &amp; Full Stack Developer</image:title>
+    </image:image>
+  </url>
+
+  <!-- About Page -->
+  <url>
+    <loc>https://saqibbedar.github.io/about</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://saqibbedar.github.io/images/author.avif</image:loc>
+      <image:title>About Saqib Bedar</image:title>
+    </image:image>
+  </url>
+
+  <!-- Projects Page -->
+  <url>
+    <loc>https://saqibbedar.github.io/projects</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- Blogs Page -->
+  <url>
+    <loc>https://saqibbedar.github.io/blogs</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Blog Entry: Source Code -->
+  <url>
+    <loc>https://saqibbedar.github.io/blogs/source-code</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog Entry: DSA C++ -->
+  <url>
+    <loc>https://saqibbedar.github.io/blogs/dsa-cpp</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Courses Page -->
+  <url>
+    <loc>https://saqibbedar.github.io/courses</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Services Page -->
+  <url>
+    <loc>https://saqibbedar.github.io/services</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Contact Page -->
+  <url>
+    <loc>https://saqibbedar.github.io/contact</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Search Page -->
+  <url>
+    <loc>https://saqibbedar.github.io/search</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Sitemap Page -->
+  <url>
+    <loc>https://saqibbedar.github.io/sitemap</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- FAQs Page -->
+  <url>
+    <loc>https://saqibbedar.github.io/faqs</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Privacy Policy -->
+  <url>
+    <loc>https://saqibbedar.github.io/privacy-policy</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Terms and Conditions -->
+  <url>
+    <loc>https://saqibbedar.github.io/terms-conditions</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>
+
