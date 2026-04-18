@@ -58,6 +58,14 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Blog Entry: SEO in One Day -->
+  <url>
+    <loc>https://saqibbedar.github.io/blogs/seo-in-one-day</loc>
+    <lastmod>2026-04-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Courses Page -->
   <url>
     <loc>https://saqibbedar.github.io/courses</loc>

@@ -13,6 +13,7 @@
     "publishedAt": "2026-04-15",
     "updatedAt": "2026-04-15",
 
+    "priority": 2,
     "featured": true,
     "allowGithubEdit": true,
 
@@ -32,6 +33,28 @@
     "publishedAt": "2026-04-15",
     "updatedAt": "2026-04-15",
 
+    "priority": 3,
+    "featured": true,
+    "allowGithubEdit": true,
+
+    "relatedStrategy": "category"
+  },
+  {
+    "_id": "seo-in-one-day",
+    "slug": "seo-in-one-day",
+    "title": "How did I achieve 100% SEO score in one day? Practical SEO tips in 2026 for developers",
+
+    "summary": "A simple step-by-step breakdown of how I got a 100% SEO score for my GitHub Pages portfolio in one day: creating robots.txt, creating sitemap.xml, fixing static index.html metadata for social previews, and using Google Search Console URL inspection plus sitemap submission for fresh indexing.",
+
+    "category": "Computer Science",
+
+    "doc": "/data/blogs/03-seo-in-one-day.md",
+
+    "publishedAt": "2026-04-18",
+    "updatedAt": "2026-04-18",
+
+    
+    "priority": 1,
     "featured": true,
     "allowGithubEdit": true,
 

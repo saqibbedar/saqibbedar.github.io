@@ -37,6 +37,11 @@ export function ContentProvider({ children }) {
   useEffect(() => {
     let isMounted = true;
 
+    const normalizePriority = (value) => {
+      const parsed = Number(value);
+      return Number.isFinite(parsed) ? parsed : Number.MAX_SAFE_INTEGER;
+    };
+
     const unwrap = (result, fallback) =>
       result.status === "fulfilled" && result.value !== undefined
         ? result.value
@@ -84,6 +89,7 @@ export function ContentProvider({ children }) {
 
         const hydratedBlogs = rawBlogs.map((blog, index) => ({
           ...blog,
+          priority: normalizePriority(blog?.priority),
           markdown:
             blogDocs[index]?.status === "fulfilled"
               ? blogDocs[index].value
