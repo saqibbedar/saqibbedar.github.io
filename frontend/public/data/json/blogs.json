@@ -24,7 +24,7 @@
     "slug": "dsa-cpp",
     "title": "Learn Data Structures & Algorithms in C++ (Structured Roadmap + Full Implementations from Scratch)",
 
-    "summary": "A practical, structured guide to learning DSA in C++ using my saqibbedar/dsa repository. It’s organized like a curriculum (topics, labs, assignments, revision), includes full implementations from scratch (stack, queue, linked list, BST, sorting, recursion, etc.), and is easy to explore folder-by-folder. If you’re a dev, you can also contribute and help improve it.",
+    "summary": "A practical, structured guide to learning DSA in C++ using my saqibbedar/cpp-algorithms-datastructures repository. It’s organized like a curriculum (topics, labs, assignments, revision), includes full implementations from scratch (stack, queue, linked list, BST, sorting, recursion, etc.), and is easy to explore folder-by-folder. If you’re a dev, you can also contribute and help improve it.",
 
     "category": "Computer Science",
 

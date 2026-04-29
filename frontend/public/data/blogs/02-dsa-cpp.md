@@ -10,7 +10,7 @@ I wanted something more **structured**, like a folder-based learning roadmap, wh
 
 So I built this repo:
 
-**Repo:** [https://github.com/saqibbedar/dsa](https://github.com/saqibbedar/dsa)<br>
+**Repo:** [https://github.com/saqibbedar/cpp-algorithms-datastructures](https://github.com/saqibbedar/cpp-algorithms-datastructures)<br>
 **Description:** Comprehensive repository for mastering DSA in C++ in C++
 
 This blog is basically a polished walkthrough of what the repo contains, how to explore it, and how you can use it to learn DSA in a clean, step-by-step way.
@@ -42,7 +42,7 @@ It’s structured like a learning plan:
 This is the main folder you’ll spend most time in.
 
 Here’s the direct link (bookmark it):
-- [https://github.com/saqibbedar/dsa/tree/main/Data%20Structures%20%26%20Algorithms](https://github.com/saqibbedar/dsa/tree/main/Data%20Structures%20%26%20Algorithms)
+- [https://github.com/saqibbedar/cpp-algorithms-datastructures/tree/main/Data%20Structures%20%26%20Algorithms](https://github.com/saqibbedar/cpp-algorithms-datastructures/tree/main/Data%20Structures%20%26%20Algorithms)
 
 Inside, you’ll find topic-based folders like:
 - **LinkedList**
@@ -65,10 +65,10 @@ I kept **Assignments** and **Labs** as separate folders because they help a lot 
 
 This is exactly how you learn DSA long-term: topic → implement → practice → revise.
 
-### 3) Revision / exam style: `Past Pappers/` + `Quick C++ Revision/`
+### 3) Revision / exam style: `Past Papers/` + `Quick C++ Revision/`
 I also added:
 - **Quick C++ Revision/** — because if your C++ basics are shaky, DSA gets painful fast.
-- **Past Pappers/** — good for revision and timed practice vibe.
+- **Past Papers/** — good for revision and timed practice vibe.
 
 ---
 
@@ -107,7 +107,7 @@ If you’re new, here’s the exact way I’d suggest exploring it:
 
 ### Step 1: Start from the main DSA folder
 Go here first:
-- https://github.com/saqibbedar/dsa/tree/main/Data%20Structures%20%26%20Algorithms
+- https://github.com/saqibbedar/cpp-algorithms-datastructures/tree/main/Data%20Structures%20%26%20Algorithms
 
 Pick one topic. Don’t jump around.
 
@@ -165,9 +165,9 @@ not a “one day grind”, but a consistent roadmap.
 
 ## Links (quick access)
 
-- **Main repo:** [https://github.com/saqibbedar/dsa](https://github.com/saqibbedar/dsa)
+- **Main repo:** [https://github.com/saqibbedar/cpp-algorithms-datastructures](https://github.com/saqibbedar/cpp-algorithms-datastructures)
 - **Start here (Core DSA folder):**  
-  [https://github.com/saqibbedar/dsa/tree/main/Data%20Structures%20%26%20Algorithms](https://github.com/saqibbedar/dsa/tree/main/Data%20Structures%20%26%20Algorithms)
+  [https://github.com/saqibbedar/cpp-algorithms-datastructures/tree/main/Data%20Structures%20%26%20Algorithms](https://github.com/saqibbedar/cpp-algorithms-datastructures/tree/main/Data%20Structures%20%26%20Algorithms)
 
 ---
 

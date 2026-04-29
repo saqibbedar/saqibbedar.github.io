@@ -36,9 +36,9 @@
     }
   },
   "release": {
-    "current": "1.1.0",
-    "title": "Skeleton UX, blog priority sorting, and SEO/content updates",
-    "description": "This release introduces a structured skeleton loading system across key data-driven sections, detail views, search, and document pages for smoother first-load UX. It also wires blog priority-based sorting behavior, adds a new blog post, updates sitemap entries, and includes additional SEO/social preview metadata refinements."
+    "current": "1.1.1",
+    "title": "Optimized documentation and updated blogs broken links",
+    "description": "This release focuses on improving the documentation for better clarity and fixing broken links in the blog section."
   },
   "releaseHistory": [
     {
@@ -73,6 +73,13 @@
       "date": "2026-04-18",
       "tag": "v1.1.0",
       "summary": "Skeleton UX, blog priority sorting, and SEO/content updates",
+      "status": "current"
+    },
+    {
+      "version": "1.1.1",
+      "date": "2026-04-29",
+      "tag": "v1.1.1",
+      "summary": "Optimized documentation and updated blogs broken links",
       "status": "current"
     }
   ],

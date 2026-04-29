@@ -2,6 +2,13 @@
 
 All notable changes to this project are documented in this file.
 
+# [v1.1.1] 2026-04-29
+
+Summary: Optimized documentation and updated blogs broken links
+
+- Improved documentation for better clarity and user guidance.
+- Fixed broken links in the blog section to ensure all content is accessible.
+
 ## [v1.1.0] 2026-04-18
 
 Summary: UX loading skeleton system, blog priority sorting, and content/SEO updates
@@ -47,6 +54,7 @@ Summary: Initial Release
 - Initial release of the portfolio website.
 - Core frontend and backend setup with contact integration.
 
+[v1.1.1]: https://github.com/saqibbedar/saqibbedar.github.io/releases/tag/v1.1.1
 [v1.1.0]: https://github.com/saqibbedar/saqibbedar.github.io/releases/tag/v1.1.0
 [v1.0.3]: https://github.com/saqibbedar/saqibbedar.github.io/releases/tag/v1.0.3
 [v1.0.2]: https://github.com/saqibbedar/saqibbedar.github.io/releases/tag/v1.0.2

@@ -1,12 +1,12 @@
 <div align="center">
   <img src="./frontend/public/images/favicon.avif" alt="Saqib Bedar" width="200" />
-  <h1>Saqib Bedar</h1>
-  <p>Computer Science Student | Full Stack Developer | Open Source Builder | Tech Educator </p>
+  <h1>Developer Portfolio Template (Vite + React)</h1>
+  <p>Content-driven, SEO-friendly portfolio starter with a contact API (Express + Nodemailer)</p>
 </div>
 
 <p align="center">
   <a href="https://saqibbedar.github.io">
-    <img src="https://img.shields.io/badge/Live%20Site-Portfolio-111827?style=flat&labelColor=111827" alt="Live Site" />
+    <img src="https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-111827?style=flat&labelColor=111827" alt="Live Demo" />
   </a>
   <a href="https://github.com/saqibbedar/saqibbedar.github.io">
     <img src="https://img.shields.io/github/stars/saqibbedar/saqibbedar.github.io?style=flat&color=f5b301&label=Stars" alt="GitHub Stars" />
@@ -19,31 +19,65 @@
   </a>
   <img src="https://img.shields.io/github/last-commit/saqibbedar/saqibbedar.github.io?style=flat&color=6366f1" alt="Last Commit" />
   <img src="https://img.shields.io/badge/Frontend-Vite%20%2B%20React-1f2937?style=flat" alt="Frontend Stack" />
+  <img src="https://img.shields.io/badge/Styling-Tailwind%20CSS-1f2937?style=flat" alt="Tailwind CSS" />
   <img src="https://img.shields.io/badge/Backend-Express%20%2B%20Nodemailer-1f2937?style=flat" alt="Backend Stack" />
 </p>
 
-# Saqib Bedar's Developer Portfolio
+---
 
-This repository powers my personal portfolio website [`(Live Demo)`](https://saqibbedar.github.io). It is a clean, content-driven portfolio built to showcase who I am, what I build, what I teach, and how I like to work.
+## About
 
-It is designed to stay simple for editing and strong in structure. Most site content lives in JSON files and lightweight asset modules, so updates are quick and the code remains easy to maintain.
+This repository powers my personal website, but it is also intentionally built as a **reusable, open-source portfolio template**.
 
-## What This Project Contains
+It’s **content-driven**: most updates can be done by editing **JSON + Markdown** files (projects, blogs, FAQs, services, sitemap, documents), without changing core UI logic.
 
-The portfolio is split into two parts:
+### Tech Stack
+- **Frontend:** Vite + React + React Router + Tailwind CSS
+- **Backend:** Express + Nodemailer (contact form API)
+- **Content:** JSON + Markdown
+- **Deploy:** GitHub Pages (frontend) + Vercel (backend)
 
-- `frontend/` - a Vite + React application that renders the public portfolio
-- `backend/` - a small Express + Nodemailer mail service used by the contact form
+---
 
-The site also includes:
+## Features
 
-- project and blog content
-- FAQs about me
-- certifications and education
-- bootcamps and speaking history
-- services I offer
-- sitemap and utility pages
-- markdown-based legal docs
+- Content-driven portfolio (edit JSON/Markdown to update the site)
+- Projects, blogs, courses, FAQs, services pages
+- Built-in search + structured views
+- SEO utilities (sitemap + metadata modules)
+- Contact form backed by Express API (Nodemailer)
+- Designed for easy customization and maintenance
+
+---
+
+## Use this template (fast setup)
+
+> **Template users (important):** this repo includes a Google Search Console verification file in the root:
+> `google90204ddbeb9f3cf5.html`  
+> If you deploy your own copy, **remove it** or **replace it with your own verification file**, otherwise it will verify the site for the original owner instead of you.
+
+### 1) Create your own copy
+- Click **Use this template** (recommended), or fork the repo.
+- Rename it to: `<your-username>.github.io` (for GitHub Pages user site)
+
+### 2) Customize content (no heavy coding)
+Start here:
+- `frontend/public/data/json/` (projects, blogs, courses, FAQs, services, sitemap, etc.)
+- `frontend/public/data/blogs/` (Markdown blog posts)
+- `frontend/public/data/docs/` (Markdown legal/docs)
+- `frontend/src/assets/common/author.js` (your profile)
+- `frontend/src/assets/common/skills.js` (skills list)
+- `frontend/src/assets/common/footer.js` (footer/social links)
+
+### 3) Run locally
+Follow the **Quick Start** section below to run frontend + backend locally.
+
+### 4) Deploy
+- Frontend → **GitHub Pages**
+- Backend → **Vercel**
+Then set environment variables exactly as documented below.
+
+---
 
 ## Quick Start
 
