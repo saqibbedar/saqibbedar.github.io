@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - ".github/info.md"
+  # Manual trigger: start a clean run without a re-run (avoids duplicate Pages artifacts)
+  workflow_dispatch:
 
 # Least privilege needed: publish Pages + create releases/tags
 permissions:
