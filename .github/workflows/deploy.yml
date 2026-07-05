@@ -1,0 +1,99 @@
+name: Deploy & Release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/info.md"
+
+# Least privilege needed: publish Pages + create releases/tags
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# Don't cancel an in-flight Pages deployment
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Assemble publish directory
+        run: |
+          mkdir _site
+          # Only ship the site itself: html, css, js, assets, pages, and SEO files
+          cp index.html sitemap.xml robots.txt _site/
+          cp google90204ddbeb9f3cf5.html _site/   # Search Console verification
+          cp -r assets css js projects resume _site/
+          touch _site/.nojekyll
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history + tags, needed to detect existing tag
+
+      - name: Parse info.md
+        id: info
+        run: |
+          tag=$(sed -n 's/^tag:[[:space:]]*//p' .github/info.md | head -n1)
+          title=$(sed -n 's/^title:[[:space:]]*//p' .github/info.md | head -n1)
+          # Release body = everything after the second frontmatter delimiter (---)
+          body=$(awk 'seen>=2{print} /^---[[:space:]]*$/{seen++}' .github/info.md)
+
+          if [ -z "$tag" ]; then
+            echo "::error::No 'tag:' found in info.md frontmatter"
+            exit 1
+          fi
+
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "title=${title:-$tag}" >> "$GITHUB_OUTPUT"
+          {
+            echo "body<<RELEASE_EOF"
+            echo "$body"
+            echo "RELEASE_EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Check if tag already exists
+        id: check
+        run: |
+          if git rev-parse "refs/tags/${{ steps.info.outputs.tag }}" >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "Tag ${{ steps.info.outputs.tag }} already exists — skipping release."
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create release
+        if: steps.check.outputs.exists == 'false'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.info.outputs.tag }}
+          name: ${{ steps.info.outputs.title }}
+          body: ${{ steps.info.outputs.body }}
