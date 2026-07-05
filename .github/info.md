@@ -1,11 +1,9 @@
 ---
-tag: v2.0.1
-title: v2.0.1 — Fix homepage script error
+tag: v2.0.2
+title: v2.0.2 — Deployment workflow fix
 ---
 
-Patch release fixing a JavaScript error on the homepage and clearing Search Console structured-data warnings.
+Release-only change to trigger a clean GitHub Pages deployment and harden the workflow. Ships the v2.0.1 fixes, whose deploy had failed.
 
 ## Changes
-- Removed the redundant `js/index.js` (duplicated `js/global.js`), fixing an `Identifier 'body' has already been declared` error on the homepage.
-- Fixed the `dateModified` datetime format in the homepage JSON-LD.
-- Removed the unrecognized `mainEntityOfPage` field from the resume JSON-LD.
+- Added `workflow_dispatch` to the deploy workflow so a clean run can be started manually, avoiding duplicate GitHub Pages artifacts caused by re-running a failed run.

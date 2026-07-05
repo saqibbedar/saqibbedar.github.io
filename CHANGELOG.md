@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented in this file.
 
+## [v2.0.2] 2026-07-05
+
+Summary: Deployment workflow fix
+
+- Added `workflow_dispatch` to the deploy workflow to allow clean manual runs and avoid duplicate GitHub Pages artifacts on re-runs.
+
 ## [v2.0.1] 2026-07-05
 
 Summary: Fix homepage script error and structured-data warnings
@@ -77,6 +83,7 @@ Summary: Initial Release
 - Initial release of the portfolio website.
 - Core frontend and backend setup with contact integration.
 
+[v2.0.2]: https://github.com/saqibbedar/saqibbedar.github.io/releases/tag/v2.0.2
 [v2.0.1]: https://github.com/saqibbedar/saqibbedar.github.io/releases/tag/v2.0.1
 [v2.0.0]: https://github.com/saqibbedar/saqibbedar.github.io/releases/tag/v2.0.0
 [v1.1.1]: https://github.com/saqibbedar/saqibbedar.github.io/releases/tag/v1.1.1
