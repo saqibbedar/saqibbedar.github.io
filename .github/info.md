@@ -1,16 +1,11 @@
 ---
-tag: v2.0.0
-title: v2.0.0 — Static HTML/CSS/JS rewrite
+tag: v2.0.1
+title: v2.0.1 — Fix homepage script error
 ---
 
-Full rewrite to a single-page static portfolio built with plain HTML, CSS, and vanilla JavaScript.
+Patch release fixing a JavaScript error on the homepage and clearing Search Console structured-data warnings.
 
 ## Changes
-- Rebuilt the site as a static single-page portfolio; removed the Vite + React frontend and Express + Nodemailer backend.
-- Removed all build tooling and dependencies; the site runs with no build step.
-- Added sections: hero, projects, skills, experience, education, and current focus.
-- Added project detail pages and an online resume page.
-- Added light/dark theme with system detection and a manual toggle.
-- Retained SEO metadata and JSON-LD structured data.
-
-Reason: plain HTML/CSS/JS for simpler maintenance, no dependency overhead, and no refactors when dependencies change — focused on delivering core information quickly and staying accessible.
+- Removed the redundant `js/index.js` (duplicated `js/global.js`), fixing an `Identifier 'body' has already been declared` error on the homepage.
+- Fixed the `dateModified` datetime format in the homepage JSON-LD.
+- Removed the unrecognized `mainEntityOfPage` field from the resume JSON-LD.

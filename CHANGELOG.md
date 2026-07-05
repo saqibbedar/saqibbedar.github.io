@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented in this file.
 
+## [v2.0.1] 2026-07-05
+
+Summary: Fix homepage script error and structured-data warnings
+
+- Removed the redundant `js/index.js` (duplicated `js/global.js`), fixing an `Identifier 'body' has already been declared` error on the homepage.
+- Fixed the `dateModified` datetime format in the homepage JSON-LD.
+- Removed the unrecognized `mainEntityOfPage` field from the resume JSON-LD.
+
 ## [v2.0.0] 2026-07-05
 
 Summary: Full rewrite to a static HTML/CSS/JS portfolio
@@ -69,6 +77,7 @@ Summary: Initial Release
 - Initial release of the portfolio website.
 - Core frontend and backend setup with contact integration.
 
+[v2.0.1]: https://github.com/saqibbedar/saqibbedar.github.io/releases/tag/v2.0.1
 [v2.0.0]: https://github.com/saqibbedar/saqibbedar.github.io/releases/tag/v2.0.0
 [v1.1.1]: https://github.com/saqibbedar/saqibbedar.github.io/releases/tag/v1.1.1
 [v1.1.0]: https://github.com/saqibbedar/saqibbedar.github.io/releases/tag/v1.1.0
