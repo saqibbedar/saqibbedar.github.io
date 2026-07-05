@@ -2,7 +2,22 @@
 
 All notable changes to this project are documented in this file.
 
-# [v1.1.1] 2026-04-29
+## [v2.0.0] 2026-07-05
+
+Summary: Full rewrite to a static HTML/CSS/JS portfolio
+
+- Rebuilt the site as a single-page static portfolio using plain HTML, CSS, and vanilla JavaScript.
+- Removed the Vite + React frontend and the Express + Nodemailer contact backend.
+- Removed all build tooling, dependencies, and package managers; the site now runs with no build step.
+- Added single-page sections: hero, projects, skills, experience, education, and current focus.
+- Added dedicated project detail pages and an online resume page.
+- Added light/dark theme with system preference detection and a manual toggle.
+- Retained SEO metadata (Open Graph, Twitter Card) and JSON-LD structured data.
+- Rewrote README for the new static structure.
+
+Reason: moved back to plain HTML/CSS/JS for simpler maintenance, no dependency overhead, and no refactors when dependencies change. The focus is delivering core information quickly and keeping the site accessible over heavy styling.
+
+## [v1.1.1] 2026-04-29
 
 Summary: Optimized documentation and updated blogs broken links
 
@@ -54,6 +69,7 @@ Summary: Initial Release
 - Initial release of the portfolio website.
 - Core frontend and backend setup with contact integration.
 
+[v2.0.0]: https://github.com/saqibbedar/saqibbedar.github.io/releases/tag/v2.0.0
 [v1.1.1]: https://github.com/saqibbedar/saqibbedar.github.io/releases/tag/v1.1.1
 [v1.1.0]: https://github.com/saqibbedar/saqibbedar.github.io/releases/tag/v1.1.0
 [v1.0.3]: https://github.com/saqibbedar/saqibbedar.github.io/releases/tag/v1.0.3
