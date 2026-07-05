@@ -1,0 +1,300 @@
+/* ==========================================================================
+   Resume — content-centric, minimal layout
+   Depends on design tokens and base/chrome styles from global.css
+   ========================================================================== */
+
+.resume {
+  padding: 2.75rem 1.25rem 3rem;
+}
+
+/* -------------------------------------------------------------------------
+   Header: name, role, contact line
+   ------------------------------------------------------------------------- */
+
+.resume-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem 1.5rem;
+  padding-bottom: 1.35rem;
+  margin-bottom: 1.75rem;
+  border-bottom: 2px solid var(--rule-strong);
+}
+
+.resume-heading h1 {
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: clamp(1.9rem, 5vw, 2.35rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.resume-role {
+  margin-top: 0.3rem;
+  color: var(--ink-2);
+  font-size: 0.95rem;
+}
+
+.resume-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1.1rem;
+  font-size: 0.85rem;
+  color: var(--ink-2);
+}
+
+.resume-contact a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.resume-contact a:hover {
+  text-decoration: underline;
+}
+
+.resume-contact .resume-download {
+  font-weight: 650;
+}
+
+/* -------------------------------------------------------------------------
+   Sections
+   ------------------------------------------------------------------------- */
+
+.resume-section {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.resume-section:last-of-type {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.resume-section h2 {
+  margin-bottom: 0.9rem;
+  color: var(--ink-3);
+  font-size: 0.78rem;
+  font-weight: 750;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.resume-section > p {
+  max-width: 42rem;
+  color: var(--ink-2);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* -------------------------------------------------------------------------
+   Entries: experience, projects, education
+   ------------------------------------------------------------------------- */
+
+.resume-entry + .resume-entry {
+  margin-top: 1.4rem;
+}
+
+.resume-entry-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.25rem 1rem;
+}
+
+.resume-entry-head h3 {
+  color: var(--ink);
+  font-size: 0.98rem;
+  font-weight: 650;
+}
+
+.resume-entry-head h3 a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.resume-entry-head h3 a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.resume-org {
+  font-weight: 500;
+  color: var(--ink-2);
+}
+
+.resume-date {
+  flex: 0 0 auto;
+  color: var(--ink-3);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.resume-entry p {
+  max-width: 42rem;
+  margin-top: 0.35rem;
+  color: var(--ink-2);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.resume-meta {
+  margin-top: 0.35rem;
+  color: var(--ink-3);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.resume-meta a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.resume-meta a:hover {
+  text-decoration: underline;
+}
+
+/* -------------------------------------------------------------------------
+   Skills: label / value rows
+   ------------------------------------------------------------------------- */
+
+.skill-rows {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.skill-row {
+  display: grid;
+  grid-template-columns: 11rem 1fr;
+  gap: 0.5rem 1rem;
+}
+
+.skill-row dt {
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 650;
+}
+
+.skill-row dd {
+  color: var(--ink-2);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* -------------------------------------------------------------------------
+   Courses & certificates: compact list
+   ------------------------------------------------------------------------- */
+
+.course-list {
+  list-style: none;
+}
+
+.course-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.2rem 1rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.88rem;
+}
+
+.course-row:last-child {
+  border-bottom: 0;
+}
+
+.course-main {
+  color: var(--ink);
+}
+
+.course-main a {
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.course-main a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.course-org {
+  margin-left: 0.4rem;
+  color: var(--ink-2);
+  font-size: 0.85rem;
+}
+
+.course-meta {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.course-date {
+  color: var(--ink-3);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.course-verify {
+  color: var(--accent);
+  font-size: 0.78rem;
+  text-decoration: none;
+}
+
+.course-verify:hover {
+  text-decoration: underline;
+}
+
+/* -------------------------------------------------------------------------
+   Responsive
+   ------------------------------------------------------------------------- */
+
+@media (max-width: 620px) {
+  .skill-row {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+
+  .resume-entry-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+
+  .course-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Print
+   ------------------------------------------------------------------------- */
+
+@media print {
+  .topbar,
+  .mobile-menu,
+  .site-footer,
+  .skip-link {
+    display: none !important;
+  }
+
+  .site-frame {
+    width: auto;
+    border: 0;
+  }
+
+  body {
+    background: #ffffff;
+    color: #000000;
+  }
+
+  .resume-section {
+    border-bottom-color: #cccccc;
+  }
+}
