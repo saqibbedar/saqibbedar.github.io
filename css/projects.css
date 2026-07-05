@@ -1,0 +1,398 @@
+/* ==========================================================================
+   Project case studies — content-centric, minimal layout
+   Depends on design tokens and base/chrome styles from global.css
+   Shared by every page in /projects/
+   ========================================================================== */
+
+.project {
+  padding: 2.75rem 1.25rem 3rem;
+}
+
+/* -------------------------------------------------------------------------
+   Back link
+   ------------------------------------------------------------------------- */
+
+.project-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  margin-bottom: 1.4rem;
+  color: var(--ink-3);
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.project-back svg {
+  height: 1.12rem;
+  width: 1.12rem;
+}
+
+.project-back:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* -------------------------------------------------------------------------
+   Header
+   ------------------------------------------------------------------------- */
+
+.project-header {
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
+  border-bottom: 2px solid var(--rule-strong);
+}
+
+.project-header h1 {
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: clamp(1.9rem, 5vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.project-tagline {
+  max-width: 40rem;
+  margin-top: 0.6rem;
+  color: var(--ink-2);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.9rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.6rem;
+  padding: 0.1rem 0.6rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--ink-2);
+  font-size: 0.76rem;
+  line-height: 1.2;
+}
+
+.badge.accent {
+  border-color: var(--accent);
+  background: var(--blue-soft);
+  color: var(--accent);
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.1rem;
+  margin-top: 1.1rem;
+}
+
+.project-links a {
+  color: var(--accent);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.project-links a:hover {
+  text-decoration: underline;
+}
+
+/* -------------------------------------------------------------------------
+   Hero image
+   ------------------------------------------------------------------------- */
+
+.project-hero {
+  margin-bottom: 1.75rem;
+}
+
+.project-hero img {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--rule);
+  border-radius: 0.4rem;
+}
+
+.project-hero-logo {
+  display: flex;
+  justify-content: center;
+  padding: 2.25rem 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 0.4rem;
+  background: var(--surface);
+}
+
+.project-hero-logo img {
+  width: auto;
+  max-width: 220px;
+  border: 0;
+  border-radius: 0;
+}
+
+/* -------------------------------------------------------------------------
+   Sections
+   ------------------------------------------------------------------------- */
+
+.project-section {
+  padding: 1.6rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.project-section:last-of-type {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.project-section h2 {
+  margin-bottom: 0.9rem;
+  color: var(--ink-3);
+  font-size: 0.78rem;
+  font-weight: 750;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.project-section > p {
+  max-width: 40rem;
+  color: var(--ink-2);
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+.project-section p + p {
+  margin-top: 0.75rem;
+}
+
+.project-section ul {
+  max-width: 40rem;
+  margin-top: 0.3rem;
+  padding-left: 1.15rem;
+  color: var(--ink-2);
+  font-size: 0.93rem;
+  line-height: 1.7;
+}
+
+.project-section li + li {
+  margin-top: 0.4rem;
+}
+
+.project-section li strong {
+  color: var(--ink);
+}
+
+/* -------------------------------------------------------------------------
+   Quick facts grid
+   ------------------------------------------------------------------------- */
+
+.quick-facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--rule);
+  border-radius: 0.3rem;
+  overflow: hidden;
+}
+
+.quick-facts div {
+  min-width: 0;
+  padding: 0.72rem 0.85rem;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.quick-facts div:nth-child(3n) {
+  border-right: 0;
+}
+
+.quick-facts div:nth-last-child(-n + 3) {
+  border-bottom: 0;
+}
+
+.quick-facts strong {
+  display: block;
+  color: var(--ink);
+  font-size: 0.92rem;
+  font-weight: 650;
+}
+
+.quick-facts span {
+  display: block;
+  margin-top: 0.15rem;
+  color: var(--ink-3);
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+
+/* -------------------------------------------------------------------------
+   Inline code and a single illustrative snippet
+   ------------------------------------------------------------------------- */
+
+.project-section code {
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  background: var(--surface-2);
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+}
+
+.project-section pre {
+  max-width: 40rem;
+  margin-top: 0.6rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 0.35rem;
+  background: var(--surface);
+  overflow-x: auto;
+}
+
+.project-section pre code {
+  padding: 0;
+  background: none;
+  color: var(--ink-2);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+/* -------------------------------------------------------------------------
+   Small credit line (course, collaborators)
+   ------------------------------------------------------------------------- */
+
+.project-colophon {
+  margin-top: 1.6rem;
+  color: var(--ink-3);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.project-colophon a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.project-colophon a:hover {
+  text-decoration: underline;
+}
+
+/* -------------------------------------------------------------------------
+   Image skeleton loader — for heavy images (banners, screenshots)
+   ------------------------------------------------------------------------- */
+
+.img-frame {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: 0.4rem;
+  background: linear-gradient(
+    100deg,
+    var(--surface) 30%,
+    var(--surface-2) 50%,
+    var(--surface) 70%
+  );
+  background-size: 200% 100%;
+  animation: img-shimmer 1.4s ease-in-out infinite;
+}
+
+.img-frame img {
+  display: block;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.img-frame.is-loaded {
+  background: none;
+  animation: none;
+}
+
+.img-frame.is-loaded img {
+  opacity: 1;
+}
+
+.hero-frame {
+  margin-bottom: 1.75rem;
+}
+
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+
+.theme-grid figure {
+  margin: 0;
+}
+
+.theme-grid figcaption {
+  margin-top: 0.4rem;
+  color: var(--ink-3);
+  font-size: 0.78rem;
+  text-align: center;
+}
+
+@keyframes img-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .img-frame {
+    animation: none;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Responsive
+   ------------------------------------------------------------------------- */
+
+@media (max-width: 620px) {
+  .quick-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-facts div,
+  .quick-facts div:nth-child(3n),
+  .quick-facts div:nth-last-child(-n + 3) {
+    border-right: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .quick-facts div:last-child {
+    border-bottom: 0;
+  }
+
+  .theme-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Print
+   ------------------------------------------------------------------------- */
+
+@media print {
+  .topbar,
+  .mobile-menu,
+  .site-footer,
+  .skip-link,
+  .project-back {
+    display: none !important;
+  }
+
+  .site-frame {
+    width: auto;
+    border: 0;
+  }
+
+  body {
+    background: #ffffff;
+    color: #000000;
+  }
+}
