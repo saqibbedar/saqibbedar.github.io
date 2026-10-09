@@ -32,7 +32,7 @@ h1 {
 
 .hero-name h1 {
   margin-top: 15px;
-  font-size: clamp(2rem, 8vw, 1.5rem);
+  font-size: clamp(1.5rem, 8vw, 2rem);
   order: 2;
 }
 
@@ -59,8 +59,7 @@ h1 {
 } 
 
 .hero-name img {
-  display: block;
-  width: clamp(5vw, 20rem, 120px);
+  width: clamp(70px, 20vw, 150px);
   border-radius: 20px;
   order: 3;
 }
