@@ -26,7 +26,25 @@
   </url>
   <url>
     <loc>https://saqibbedar.github.io/projects/bedarx-pro.html</loc>
-    <lastmod>2026-07-05</lastmod>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://saqibbedar.github.io/projects/gitcraft.html</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://saqibbedar.github.io/projects/uv-jepa.html</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://saqibbedar.github.io/projects/fluent-python.html</loc>
+    <lastmod>2026-10-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>

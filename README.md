@@ -56,10 +56,12 @@ No frameworks, no build tools, no package manager.
 │   ├── global.js             # Theme toggle, mobile menu, shared behavior
 │   └── projects.js           # Project page behavior (image skeleton loader)
 ├── projects/                 # Project detail pages
+│   ├── uv-jepa.html
+│   ├── fluent-python.html
+│   ├── gitcraft.html
 │   ├── date-fruit-classification.html
 │   ├── bxp-code.html
-│   ├── bedarx-pro.html
-│   └── gitcraft.html
+│   └── bedarx-pro.html
 ├── resume/
 │   └── resume.html           # Online resume page
 ├── CHANGELOG.md
