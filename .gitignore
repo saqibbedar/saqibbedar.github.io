@@ -3,6 +3,8 @@ expo-app
 *.py
 *.cpp
 *.mp4
+.claude
+
 bedarUI/
 test.html
 # Track workflow and deployment docs under .github for CI/CD automation.
