@@ -4,6 +4,7 @@ expo-app
 *.cpp
 *.mp4
 .claude
+.antigravity
 
 bedarUI/
 test.html

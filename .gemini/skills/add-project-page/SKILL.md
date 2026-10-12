@@ -48,3 +48,4 @@ Adding or updating a project detail page requires updating:
 2. `index.html` (JSON-LD `subjectOf` entry in `<head>`).
 3. `sitemap.xml` (`<loc>` entry with updated `lastmod`).
 4. `README.md` (Repository file map).
+

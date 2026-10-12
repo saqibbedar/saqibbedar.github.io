@@ -21,3 +21,4 @@ Use this skill whenever editing meta tags, canonical links, social graphs, or JS
 3. **Date Format**: `dateModified` and `datePublished` must always use ISO-8601 with timezone offset: `YYYY-MM-DDTHH:MM:SS+05:00`.
 4. **Sitemap**: Keep `sitemap.xml` updated with all public URLs and fresh `<lastmod>` values.
 5. **No Hallucinated Credentials or Claims**: Only index verifiable degrees, verified certifications, and published projects.
+

@@ -68,3 +68,4 @@ Every major item (project, experience, skill group, education) uses the `.entry`
 - Maintain a restrained, evidence-based tone.
 - Avoid vague superlatives ("expert", "enterprise-grade", "production-ready") unless backed by verifiable metrics.
 - Keep JSON-LD `subjectOf` in `<head>` synchronized with `#projects`.
+
