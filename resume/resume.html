@@ -62,6 +62,8 @@
       {
         "@context": "https://schema.org",
         "@type": "ProfilePage",
+        "dateModified": "2026-10-13T00:00:00+05:00",
+        "datePublished": "2026-10-09T00:00:00+05:00",
         "mainEntity": {
           "@id": "https://saqibbedar.github.io/#person",
           "@type": "Person",
@@ -191,7 +193,7 @@
       <header class="topbar" aria-label="Site header">
         <a class="brand" href="../" aria-label="Saqib Bedar home">
           <img class="brand-avatar" src="../assets/author.avif" alt="avatar" />
-          <span>SaqibBedar</span>
+          <span>Saqib Bedar</span>
         </a>
 
         <div class="topbar-actions">
@@ -292,23 +294,77 @@
             </p>
           </div>
 
-          <div class="resume-contact">
-            <a href="mailto:chandio.saqib.m@gmail.com"
-              >chandio.saqib.m@gmail.com</a
-            >
-            <span>Islamabad, Pakistan · UTC+5</span>
-            <a href="https://github.com/saqibbedar" target="_blank" rel="noreferrer"
-              >github.com/saqibbedar</a
-            >
-            <a
-              href="https://www.linkedin.com/in/saqibbedar"
-              target="_blank"
-              rel="noreferrer"
-              >linkedin.com/in/saqibbedar</a
-            >
-            <a class="resume-download" href="../assets/resume.pdf" download
-              >Download PDF ↓</a
-            >
+          <div class="resume-contact-actions">
+            <div class="resume-contact">
+              <a href="mailto:chandio.saqib.m@gmail.com"
+                >chandio.saqib.m@gmail.com</a
+              >
+              <span>Islamabad, Pakistan · UTC+5</span>
+              <a href="https://github.com/saqibbedar" target="_blank" rel="noreferrer"
+                >github.com/saqibbedar</a
+              >
+              <a
+                href="https://www.linkedin.com/in/saqibbedar"
+                target="_blank"
+                rel="noreferrer"
+                >linkedin.com/in/saqibbedar</a
+              >
+              <a href="https://saqibbedar.github.io/" target="_blank" rel="noreferrer"
+                >saqibbedar.github.io</a
+              >
+            </div>
+
+            <div class="resume-actions hide-print">
+              <button
+                type="button"
+                class="btn-action btn-print"
+                onclick="window.print()"
+                title="Print or Save as PDF using your browser dialog"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                  <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                  <rect width="12" height="8" x="6" y="14"></rect>
+                </svg>
+                <span>Print / Save PDF</span>
+              </button>
+
+              <a
+                class="btn-action btn-download"
+                href="../assets/resume.pdf"
+                download="Saqib_Bedar_Resume.pdf"
+                title="Download direct PDF file"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" x2="12" y1="15" y2="3"></line>
+                </svg>
+                <span>Download PDF</span>
+              </a>
+            </div>
           </div>
         </header>
 
@@ -316,7 +372,7 @@
         <section class="resume-section" aria-labelledby="summary-heading">
           <h2 id="summary-heading">Summary</h2>
           <p>
-            Software Engineer focused on Python, backend systems, and full-stack development. Experienced in designing APIs, building developer tools, and applying modern software engineering practices. Exploring machine learning and AI through hands-on projects and research. Open to remote backend, full-stack, and applied AI roles.
+            Software Engineer focused on Python, backend architecture, and full-stack development with an applied ML research trajectory. Experienced in RESTful API design, authentication architectures (4-role RBAC, JWT rotation, session security), and developer tools using modern engineering practices (uv, Ruff, pytest). Conducting final-year undergraduate research on latent-predictive vision-language representation learning (JEPA) for low-resource languages under faculty supervision at Quaid-i-Azam University.
           </p>
         </section>
 
@@ -327,21 +383,31 @@
             <div class="skill-row">
               <dt>Python &amp; Backend</dt>
               <dd>
-                Python, FastAPI, PyTorch, Computer Vision, NumPy, Pandas, REST
-                APIs, PostgreSQL (learning)
+                Python, FastAPI, Pydantic, REST API Design, OOP, Async Programming, uv, Ruff, pytest
               </dd>
             </div>
             <div class="skill-row">
-              <dt>Full-stack web</dt>
+              <dt>Databases &amp; Cloud</dt>
               <dd>
-                React, JavaScript, Node.js, Express, MongoDB, MySQL, Tailwind
-                CSS, REST APIs, Authentication
+                MongoDB, MySQL, PostgreSQL (learning), GCP (learning), Data Modeling
               </dd>
             </div>
             <div class="skill-row">
-              <dt>Engineering tools</dt>
+              <dt>Full-Stack Web</dt>
               <dd>
-                Git, GitHub, GitHub Actions, Linux, Docker, C++, Documentation
+                JavaScript, React, Node.js, Express, Tailwind CSS, HTML &amp; CSS, REST APIs, Authentication &amp; JWT
+              </dd>
+            </div>
+            <div class="skill-row">
+              <dt>ML &amp; Applied AI</dt>
+              <dd>
+                PyTorch, Vision-Language, Computer Vision, Transfer Learning, Model Evaluation, NumPy, Pandas, Matplotlib, OpenAI &amp; Gemini SDKs
+              </dd>
+            </div>
+            <div class="skill-row">
+              <dt>Developer Tooling</dt>
+              <dd>
+                Git, GitHub, GitLab, GitHub Actions, Linux/Ubuntu, Docker, Technical Documentation, C++
               </dd>
             </div>
           </dl>
@@ -349,20 +415,18 @@
 
         <!-- experience -->
         <section class="resume-section" aria-labelledby="experience-heading">
-          <h2 id="experience-heading">Experience</h2>
+          <h2 id="experience-heading">Experience &amp; Teaching</h2>
 
           <article class="resume-entry">
             <div class="resume-entry-head">
               <h3>
-                Teaching Assistant — Programming Fundamentals ·
-                <span class="resume-org">QAU Islamabad</span>
+                Teaching Assistant — Web Application Development (WAD) ·
+                <span class="resume-org">Quaid-i-Azam University, Islamabad</span>
               </h3>
-              <span class="resume-date">2024 – 2025</span>
+              <span class="resume-date">2026 – Present</span>
             </div>
             <p>
-              Assisted undergraduate students with programming fundamentals,
-              problem-solving, and code debugging in lab sessions. Conducted
-              code reviews and guided students through C++ and Python concepts.
+              Support undergraduate students under the supervision of Dr. Rabeeh Abbasi. Conduct hands-on lab sessions teaching modern web application development, Git repository workflows, RESTful APIs, and SDK integrations. Assist in code reviews, student debugging support, and comprehensive academic evaluation reports.
             </p>
           </article>
 
@@ -375,120 +439,109 @@
               <span class="resume-date">2025</span>
             </div>
             <p>
-              Completed an 8-week front-end development internship, building
-              user interfaces and strengthening practical experience through
-              real-world software development.
+              Completed an 8-week front-end development internship, designing and implementing responsive user interfaces using HTML, CSS, JavaScript, and modern UI practices within a structured software engineering environment.
             </p>
           </article>
 
           <article class="resume-entry">
             <div class="resume-entry-head">
               <h3>
-                Git &amp; GitHub Workshop Instructor ·
-                <span class="resume-org">MLSA QAU</span>
+                Speaker — Open Source Contribution Webinar ·
+                <span class="resume-org">AutoMind Community</span>
               </h3>
-              <span class="resume-date">2024</span>
+              <span class="resume-date">Sep 2026</span>
             </div>
             <p>
-              Led multiple workshops teaching 100+ students essential version
-              control workflows, branching strategies, conflict resolution,
-              and GitHub Pages deployment.
+              Delivered an interactive technical webinar via Google Meet on open-source software contribution, covering Git fundamentals, branch management, collaborative workflows, and pull request hygiene.
+            </p>
+          </article>
+
+          <article class="resume-entry">
+            <div class="resume-entry-head">
+              <h3>
+                Speaker &amp; Workshop Instructor ·
+                <span class="resume-org">MLSA QAU</span>
+              </h3>
+              <span class="resume-date">Sep 2024</span>
+            </div>
+            <p>
+              Conducted the "GitHub: Learn What Matters" technical workshop via Microsoft Teams, guiding university students through version control essentials, branching strategies, conflict resolution, and GitHub Pages deployment.
             </p>
           </article>
         </section>
 
         <!-- projects -->
         <section class="resume-section" aria-labelledby="projects-heading">
-          <h2 id="projects-heading">Projects</h2>
+          <h2 id="projects-heading">Selected Projects</h2>
 
           <article class="resume-entry">
             <div class="resume-entry-head">
               <h3>
-                <a href="../projects/uv-jepa.html">UV-JEPA</a>
+                <a href="../projects/uv-jepa.html">UV-JEPA</a> ·
+                <span class="resume-org">FYP Research (Supervised by Dr. Syed Muhammad Naqi, QAU)</span>
               </h3>
+              <span class="resume-date">2026 – Present</span>
             </div>
             <p>
-              Final-year research project exploring self-supervised learning for
-              video understanding through Joint-Embedding Predictive
-              Architectures adapted for ultraviolet spectral imaging.
+              Investigating latent-predictive vision-language representation learning (JEPA) for low-resource languages, evaluated on Urdu under data-constrained settings. Architected dual encoders (ViT-Small and RoBERTa) with an EMA target text encoder and a lightweight cross-attention predictor trained via normalized latent regression to achieve data efficiency without autoregressive decoding errors. Benchmarked comparatively against tuned contrastive and autoregressive baselines.
             </p>
-            <p class="resume-meta">PyTorch · Computer Vision · Self-Supervised Learning · Video</p>
-          </article>
-
-          <article class="resume-entry">
-            <div class="resume-entry-head">
-              <h3>
-                <a href="../projects/fluent-python.html">Fluent Python</a>
-              </h3>
-            </div>
-            <p>
-              Open-source learning resource with hands-on examples, exercises,
-              and practical patterns covering Python fundamentals through
-              advanced topics.
-            </p>
-            <p class="resume-meta">Python · Standard Library · OOP · Concurrency</p>
+            <p class="resume-meta">PyTorch · Vision Transformer · RoBERTa · Cross-Attention · JEPA · Representation Learning</p>
           </article>
 
           <article class="resume-entry">
             <div class="resume-entry-head">
               <h3>
-                <a href="../projects/gitcraft.html">Gitcraft</a>
+                <span>Online Student Portal System</span> ·
+                <span class="resume-org">Production Client Work</span>
               </h3>
+              <span class="resume-date">Dec 2025</span>
             </div>
             <p>
-              Practical Git reference documentation site built with Zensical,
-              covering Git fundamentals, branching, collaboration, and
-              recovery.
+              Engineered an enterprise university management portal featuring hierarchical 4-role access control (Master Admin, Department Admin, Faculty, Student). Built secure JWT authentication with HTTP-only cookies, automated refresh-token rotation, server-managed concurrent session limitation, and rate-limited OTP password recovery across a modular MVC backend.
             </p>
-            <p class="resume-meta">33 Pages · Zensical · GitHub Pages · Documentation</p>
+            <p class="resume-meta">Node.js · Express · React · MongoDB · JWT Auth · RBAC · Tailwind CSS</p>
           </article>
 
           <article class="resume-entry">
             <div class="resume-entry-head">
               <h3>
-                <a
-                  href="../projects/date-fruit-classification.html"
-                  >Date Fruit Classification</a
-                >
+                <a href="../projects/fluent-python.html">Fluent Python</a> ·
+                <span class="resume-org">Open-Source Python Learning Hub</span>
               </h3>
+              <span class="resume-date">2025 – Present</span>
             </div>
             <p>
-              Computer vision project comparing ResNet-50 transfer learning
-              with a custom CNN, covering dataset preparation, training,
-              evaluation, and deployment through a PyTorch-powered web
-              inference app.
+              A structured open-source Python engineering resource and learning hub covering language internals, object-oriented design, context managers, async programming, and LLM integrations. Engineered with modern tooling standards using <code>uv</code> for environment management, <code>Ruff</code> for linting, and automated <code>pytest</code> test suites.
             </p>
-            <p class="resume-meta">
-              93.96% test accuracy · 7,000 images · 10 classes · ResNet-50 ·
-              PyTorch
-            </p>
+            <p class="resume-meta">Python 3.12+ · uv · Ruff · pytest · AsyncIO · OOP · Concurrency</p>
           </article>
 
           <article class="resume-entry">
             <div class="resume-entry-head">
-              <h3><a href="../projects/bxp-code.html">bxp-code</a></h3>
+              <h3>
+                <a href="../projects/date-fruit-classification.html">Date Fruit Classification</a> ·
+                <span class="resume-org">Applied Machine Learning</span>
+              </h3>
+              <span class="resume-date">2024</span>
             </div>
             <p>
-              A drop-in React code block package powered by Shiki and
-              Prettier, providing syntax highlighting, automatic formatting,
-              copy-to-clipboard support, and TypeScript-first APIs with zero
-              configuration.
+              Comparative computer vision study evaluating ResNet-50 transfer learning against a custom CNN trained from scratch on 7,000 images across 10 classes. Achieved 93.96% test accuracy and deployed a lightweight PyTorch web inference application for real-time model evaluation.
             </p>
-            <p class="resume-meta">React · TypeScript · Shiki · Prettier</p>
+            <p class="resume-meta">93.96% Accuracy · ResNet-50 · Custom CNN · PyTorch · Transfer Learning · Computer Vision</p>
           </article>
 
           <article class="resume-entry">
             <div class="resume-entry-head">
-              <h3><a href="../projects/bedarx-pro.html">BedarX Pro</a></h3>
+              <h3>
+                <a href="../projects/gitcraft.html">Gitcraft</a> ·
+                <span class="resume-org">Technical Documentation Site</span>
+              </h3>
+              <span class="resume-date">2025</span>
             </div>
             <p>
-              A Visual Studio Code theme extension designed for readable
-              syntax, polished semantic highlighting, and multiple dark/light
-              variants for comfortable long coding sessions.
+              Authored a comprehensive 33-page technical Git documentation site built with Zensical. Details practical Git mental models, branching strategies, collaborative workflows, and disaster recovery patterns.
             </p>
-            <p class="resume-meta">
-              JavaScript · Node.js · VS Code API · Developer tools
-            </p>
+            <p class="resume-meta">33 Pages · Zensical · Git · Technical Documentation · GitHub Pages</p>
           </article>
         </section>
 
@@ -500,16 +553,12 @@
             <div class="resume-entry-head">
               <h3>
                 BS Computer Science ·
-                <span class="resume-org"
-                  >Quaid-i-Azam University, Islamabad</span
-                >
+                <span class="resume-org">Quaid-i-Azam University, Islamabad</span>
               </h3>
               <span class="resume-date">2023 – Present</span>
             </div>
             <p class="resume-meta">
-              Data Structures, Algorithms, Operating Systems, Database
-              Systems, Computer Networks, Artificial Intelligence, Computer
-              Vision, Theory of Automata
+              Core Coursework: Data Structures, Analysis of Algorithms, Operating Systems, Database Systems, Computer Networks, Artificial Intelligence, Computer Vision, Theory of Automata.
             </p>
           </article>
         </section>
