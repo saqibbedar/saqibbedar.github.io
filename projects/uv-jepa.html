@@ -6,16 +6,16 @@
 
     <link rel="icon" type="image/avif" href="/assets/favicon.avif" />
 
-    <title>UV-JEPA: A Vision-Language Learning System for Urdu — Saqib Bedar</title>
+    <title>UV-JEPA: Latent-Predictive Vision-Language Learning for Low-Resource Languages — Saqib Bedar</title>
 
     <meta
       name="description"
-      content="UV-JEPA: an ongoing final-year research project exploring latent-predictive vision-language representation learning for Urdu image-caption retrieval in low-resource settings. Supervised by Dr. Syed Muhammad Naqi at Quaid-i-Azam University."
+      content="UV-JEPA: an ongoing final-year research project investigating latent-predictive vision-language representation learning for low-resource languages, benchmarked on Urdu. Supervised by Dr. Syed Muhammad Naqi at Quaid-i-Azam University."
     />
 
     <meta
       name="keywords"
-      content="UV-JEPA, Urdu Vision, JEPA, Joint Embedding Predictive Architecture, Vision-Language, Urdu NLP, PyTorch, Representation Learning, Low-Resource AI, Quaid-i-Azam University, Saqib Bedar"
+      content="UV-JEPA, Low-Resource Languages, JEPA, Joint Embedding Predictive Architecture, Vision-Language, Urdu Benchmark, Representation Learning, PyTorch, Deep Learning, Quaid-i-Azam University, Saqib Bedar"
     />
 
     <meta name="author" content="Saqib Bedar" />
@@ -30,10 +30,10 @@
     <!-- Open Graph -->
     <meta property="og:type" content="article" />
     <meta property="article:author" content="https://saqibbedar.github.io/" />
-    <meta property="og:title" content="UV-JEPA: A Vision-Language Learning System for Urdu — Saqib Bedar" />
+    <meta property="og:title" content="UV-JEPA: Latent-Predictive Vision-Language Learning for Low-Resource Languages — Saqib Bedar" />
     <meta
       property="og:description"
-      content="Ongoing final-year research project investigating latent-predictive vision-language learning for Urdu, studying how AI models connect visual information and Urdu captions under low-resource constraints."
+      content="Ongoing final-year research project investigating whether latent-predictive vision-language learning (JEPA) provides competitive cross-modal alignment and data efficiency in low-resource language regimes, evaluated on Urdu."
     />
     <meta
       property="og:url"
@@ -48,10 +48,10 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="UV-JEPA: A Vision-Language Learning System for Urdu — Saqib Bedar" />
+    <meta name="twitter:title" content="UV-JEPA: Latent-Predictive Vision-Language Learning for Low-Resource Languages — Saqib Bedar" />
     <meta
       name="twitter:description"
-      content="Ongoing final-year research project investigating latent-predictive vision-language learning for Urdu under low-resource constraints."
+      content="Ongoing final-year research project investigating latent-predictive vision-language learning (JEPA) for low-resource languages, evaluated on Urdu."
     />
     <meta
       name="twitter:image"
@@ -65,12 +65,12 @@
       {
         "@context": "https://schema.org",
         "@type": "CreativeWork",
-        "name": "UV-JEPA: A Vision-Language Learning System for Urdu",
+        "name": "UV-JEPA: Latent-Predictive Vision-Language Learning for Low-Resource Languages",
         "alternateName": "UV-JEPA",
         "url": "https://saqibbedar.github.io/projects/uv-jepa.html",
         "mainEntityOfPage": "https://saqibbedar.github.io/projects/uv-jepa.html",
-        "description": "Ongoing undergraduate final-year research project exploring latent-predictive vision-language representation learning for Urdu image-caption retrieval under low-resource language conditions.",
-        "keywords": ["Vision-Language", "Urdu NLP", "Joint-Embedding Predictive Architecture", "JEPA", "Representation Learning", "PyTorch", "Deep Learning"],
+        "description": "Ongoing undergraduate final-year research project investigating latent-predictive vision-language representation learning for low-resource languages, using Urdu as the primary benchmark testbed.",
+        "keywords": ["Vision-Language", "Low-Resource Languages", "Joint-Embedding Predictive Architecture", "JEPA", "Representation Learning", "PyTorch", "Urdu Benchmark"],
         "author": {
           "@id": "https://saqibbedar.github.io/#person",
           "@type": "Person",
@@ -244,13 +244,14 @@
         <header class="project-header">
           <h1>UV-JEPA</h1>
           <p class="project-tagline">
-            UV-JEPA (Urdu Vision Joint Embedding Predictive Architecture) is an ongoing final-year research project investigating how AI can understand relationships between images and Urdu descriptions when paired language resources are constrained.
+            UV-JEPA is an ongoing final-year research project investigating whether latent-predictive vision-language architectures can learn effective multimodal representations in low-resource language regimes—using Urdu as the representative benchmark—with high data efficiency and without conventional autoregressive decoding.
           </p>
 
           <div class="badge-row">
             <span class="badge accent">Research In Progress</span>
             <span class="badge">Vision-Language</span>
-            <span class="badge">Urdu NLP</span>
+            <span class="badge">Representation Learning</span>
+            <span class="badge">Low-Resource ML</span>
             <span class="badge">FYP · QAU</span>
           </div>
 
@@ -267,76 +268,81 @@
 
         <!-- overview -->
         <section class="project-section" aria-labelledby="overview-heading">
-          <h2 id="overview-heading">Overview & Research Motivation</h2>
+          <h2 id="overview-heading">Overview &amp; Research Motivation</h2>
           <p>
-            Most prominent vision-language foundation models are trained and benchmarked almost exclusively on English datasets with tens of millions of curated image-text pairs. When applied to lower-resource languages like Urdu, models often struggle due to data scarcity, morphological diversity, and quality variance in existing captions.
+            Vision-language learning has increasingly evolved from token-level autoregressive generation or pixel reconstruction toward learning shared, continuous representations in latent space. Modern Joint-Embedding Predictive Architectures (such as I-JEPA, VL-JEPA, and TC-JEPA) demonstrate that predicting representations rather than decoding discrete tokens reduces error compounding and improves representation quality.
           </p>
           <p>
-            <strong>UV-JEPA</strong> investigates whether latent-predictive architectures inspired by the Joint-Embedding Predictive Architecture (JEPA) paradigm can learn effective representations between paired images and Urdu captions without requiring massive datasets or relying purely on autoregressive token generation.
+            However, most multimodal foundation models are benchmarked almost exclusively on high-resource English datasets with tens of millions of curated image-text pairs. When applied to <strong>low-resource languages</strong>, standard models struggle due to severe data scarcity, morphological richness, and caption variance.
+          </p>
+          <p>
+            <strong>UV-JEPA</strong> investigates whether latent-predictive vision-language learning remains effective in low-resource settings, using <strong>Urdu</strong> as the primary testbed. The central hypothesis is that predicting a compact sentence representation from an image representation in latent space provides competitive vision-language alignment while requiring substantially less linguistic supervision than conventional autoregressive caption generation.
           </p>
         </section>
 
         <!-- architecture -->
         <section class="project-section" aria-labelledby="architecture-heading">
-          <h2 id="architecture-heading">Methodology & Architecture</h2>
+          <h2 id="architecture-heading">Methodology &amp; Architecture</h2>
           <p>
-            The system operates on paired image and Urdu caption data:
+            The UV-JEPA framework formulates vision-language learning as a non-generative, latent-predictive task:
           </p>
           <ul>
             <li>
-              <strong>Dual Encoders:</strong> A vision encoder processes visual content into a feature space, while an Urdu language encoder generates representations of corresponding textual descriptions.
+              <strong>Vision &amp; Language Encoders:</strong> Uses a Vision Transformer (ViT-Small) for visual feature extraction alongside a pretrained language encoder (based on <code>urduhack/roberta-urdu-small</code>) to process target text descriptions.
             </li>
             <li>
-              <strong>Latent-Predictive Learning:</strong> Rather than predicting an Urdu sentence token-by-token (which frequently accumulates error and hallucination in low-resource settings), the model predicts a meaning-based representation of the Urdu caption directly in a shared latent space.
+              <strong>EMA Target Text Encoder:</strong> The target text representation is generated by an Exponential Moving Average (EMA) encoder with stop-gradient, while the online text encoder updates jointly to provide the source for the target representation.
             </li>
             <li>
-              <strong>Benchmarking Baselines:</strong> The research directly benchmarks this JEPA-inspired approach against standard contrastive learning (CLIP-style) and autoregressive image captioning baselines under identical Urdu dataset constraints.
+              <strong>Lightweight Cross-Attention Predictor:</strong> Maps visual representations into the shared latent space and is trained to predict the corresponding continuous caption representation using normalized latent regression.
             </li>
             <li>
-              <strong>Data-Regime Experiments:</strong> Experiments systematically vary training sample sizes to measure how representation quality scales under low-resource and data-constrained regimes.
+              <strong>Rigorous Baseline Benchmarks:</strong> UV-JEPA is evaluated directly against rigorously tuned contrastive (CLIP-style) and autoregressive decoders under identical, constrained data regimes to measure data efficiency.
             </li>
           </ul>
         </section>
 
-        <!-- evaluation & demo -->
+        <!-- evaluation -->
         <section class="project-section" aria-labelledby="eval-heading">
-          <h2 id="eval-heading">Evaluation & Planned Demo</h2>
+          <h2 id="eval-heading">Evaluation &amp; Empirical Focus</h2>
           <p>
-            Evaluation focuses primarily on:
+            The project's principal contribution is an empirical study evaluating whether latent prediction offers measurable advantages when paired training data is scarce:
           </p>
           <ul>
-            <li><strong>Cross-Modal Retrieval:</strong> Image-to-Urdu text retrieval and Urdu text-to-image retrieval accuracy.</li>
-            <li><strong>Representation Quality:</strong> Measuring embedding alignment, stability, and caption reliability.</li>
-            <li><strong>Interactive Web Demo:</strong> A lightweight web inference demo is planned to allow users to provide an image and retrieve the most semantically relevant Urdu captions.</li>
+            <li><strong>Cross-Modal Retrieval:</strong> Bi-directional image-to-text and text-to-image retrieval performance across multiple data scales.</li>
+            <li><strong>Representation Quality &amp; Probing:</strong> Semantic caption similarity, feature stability, and probing of learned latent spaces.</li>
+            <li><strong>Data Efficiency &amp; Computational Cost:</strong> Benchmarking scaling behavior, parameter efficiency, and training overhead against baselines.</li>
+            <li><strong>Robustness:</strong> Evaluating sensitivity to caption quality variations and linguistic noise inherent to low-resource web collections.</li>
           </ul>
         </section>
 
         <!-- project status -->
         <section class="project-section" aria-labelledby="status-heading">
-          <h2 id="status-heading">Status & Academic Supervision</h2>
+          <h2 id="status-heading">Status &amp; Academic Supervision</h2>
           <div class="quick-facts" aria-label="Project metadata">
             <div><strong>Ongoing</strong><span>FYP Status</span></div>
             <div><strong>Dr. S. M. Naqi</strong><span>Supervisor</span></div>
-            <div><strong>QAU</strong><span>Department of Computer Science</span></div>
-            <div><strong>Urdu</strong><span>Target Language</span></div>
+            <div><strong>QAU</strong><span>Department of CS</span></div>
+            <div><strong>Low-Resource</strong><span>Language Focus</span></div>
+            <div><strong>Urdu</strong><span>Benchmark Testbed</span></div>
             <div><strong>PyTorch</strong><span>Framework</span></div>
-            <div><strong>Comparative</strong><span>Baseline Study</span></div>
           </div>
           <p style="margin-top: 1.25rem;">
-            <em>Note on research claims:</em> The project is actively in development. The goal is an empirical study of the strengths, limitations, and practical behavior of latent-predictive vision-language learning for Urdu, rather than assuming it will automatically outperform all alternatives. Code and checkpoints will be made available upon project completion.
+            <em>Note on research claims:</em> The study is designed to empirically discover the boundaries and data-efficiency limits of latent prediction in low-resource multimodal settings. Rigorously documenting where and why the approach succeeds—or fails—relative to contrastive and autoregressive baselines constitutes the valid scientific thesis outcome. Code and checkpoints will be documented upon thesis defense.
           </p>
         </section>
 
         <!-- tech stack -->
         <section class="project-section" aria-labelledby="stack-heading">
-          <h2 id="stack-heading">Built With & Studied</h2>
+          <h2 id="stack-heading">Built With &amp; Studied</h2>
           <div class="badge-row">
             <span class="badge">PyTorch</span>
-            <span class="badge">Python</span>
-            <span class="badge">Computer Vision</span>
-            <span class="badge">Urdu NLP</span>
-            <span class="badge">Representation Learning</span>
+            <span class="badge">ViT-Small</span>
+            <span class="badge">RoBERTa</span>
+            <span class="badge">Cross-Attention</span>
             <span class="badge">JEPA</span>
+            <span class="badge">Representation Learning</span>
+            <span class="badge">Low-Resource ML</span>
           </div>
         </section>
       </main>
