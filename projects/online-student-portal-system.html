@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="icon" type="image/avif" href="/assets/favicon.avif" />
+
+    <title>Online Student Portal System — Saqib Bedar</title>
+
+    <meta
+      name="description"
+      content="Case study: A comprehensive university academic administration platform implementing 4-role hierarchical RBAC, server-managed HTTP-only cookie authentication, FIFO concurrent session eviction, and referential-integrity validation on a modular MERN stack."
+    />
+
+    <meta
+      name="keywords"
+      content="Online Student Portal, MERN Stack, Node.js, Express, React, MongoDB, Role-Based Access Control, RBAC, JWT, Authentication, Session Management, Referential Integrity, Saqib Bedar"
+    />
+
+    <meta name="author" content="Saqib Bedar" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <link
+      rel="canonical"
+      href="https://saqibbedar.github.io/projects/online-student-portal-system.html"
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article" />
+    <meta property="article:author" content="https://saqibbedar.github.io/" />
+    <meta property="og:title" content="Online Student Portal System — Saqib Bedar" />
+    <meta
+      property="og:description"
+      content="Case study: A comprehensive university academic administration platform implementing 4-role hierarchical RBAC, server-managed HTTP-only cookie authentication, FIFO concurrent session eviction, and referential-integrity validation on a modular MERN stack."
+    />
+    <meta
+      property="og:url"
+      content="https://saqibbedar.github.io/projects/online-student-portal-system.html"
+    />
+    <meta
+      property="og:image"
+      content="https://saqibbedar.github.io/assets/og-image.avif"
+    />
+    <meta property="og:site_name" content="Saqib Bedar" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Online Student Portal System — Saqib Bedar" />
+    <meta
+      name="twitter:description"
+      content="Case study: A comprehensive university academic administration platform implementing 4-role hierarchical RBAC, server-managed HTTP-only cookie authentication, FIFO concurrent session eviction, and referential-integrity validation on a modular MERN stack."
+    />
+    <meta
+      name="twitter:image"
+      content="https://saqibbedar.github.io/assets/og-image.avif"
+    />
+    <meta name="twitter:site" content="@saqibbedar" />
+    <meta name="twitter:creator" content="@saqibbedar" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Online Student Portal System",
+        "alternateName": "MERN Student Portal Monorepo",
+        "applicationCategory": "WebApplication",
+        "operatingSystem": "Web",
+        "url": "https://saqibbedar.github.io/projects/online-student-portal-system.html",
+        "description": "Comprehensive university academic administration system with 4-role hierarchical access control, HTTP-only cookie authentication, FIFO session eviction, and referential integrity checking.",
+        "author": {
+          "@id": "https://saqibbedar.github.io/#person",
+          "@type": "Person",
+          "name": "Saqib Bedar",
+          "url": "https://saqibbedar.github.io/"
+        },
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "Saqib Bedar",
+          "url": "https://saqibbedar.github.io/"
+        }
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://saqibbedar.github.io/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Projects",
+            "item": "https://saqibbedar.github.io/#projects"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Online Student Portal System",
+            "item": "https://saqibbedar.github.io/projects/online-student-portal-system.html"
+          }
+        ]
+      }
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/projects.css" />
+
+    <!-- Theme -->
+    <script>
+      (function () {
+        var storedTheme = localStorage.getItem("theme");
+        var systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+          .matches
+          ? "dark"
+          : "light";
+
+        document.documentElement.setAttribute(
+          "data-theme",
+          storedTheme || systemTheme
+        );
+      })();
+    </script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="site-frame">
+      <!-- Header -->
+      <header class="topbar" aria-label="Site header">
+        <a class="brand" href="../" aria-label="Saqib Bedar home">
+          <img class="brand-avatar" src="../assets/author.avif" alt="avatar" />
+          <span>SaqibBedar</span>
+        </a>
+
+        <div class="topbar-actions">
+          <a
+            class="topbar-link hide-sm"
+            href="https://github.com/saqibbedar"
+            target="_blank"
+            rel="noreferrer"
+            >GitHub</a
+          >
+          <a class="topbar-link hide-sm" href="../resume/resume.html">Resume</a>
+
+          <button
+            class="icon-button theme-toggle"
+            type="button"
+            data-theme-toggle
+            aria-label="Toggle theme"
+          >
+            <svg
+              class="theme-icon theme-icon-sun"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 256 256"
+              aria-hidden="true"
+            >
+              <path
+                d="M120,40V16a8,8,0,0,1,16,0V40a8,8,0,0,1-16,0Zm72,88a64,64,0,1,1-64-64A64.07,64.07,0,0,1,192,128Zm-16,0a48,48,0,1,0-48,48A48.05,48.05,0,0,0,176,128ZM58.34,69.66A8,8,0,0,0,69.66,58.34l-16-16A8,8,0,0,0,42.34,53.66Zm0,116.68-16,16a8,8,0,0,0,11.32,11.32l16-16a8,8,0,0,0-11.32-11.32ZM192,72a8,8,0,0,0,5.66-2.34l16-16a8,8,0,0,0-11.32-11.32l-16,16A8,8,0,0,0,192,72Zm5.66,114.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32-11.32ZM48,128a8,8,0,0,0-8-8H16a8,8,0,0,0,0,16H40A8,8,0,0,0,48,128Zm80,80a8,8,0,0,0-8,8v24a8,8,0,0,0,16,0V216A8,8,0,0,0,128,208Zm112-88H216a8,8,0,0,0,0,16h24a8,8,0,0,0,0-16Z"
+              />
+            </svg>
+            <svg
+              class="theme-icon theme-icon-moon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 256 256"
+              aria-hidden="true"
+            >
+              <path
+                d="M233.54,142.23a8,8,0,0,0-8-2,88.08,88.08,0,0,1-109.8-109.8,8,8,0,0,0-10-10,104.84,104.84,0,0,0-52.91,37A104,104,0,0,0,136,224a103.09,103.09,0,0,0,62.52-20.88,104.84,104.84,0,0,0,37-52.91A8,8,0,0,0,233.54,142.23Z"
+              />
+            </svg>
+          </button>
+
+          <button
+            class="icon-button menu-toggle"
+            type="button"
+            data-menu-toggle
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            aria-label="Open menu"
+          >
+            <svg
+              class="menu-icon menu-open-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 256 256"
+              aria-hidden="true"
+            >
+              <path
+                d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"
+              />
+            </svg>
+            <svg
+              class="menu-icon menu-close-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 256 256"
+              aria-hidden="true"
+            >
+              <path
+                d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"
+              />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- mobile menu -->
+      <nav
+        class="mobile-menu"
+        id="mobile-menu"
+        data-mobile-menu
+        aria-label="Mobile navigation"
+      >
+        <a href="../">Home</a>
+        <a href="../resume/resume.html">Resume</a>
+        <a href="https://github.com/saqibbedar" target="_blank" rel="noreferrer"
+          >GitHub</a
+        >
+      </nav>
+
+      <!-- project -->
+      <main id="main" class="project">
+        <a class="project-back" href="../#projects"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m15 18-6-6 6-6" /></svg
+          >All projects</a
+        >
+
+        <header class="project-header">
+          <h1>Online Student Portal System</h1>
+          <p class="project-tagline">
+            A comprehensive web-based academic administration system built for university environments, consolidating administrative operations, identity management, academic record handling, and departmental workflows into a unified, institution-controlled platform.
+          </p>
+
+          <div class="badge-row">
+            <span class="badge accent">Client Work · Dec 2025</span>
+            <span class="badge">MERN Stack</span>
+            <span class="badge">RBAC Architecture</span>
+            <span class="badge">Session Management</span>
+            <span class="badge">Production Delivery</span>
+          </div>
+
+          <div class="project-links">
+            <span style="color: var(--ink-3); font-size: 0.875rem; display: inline-flex; align-items: center; gap: 0.4rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              Private Client Work · Sanitized Architectural Documentation
+            </span>
+          </div>
+        </header>
+
+        <!-- overview -->
+        <section class="project-section" aria-labelledby="overview-heading">
+          <h2 id="overview-heading">System Overview</h2>
+          <p>
+            The <strong>Online Student Portal System (OSPS)</strong> is a production-delivered academic administration suite designed for higher-education environments. Developed on the <strong>MERN stack</strong> (MongoDB, Express.js, React, Node.js), the platform organizes institutional operations through a <strong>Model-View-Controller (MVC) pattern</strong> combined with a <strong>modular controller-service separation</strong> for maintainable and scalable code organization.
+          </p>
+          <p>
+            The system centralizes student lifecycle handling, departmental administration, course registration, and faculty assessment workflows while enforcing strict institutional governance and data consistency standards.
+          </p>
+        </section>
+
+        <!-- rbac -->
+        <section class="project-section" aria-labelledby="rbac-heading">
+          <h2 id="rbac-heading">Hierarchical Role-Based Access Control (RBAC)</h2>
+          <p>
+            The portal defines four principal user tiers with clear hierarchical privilege boundaries:
+          </p>
+          <ul>
+            <li>
+              <strong>Master Administrator:</strong> A setup-time bootstrap identity with immutable core attributes, responsible for provisioning and overseeing institutional department administrators.
+            </li>
+            <li>
+              <strong>Department Administrator:</strong> Exercises administrative control over academic operations within assigned faculties, including managing faculty profiles, student admissions, and departmental course catalogs.
+            </li>
+            <li>
+              <strong>Faculty:</strong> Manages instructional duties, active course section configurations, student attendance registers, and academic assessment submissions.
+            </li>
+            <li>
+              <strong>Student:</strong> Accesses academic transcripts, enrollment statuses, and coursework progress with strictly governed profile editing boundaries.
+            </li>
+          </ul>
+        </section>
+
+        <!-- security & session architecture -->
+        <section class="project-section" aria-labelledby="security-heading">
+          <h2 id="security-heading">Security &amp; Session Management Algorithms</h2>
+          <p>
+            The security implementation is engineered to mitigate credential leaks, session hijacking, and unauthorized token inspection:
+          </p>
+          <ul>
+            <li>
+              <strong>Server-Managed Cookie Authentication:</strong> Authentication tokens are stored strictly within server-issued <code>HTTP-only</code>, <code>SameSite</code> cookies, preventing JavaScript-based credential extraction and XSS surface exposure.
+            </li>
+            <li>
+              <strong>JWT Refresh-Token Rotation:</strong> Short-lived access tokens paired with rotating refresh tokens ensure compromised tokens expire automatically without disrupting active sessions.
+            </li>
+            <li>
+              <strong>FIFO Concurrent-Session Eviction:</strong> Users are restricted to a maximum of <strong>three active concurrent sessions</strong>. When a fourth login occurs, the backend executes a First-In-First-Out (FIFO) eviction algorithm, revoking the oldest active session token in MongoDB.
+            </li>
+            <li>
+              <strong>Rate-Limited OTP Password Recovery:</strong> Email-based One-Time Password recovery is protected by a dual throttle: a maximum of <strong>3 OTPs per user per day</strong> and a mandatory <strong>2-minute cooldown</strong> between successive requests to prevent exhaustion attacks.
+            </li>
+          </ul>
+        </section>
+
+        <!-- profile update window -->
+        <section class="project-section" aria-labelledby="lifecycle-heading">
+          <h2 id="lifecycle-heading">Controlled Student Profile Window</h2>
+          <p>
+            To prevent arbitrary tampering with student identification records while accommodating onboarding needs, the portal introduces a <strong>time-limited update window algorithm</strong>:
+          </p>
+          <p>
+            Newly admitted students receive a strict <strong>three-day window</strong> from account creation to update their profile photo and initial password. Once this 72-hour window elapses, profile modification privileges are automatically locked. Subsequent changes mandate verified administrative intervention through the Department Administrator, ensuring institutional integrity over student records.
+          </p>
+        </section>
+
+        <!-- data integrity -->
+        <section class="project-section" aria-labelledby="integrity-heading">
+          <h2 id="integrity-heading">Referential-Integrity Enforcement on Deletions</h2>
+          <p>
+            Unlike permissive administrative backends that risk orphan records, this platform enforces explicit referential-integrity checking on hard delete operations:
+          </p>
+          <p>
+            Prior to deleting any foundational entity—such as departments, academic programs, courses, or academic terms—the service layer validates that no child dependencies or active references exist in connected collections. If references remain, deletion is rejected with structured relational error feedback, safeguarding institutional data trees.
+          </p>
+        </section>
+
+        <!-- quick facts -->
+        <section class="project-section" aria-labelledby="facts-heading">
+          <h2 id="facts-heading">Quick Facts</h2>
+          <div class="quick-facts" aria-label="Project metadata">
+            <div><strong>4 Roles</strong><span>RBAC Hierarchy</span></div>
+            <div><strong>3 Sessions</strong><span>FIFO Session Eviction</span></div>
+            <div><strong>MERN</strong><span>Monorepo Architecture</span></div>
+            <div><strong>HTTP-only</strong><span>JWT Cookie Auth</span></div>
+            <div><strong>3 Days</strong><span>Profile Edit Window</span></div>
+            <div><strong>Client Work</strong><span>Delivered Dec 2025</span></div>
+          </div>
+        </section>
+
+        <!-- tech stack -->
+        <section class="project-section" aria-labelledby="stack-heading">
+          <h2 id="stack-heading">Built With</h2>
+          <div class="badge-row">
+            <span class="badge">Node.js</span>
+            <span class="badge">Express</span>
+            <span class="badge">React</span>
+            <span class="badge">MongoDB</span>
+            <span class="badge">Mongoose</span>
+            <span class="badge">JWT</span>
+            <span class="badge">HTTP-only Cookies</span>
+            <span class="badge">Tailwind CSS</span>
+            <span class="badge">RESTful APIs</span>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p><strong>S. BEDAR</strong> Islamabad, Pakistan · UTC+5</p>
+        <p class="footer-small">
+          © <span data-year></span> Saqib Bedar —
+          <a href="mailto:chandio.saqib.m@gmail.com">get in touch</a>
+        </p>
+      </footer>
+    </div>
+
+    <!-- scripts -->
+    <script defer src="../js/global.js"></script>
+  </body>
+</html>
