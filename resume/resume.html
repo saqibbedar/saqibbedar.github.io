@@ -286,18 +286,13 @@
 
       <!-- resume -->
       <main id="main" class="resume">
-        <!-- Top Toolbar with ONLY direct download button -->
-        <aside class="resume-toolbar hide-print" aria-label="Resume actions">
-          <div class="resume-toolbar-info">
-            <span class="resume-status-badge">ATS Formatted</span>
-            <span class="resume-sync-text">Mirrors compiled LaTeX resume (<a href="../assets/resume.tex" class="source-link"><code>assets/resume.tex</code></a>)</span>
-          </div>
-
+        <!-- Top Action: Direct Download PDF button -->
+        <div class="resume-toolbar hide-print">
           <a
             class="btn-action btn-download"
             href="../assets/resume.pdf"
             download="Saqib_Bedar_Resume.pdf"
-            title="Download compiled ATS-friendly PDF resume"
+            title="Download PDF"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -317,7 +312,7 @@
             </svg>
             <span>Download PDF</span>
           </a>
-        </aside>
+        </div>
 
         <!-- Document Sheet (Faithful reproduction of LaTeX resume) -->
         <article class="resume-paper" aria-label="Resume of Saqib Bedar">
