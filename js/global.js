@@ -92,10 +92,20 @@ function setCurrentYear() {
 function initAvatarOnScroll() {
   const avatar = document.querySelector(".brand-avatar");
 
+  // toggle brand name from @saqibbedar to Saqib Bedar when avatar gets enabled
+  const brandName = document.querySelector(".topbar span");
+  const initialValue = brandName.textContent;
+  
+
   if (!avatar) return;
 
   function updateAvatar() {
-    avatar.classList.toggle("show-on-scroll", window.scrollY > 36);
+    avatar.classList.toggle("show-on-scroll", window.scrollY > 100);
+    if(window.scrollY <= 100) { 
+      brandName.textContent = initialValue; 
+    } else { 
+      brandName.textContent = "@saqibbedar"; 
+    }
   }
 
   updateAvatar();

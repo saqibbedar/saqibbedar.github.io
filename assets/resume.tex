@@ -1,0 +1,207 @@
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-0.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Saqib Bedar} \\ \vspace{2pt}
+    \small Islamabad, Pakistan (Open to Remote $\cdot$ UTC+5) \\ \vspace{2pt}
+    \small {+92-3053721981} $|$
+    \href{mailto:chandio.saqib.m@gmail.com}{\underline{chandio.saqib.m@gmail.com}} $|$ 
+    \href{https://linkedin.com/in/saqibbedar}{\underline{linkedin.com/in/saqibbedar}} $|$
+    \href{https://github.com/saqibbedar}{\underline{github.com/saqibbedar}} \\[2pt]
+    \href{https://saqibbedar.github.io}{\underline{saqibbedar.github.io}}
+\end{center}
+
+
+%-----------PROFESSIONAL SUMMARY-----------
+\section{Professional Summary}
+  \vspace{2pt}
+  \small{Python and full-stack engineer (3+ years in web) scaling into ML application development: secure FastAPI/MERN backends and PyTorch vision-language research. Self-directed, async-first and documentation-led, working remotely from UTC+5.}
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Python, JavaScript, C++} \\
+     \textbf{Backend Development}{: FastAPI, Pydantic, REST API Design, Node.js, Express, JWT, Role-Based Access Control} \\
+     \textbf{Data \& Machine Learning}{: MongoDB, MySQL, PyTorch, NumPy, Pandas, Computer Vision, Transfer Learning} \\
+     \textbf{Tools \& Testing}{: uv, Ruff, pytest, Git, GitHub Actions, GitLab, Linux, Docker} \\
+     \textbf{Spoken Languages}{: English (Professional Proficiency), Urdu (Native), Sindhi (Native)}
+    }}
+ \end{itemize}
+
+%-----------CORE ENGINEERING PROJECTS-----------
+\section{Projects \& Research}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{UV-JEPA (Final-Year Research, WIP)} $|$ \emph{PyTorch, ViT-Small, RoBERTa, JEPA}}{2026 -- Present}
+          \resumeItemListStart
+            \resumeItem{Building a latent-predictive (JEPA) vision-language model for Urdu, a low-resource language, under data-constrained training on a 59K-image / 319K-caption corpus.}
+            \resumeItem{Implementing dual encoders (ViT-Small, RoBERTa) with an EMA-updated target text encoder and a cross-attention predictor optimized via normalized latent regression, avoiding autoregressive decoding errors.}
+          \resumeItemListEnd
+          
+      \resumeProjectHeading
+          {\textbf{MERN Student Portal Monorepo} $|$ \emph{Node.js, Express, React, MongoDB}}{Dec 2025}
+          \resumeItemListStart
+            \resumeItem{Architected a 4-role RBAC university portal (Master Admin, Department Admin, Faculty, Student) on a modular Model-View-Controller backend, delivered as production client work.}
+            \resumeItem{Implemented server-side HTTP-only cookie authentication with JWT refresh rotation and a FIFO concurrent-session eviction algorithm capped at 3 sessions per user.}
+            \resumeItem{Built rate-limited email OTP recovery (3 per day, 2-minute cooldown) and hard-delete operations that run referential-integrity validation before removal.}
+          \resumeItemListEnd
+          
+      \resumeProjectHeading
+          {\textbf{Fluent-Python: CI/CD Testing Ground} $|$ \emph{Python 3.12+, uv, Ruff, pytest}}{2025 -- Present}
+          \resumeItemListStart
+            \resumeItem{Run a production-style pipeline testbed demonstrating branch protection, local automation scripts, and multi-stage CI/CD workflows on protected branches.}
+            \resumeItem{Maintain an open-source Python engineering curriculum (language internals, OOP, async, LLM integrations) with uv environments, Ruff linting, and automated pytest suites.}
+          \resumeItemListEnd
+          
+      \resumeProjectHeading
+          {\textbf{Date-Fruit Classification} $|$ \emph{PyTorch, Custom CNN, ResNet-50}}{2024}
+          \resumeItemListStart
+            \resumeItem{Designed a custom 4-block PyTorch CNN and benchmarked it against a ResNet-50 transfer-learning backbone on 7,000 images across 10 classes, reaching 96.38\% test accuracy; deployed as a real-time PyTorch inference web app.}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+
+%-----------TECHNICAL EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Teaching Assistant, Web Application Development}{Sep 2024 -- Present}
+      {Quaid-i-Azam University}{Islamabad, Pakistan}
+      \resumeItemListStart
+        \resumeItem{Instructing 35+ students across practical laboratory sessions focused on Git version control workflows, REST API consumption, and OpenAI/Gemini SDK integrations.}
+        % \resumeItem{Developing local Python/Pandas automation scripts to clean, process, and maintain student evaluation manifests (.csv format).}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Front-End Developer Intern}{2025}
+      {College of Army Education (CAE)}{8-Week Internship}
+      \resumeItemListStart
+        \resumeItem{Delivered responsive production interfaces within an 8-week cycle using a modern JavaScript/React stack.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Quaid-i-Azam University}{Islamabad, Pakistan}
+      {BS in Computer Science}{2023 -- June 2027 (Expected)}
+  \resumeSubHeadingListEnd
+
+%-----------COMMUNITY & WRITING-----------
+\section{Community \& Writing}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     Speaker: MLSA QAU (2024), AutoMind Community (2026) $|$ Author: Gitcraft, 33-page Git documentation site
+    }}
+ \end{itemize}
+
+
+%-------------------------------------------
+\end{document}

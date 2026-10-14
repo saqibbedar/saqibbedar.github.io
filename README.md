@@ -54,12 +54,14 @@ No frameworks, no build tools, no package manager.
 │   └── resume.css            # Resume page styles
 ├── js/
 │   ├── global.js             # Theme toggle, mobile menu, shared behavior
-│   ├── index.js              # Homepage behavior
-│   └── projects.js           # Project page behavior
+│   └── projects.js           # Project page behavior (image skeleton loader)
 ├── projects/                 # Project detail pages
-│   ├── 01_date_fruit_classification.html
-│   ├── 02_bxp_code.html
-│   └── 03_bedarx_pro.html
+│   ├── uv-jepa.html
+│   ├── fluent-python.html
+│   ├── gitcraft.html
+│   ├── date-fruit-classification.html
+│   ├── bxp-code.html
+│   └── bedarx-pro.html
 ├── resume/
 │   └── resume.html           # Online resume page
 ├── CHANGELOG.md

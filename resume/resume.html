@@ -6,16 +6,16 @@
 
     <link rel="icon" type="image/avif" href="/assets/favicon.avif" />
 
-    <title>Saqib Bedar — Resume</title>
+    <title>Saqib Bedar — Resume | Software Engineer</title>
 
     <meta
       name="description"
-      content="Resume of Saqib Bedar, a Computer Science student and software developer building full-stack applications, AI projects, and developer tools using Python and modern software engineering."
+      content="Resume of Saqib Bedar, Software Engineer focused on Python, backend systems, and full-stack development. Scalable backends, REST APIs, and applied machine learning research."
     />
 
     <meta
       name="keywords"
-      content="Saqib Bedar, saqibbedar, resume, CV, Computer Science Student, AI Engineer, Python Developer, Full-Stack Developer, React, PyTorch, Pakistan"
+      content="Saqib Bedar, saqibbedar, resume, CV, Software Engineer, Python Developer, Backend Developer, Full-Stack Developer, FastAPI, React, PyTorch, Pakistan"
     />
 
     <meta name="author" content="Saqib Bedar" />
@@ -33,7 +33,7 @@
     <meta property="og:title" content="Saqib Bedar — Resume" />
     <meta
       property="og:description"
-      content="Resume of Saqib Bedar, a Computer Science student and software developer building full-stack applications, AI projects, and developer tools."
+      content="Resume of Saqib Bedar, Software Engineer focused on Python, backend systems, and full-stack development."
     />
     <meta property="og:url" content="https://saqibbedar.github.io/resume/resume.html" />
     <meta
@@ -48,7 +48,7 @@
     <meta name="twitter:title" content="Saqib Bedar — Resume" />
     <meta
       name="twitter:description"
-      content="Resume of Saqib Bedar, a Computer Science student and software developer specializing in Python, AI engineering, and full-stack web development."
+      content="Resume of Saqib Bedar, Software Engineer focused on Python, backend systems, and full-stack development."
     />
     <meta
       name="twitter:image"
@@ -62,6 +62,8 @@
       {
         "@context": "https://schema.org",
         "@type": "ProfilePage",
+        "dateModified": "2026-10-14T00:00:00+05:00",
+        "datePublished": "2026-10-09T00:00:00+05:00",
         "mainEntity": {
           "@id": "https://saqibbedar.github.io/#person",
           "@type": "Person",
@@ -69,8 +71,8 @@
           "alternateName": "saqibbedar",
           "url": "https://saqibbedar.github.io/",
           "image": "https://saqibbedar.github.io/assets/og-image.avif",
-          "jobTitle": "Software Developer",
-          "description": "Computer Science student and software developer building full-stack applications, AI projects, and open-source developer tools using Python, machine learning, computer vision, and modern software engineering.",
+          "jobTitle": "Software Engineer",
+          "description": "Python and full-stack engineer (3+ years in web) scaling into ML application development: secure FastAPI/MERN backends and PyTorch vision-language research. Self-directed, async-first and documentation-led, working remotely from UTC+5.",
           "nationality": "Pakistani",
 
           "identifier": [
@@ -83,20 +85,15 @@
 
           "seeks": {
             "@type": "Demand",
-            "name": "Software engineering internships, junior roles, and freelance work"
+            "name": "Full-Stack Engineering, Python Backend Development, and Applied ML/AI roles"
           },
 
           "alumniOf": [
             {
-              "@type": "EducationalOrganization",
-              "name": "Cadet College Larkana",
-              "description": "Class 7th through Intermediate (FSc)."
-            },
-            {
               "@type": "CollegeOrUniversity",
               "name": "Quaid-i-Azam University",
               "url": "https://qau.edu.pk/",
-              "description": "BS Computer Science, 2023 – present."
+              "description": "BS in Computer Science, 2023 – June 2027 (Expected)."
             }
           ],
 
@@ -158,7 +155,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -191,7 +188,7 @@
       <header class="topbar" aria-label="Site header">
         <a class="brand" href="../" aria-label="Saqib Bedar home">
           <img class="brand-avatar" src="../assets/author.avif" alt="avatar" />
-          <span>SaqibBedar</span>
+          <span>Saqib Bedar</span>
         </a>
 
         <div class="topbar-actions">
@@ -202,7 +199,12 @@
             rel="noreferrer"
             >GitHub</a
           >
-          <a class="topbar-link hide-sm" href="../assets/resume.pdf" download>PDF</a>
+          <a
+            class="topbar-link hide-sm"
+            href="../assets/resume.pdf"
+            download="Saqib_Bedar_Resume.pdf"
+            >PDF</a
+          >
           <a class="topbar-link hide-sm" href="mailto:chandio.saqib.m@gmail.com"
             >Email</a
           >
@@ -275,7 +277,7 @@
         aria-label="Mobile navigation"
       >
         <a href="../">Home</a>
-        <a href="../assets/resume.pdf" download>Download PDF</a>
+        <a href="../assets/resume.pdf" download="Saqib_Bedar_Resume.pdf">Download PDF</a>
         <a href="https://github.com/saqibbedar" target="_blank" rel="noreferrer"
           >GitHub</a
         >
@@ -284,289 +286,351 @@
 
       <!-- resume -->
       <main id="main" class="resume">
-        <header class="resume-header">
-          <div class="resume-heading">
-            <h1>Saqib Bedar</h1>
-            <p class="resume-role">
-              Computer Science Student · Full-Stack &amp; AI Engineering
-            </p>
-          </div>
-
-          <div class="resume-contact">
-            <a href="mailto:chandio.saqib.m@gmail.com"
-              >chandio.saqib.m@gmail.com</a
+        <!-- Top Action: Direct Download PDF button -->
+        <div class="resume-toolbar hide-print">
+          <a
+            class="btn-action btn-download"
+            href="../assets/resume.pdf"
+            download="Saqib_Bedar_Resume.pdf"
+            title="Download PDF"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
             >
-            <span>Islamabad, Pakistan · UTC+5</span>
-            <a href="https://github.com/saqibbedar" target="_blank" rel="noreferrer"
-              >github.com/saqibbedar</a
-            >
-            <a
-              href="https://www.linkedin.com/in/saqibbedar"
-              target="_blank"
-              rel="noreferrer"
-              >linkedin.com/in/saqibbedar</a
-            >
-            <a class="resume-download" href="../assets/resume.pdf" download
-              >Download PDF ↓</a
-            >
-          </div>
-        </header>
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" x2="12" y1="15" y2="3"></line>
+            </svg>
+            <span>Download PDF</span>
+          </a>
+        </div>
 
-        <!-- summary -->
-        <section class="resume-section" aria-labelledby="summary-heading">
-          <h2 id="summary-heading">Summary</h2>
-          <p>
-            Computer Science student and software developer building full-stack applications, AI projects, and open-source developer tools. Passionate about creating practical software with modern web technologies, Python, and machine learning while continuously expanding expertise across software engineering and AI. Open to internships, junior software engineering roles, freelance opportunities, and relocation-friendly positions.
-          </p>
-        </section>
+        <!-- Document Sheet (Faithful reproduction of LaTeX resume) -->
+        <article class="resume-paper" aria-label="Resume of Saqib Bedar">
+          <!-- HEADING -->
+          <header class="resume-header">
+            <h1 class="resume-name">Saqib Bedar</h1>
+            <p class="resume-location">Islamabad, Pakistan (Open to Remote · UTC+5)</p>
+            <div class="resume-contact-line">
+              <span>+92-3053721981</span>
+              <span class="sep">|</span>
+              <a href="mailto:chandio.saqib.m@gmail.com">chandio.saqib.m@gmail.com</a>
+              <span class="sep">|</span>
+              <a href="https://linkedin.com/in/saqibbedar" target="_blank" rel="noreferrer">linkedin.com/in/saqibbedar</a>
+              <span class="sep">|</span>
+              <a href="https://github.com/saqibbedar" target="_blank" rel="noreferrer">github.com/saqibbedar</a>
+            </div>
+            <div class="resume-site-line">
+              <a href="https://saqibbedar.github.io" target="_blank" rel="noreferrer">saqibbedar.github.io</a>
+            </div>
+          </header>
 
-        <!-- skills -->
-        <section class="resume-section" aria-labelledby="skills-heading">
-          <h2 id="skills-heading">Skills</h2>
-          <dl class="skill-rows">
-            <div class="skill-row">
-              <dt>Full-stack web</dt>
-              <dd>
-                React, JavaScript, Node.js, Express, MongoDB, MySQL, Tailwind
-                CSS, REST APIs, Authentication
-              </dd>
-            </div>
-            <div class="skill-row">
-              <dt>Python &amp; AI</dt>
-              <dd>Python, PyTorch, Computer Vision, NumPy, FastAPI</dd>
-            </div>
-            <div class="skill-row">
-              <dt>Engineering tools</dt>
-              <dd>Git, GitHub, Linux, Docker, C++, Documentation</dd>
-            </div>
-          </dl>
-        </section>
-
-        <!-- experience -->
-        <section class="resume-section" aria-labelledby="experience-heading">
-          <h2 id="experience-heading">Experience</h2>
-
-          <article class="resume-entry">
-            <div class="resume-entry-head">
-              <h3>
-                Front-End Developer Intern ·
-                <span class="resume-org">College of Army Education (CAE)</span>
-              </h3>
-              <span class="resume-date">2025</span>
-            </div>
-            <p>
-              Completed an 8-week front-end development internship, building
-              user interfaces and strengthening practical experience through
-              real-world software development.
+          <!-- PROFESSIONAL SUMMARY -->
+          <section class="resume-section" aria-labelledby="sec-summary">
+            <h2 id="sec-summary" class="resume-section-title">Professional Summary</h2>
+            <p class="resume-summary-text">
+              Python and full-stack engineer (3+ years in web) scaling into ML application development: secure FastAPI/MERN backends and PyTorch vision-language research. Self-directed, async-first and documentation-led, working remotely from UTC+5.
             </p>
-          </article>
+          </section>
 
-          <article class="resume-entry">
-            <div class="resume-entry-head">
-              <h3>
-                Git &amp; GitHub Workshop Instructor ·
-                <span class="resume-org">MLSA QAU</span>
-              </h3>
-              <span class="resume-date">2024</span>
+          <!-- TECHNICAL SKILLS -->
+          <section class="resume-section" aria-labelledby="sec-skills">
+            <h2 id="sec-skills" class="resume-section-title">Technical Skills</h2>
+            <ul class="resume-skills-list">
+              <li><strong>Languages:</strong> Python, JavaScript, C++</li>
+              <li><strong>Backend Development:</strong> FastAPI, Pydantic, REST API Design, Node.js, Express, JWT, Role-Based Access Control</li>
+              <li><strong>Data &amp; Machine Learning:</strong> MongoDB, MySQL, PyTorch, NumPy, Pandas, Computer Vision, Transfer Learning</li>
+              <li><strong>Tools &amp; Testing:</strong> uv, Ruff, pytest, Git, GitHub Actions, GitLab, Linux, Docker</li>
+              <li><strong>Spoken Languages:</strong> English (Professional Proficiency), Urdu (Native), Sindhi (Native)</li>
+            </ul>
+          </section>
+
+          <!-- PROJECTS & RESEARCH -->
+          <section class="resume-section" aria-labelledby="sec-projects">
+            <h2 id="sec-projects" class="resume-section-title">Projects &amp; Research</h2>
+
+            <div class="resume-entry">
+              <div class="resume-row resume-row-split">
+                <div class="resume-row-left">
+                  <strong class="resume-item-title"><a href="../projects/uv-jepa.html">UV-JEPA (Final-Year Research, WIP)</a></strong>
+                  <span class="sep">|</span>
+                  <em class="resume-item-meta">PyTorch, ViT-Small, RoBERTa, JEPA</em>
+                </div>
+                <div class="resume-row-right">
+                  <span class="resume-date">2026 – Present</span>
+                </div>
+              </div>
+              <ul class="resume-bullet-list">
+                <li>Building a latent-predictive (JEPA) vision-language model for Urdu, a low-resource language, under data-constrained training on a 59K-image / 319K-caption corpus.</li>
+                <li>Implementing dual encoders (ViT-Small, RoBERTa) with an EMA-updated target text encoder and a cross-attention predictor optimized via normalized latent regression, avoiding autoregressive decoding errors.</li>
+              </ul>
             </div>
-            <p>
-              Led multiple workshops introducing students to version
-              control, Git workflows, repository management, essential Git
-              commands, and GitHub Pages deployment.
-            </p>
-          </article>
-        </section>
 
-        <!-- projects -->
-        <section class="resume-section" aria-labelledby="projects-heading">
-          <h2 id="projects-heading">Projects</h2>
-
-          <article class="resume-entry">
-            <div class="resume-entry-head">
-              <h3>
-                <a
-                  href="../projects/01_date_fruit_classification.html"
-                  >Date Fruit Classification</a
-                >
-              </h3>
+            <div class="resume-entry">
+              <div class="resume-row resume-row-split">
+                <div class="resume-row-left">
+                  <strong class="resume-item-title"><a href="../projects/online-student-portal-system.html">MERN Student Portal Monorepo</a></strong>
+                  <span class="sep">|</span>
+                  <em class="resume-item-meta">Node.js, Express, React, MongoDB</em>
+                </div>
+                <div class="resume-row-right">
+                  <span class="resume-date">Dec 2025</span>
+                </div>
+              </div>
+              <ul class="resume-bullet-list">
+                <li>Architected a 4-role RBAC university portal (Master Admin, Department Admin, Faculty, Student) on a modular Model-View-Controller backend, delivered as production client work.</li>
+                <li>Implemented server-side HTTP-only cookie authentication with JWT refresh rotation and a FIFO concurrent-session eviction algorithm capped at 3 sessions per user.</li>
+                <li>Built rate-limited email OTP recovery (3 per day, 2-minute cooldown) and hard-delete operations that run referential-integrity validation before removal.</li>
+              </ul>
             </div>
-            <p>
-              Computer vision project comparing ResNet-50 transfer learning
-              with a custom CNN, covering dataset preparation, training,
-              evaluation, and deployment through a PyTorch-powered web
-              inference app.
-            </p>
-            <p class="resume-meta">
-              93.96% test accuracy · 7,000 images · 10 classes · ResNet-50 ·
-              PyTorch
-            </p>
-          </article>
 
-          <article class="resume-entry">
-            <div class="resume-entry-head">
-              <h3><a href="../projects/02_bxp_code.html">bxp-code</a></h3>
+            <div class="resume-entry">
+              <div class="resume-row resume-row-split">
+                <div class="resume-row-left">
+                  <strong class="resume-item-title"><a href="../projects/fluent-python.html">Fluent-Python: CI/CD Testing Ground</a></strong>
+                  <span class="sep">|</span>
+                  <em class="resume-item-meta">Python 3.12+, uv, Ruff, pytest</em>
+                </div>
+                <div class="resume-row-right">
+                  <span class="resume-date">2025 – Present</span>
+                </div>
+              </div>
+              <ul class="resume-bullet-list">
+                <li>Run a production-style pipeline testbed demonstrating branch protection, local automation scripts, and multi-stage CI/CD workflows on protected branches.</li>
+                <li>Maintain an open-source Python engineering curriculum (language internals, OOP, async, LLM integrations) with uv environments, Ruff linting, and automated pytest suites.</li>
+              </ul>
             </div>
-            <p>
-              A drop-in React code block package powered by Shiki and
-              Prettier, providing syntax highlighting, automatic formatting,
-              copy-to-clipboard support, and TypeScript-first APIs with zero
-              configuration.
-            </p>
-            <p class="resume-meta">React · TypeScript · Shiki · Prettier</p>
-          </article>
 
-          <article class="resume-entry">
-            <div class="resume-entry-head">
-              <h3><a href="../projects/03_bedarx_pro.html">BedarX Pro</a></h3>
+            <div class="resume-entry">
+              <div class="resume-row resume-row-split">
+                <div class="resume-row-left">
+                  <strong class="resume-item-title"><a href="../projects/date-fruit-classification.html">Date-Fruit Classification</a></strong>
+                  <span class="sep">|</span>
+                  <em class="resume-item-meta">PyTorch, Custom CNN, ResNet-50</em>
+                </div>
+                <div class="resume-row-right">
+                  <span class="resume-date">2024</span>
+                </div>
+              </div>
+              <ul class="resume-bullet-list">
+                <li>Designed a custom 4-block PyTorch CNN and benchmarked it against a ResNet-50 transfer-learning backbone on 7,000 images across 10 classes, reaching 96.38% test accuracy; deployed as a real-time PyTorch inference web app.</li>
+              </ul>
             </div>
-            <p>
-              A Visual Studio Code theme extension designed for readable
-              syntax, polished semantic highlighting, and multiple dark/light
-              variants for comfortable long coding sessions.
-            </p>
-            <p class="resume-meta">
-              JavaScript · Node.js · VS Code API · Developer tools
-            </p>
-          </article>
-        </section>
+          </section>
 
-        <!-- education -->
-        <section class="resume-section" aria-labelledby="education-heading">
-          <h2 id="education-heading">Education</h2>
+          <!-- EXPERIENCE -->
+          <section class="resume-section" aria-labelledby="sec-experience">
+            <h2 id="sec-experience" class="resume-section-title">Experience</h2>
 
-          <article class="resume-entry">
-            <div class="resume-entry-head">
-              <h3>
-                BS Computer Science ·
-                <span class="resume-org"
-                  >Quaid-i-Azam University, Islamabad</span
-                >
-              </h3>
-              <span class="resume-date">2023 – Present</span>
+            <div class="resume-entry">
+              <div class="resume-row resume-row-split">
+                <div class="resume-row-left">
+                  <strong class="resume-item-title">Teaching Assistant, Web Application Development</strong>
+                </div>
+                <div class="resume-row-right">
+                  <span class="resume-date">Sep 2024 – Present</span>
+                </div>
+              </div>
+              <div class="resume-row resume-row-split resume-row-sub">
+                <div class="resume-row-left">
+                  <em class="resume-item-meta">Quaid-i-Azam University</em>
+                </div>
+                <div class="resume-row-right">
+                  <em class="resume-loc">Islamabad, Pakistan</em>
+                </div>
+              </div>
+              <ul class="resume-bullet-list">
+                <li>Instructing 35+ students across practical laboratory sessions focused on Git version control workflows, REST API consumption, and OpenAI/Gemini SDK integrations.</li>
+              </ul>
             </div>
-            <p class="resume-meta">
-              Data Structures, Algorithms, Operating Systems, Database
-              Systems, Computer Networks, Artificial Intelligence, Computer
-              Vision, Theory of Automata
+
+            <div class="resume-entry">
+              <div class="resume-row resume-row-split">
+                <div class="resume-row-left">
+                  <strong class="resume-item-title">Front-End Developer Intern</strong>
+                </div>
+                <div class="resume-row-right">
+                  <span class="resume-date">2025</span>
+                </div>
+              </div>
+              <div class="resume-row resume-row-split resume-row-sub">
+                <div class="resume-row-left">
+                  <em class="resume-item-meta">College of Army Education (CAE)</em>
+                </div>
+                <div class="resume-row-right">
+                  <em class="resume-loc">8-Week Internship</em>
+                </div>
+              </div>
+              <ul class="resume-bullet-list">
+                <li>Delivered responsive production interfaces within an 8-week cycle using a modern JavaScript/React stack.</li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- EDUCATION -->
+          <section class="resume-section" aria-labelledby="sec-education">
+            <h2 id="sec-education" class="resume-section-title">Education</h2>
+
+            <div class="resume-entry">
+              <div class="resume-row resume-row-split">
+                <div class="resume-row-left">
+                  <strong class="resume-item-title">Quaid-i-Azam University</strong>
+                </div>
+                <div class="resume-row-right">
+                  <span class="resume-loc">Islamabad, Pakistan</span>
+                </div>
+              </div>
+              <div class="resume-row resume-row-split resume-row-sub">
+                <div class="resume-row-left">
+                  <em class="resume-item-meta">BS in Computer Science</em>
+                </div>
+                <div class="resume-row-right">
+                  <span class="resume-date">2023 – June 2027 (Expected)</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- COMMUNITY & WRITING -->
+          <section class="resume-section" aria-labelledby="sec-community">
+            <h2 id="sec-community" class="resume-section-title">Community &amp; Writing</h2>
+            <p class="resume-community-line">
+              <span>Speaker: MLSA QAU (2024), AutoMind Community (2026)</span>
+              <span class="sep">|</span>
+              <span>Author: <a href="../projects/gitcraft.html">Gitcraft</a>, 33-page Git documentation site</span>
             </p>
-          </article>
-        </section>
+          </section>
 
-        <!-- courses & certificates -->
-        <section class="resume-section" aria-labelledby="courses-heading">
-          <h2 id="courses-heading">Courses &amp; Certificates</h2>
-          <ul class="course-list">
-            <li class="course-row">
-              <div class="course-main">
-                <a
-                  href="https://www.coursera.org/learn/introduction-to-networking-nvidia"
-                  target="_blank"
-                  rel="noreferrer"
-                  >Introduction to Networking</a
-                >
-                <span class="course-org">NVIDIA</span>
-              </div>
-              <div class="course-meta">
-                <span class="course-date">May 2025</span>
-                <a
-                  class="course-verify"
-                  href="https://www.coursera.org/account/accomplishments/verify/STE2IL1GQHT8"
-                  target="_blank"
-                  rel="noreferrer"
-                  >Verify</a
-                >
-              </div>
-            </li>
+          <!-- COURSES & CERTIFICATES (AT THE VERY BOTTOM) -->
+          <section class="resume-section" aria-labelledby="sec-certificates">
+            <h2 id="sec-certificates" class="resume-section-title">Courses &amp; Certificates</h2>
+            <ul class="resume-certs-list">
+              <li class="resume-cert-row">
+                <div class="cert-left">
+                  <a
+                    href="https://www.coursera.org/learn/introduction-to-networking-nvidia"
+                    target="_blank"
+                    rel="noreferrer"
+                    class="cert-title"
+                    >Introduction to Networking</a
+                  >
+                  <span class="cert-org">NVIDIA</span>
+                </div>
+                <div class="cert-right">
+                  <span class="cert-date">May 2025</span>
+                  <a
+                    class="cert-verify"
+                    href="https://www.coursera.org/account/accomplishments/verify/STE2IL1GQHT8"
+                    target="_blank"
+                    rel="noreferrer"
+                    >Verify</a
+                  >
+                </div>
+              </li>
 
-            <li class="course-row">
-              <div class="course-main">
-                <a
-                  href="https://www.coursera.org/learn/codio-cpp-basics"
-                  target="_blank"
-                  rel="noreferrer"
-                  >C++ Basics: Selection and Iteration</a
-                >
-                <span class="course-org">Codio</span>
-              </div>
-              <div class="course-meta">
-                <span class="course-date">March 2025</span>
-                <a
-                  class="course-verify"
-                  href="https://www.coursera.org/account/accomplishments/verify/8U8LJ8IUCOM0"
-                  target="_blank"
-                  rel="noreferrer"
-                  >Verify</a
-                >
-              </div>
-            </li>
+              <li class="resume-cert-row">
+                <div class="cert-left">
+                  <a
+                    href="https://www.coursera.org/learn/codio-cpp-basics"
+                    target="_blank"
+                    rel="noreferrer"
+                    class="cert-title"
+                    >C++ Basics: Selection and Iteration</a
+                  >
+                  <span class="cert-org">Codio</span>
+                </div>
+                <div class="cert-right">
+                  <span class="cert-date">March 2025</span>
+                  <a
+                    class="cert-verify"
+                    href="https://www.coursera.org/account/accomplishments/verify/8U8LJ8IUCOM0"
+                    target="_blank"
+                    rel="noreferrer"
+                    >Verify</a
+                  >
+                </div>
+              </li>
 
-            <li class="course-row">
-              <div class="course-main">
-                <a
-                  href="https://www.coursera.org/learn/linux-and-sql"
-                  target="_blank"
-                  rel="noreferrer"
-                  >Tools of the Trade: Linux and SQL</a
-                >
-                <span class="course-org">Google</span>
-              </div>
-              <div class="course-meta">
-                <span class="course-date">May 2025</span>
-                <a
-                  class="course-verify"
-                  href="https://www.coursera.org/account/accomplishments/verify/R6LB11EHN9UB"
-                  target="_blank"
-                  rel="noreferrer"
-                  >Verify</a
-                >
-              </div>
-            </li>
+              <li class="resume-cert-row">
+                <div class="cert-left">
+                  <a
+                    href="https://www.coursera.org/learn/linux-and-sql"
+                    target="_blank"
+                    rel="noreferrer"
+                    class="cert-title"
+                    >Tools of the Trade: Linux and SQL</a
+                  >
+                  <span class="cert-org">Google</span>
+                </div>
+                <div class="cert-right">
+                  <span class="cert-date">May 2025</span>
+                  <a
+                    class="cert-verify"
+                    href="https://www.coursera.org/account/accomplishments/verify/R6LB11EHN9UB"
+                    target="_blank"
+                    rel="noreferrer"
+                    >Verify</a
+                  >
+                </div>
+              </li>
 
-            <li class="course-row">
-              <div class="course-main">
-                <a
-                  href="https://www.coursera.org/account/accomplishments/verify/F2AZEBXWRDJB"
-                  target="_blank"
-                  rel="noreferrer"
-                  >Google AI Essentials</a
-                >
-                <span class="course-org">Google</span>
-              </div>
-              <div class="course-meta">
-                <span class="course-date">August 2024</span>
-                <a
-                  class="course-verify"
-                  href="https://www.coursera.org/account/accomplishments/verify/F2AZEBXWRDJB"
-                  target="_blank"
-                  rel="noreferrer"
-                  >Verify</a
-                >
-              </div>
-            </li>
+              <li class="resume-cert-row">
+                <div class="cert-left">
+                  <a
+                    href="https://www.coursera.org/account/accomplishments/verify/F2AZEBXWRDJB"
+                    target="_blank"
+                    rel="noreferrer"
+                    class="cert-title"
+                    >Google AI Essentials</a
+                  >
+                  <span class="cert-org">Google</span>
+                </div>
+                <div class="cert-right">
+                  <span class="cert-date">August 2024</span>
+                  <a
+                    class="cert-verify"
+                    href="https://www.coursera.org/account/accomplishments/verify/F2AZEBXWRDJB"
+                    target="_blank"
+                    rel="noreferrer"
+                    >Verify</a
+                  >
+                </div>
+              </li>
 
-            <li class="course-row">
-              <div class="course-main">
-                <a
-                  href="https://www.coursera.org/learn/programming-with-javascript"
-                  target="_blank"
-                  rel="noreferrer"
-                  >Programming with JavaScript</a
-                >
-                <span class="course-org">Meta</span>
-              </div>
-              <div class="course-meta">
-                <span class="course-date">August 2023</span>
-                <a
-                  class="course-verify"
-                  href="https://www.coursera.org/account/accomplishments/verify/VJRPL5PDANHH"
-                  target="_blank"
-                  rel="noreferrer"
-                  >Verify</a
-                >
-              </div>
-            </li>
-          </ul>
-        </section>
+              <li class="resume-cert-row">
+                <div class="cert-left">
+                  <a
+                    href="https://www.coursera.org/learn/programming-with-javascript"
+                    target="_blank"
+                    rel="noreferrer"
+                    class="cert-title"
+                    >Programming with JavaScript</a
+                  >
+                  <span class="cert-org">Meta</span>
+                </div>
+                <div class="cert-right">
+                  <span class="cert-date">August 2023</span>
+                  <a
+                    class="cert-verify"
+                    href="https://www.coursera.org/account/accomplishments/verify/VJRPL5PDANHH"
+                    target="_blank"
+                    rel="noreferrer"
+                    >Verify</a
+                  >
+                </div>
+              </li>
+            </ul>
+          </section>
+        </article>
       </main>
 
       <footer class="site-footer">

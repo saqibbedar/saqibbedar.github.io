@@ -1,300 +1,538 @@
 /* ==========================================================================
-   Resume — content-centric, minimal layout
-   Depends on design tokens and base/chrome styles from global.css
+   Resume — LaTeX Jake Gutierrez / sb2nov Reproduction
+   Compact, ATS-structured layout directly mirroring assets/resume.tex
    ========================================================================== */
 
 .resume {
-  padding: 2.75rem 1.25rem 3rem;
+  padding: 2rem 1.25rem 3.5rem;
 }
 
 /* -------------------------------------------------------------------------
-   Header: name, role, contact line
+   Top Toolbar: Single direct Download PDF button
    ------------------------------------------------------------------------- */
 
-.resume-header {
+.resume-toolbar {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 1rem 1.5rem;
-  padding-bottom: 1.35rem;
-  margin-bottom: 1.75rem;
-  border-bottom: 2px solid var(--rule-strong);
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 1.25rem;
 }
 
-.resume-heading h1 {
-  color: var(--ink);
-  font-family: var(--font-serif);
-  font-size: clamp(1.9rem, 5vw, 2.35rem);
-  font-weight: 500;
-  letter-spacing: -0.01em;
+.btn-action.btn-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.95rem;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  background: var(--ink);
+  color: var(--bg);
+  border: 1px solid var(--ink);
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s ease;
 }
 
-.resume-role {
-  margin-top: 0.3rem;
-  color: var(--ink-2);
-  font-size: 0.95rem;
-}
-
-.resume-contact {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.3rem 1.1rem;
-  font-size: 0.85rem;
-  color: var(--ink-2);
-}
-
-.resume-contact a {
-  color: var(--accent);
+.btn-action.btn-download:hover {
+  opacity: 0.88;
   text-decoration: none;
 }
 
-.resume-contact a:hover {
-  text-decoration: underline;
+/* -------------------------------------------------------------------------
+   Resume Paper Sheet (LaTeX reproduction)
+   ------------------------------------------------------------------------- */
+
+.resume-paper {
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 2.75rem 2.5rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
-.resume-contact .resume-download {
+/* Header */
+.resume-header {
+  text-align: center;
+  margin-bottom: 1.15rem;
+  padding-bottom: 0.5rem;
+}
+
+.resume-name {
+  font-family: var(--font-sans);
+  font-size: 2.15rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  font-variant: small-caps;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1.1;
+  margin-bottom: 0.35rem;
+}
+
+.resume-location {
+  font-size: 0.88rem;
+  color: var(--ink-2);
+  margin-bottom: 0.35rem;
+}
+
+.resume-contact-line,
+.resume-site-line {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem 0.55rem;
+  font-size: 0.84rem;
+  color: var(--ink-2);
+  margin-bottom: 0.2rem;
+}
+
+.resume-contact-line a,
+.resume-site-line a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  text-decoration-color: var(--rule-strong);
+}
+
+.resume-contact-line a:hover,
+.resume-site-line a:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+.sep {
+  color: var(--ink-3);
+  font-weight: 300;
+  user-select: none;
+}
+
+/* Section titles with crisp LaTeX \titlerule */
+.resume-section {
+  margin-top: 1.15rem;
+}
+
+.resume-section-title {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 750;
+  font-variant: small-caps;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+  border-bottom: 1.5px solid var(--ink);
+  padding-bottom: 0.18rem;
+  margin-bottom: 0.55rem;
+}
+
+:root[data-theme="dark"] .resume-section-title {
+  border-bottom-color: var(--ink);
+}
+
+/* Summary */
+.resume-summary-text {
+  font-size: 0.88rem;
+  color: var(--ink-2);
+  line-height: 1.55;
+  margin-top: 0.35rem;
+}
+
+/* Technical Skills */
+.resume-skills-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.35rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.resume-skills-list li {
+  font-size: 0.86rem;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+
+.resume-skills-list li strong {
+  color: var(--ink);
   font-weight: 650;
 }
 
-/* -------------------------------------------------------------------------
-   Sections
-   ------------------------------------------------------------------------- */
-
-.resume-section {
-  padding: 1.5rem 0;
-  border-bottom: 1px solid var(--rule);
+/* Entries: Projects, Experience, Education */
+.resume-entry {
+  margin-top: 0.75rem;
 }
 
-.resume-section:last-of-type {
-  padding-bottom: 0;
-  border-bottom: 0;
+.resume-entry:first-of-type {
+  margin-top: 0.45rem;
 }
 
-.resume-section h2 {
-  margin-bottom: 0.9rem;
-  color: var(--ink-3);
-  font-size: 0.78rem;
-  font-weight: 750;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-}
-
-.resume-section > p {
-  max-width: 42rem;
-  color: var(--ink-2);
-  font-size: 0.95rem;
-  line-height: 1.7;
-}
-
-/* -------------------------------------------------------------------------
-   Entries: experience, projects, education
-   ------------------------------------------------------------------------- */
-
-.resume-entry + .resume-entry {
-  margin-top: 1.4rem;
-}
-
-.resume-entry-head {
+.resume-row {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: baseline;
-  gap: 0.25rem 1rem;
+  gap: 0.5rem 1rem;
 }
 
-.resume-entry-head h3 {
+.resume-row-sub {
+  margin-top: 0.1rem;
+}
+
+.resume-item-title {
+  font-size: 0.89rem;
+  font-weight: 700;
   color: var(--ink);
-  font-size: 0.98rem;
-  font-weight: 650;
 }
 
-.resume-entry-head h3 a {
+.resume-item-title a {
   color: var(--ink);
   text-decoration: none;
 }
 
-.resume-entry-head h3 a:hover {
+.resume-item-title a:hover {
   color: var(--accent);
   text-decoration: underline;
 }
 
-.resume-org {
-  font-weight: 500;
+.resume-item-meta {
+  font-size: 0.84rem;
+  font-style: italic;
   color: var(--ink-2);
 }
 
 .resume-date {
-  flex: 0 0 auto;
-  color: var(--ink-3);
-  font-size: 0.8rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+  font-feature-settings: "tnum";
+}
+
+.resume-loc {
+  font-size: 0.83rem;
+  font-style: italic;
+  color: var(--ink-2);
   white-space: nowrap;
 }
 
-.resume-entry p {
-  max-width: 42rem;
-  margin-top: 0.35rem;
+/* Bullet list (LaTeX \resumeItemListStart) */
+.resume-bullet-list {
+  list-style-type: disc;
+  margin-left: 1.35rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.resume-bullet-list li {
+  font-size: 0.85rem;
+  line-height: 1.48;
   color: var(--ink-2);
-  font-size: 0.92rem;
-  line-height: 1.65;
+  margin-bottom: 0.2rem;
 }
 
-.resume-meta {
-  margin-top: 0.35rem;
+.resume-bullet-list li::marker {
   color: var(--ink-3);
-  font-size: 0.82rem;
-  line-height: 1.6;
+  font-size: 0.75em;
 }
 
-.resume-meta a {
-  color: var(--accent);
-  text-decoration: none;
+/* Community & Writing */
+.resume-community-line {
+  font-size: 0.87rem;
+  color: var(--ink-2);
+  line-height: 1.55;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.65rem;
+  margin-top: 0.35rem;
 }
 
-.resume-meta a:hover {
+.resume-community-line a {
+  color: var(--ink);
+  font-weight: 600;
   text-decoration: underline;
 }
 
-/* -------------------------------------------------------------------------
-   Skills: label / value rows
-   ------------------------------------------------------------------------- */
-
-.skill-rows {
-  display: grid;
-  gap: 0.65rem;
+.resume-community-line a:hover {
+  color: var(--accent);
 }
 
-.skill-row {
-  display: grid;
-  grid-template-columns: 11rem 1fr;
-  gap: 0.5rem 1rem;
-}
-
-.skill-row dt {
-  color: var(--ink);
-  font-size: 0.88rem;
-  font-weight: 650;
-}
-
-.skill-row dd {
-  color: var(--ink-2);
-  font-size: 0.9rem;
-  line-height: 1.6;
-}
-
-/* -------------------------------------------------------------------------
-   Courses & certificates: compact list
-   ------------------------------------------------------------------------- */
-
-.course-list {
+/* Courses & Certifications (at bottom) */
+.resume-certs-list {
   list-style: none;
+  padding: 0;
+  margin: 0.4rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
 }
 
-.course-row {
+.resume-cert-row {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: baseline;
-  gap: 0.2rem 1rem;
-  padding: 0.55rem 0;
-  border-bottom: 1px solid var(--rule);
-  font-size: 0.88rem;
+  gap: 0.5rem 1rem;
+  padding: 0.25rem 0;
+  border-bottom: 1px dotted var(--rule);
+  font-size: 0.85rem;
 }
 
-.course-row:last-child {
-  border-bottom: 0;
+.resume-cert-row:last-child {
+  border-bottom: none;
 }
 
-.course-main {
+.cert-title {
+  font-weight: 600;
   color: var(--ink);
+  text-decoration: none;
 }
 
-.course-main a {
-  color: var(--ink);
+.cert-title:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.cert-org {
+  color: var(--ink-2);
+  margin-left: 0.35rem;
+  font-size: 0.82rem;
+}
+
+.cert-right {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  white-space: nowrap;
+}
+
+.cert-date {
+  color: var(--ink-3);
+  font-size: 0.8rem;
+}
+
+.cert-verify {
+  color: var(--accent);
+  font-size: 0.8rem;
   font-weight: 600;
   text-decoration: none;
 }
 
-.course-main a:hover {
-  color: var(--accent);
-  text-decoration: underline;
-}
-
-.course-org {
-  margin-left: 0.4rem;
-  color: var(--ink-2);
-  font-size: 0.85rem;
-}
-
-.course-meta {
-  display: flex;
-  flex: 0 0 auto;
-  align-items: baseline;
-  gap: 0.75rem;
-}
-
-.course-date {
-  color: var(--ink-3);
-  font-size: 0.78rem;
-  white-space: nowrap;
-}
-
-.course-verify {
-  color: var(--accent);
-  font-size: 0.78rem;
-  text-decoration: none;
-}
-
-.course-verify:hover {
+.cert-verify:hover {
   text-decoration: underline;
 }
 
 /* -------------------------------------------------------------------------
-   Responsive
+   Responsive (Mobile & Tablet)
    ------------------------------------------------------------------------- */
 
-@media (max-width: 620px) {
-  .skill-row {
-    grid-template-columns: 1fr;
+@media (max-width: 680px) {
+  .resume {
+    padding: 1.25rem 0.85rem 2.5rem;
+  }
+
+  .resume-toolbar {
+    margin-bottom: 1rem;
+  }
+
+  .btn-action.btn-download {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .resume-paper {
+    padding: 1.5rem 1rem;
+  }
+
+  .resume-name {
+    font-size: 1.65rem;
+  }
+
+  .resume-contact-line {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .resume-contact-line .sep {
+    display: none;
+  }
+
+  .resume-row {
+    flex-direction: column;
     gap: 0.15rem;
   }
 
-  .resume-entry-head {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.2rem;
+  .resume-row-right {
+    margin-bottom: 0.15rem;
   }
 
-  .course-row {
+  .resume-cert-row {
     flex-direction: column;
-    align-items: flex-start;
     gap: 0.15rem;
   }
 }
 
 /* -------------------------------------------------------------------------
-   Print
+   Print Stylesheet (Letter Paper & ATS 1:1)
    ------------------------------------------------------------------------- */
 
 @media print {
-  .topbar,
-  .mobile-menu,
-  .site-footer,
-  .skip-link {
-    display: none !important;
+  @page {
+    margin: 12mm 15mm;
+    size: letter;
+  }
+
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #111111 !important;
+    font-size: 10pt !important;
+    line-height: 1.45 !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   .site-frame {
-    width: auto;
-    border: 0;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
   }
 
-  body {
-    background: #ffffff;
-    color: #000000;
+  .topbar,
+  .mobile-menu,
+  .site-footer,
+  .skip-link,
+  .hide-print,
+  .resume-toolbar {
+    display: none !important;
+  }
+
+  .resume {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .resume-paper {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+
+  .resume-header {
+    margin-bottom: 0.85rem !important;
+    padding-bottom: 0.4rem !important;
+  }
+
+  .resume-name {
+    font-size: 20pt !important;
+    line-height: 1.1 !important;
+    color: #000000 !important;
+  }
+
+  .resume-location,
+  .resume-contact-line,
+  .resume-site-line {
+    font-size: 8.8pt !important;
+    color: #333333 !important;
+  }
+
+  .resume-contact-line a,
+  .resume-site-line a {
+    color: #111111 !important;
+    text-decoration: underline !important;
   }
 
   .resume-section {
-    border-bottom-color: #cccccc;
+    margin-top: 0.75rem !important;
+    break-inside: avoid;
+  }
+
+  .resume-section-title {
+    font-size: 9.5pt !important;
+    border-bottom: 1pt solid #000000 !important;
+    padding-bottom: 0.15rem !important;
+    margin-bottom: 0.35rem !important;
+    color: #000000 !important;
+  }
+
+  .resume-summary-text {
+    font-size: 9pt !important;
+    line-height: 1.45 !important;
+    color: #222222 !important;
+  }
+
+  .resume-skills-list li {
+    font-size: 8.8pt !important;
+    line-height: 1.4 !important;
+  }
+
+  .resume-entry {
+    margin-top: 0.55rem !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .resume-item-title {
+    font-size: 9.2pt !important;
+    color: #000000 !important;
+  }
+
+  .resume-item-title a {
+    color: #000000 !important;
+    text-decoration: none !important;
+  }
+
+  .resume-item-meta,
+  .resume-loc {
+    font-size: 8.5pt !important;
+    color: #333333 !important;
+  }
+
+  .resume-date {
+    font-size: 8.5pt !important;
+    color: #111111 !important;
+  }
+
+  .resume-bullet-list {
+    margin-left: 1.1rem !important;
+    margin-top: 0.2rem !important;
+    margin-bottom: 0.2rem !important;
+  }
+
+  .resume-bullet-list li {
+    font-size: 8.6pt !important;
+    line-height: 1.4 !important;
+    color: #222222 !important;
+    margin-bottom: 0.15rem !important;
+  }
+
+  .resume-community-line {
+    font-size: 8.8pt !important;
+    color: #222222 !important;
+  }
+
+  .resume-cert-row {
+    padding: 0.2rem 0 !important;
+    font-size: 8.5pt !important;
+    border-bottom: 0.5pt solid #dddddd !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .cert-verify {
+    display: none !important;
   }
 }

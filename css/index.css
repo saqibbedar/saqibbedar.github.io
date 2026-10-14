@@ -8,17 +8,17 @@
    ========================================================================== */
 
 .hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   border-bottom: 1px solid var(--rule-strong);
 }
 
 .hero-name {
   min-height: 13.9rem;
   display: flex;
-  align-items: center;
-  padding: 2.6rem 1.45rem;
-  border-right: 1px solid var(--rule-strong);
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: start;
+  gap: clamp(1rem, .5rem, 1rem);
+  padding: 1.45rem 1.2rem 0;
 }
 
 h1 {
@@ -31,11 +31,37 @@ h1 {
 }
 
 .hero-name h1 {
-  font-size: clamp(3.4rem, 8vw, 3.85rem);
+  margin-top: 15px;
+  font-size: clamp(1.5rem, 8vw, 2rem);
+  order: 2;
 }
 
+.hero-name p {
+  color: var(--ink-2);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  order: 1;
+}
+
+/* .hero-name p, strong {
+  font-family: var(--font-serif);
+  font-size: large;
+  line-height: 1;
+  letter-spacing: .4px;
+} */
+
+.hero-name p::after {
+  content: '';
+  display: block;
+  width: 100%;
+  padding-bottom: 1.3rem;
+  border-bottom: 1px solid var(--rule-strong);
+} 
+
 .hero-name img {
-  display: none;
+  width: clamp(70px, 20vw, 150px);
+  border-radius: 20px;
+  order: 3;
 }
 
 .hero-bio {
@@ -43,11 +69,10 @@ h1 {
   flex-direction: column;
   justify-content: center;
   gap: 1.3rem;
-  padding: 2.35rem 1.55rem;
+  padding: 1.2rem 1.2rem 1.45rem;
 }
 
 .hero-bio p {
-  max-width: 22.5rem;
   color: var(--ink-2);
   font-size: 0.98rem;
   line-height: 1.65;
@@ -359,7 +384,8 @@ h1 {
   border-right: 0;
 }
 
-.stat-grid div:nth-last-child(-n + 3) {
+.stat-grid div:nth-child(3n + 1):nth-last-child(-n + 3),
+.stat-grid div:nth-child(3n + 1):nth-last-child(-n + 3) ~ div {
   border-bottom: 0;
 }
 
@@ -408,6 +434,11 @@ h1 {
   border-color: var(--accent);
   background: var(--blue-soft);
   color: var(--accent);
+}
+
+.pill.learning {
+  border-style: dashed;
+  color: var(--ink-3);
 }
 
 /* ==========================================================================
@@ -472,23 +503,18 @@ h1 {
 
 @media (max-width: 810px) {
   .hero-name h1 {
-    display: none;
+    margin-top: 10px;
+    font-size: clamp(7vw, 2rem, 5rem);
   }
-
   .hero-name img {
-    display: block;
-    width: clamp(10vw, 60vw, 220px);
-    border-radius: 100%;
+    width: clamp(20vw, 10rem, 7rem);
   }
-
-  .hero {
-    grid-template-columns: 1fr;
-  }
-
   .hero-name {
     min-height: auto;
+    align-items: center;
     justify-content: center;
-    padding: 2.4rem 0.9rem 2.1rem;
+    gap: clamp(1.5rem, .5rem, 1.5rem);
+    padding: 2.4rem 0.9rem 0rem;
     border-right: 0;
     border-bottom: none;
     text-align: center;
