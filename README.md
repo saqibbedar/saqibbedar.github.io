@@ -1,12 +1,15 @@
 <div align="center">
   <img src="./assets/author.avif" alt="Saqib Bedar" width="140" style="border-radius:50%" />
-  <h1>Saqib Bedar — Portfolio</h1>
-  <p>A fast, single-page developer portfolio built with plain HTML, CSS, and JavaScript.</p>
+  <h1>Saqib Bedar — Portfolio & Developer Template</h1>
+  <p>A high-performance, single-page developer portfolio and reproducible template built with plain HTML, CSS, and JavaScript.</p>
 </div>
 
 <p align="center">
   <a href="https://saqibbedar.github.io">
     <img src="https://img.shields.io/badge/Live-GitHub%20Pages-111827?style=flat&labelColor=111827" alt="Live" />
+  </a>
+  <a href="https://github.com/saqibbedar/saqibbedar.github.io/actions/workflows/deploy.yml">
+    <img src="https://github.com/saqibbedar/saqibbedar.github.io/actions/workflows/deploy.yml/badge.svg" alt="Deploy Status" />
   </a>
   <a href="https://github.com/saqibbedar/saqibbedar.github.io/blob/main/LICENSE">
     <img src="https://img.shields.io/github/license/saqibbedar/saqibbedar.github.io?style=flat&color=10b981" alt="License" />
@@ -19,80 +22,131 @@
 
 ## Overview
 
-A personal portfolio site with a clean, modern UI and no build step. It presents core information — who I am, projects, skills, experience, and education — on a single page so a recruiter can review it in seconds. Individual project detail pages and an online resume page are included.
+A personal developer portfolio designed for speed, clarity, and zero maintenance overhead. It presents core engineering signals — bio, flagship projects, 5-domain skills taxonomy, verified experience, and education — on a single page so recruiters and peers can review qualifications in seconds.
 
-The site is static: no frameworks, no bundler, no dependencies to install.
+The site is **purely static**: no frameworks, no bundler, and zero dependencies to install or break over time. It also doubles as a **reproducible portfolio template** that anyone can fork and adapt.
 
-## Features
+---
 
-- Single-page layout: hero, projects, skills, experience, education, and current focus
-- Dedicated project detail pages
-- Online resume page
-- Light and dark theme with system preference detection and manual toggle
-- Responsive layout with a mobile menu
-- SEO metadata (Open Graph, Twitter Card) and JSON-LD structured data
-- Accessible markup (skip link, ARIA labels, semantic sections)
+## Key Features
+
+- **Single-Page Architecture:** Hero with sticky navigation, avatar-on-scroll indicator, experience timeline, and current focus.
+- **7 Detailed Project Case Studies:** Dedicated slug-style project pages (UV-JEPA, Fluent Python, Gitcraft, Online Student Portal System, etc.).
+- **Online Resume & PDF:** LaTeX-style typography online resume with a direct ATS-friendly PDF download button.
+- **5-Domain Skills Taxonomy:** Categorized into Python & Backend, Web & Frontend, Database & Cloud, DevOps & Tools, and AI/ML, with `.pill.learning` badges.
+- **Theming:** Clean dark and light modes with system preference auto-detection and persistent toggle.
+- **SEO & Structured Data:** Semantic HTML5, Open Graph, Twitter Cards, and schema.org `Person` JSON-LD structured data.
+- **Automated CI/CD & Security:**
+  - Automated GitHub Pages deployment on push to `main`.
+  - Tagged release pipeline on push to `release` via `.github/release.toml`.
+  - PR quality and vulnerability scanning using **Gitleaks** and **Trivy `v0.36.0`**.
+- **Developer Tooling:** Built-in [`Justfile`](Justfile) recipes and Python validation scripts for local pre-commit checks.
+
+---
 
 ## Tech Stack
 
-- HTML
-- CSS (custom properties for theming)
-- Vanilla JavaScript
+- **HTML5:** Semantic sections, accessible skip link, and ARIA labels.
+- **CSS3:** Custom properties for design tokens, `clamp()` responsive typography, and print styles.
+- **Vanilla JavaScript:** Theme switcher, avatar-on-scroll toggle, and image skeleton loaders.
+- **Automation:** Python 3.12 (`tomllib`), `just`, GitHub Actions.
 
-No frameworks, no build tools, no package manager.
+---
 
 ## Project Structure
 
-```
+```text
 .
-├── index.html                # Main single-page site
-├── assets/                   # Images (avatar, favicon)
+├── index.html                   # Main single-page portfolio
+├── assets/                      # Media assets (avatar, icons, screenshots, resume.pdf)
 ├── css/
-│   ├── global.css            # Base styles, theme variables, layout shell
-│   ├── index.css             # Homepage styles
-│   ├── projects.css          # Project detail page styles
-│   └── resume.css            # Resume page styles
+│   ├── global.css               # Design tokens, CSS variables, layout shell
+│   ├── index.css                # Homepage hero, cards, stats, timeline styles
+│   ├── projects.css             # Project detail page styles
+│   └── resume.css               # LaTeX-like typesetting and print styles
 ├── js/
-│   ├── global.js             # Theme toggle, mobile menu, shared behavior
-│   └── projects.js           # Project page behavior (image skeleton loader)
-├── projects/                 # Project detail pages
-│   ├── uv-jepa.html
-│   ├── fluent-python.html
-│   ├── gitcraft.html
-│   ├── date-fruit-classification.html
-│   ├── bxp-code.html
-│   └── bedarx-pro.html
+│   ├── global.js                # Theme toggle, mobile menu, avatar-on-scroll
+│   └── projects.js              # Image skeleton loading and UI interactions
+├── projects/                    # Individual project detail pages
+│   ├── uv-jepa.html             # Low-resource vision-language representation learning (FYP)
+│   ├── fluent-python.html       # Python language mastery and code patterns
+│   ├── gitcraft.html            # 33-page interactive Git documentation site
+│   ├── online-student-portal-system.html  # University student portal architecture
+│   ├── date-fruit-classification.html     # Computer vision classification model
+│   ├── bxp-code.html            # Developer productivity CLI
+│   └── bedarx-pro.html          # Full-stack application showcase
 ├── resume/
-│   └── resume.html           # Online resume page
-├── CHANGELOG.md
-└── LICENSE
+│   └── resume.html              # Online LaTeX-style resume page
+├── docs/
+│   └── GUIDE.md                 # Detailed template customization & workflow guide
+├── scripts/
+│   ├── validate_html_internal_links.py  # Local internal link validator
+│   └── validate_release.py              # Local TOML & asset checker
+├── .github/
+│   ├── release.toml             # Release versioning and notes config
+│   └── workflows/
+│       ├── deploy.yml           # GitHub Pages deployment on main
+│       ├── release.yml          # Automated release on release branch
+│       └── ci.yml               # PR validation, Gitleaks, and Trivy scan
+├── Justfile                     # Recipe runner (just val_html, etc.)
+├── CHANGELOG.md                 # Release history
+├── CONTRIBUTING.md              # Contribution and bug reporting guidelines
+└── LICENSE                      # MIT License
 ```
 
-## Getting Started
+---
+
+## Quickstart & Local Development
 
 Clone the repository:
-
 ```bash
 git clone https://github.com/saqibbedar/saqibbedar.github.io.git
 cd saqibbedar.github.io
 ```
 
-Run `index.html` via live server inside VS Code or open the file in your browser. The site will be accessible.
+### 1. Previewing Locally
+Run a local development server without installing external packages:
+```bash
+# Using Python
+python3 -m http.server 8000
 
-## Customize
+# Or using Docker (production-identical Nginx)
+docker run --rm -p 8080:80 -v "$PWD":/usr/share/nginx/html:ro nginx:alpine
+```
+Visit `http://localhost:8000` (or `http://localhost:8080` for Docker).
 
-- Content and metadata: edit `index.html` (hero, sections, `<meta>` tags, JSON-LD).
-- Styling and theme colors: edit the CSS custom properties in `css/global.css`.
-- Behavior: edit the scripts in `js/`.
-- Images: replace files in `assets/`.
-- Projects: add or edit pages in `projects/` and link them from the projects section in `index.html`.
+### 2. Pre-Commit Validation
+Run the test suite locally before pushing:
 
-## Deploy
+```bash
+# Using Just runner
+just val_html       # Verifies all internal page links
+just val_release    # Validates release.toml and static assets
 
-The site is static and deploys anywhere that serves static files. For GitHub Pages, publish the repository root (this repo is set up as a GitHub Pages user site).
+# Or run directly via Python
+python3 scripts/validate_html_internal_links.py
+python3 scripts/validate_release.py
+```
 
-> If you reuse this repo, remove or replace the Google Search Console verification file in the root (`google90204ddbeb9f3cf5.html`) — otherwise it verifies the site for the original owner.
+---
+
+## Using This Template
+
+Anyone is welcome to fork this repository and build their own portfolio!
+
+📖 For full, step-by-step instructions on personalizing the bio, projects, theme colors, resume, and Search Console verification, read the **[Template & Customization Guide](docs/GUIDE.md)**.
+
+---
+
+## Contributing
+
+Contributions, bug reports, and suggestions are welcome! Whether fixing a CSS bug, improving mobile accessibility, or refining the CI/CD scripts:
+
+- Please read our **[Contributing Guidelines](CONTRIBUTING.md)** for issue reporting and pull request workflows.
+- Pull requests automatically run linting and security scans via [`ci.yml`](.github/workflows/ci.yml).
+
+---
 
 ## License
 
-Released under the MIT License. Free to use and adapt — see [LICENSE](LICENSE).
+Released under the [MIT License](LICENSE). You are free to adapt, modify, and build upon this project for your own portfolio.
