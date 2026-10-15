@@ -1,13 +1,12 @@
-version = "2.1.0"
-tag = "v2.1.0"
-title = "v2.1.0 — Content Refresh & Workflow Modernization"
+version = "2.1.1"
+tag = "v2.1.1"
+title = "v2.1.1 — Developer Tooling & Template Documentation"
 description = """
-### Content Refresh & Workflow Modernization
+### Developer Tooling & Template Documentation
 
-- **Hero & Navigation**: Updated positioning to Software Engineer, added sticky topbar with avatar-on-scroll indicator, and refined CSS typography clamp ranges.
-- **Projects & Case Studies**: Restructured all project URLs to slug-style format; added UV-JEPA (Urdu Vision-Language research), Fluent Python, Gitcraft (33-page interactive guide), and Online Student Portal System case studies.
-- **Skills & Experience**: Overhauled skills taxonomy to 5 engineering domains (Python/backend first, FastAPI, PostgreSQL learning pill, GitLab, GCP). Added Teaching Assistant roles (Programming Fundamentals, Web App Development), AutoMind webinar, and MLSA workshop delivery.
-- **Resume & SEO**: Rebuilt online resume page mirroring clean LaTeX typesetting with print-ready CSS and direct ATS-friendly PDF download; synchronized Person JSON-LD structured data and sitemap.
-- **UI Fixes**: Resolved stat-grid bottom border selector and layout spacing, and fixed image skeleton loader hydration.
-- **CI/CD Modernization**: Decoupled deployment (GitHub Pages on push to main) from releases (automated on push to release via release.toml), and added pull request quality and security scanning.
+- **Template Documentation**: Added comprehensive `docs/GUIDE.md` detailing how to adapt, customize, and deploy this portfolio template.
+- **Contribution Guidelines**: Added `CONTRIBUTING.md` outlining bug reporting, accessibility best practices, local testing, and pull request workflows.
+- **README Overhaul**: Completely updated `README.md` with modernized badges, updated file tree, local preview options (Python and Docker), and developer guides.
+- **Local Developer Tooling**: Added `Justfile` automation (`val_html`, `val_release`) backed by modular Python verification scripts in `scripts/`.
+- **CI/CD Architecture**: Decoupled GitHub Pages deployments (push to `main`) from release automation (push to `release`), with automated pull request security audits via Gitleaks and Trivy `v0.36.0`.
 """

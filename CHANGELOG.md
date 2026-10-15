@@ -2,6 +2,28 @@
 
 All notable changes to this project are documented in this file.
 
+## [v2.1.1] 2026-10-15
+
+Summary: Developer tooling, template reproducibility guide, contribution guidelines, and CI/CD security scanning
+
+### Documentation & Reproducibility
+- Added `docs/GUIDE.md`: Step-by-step developer guide for customizing the portfolio, configuring design tokens, adding project case studies, updating SEO/JSON-LD, and deploying.
+- Added `CONTRIBUTING.md`: Issue reporting standards, bug triage guidelines, code of conduct, and pull request workflows.
+- Overhauled `README.md`: Modernized layout with build status badges, quickstart instructions, Docker preview commands, and clear references to template guides.
+
+### Developer Tooling
+- Added `Justfile` recipe runner (`just val_html`, `just val_release`) for standardized local development and pre-push testing.
+- Added modular Python verification scripts in `scripts/`:
+  - `scripts/validate_html_internal_links.py`: Detects missing local page targets across root, `projects/`, and `resume/`.
+  - `scripts/validate_release.py`: Validates `.github/release.toml` schema and verifies presence of all critical static publishing assets.
+
+### CI/CD & Security Hardening
+- Decoupled deployment from release automation into two independent, least-privilege workflows.
+- `deploy.yml`: Deploys directly to GitHub Pages on every push to `main`.
+- `release.yml`: Automated GitHub release pipeline triggered strictly on push to `release` branch, driven by `.github/release.toml` via a native Python `tomllib` parser.
+- `ci.yml`: Automated pull request CI workflow running validation checks, secret leak detection (Gitleaks), and vulnerability/misconfiguration scanning (Trivy `v0.36.0`).
+- Streamlined `.gitignore` for the pure static architecture.
+
 ## [v2.1.0] 2026-10-14
 
 Summary: Comprehensive content refresh, slug-style project URLs, resume LaTeX overhaul, and workflow modernization
@@ -126,6 +148,7 @@ Summary: Initial Release
 - Initial release of the portfolio website.
 - Core frontend and backend setup with contact integration.
 
+[v2.1.1]: https://github.com/saqibbedar/saqibbedar.github.io/releases/tag/v2.1.1
 [v2.1.0]: https://github.com/saqibbedar/saqibbedar.github.io/releases/tag/v2.1.0
 [v2.0.2]: https://github.com/saqibbedar/saqibbedar.github.io/releases/tag/v2.0.2
 [v2.0.1]: https://github.com/saqibbedar/saqibbedar.github.io/releases/tag/v2.0.1
