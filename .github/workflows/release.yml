@@ -1,0 +1,141 @@
+# Workflow: Release Automation
+# Runs strictly on push to the release branch (and manual workflow_dispatch) with write permissions.
+name: Release Automation
+
+on:
+  push:
+    branches: [release]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Evaluate & Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history and all tags for accurate change detection
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Parse release metadata and evaluate trigger condition
+        id: parse_release
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          python3 - << 'EOF'
+          import os
+          import subprocess
+          import sys
+          import tomllib
+
+          release_file = ".github/release.toml"
+          if not os.path.exists(release_file):
+              print(f"::error::Required release configuration file '{release_file}' not found.")
+              sys.exit(1)
+
+          try:
+              with open(release_file, "rb") as f:
+                  cur = tomllib.load(f)
+          except Exception as exc:
+              print(f"::error::Failed to parse {release_file}: {exc}")
+              sys.exit(1)
+
+          version = cur.get("version", "").strip()
+          tag = cur.get("tag", "").strip() or (f"v{version}" if version else "")
+          title = cur.get("title", "").strip() or tag
+          body = cur.get("description", "").strip()
+
+          if not version or not tag:
+              print("::error::Both 'version' and 'tag' must be specified in .github/release.toml")
+              sys.exit(1)
+
+          # Check if tag already exists in the repository
+          tag_check = subprocess.run(
+              ["git", "rev-parse", f"refs/tags/{tag}"],
+              capture_output=True,
+              text=True
+          )
+          tag_exists = (tag_check.returncode == 0)
+
+          # Detect changes in release.toml against previous commit
+          base_ref = os.environ.get("BEFORE_SHA", "").strip()
+          if not base_ref or base_ref == "0000000000000000000000000000000000000000":
+              base_ref = "HEAD~1"
+
+          version_changed = True
+          file_changed = True
+          try:
+              prev_raw = subprocess.check_output(
+                  ["git", "show", f"{base_ref}:{release_file}"],
+                  stderr=subprocess.DEVNULL
+              )
+              prev = tomllib.loads(prev_raw.decode("utf-8"))
+              version_changed = (cur.get("version") != prev.get("version"))
+              file_changed = (cur != prev)
+          except Exception:
+              # File did not exist in base commit or base commit unavailable
+              version_changed = True
+              file_changed = True
+
+          event_name = os.environ.get("EVENT_NAME", "")
+          is_manual = (event_name == "workflow_dispatch")
+
+          create_release = False
+          skip_reason = ""
+
+          if tag_exists:
+              create_release = False
+              skip_reason = f"Tag '{tag}' already exists. Bump 'version' in {release_file} to cut a new release."
+          elif not (version_changed or file_changed) and not is_manual:
+              create_release = False
+              skip_reason = f"Neither version nor content in {release_file} changed in this push."
+          else:
+              create_release = True
+
+          print(f"Version: {version}")
+          print(f"Tag: {tag}")
+          print(f"Tag Exists: {tag_exists}")
+          print(f"Version Changed: {version_changed}")
+          print(f"File Changed: {file_changed}")
+          print(f"Create Release: {create_release}")
+          if skip_reason:
+              print(f"Skip Reason: {skip_reason}")
+
+          gh_output = os.environ.get("GITHUB_OUTPUT")
+          if gh_output:
+              with open(gh_output, "a", encoding="utf-8") as out:
+                  out.write(f"create_release={'true' if create_release else 'false'}\n")
+                  out.write(f"tag={tag}\n")
+                  out.write(f"version={version}\n")
+                  out.write(f"title={title}\n")
+                  out.write(f"skip_reason={skip_reason}\n")
+                  out.write("body<<RELEASE_EOF\n")
+                  out.write(body + "\n")
+                  out.write("RELEASE_EOF\n")
+          EOF
+
+      - name: Publish GitHub Release
+        if: steps.parse_release.outputs.create_release == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.parse_release.outputs.tag }}
+          name: ${{ steps.parse_release.outputs.title }}
+          body: ${{ steps.parse_release.outputs.body }}
+
+      - name: Release skipped notice
+        if: steps.parse_release.outputs.create_release != 'true'
+        run: |
+          echo "::notice::Release skipped: ${{ steps.parse_release.outputs.skip_reason }}"

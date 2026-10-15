@@ -1,0 +1,129 @@
+# Workflow: CI & Security Checks
+# PR quality and security checks:
+#   Job 1: lint - Validates .github/release.toml, required static files, and internal HTML links.
+#   Job 2: security - Gitleaks (secret scanning) and Trivy (vulnerability/misconfiguration scan).
+name: CI & Security Checks
+
+on:
+  pull_request:
+    branches: [main, release]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint & Structure Validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate TOML and Required Static Assets
+        run: |
+          python3 - << 'EOF'
+          import sys
+          import tomllib
+          from pathlib import Path
+
+          errors = []
+
+          # 1. Validate release.toml
+          toml_path = Path(".github/release.toml")
+          if toml_path.exists():
+              try:
+                  with open(toml_path, "rb") as f:
+                      data = tomllib.load(f)
+                  print("✓ .github/release.toml syntax is valid.")
+                  for key in ["version", "tag", "title", "description"]:
+                      if key not in data or not str(data[key]).strip():
+                          errors.append(f"Missing or empty key '{key}' in .github/release.toml")
+              except Exception as exc:
+                  errors.append(f"Invalid TOML in {toml_path}: {exc}")
+
+          # 2. Check essential files for GitHub Pages
+          required_files = [
+              "index.html",
+              "sitemap.xml",
+              "robots.txt",
+              "google90204ddbeb9f3cf5.html",
+          ]
+          for rf in required_files:
+              if not Path(rf).exists():
+                  errors.append(f"Required static file missing: {rf}")
+
+          required_dirs = ["assets", "css", "js", "projects", "resume"]
+          for rd in required_dirs:
+              if not Path(rd).is_dir():
+                  errors.append(f"Required directory missing: {rd}")
+
+          if errors:
+              print("::error::Validation failures detected:")
+              for err in errors:
+                  print(f"  - {err}")
+              sys.exit(1)
+          else:
+              print("✓ All essential static assets and directories are present.")
+          EOF
+
+      - name: Validate Local HTML References
+        run: |
+          python3 - << 'EOF'
+          import re
+          from pathlib import Path
+          import sys
+
+          html_files = list(Path(".").glob("*.html")) + list(Path("projects").glob("*.html")) + list(Path("resume").glob("*.html"))
+          link_pattern = re.compile(r'href=["\']((?:projects/|resume/)?[a-zA-Z0-9_\-]+\.html)["\']')
+
+          broken = []
+          for html_file in html_files:
+              content = html_file.read_text(encoding="utf-8", errors="ignore")
+              for match in link_pattern.finditer(content):
+                  target = match.group(1).lstrip("/")
+                  p_from_root = Path(target)
+                  p_from_dir = html_file.parent / target
+                  if not p_from_root.exists() and not p_from_dir.exists():
+                      broken.append(f"{html_file} -> {target}")
+
+          if broken:
+              print("::warning::Found potentially broken local HTML links:")
+              for b in set(broken):
+                  print(f"  - {b}")
+          else:
+              print("✓ All local HTML page references resolve cleanly.")
+          EOF
+
+  security:
+    name: Vulnerability & Secret Scanning
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Gitleaks (Secret Detection)
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+
+      - name: Run Trivy Vulnerability Scanner
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          scan-type: "fs"
+          scan-ref: "."
+          severity: "CRITICAL,HIGH"
+          format: "table"
+          exit-code: "0" # alerts without blocking; change to 1 to fail PR on critical findings
