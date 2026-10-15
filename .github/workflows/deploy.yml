@@ -1,16 +1,16 @@
-name: Deploy & Release
+# Workflow: Deploy to GitHub Pages
+# Builds and deploys the static site to GitHub Pages on every push to main (and manual workflow_dispatch).
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [main]
-    paths:
-      - ".github/info.md"
   # Manual trigger: start a clean run without a re-run (avoids duplicate Pages artifacts)
   workflow_dispatch:
 
-# Least privilege needed: publish Pages + create releases/tags
+# Least privilege needed: read repository + publish GitHub Pages
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -50,52 +50,3 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
-
-  release:
-    name: Create GitHub Release
-    runs-on: ubuntu-latest
-    needs: deploy
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 # full history + tags, needed to detect existing tag
-
-      - name: Parse info.md
-        id: info
-        run: |
-          tag=$(sed -n 's/^tag:[[:space:]]*//p' .github/info.md | head -n1)
-          title=$(sed -n 's/^title:[[:space:]]*//p' .github/info.md | head -n1)
-          # Release body = everything after the second frontmatter delimiter (---)
-          body=$(awk 'seen>=2{print} /^---[[:space:]]*$/{seen++}' .github/info.md)
-
-          if [ -z "$tag" ]; then
-            echo "::error::No 'tag:' found in info.md frontmatter"
-            exit 1
-          fi
-
-          echo "tag=$tag" >> "$GITHUB_OUTPUT"
-          echo "title=${title:-$tag}" >> "$GITHUB_OUTPUT"
-          {
-            echo "body<<RELEASE_EOF"
-            echo "$body"
-            echo "RELEASE_EOF"
-          } >> "$GITHUB_OUTPUT"
-
-      - name: Check if tag already exists
-        id: check
-        run: |
-          if git rev-parse "refs/tags/${{ steps.info.outputs.tag }}" >/dev/null 2>&1; then
-            echo "exists=true" >> "$GITHUB_OUTPUT"
-            echo "Tag ${{ steps.info.outputs.tag }} already exists — skipping release."
-          else
-            echo "exists=false" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Create release
-        if: steps.check.outputs.exists == 'false'
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ steps.info.outputs.tag }}
-          name: ${{ steps.info.outputs.title }}
-          body: ${{ steps.info.outputs.body }}

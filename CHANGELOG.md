@@ -2,6 +2,49 @@
 
 All notable changes to this project are documented in this file.
 
+## [v2.1.0] 2026-10-14
+
+Summary: Comprehensive content refresh, slug-style project URLs, resume LaTeX overhaul, and workflow modernization
+
+### Hero & Navigation
+- Updated hero copy and subtitle to align with Software Engineer positioning.
+- Added sticky positioning to topbar navigation with an avatar-on-scroll indicator revealing `@saqibbedar`.
+- Refined responsive typography and spacing using CSS `clamp()` ranges for cleaner mobile-to-desktop scaling.
+- Added `.claude` to `.gitignore`.
+
+### Projects & Case Studies
+- Converted all project pages from numeric prefixes to kebab-case slug URLs (e.g. `date-fruit-classification.html`, `bxp-code.html`, `bedarx-pro.html`, `gitcraft.html`).
+- Created dedicated showcase and documentation pages:
+  - **UV-JEPA**: Final-year research project exploring low-resource vision-language representation learning with Urdu as a testbed.
+  - **Fluent Python**: Curated open-source learning guide and interactive reference.
+  - **Gitcraft**: Comprehensive 33-page interactive Git documentation site.
+  - **Online Student Portal System**: Architecture case study and metrics.
+- Restructured homepage project catalog into 5 flagship showcases and 3 compact tools.
+
+### Skills & Experience
+- Reorganized skills taxonomy into 5 prioritized engineering domains: Python & Backend, Web & Frontend, Database & Cloud, DevOps & Tools, and AI/ML.
+- Added FastAPI, Pandas, PostgreSQL, GitLab, and Google Cloud Platform (GCP).
+- Added `.pill.learning` styling for technologies actively being mastered.
+- Updated experience section with Teaching Assistant roles (Programming Fundamentals, Web Application Development), AutoMind webinar, and MLSA workshop delivery.
+
+### Resume & SEO
+- Rebuilt online resume page mirroring clean LaTeX typesetting with print-ready CSS and direct ATS-friendly PDF download.
+- Synchronized Open Graph, Twitter Cards, and JSON-LD structured data (`Person` schema, `jobTitle`, `knowsAbout`, `subjectOf`).
+- Refreshed `sitemap.xml` with updated page URLs and modification dates.
+
+### UI & Skeleton Fixes
+- Resolved stat-grid bottom border selector and layout spacing.
+- Fixed image skeleton loader hydration to eliminate layout shift.
+- Updated preview assets for Gitcraft and Fluent Python.
+
+### CI/CD & Automation
+- Decoupled deployment and release automation into dedicated workflows.
+- `deploy.yml`: Direct GitHub Pages deployment triggered on push to `main` branch.
+- `release.yml`: Dedicated release automation triggered on push to `release` branch, driven by `.github/release.toml` via a native Python `tomllib` parser.
+- `ci.yml`: Pull request CI pipeline running TOML validation, HTML structure checks, and Trivy vulnerability/secret scanning.
+- Added developer tooling: `Justfile` recipe automation (`val_html`, `val_release`) backed by modular validation scripts in `scripts/`.
+- Streamlined `.gitignore` for the pure static architecture.
+
 ## [v2.0.2] 2026-07-05
 
 Summary: Deployment workflow fix
@@ -83,6 +126,7 @@ Summary: Initial Release
 - Initial release of the portfolio website.
 - Core frontend and backend setup with contact integration.
 
+[v2.1.0]: https://github.com/saqibbedar/saqibbedar.github.io/releases/tag/v2.1.0
 [v2.0.2]: https://github.com/saqibbedar/saqibbedar.github.io/releases/tag/v2.0.2
 [v2.0.1]: https://github.com/saqibbedar/saqibbedar.github.io/releases/tag/v2.0.1
 [v2.0.0]: https://github.com/saqibbedar/saqibbedar.github.io/releases/tag/v2.0.0
